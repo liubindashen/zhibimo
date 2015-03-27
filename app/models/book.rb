@@ -2,10 +2,10 @@ class Book < ActiveRecord::Base
   has_many :entries, dependent: :destroy
   belongs_to :user
 
-  def entry_create(path)
+  def entry_create(path, content = "", message = nil)
     entry = entries.create(path: path)
     return nil unless entry.valid?
-    entry.repo_update
+    entry.repo_update(content, message)
     entry
   end
 
@@ -20,6 +20,8 @@ class Book < ActiveRecord::Base
 
   after_create do
     destroy unless repo
+    entry_create("README.md", "This is the README.md", "[SYSTEM] ADD README.md")
+    entry_create("SUMMARY.md", "", "[SYSTEM] ADD SUMMARY.md")
   end
 
   after_destroy do
