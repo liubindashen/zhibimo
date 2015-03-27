@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :books do
-    resources :entries, only: [:create, :show, :update, :destroy]
+    resources :entries, only: [:index, :create, :show, :update, :destroy]
   end
 
   match '/auth/:provider/callback' => 'sessions#create', via: [:get, :post], as: :signin
