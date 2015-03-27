@@ -1,1 +1,169 @@
-@import "normalize.css/normalize"
+@import "normalize.css/normalize";
+
+
+
+#header{
+
+  text-align: center;
+  width: 80%;
+  max-width: 860px;
+  margin: auto;
+  .h1{
+    margin-top: 3%;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    position: relative;
+    font-family:hdjlaosong254820;
+
+
+    &:before, &:after{
+      position: absolute;
+      top: 0px;
+      z-index: 10;
+      width: 36%;
+      height: 5px;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;    
+      background-size: 3px 100%;
+      opacity: .6;
+      content: '';
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    &:before{
+      left: 0px;
+    }
+    &:after{
+      right: 0px;
+    }
+  }
+  .slogan{
+    font-size: 1.3em;
+    margin-top: 20px;
+    text-align: center;
+    color: #888;
+  }  
+}
+
+
+.landing{
+  font-family: 'akagi-pro', 'Helvetica Neue', Arial, "Hiragino Sans GB", sans-serif;
+  display: block;
+  width: 80%;
+  max-width: 860px;
+  height: 540px;
+  margin: auto;
+  margin-top: 46px;
+  border: 1px #ddd solid;
+  position: relative;
+  &:before, &:after{
+    position: absolute;
+    top: 0px;
+    z-index: 10;
+    width: 10px;
+    height: 100%;
+    background: -webkit-linear-gradient(left, #E0E0E0 33.33%, #f0f0f0 33.33%, #f0f0f0 66.66%, white 66.66%);
+    background: linear-gradient(to right, #E0E0E0 33.33%, #f0f0f0 33.33%, #f0f0f0 66.66%, white 66.66%);
+    background-size: 3px 100%;
+    opacity: .6;
+    content: '';
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  &:before{
+    left: 0;
+  }
+  &:after{
+    right: 0;
+  }
+
+  .title{
+    h2{
+      padding-top: 18%;
+      text-align: center;
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 0px;
+      margin-top: 0px;
+      font-weight: 100;
+    }
+    .sub-title{
+      color: #CCCCCC;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 0px;
+      font-weight: 100;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }    
+  }
+
+  .slogan{
+    h3{
+      margin-top: 30px;
+      color: #555;
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 5px;
+      font-weight: 100;
+
+    }
+    p{
+      color: #aaa;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 100;
+      margin-top: 0px;
+      font-weight: 100;
+
+    }
+  }
+  
+  .start-btn{
+    display: block;
+    margin: auto;
+    margin-top: 56%;
+    color: #444;
+    font-size: 16px;
+    line-height: 40px;
+    background: none;
+    text-align: center;
+    width: 160px;
+    border-radius: 20px;
+    border: 1px solid #666;
+    -webkit-transition: color, 0.3s;
+    -o-transition: color, 0.3s;
+    transition: color, 0.3s;
+    cursor: pointer;
+    &:hover{
+      color: #FFF;
+      border: 1px solid #aaa;
+      background: #aaa;
+    }
+  }
+
+  .left{
+    float: left;
+    height: 100%;
+    width: 50%;
+    position: relative;
+    background-image: linear-gradient(-90deg, #F8F8F8 0%, #FFFFFF 35%, #FFFFFF 90%, #F5F5F5 100%);
+    box-sizing: border-box;
+  }
+  .right{
+    float: right;
+    height: 100%;
+    width: 50%;
+    position: relative;
+    background-image: linear-gradient(-90deg, #F8F8F8 0%, #FFFFFF 45%, #FFFFFF 90%, #F5F3F3 100%);
+    border-left: 1px #ddd solid;
+    box-sizing: border-box;
+  }
+
+}
+
