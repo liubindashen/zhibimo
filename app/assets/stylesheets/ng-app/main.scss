@@ -63,7 +63,7 @@ a{
   height: 540px;
   margin: auto;
   margin-top: 56px;
-  margin-bottom: 120px;
+  margin-bottom: 60px;
   border: 1px #ddd solid;
   position: relative;
   &:before, &:after{
@@ -91,7 +91,7 @@ a{
 
   .title{
     h2{
-      padding-top: 18%;
+      padding-top: 14%;
       text-align: center;
       font-size: 24px;
       color: #333;
@@ -134,7 +134,7 @@ a{
   .start-btn{
     display: block;
     margin: auto;
-    margin-top: 56%;
+    margin-top: 52%;
     color: #444;
     font-size: 16px;
     line-height: 40px;
@@ -196,6 +196,7 @@ a{
 	max-width: 800px;
 	margin: auto; 
 	padding-top: 15px;
+	padding-bottom: 20px;
 	position: relative;
   &:before, &:after{
     position: absolute;
