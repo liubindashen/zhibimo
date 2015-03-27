@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327043147) do
+ActiveRecord::Schema.define(version: 20150327061035) do
+
+  create_table "authentications", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "books", force: :cascade do |t|
     t.boolean  "building"
@@ -29,7 +37,9 @@ ActiveRecord::Schema.define(version: 20150327043147) do
     t.string   "avatar_url"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "email"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
 end
