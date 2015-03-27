@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
+    if current_user
+      gon.currentUser = {username: current_user.username}
+    else
+      gon.currentUser = nil
+    end
   end
 
   helper_method :current_user

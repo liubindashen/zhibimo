@@ -9,6 +9,7 @@ angular.module('myApp', ['ngAnimate', 'ui.router', 'templates' ])
       .state('dashboard', {
         abstract: true
         url: '/dashboard'
+        controller: 'DashboardController'
         templateUrl: "dashboard/layout.html"
       })
       .state('dashboard.index', {

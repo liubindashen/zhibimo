@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'omniauth-github'
 gem 'rugged'
+gem 'gon'
 
 gem 'bower-rails'
 gem 'angular-rails-templates'

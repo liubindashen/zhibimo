@@ -74,6 +74,11 @@ GEM
       multipart-post (>= 1.2, < 3)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    gon (5.2.3)
+      actionpack (>= 2.3.0)
+      json
+      multi_json
+      request_store (>= 1.0.5)
     hashie (3.4.0)
     hike (1.2.3)
     hitimes (1.2.2)
@@ -162,6 +167,7 @@ GEM
     redis (3.2.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
+    request_store (1.1.0)
     rugged (0.21.4)
     sass (3.4.13)
     sass-rails (5.0.0)
@@ -219,6 +225,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   dotenv-rails
+  gon
   jbuilder (~> 2.0)
   jquery-rails
   meta_request

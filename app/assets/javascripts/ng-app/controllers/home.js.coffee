@@ -1,2 +1,3 @@
 angular.module('myApp')
-  .controller 'HomeController', ($scope) ->
+  .controller 'HomeController', ($scope, currentUser) ->
+    $scope.currentUser = currentUser
