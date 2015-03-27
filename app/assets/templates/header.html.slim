@@ -1,0 +1,10 @@
+.page-header.pure-g
+  .pure-u-4-24
+    a.logo: img ng-src="/images/logo@2x.png"
+  .pure-u-20-24.nav
+    .pure-menu.pure-menu-horizontal
+      ul.pure-menu-list
+        li.pure-menu-item: a.pure-menu-link ui-sref='home' 首页
+        li.pure-menu-item: a.pure-menu-link ui-sref='dashboard.index' ng-class="{active: active == 'index'}" 我的书架
+        li.pure-menu-item: a.pure-menu-link ui-sref='explore' 发现图书
+        li.pure-menu-item: a.pure-menu-link href='/signout' target='_self' 登出

@@ -39,10 +39,12 @@
         li{
           line-height: 30px;
           a{
-            &:hover{
+            &:hover, &.active {
               color: #666;
               background: #eee;
             }
+
+
           }
           &:first-child{
             @media screen and (max-width: 35.5em){
