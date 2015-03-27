@@ -6,6 +6,11 @@ angular.module('myApp', ['ngAnimate', 'ui.router', 'templates', 'restangular'])
         templateUrl: 'home.html'
         controller: 'HomeController'
       })
+      .state('explore', {
+        url: '/explore'
+        controller: 'ExploreController'
+        templateUrl: "explore.html"
+      })
       .state('dashboard', {
         abstract: true
         url: '/dashboard'
