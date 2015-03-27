@@ -147,7 +147,8 @@ a{
     -o-transition: color, 0.3s;
     transition: color, 0.3s;
     cursor: pointer;
-    &:hover{
+		opacity: .8;    
+	    &:hover{
       color: #FFF;
       border: 1px solid #aaa;
       background: #aaa;
