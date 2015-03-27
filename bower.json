@@ -6,7 +6,8 @@
       "angular-ui-router": "latest",
       "angular-animate": "latest",
       "bootstrap-sass-official": "latest",
-      "normalize.css": "latest"
+      "normalize.css": "latest",
+      "pure": "latest"
     }
   },
   "vendor": {
