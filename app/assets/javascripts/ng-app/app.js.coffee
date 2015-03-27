@@ -1,5 +1,5 @@
 angular.module('myApp', ['ngAnimate', 'ui.router', 'templates', 'restangular'])
-  .config ($stateProvider, $urlRouterProvider, $locationProvider) ->
+  .config ($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) ->
     $stateProvider
       .state('home', {
         url: '/'
@@ -20,3 +20,4 @@ angular.module('myApp', ['ngAnimate', 'ui.router', 'templates', 'restangular'])
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
 
+    RestangularProvider.setRequestSuffix('.json');
