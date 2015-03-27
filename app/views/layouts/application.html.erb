@@ -7,6 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if current_user %>
+  <a href='#'><%= current_user.username %></a>
+  <a href='/signout'>Signout</a>
+<% else %>
+  <a href='/auth/github'>Signin with Github</a>
+<% end %>
 
 <%= yield %>
 
