@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title><%= t(".title") %></title>
-  <link href='http://www.youziku.com/webfont/CSS/cd16e84d9ff4946990c251a808f83fd3' rel='stylesheet' type='text/css'/>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body ng-app="mainApp">
-<% if current_user %>
-  <a href='#'><%= current_user.username %></a>
-  <a href='/signout'>Signout</a>
-<% else %>
-  <a href='/auth/github'>Signin with Github</a>
-<% end %>
+  <head>
+    <title><%= t(".title") %></title>
+    <link href='http://www.youziku.com/webfont/CSS/cd16e84d9ff4946990c251a808f83fd3' rel='stylesheet' type='text/css'/>
+    <base href="/">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body ng-app="myApp">
+    <% if current_user %>
+      <a href='#'><%= current_user.username %></a>
+      <a href='/signout'>Signout</a>
+    <% else %>
+      <a href='/auth/github'>Signin with Github</a>
+    <% end %>
 
-<h1>{{ name }}</h1>
+    <h1>{{ user.username }}</h1>
+    <div class="main-view-container" ui-view></div>
 
-<%= yield %>
-
-</body>
+  </body>
 </html>
