@@ -9,15 +9,6 @@
     <%= csrf_meta_tags %>
   </head>
   <body ng-app="myApp">
-    <% if current_user %>
-      <a href='#'><%= current_user.username %></a>
-      <a href='/signout'>Signout</a>
-    <% else %>
-      <a href='/auth/github'>Signin with Github</a>
-    <% end %>
-
-    <h1>{{ user.username }}</h1>
-    <div class="main-view-container" ui-view></div>
-
+    <%= yield %>
   </body>
 </html>
