@@ -7,9 +7,13 @@ angular.module('myApp', ['ngAnimate', 'ui.router', 'templates' ])
         controller: 'HomeController'
       })
       .state('dashboard', {
+        abstract: true
         url: '/dashboard'
-        templateUrl: 'dashboard.html'
-        controller: 'DashboardController'
+        templateUrl: "dashboard/layout.html"
+      })
+      .state('dashboard.index', {
+        url: '/index'
+        templateUrl: "dashboard/index.html"
       })
 
     $urlRouterProvider.otherwise('/');
