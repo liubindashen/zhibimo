@@ -2,6 +2,7 @@
  *= require jquery
  *= require jquery_ujs
  *= require codemirror-5.1/lib/codemirror
+ *= require codemirror-5.1/addon/runmode/runmode
  *= require codemirror-5.1/addon/mode/overlay
  *= require codemirror-5.1/mode/xml/xml
  *= require codemirror-5.1/mode/markdown/markdown
@@ -22,6 +23,7 @@ $(document).ready(function() {
     lineNumbers: false,
     theme: "default",
     autofocus: true,
+    matchBrackets: true,
     lineWrapping: true,
   });
 
@@ -50,8 +52,27 @@ $(document).ready(function() {
     });
   });
 
+  $("#explorer #entries").on('click', '.delete-entry-button', function (e) {
+    e.stopPropagation();
+    var entryEle = $(this).parent(), entry = entryEle.data('entry');
+    $.ajax({
+      type: 'DELETE',
+      url: '/books/' + book + '/entries/' + entry + ".json",
+      success: function (data) {
+        if (editor.entry === entry) {
+          editor.entry = undefined;
+        }
+        $("#explorer #entries li:first-child").trigger('click');
+        entryEle.remove();
+      }
+    });
+  });
+
   function appendEntry(data) {
-    var entry = $("<li></li>").html(data.path)
+    var entry = $("<li></li>").html(data.path + '<span class="delete-entry-button">x</span>')
+    if (data.path === 'SUMMARY.md' || data.path === 'README.md') {
+      entry = $("<li></li>").html(data.path);
+    }
     entry.attr("data-entry", data.id);
     $('#explorer #entries').append(entry);
   }
