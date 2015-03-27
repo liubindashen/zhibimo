@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngAnimate', 'ui.router', 'templates', 'restangular'])
+angular.module('myApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular'])
   .config ($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) ->
     $stateProvider
       .state('home', {
@@ -19,7 +19,13 @@ angular.module('myApp', ['ngAnimate', 'ui.router', 'templates', 'restangular'])
       })
       .state('dashboard.index', {
         url: '/index'
+        controller: 'ListBookController'
         templateUrl: "dashboard/index.html"
+      })
+      .state('dashboard.new', {
+        url: '/new'
+        controller: 'NewBookController'
+        templateUrl: "dashboard/new.html"
       })
 
     $urlRouterProvider.otherwise('/');

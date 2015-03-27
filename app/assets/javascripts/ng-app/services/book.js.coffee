@@ -4,3 +4,6 @@ angular.module('myApp')
 
     all: ->
       _bookService.getList()
+
+    post: (book) ->
+      _bookService.post(book)

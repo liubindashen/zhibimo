@@ -2,6 +2,7 @@
 #= require angular-animate
 #= require angular-ui-router
 #= require angular-rails-templates
+#= require angular-messages
 #= require underscore
 #= require restangular 
 #= require_tree ./ng-app
