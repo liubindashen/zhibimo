@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= "#{@book.title} - 知笔墨" %></title>
+    <%= stylesheet_link_tag    'editor', media: 'all' %>
+    <%= javascript_include_tag 'editor' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body data-book=<%= @book.id.to_s %>>
+    <div id="explorer">
+      <h1><%= @book.title %></h1>
+      <ul id="entries">
+      </ul>
+    </div>
+
+    <div id="editor">
+      <textarea id="textarea"></textarea>
+      <div id="preview"></div>
+    </div>
+  </body>
+</html>

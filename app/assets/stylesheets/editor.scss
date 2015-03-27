@@ -1,0 +1,57 @@
+/*
+ *= require codemirror-5.1/lib/codemirror
+ */
+
+html,
+body,
+div,
+h1,
+h2,
+h3 {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#explorer {
+  position: absolute;
+  left: 0;
+  width: 240px;
+  min-height: 100%;
+  max-height: 100%;
+  overflow: auto;
+  background: #EFEFEF;
+  z-index: 999;
+}
+
+#editor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-left: 240px solid transparent;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100%;
+  max-height: 100%;
+}
+
+#textarea {
+  width: 50%;
+  left: 50%;
+  min-height: 100%;
+  max-height: 100%;
+  top: 0;
+}
+
+#preview {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  top: 0;
+  min-height: 100%;
+  max-height: 100%;
+}
