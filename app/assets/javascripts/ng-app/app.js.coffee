@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngAnimate', 'ui.router', 'templates' ])
+angular.module('myApp', ['ngAnimate', 'ui.router', 'templates', 'restangular'])
   .config ($stateProvider, $urlRouterProvider, $locationProvider) ->
     $stateProvider
       .state('home', {
