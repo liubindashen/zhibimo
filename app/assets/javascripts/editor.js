@@ -31,43 +31,31 @@ $(document).ready(function() {
   editor.on('changes', function (target, datas) {
     var content = kramed(editor.getValue());
     $('#editor #preview').html(content);
-    for (var i in datas) {
-      var data = datas[i];
-      for (var i in data.removed) {
-        changedDataLength += data.removed[i].length;
-      }
-      for (var i in data.text) {
-        changedDataLength += data.text[i].length;
-      }
-    }
-    if (editor.entry !== undefined && changedDataLength > 32) {
-      $.ajax({
-        type: 'PATCH',
-        url: '/books/' + book + '/entries/' + editor.entry + ".json",
-        data: { content: editor.getValue() },
-        success: function (data) { changedDataLength = 0; }
-      });
-    }
   });
 
   $("#explorer #entries").on('click', 'li', function (e) {
     e.preventDefault();
+    var entryEle = $(this);
+    var entry = entryEle.data('entry');
+    var markActive = function (ele) {
+      $('#entries li').removeClass('active-entry');
+      ele.addClass('active-entry');
+      $.get("/books/" + book + "/entries/" + entry + ".json", function (data) {
+        editor.setValue(data.content);
+        editor.entry = entry;
+        editor.focus();
+      });
+    };
     if (editor.entry !== undefined) {
       $.ajax({
         type: 'PATCH',
         url: '/books/' + book + '/entries/' + editor.entry + ".json",
         data: { content: editor.getValue() },
-        success: function (data) { }
+        success: function (data) { markActive(entryEle); }
       });
+    } else {
+      markActive(entryEle);
     }
-    var entry = $(this).data('entry');
-    $('#entries li').removeClass('active-entry');
-    $(this).addClass('active-entry');
-    $.get("/books/" + book + "/entries/" + entry + ".json", function (data) {
-      editor.setValue(data.content);
-      editor.entry = entry;
-      editor.focus();
-    });
   });
 
   $("#explorer #entries").on('click', '.delete-entry-button', function (e) {
