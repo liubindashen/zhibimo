@@ -1,4 +1,4 @@
-'https://ruby.taobao.org/'
+source 'https://ruby.taobao.org/'
 
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
