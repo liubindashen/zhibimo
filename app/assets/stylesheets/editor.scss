@@ -15,6 +15,7 @@ h3 {
   padding: 0;
   margin: 0;
   font-family: sans-serif;
+  box-sizing: border-box;
 }
 
 body {
@@ -120,6 +121,14 @@ body {
   .CodeMirror,
   #textarea-wrapper #textarea {
     height: auto;
+  }
+
+  .CodeMirror-lines {
+    padding: 8px;
+  }
+
+  #preview {
+    padding: 8px;
   }
 }
 

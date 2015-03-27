@@ -18,6 +18,7 @@
 
 $(document).ready(function() {
   var book = $('body').data('book');
+  var changedDataLength = 0;
   var editor = CodeMirror.fromTextArea($('#editor #textarea')[0], {
     mode: 'gfm',
     lineNumbers: false,
@@ -27,9 +28,26 @@ $(document).ready(function() {
     lineWrapping: true,
   });
 
-  editor.on('changes', function () {
+  editor.on('changes', function (target, datas) {
     var content = kramed(editor.getValue());
     $('#editor #preview').html(content);
+    for (var i in datas) {
+      var data = datas[i];
+      for (var i in data.removed) {
+        changedDataLength += data.removed[i].length;
+      }
+      for (var i in data.text) {
+        changedDataLength += data.text[i].length;
+      }
+    }
+    if (editor.entry !== undefined && changedDataLength > 32) {
+      $.ajax({
+        type: 'PATCH',
+        url: '/books/' + book + '/entries/' + editor.entry + ".json",
+        data: { content: editor.getValue() },
+        success: function (data) { changedDataLength = 0; }
+      });
+    }
   });
 
   $("#explorer #entries").on('click', 'li', function (e) {
