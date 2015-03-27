@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   get "/signout" => 'sessions#destroy', as: :signout
   get '/auth/failure' => 'sessions#fail'
 
-  root 'welcome#index'
+  root 'application#index'
+  get "*path.html" => "application#index", :layout => 0
+  get "*path" => "application#index"
 end

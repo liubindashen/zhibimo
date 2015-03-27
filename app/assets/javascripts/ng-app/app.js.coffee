@@ -1,11 +1,21 @@
 angular.module('myApp', ['ngAnimate', 'ui.router', 'templates' ])
   .config ($stateProvider, $urlRouterProvider, $locationProvider) ->
-    home = 
-      url: '/'
-      templateUrl: 'home.html'
-      controller: 'HomeController'
+    $stateProvider
+      .state('home', {
+        url: '/'
+        templateUrl: 'home.html'
+        controller: 'HomeController'
+      })
+      .state('dashboard', {
+        abstract: true
+        url: '/dashboard'
+        templateUrl: "dashboard/layout.html"
+      })
+      .state('dashboard.index', {
+        url: '/index'
+        templateUrl: "dashboard/index.html"
+      })
 
-    $stateProvider.state 'home', home
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
 
