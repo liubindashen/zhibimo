@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327081646) do
+ActiveRecord::Schema.define(version: 20150327091836) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20150327081646) do
     t.integer "book_id", null: false
   end
 
+  add_index "entries", ["book_id", "path"], name: "index_entries_on_book_id_and_path", unique: true
   add_index "entries", ["book_id"], name: "index_entries_on_book_id"
-  add_index "entries", ["path"], name: "index_entries_on_path", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "username",   limit: 64, null: false

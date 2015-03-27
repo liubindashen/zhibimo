@@ -15,6 +15,7 @@ class Entry < ActiveRecord::Base
     File.open(book.workdir + path, 'w') { |f| f.puts content }
     system("git -C #{book.workdir} add #{path}")
     system("git -C #{book.workdir} commit --author=#{Shellwords.escape(author)} --message=#{Shellwords.escape(message)} #{path}")
+    BookWorker.perform_async(book.id.to_s) unless message.start_with?('[SYSTEM]')
   end
 
   before_destroy do

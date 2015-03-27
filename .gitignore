@@ -16,3 +16,4 @@
 !/log/.keep
 /tmp
 .env
+lib/assets/bower_components/
