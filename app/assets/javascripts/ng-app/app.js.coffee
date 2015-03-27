@@ -1,5 +1,5 @@
-angular.module('myApp', ['ngAnimate', 'ui.router', 'templates' ])
-  .config ($stateProvider, $urlRouterProvider, $locationProvider) ->
+angular.module('myApp', ['ngAnimate', 'ui.router', 'templates', 'restangular'])
+  .config ($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) ->
     $stateProvider
       .state('home', {
         url: '/'
@@ -9,6 +9,7 @@ angular.module('myApp', ['ngAnimate', 'ui.router', 'templates' ])
       .state('dashboard', {
         abstract: true
         url: '/dashboard'
+        controller: 'DashboardController'
         templateUrl: "dashboard/layout.html"
       })
       .state('dashboard.index', {
@@ -19,3 +20,4 @@ angular.module('myApp', ['ngAnimate', 'ui.router', 'templates' ])
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
 
+    RestangularProvider.setRequestSuffix('.json');

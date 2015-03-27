@@ -2,6 +2,7 @@
  *= require jquery
  *= require jquery_ujs
  *= require codemirror-5.1/lib/codemirror
+ *= require codemirror-5.1/addon/runmode/runmode
  *= require codemirror-5.1/addon/mode/overlay
  *= require codemirror-5.1/mode/xml/xml
  *= require codemirror-5.1/mode/markdown/markdown
@@ -17,41 +18,67 @@
 
 $(document).ready(function() {
   var book = $('body').data('book');
+  var changedDataLength = 0;
   var editor = CodeMirror.fromTextArea($('#editor #textarea')[0], {
     mode: 'gfm',
     lineNumbers: false,
     theme: "default",
     autofocus: true,
+    matchBrackets: true,
     lineWrapping: true,
   });
 
-  editor.on('changes', function () {
+  editor.on('changes', function (target, datas) {
     var content = kramed(editor.getValue());
     $('#editor #preview').html(content);
   });
 
   $("#explorer #entries").on('click', 'li', function (e) {
     e.preventDefault();
+    var entryEle = $(this);
+    var entry = entryEle.data('entry');
+    var markActive = function (ele) {
+      $('#entries li').removeClass('active-entry');
+      ele.addClass('active-entry');
+      $.get("/books/" + book + "/entries/" + entry + ".json", function (data) {
+        editor.setValue(data.content);
+        editor.entry = entry;
+        editor.focus();
+      });
+    };
     if (editor.entry !== undefined) {
       $.ajax({
         type: 'PATCH',
         url: '/books/' + book + '/entries/' + editor.entry + ".json",
         data: { content: editor.getValue() },
-        success: function (data) { }
+        success: function (data) { markActive(entryEle); }
       });
+    } else {
+      markActive(entryEle);
     }
-    var entry = $(this).data('entry');
-    $('#entries li').removeClass('active-entry');
-    $(this).addClass('active-entry');
-    $.get("/books/" + book + "/entries/" + entry + ".json", function (data) {
-      editor.setValue(data.content);
-      editor.entry = entry;
-      editor.focus();
+  });
+
+  $("#explorer #entries").on('click', '.delete-entry-button', function (e) {
+    e.stopPropagation();
+    var entryEle = $(this).parent(), entry = entryEle.data('entry');
+    $.ajax({
+      type: 'DELETE',
+      url: '/books/' + book + '/entries/' + entry + ".json",
+      success: function (data) {
+        if (editor.entry === entry) {
+          editor.entry = undefined;
+        }
+        $("#explorer #entries li:first-child").trigger('click');
+        entryEle.remove();
+      }
     });
   });
 
   function appendEntry(data) {
-    var entry = $("<li></li>").html(data.path)
+    var entry = $("<li></li>").html(data.path + '<span class="delete-entry-button">x</span>')
+    if (data.path === 'SUMMARY.md' || data.path === 'README.md') {
+      entry = $("<li></li>").html(data.path);
+    }
     entry.attr("data-entry", data.id);
     $('#explorer #entries').append(entry);
   }

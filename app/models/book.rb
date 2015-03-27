@@ -5,7 +5,7 @@ class Book < ActiveRecord::Base
   def entry_create(path, content = "", message = nil)
     entry = entries.create(path: path)
     return nil unless entry.valid?
-    entry.repo_update(content, message)
+    entry.repo_update(content, message || "[SYSTEM] ADD " + path)
     entry
   end
 

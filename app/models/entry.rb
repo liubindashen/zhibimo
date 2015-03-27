@@ -18,8 +18,12 @@ class Entry < ActiveRecord::Base
     BookWorker.perform_async(book.id.to_s) unless message.start_with?('[SYSTEM]')
   end
 
+  before_save do
+    self.path = self.path + '.md' unless self.path.end_with?(".md")
+  end
+
   before_destroy do
-    return false if path == 'SUMMARY.md' || path == 'README.md'
+    return false if self.path == 'SUMMARY.md' || self.path == 'README.md'
     author = "#{book.user.username} <#{book.user.username}@zhibimo.com>"
     message = "[SYSTEM] ENTRY DELETE " + path
     system("git -C #{book.workdir} rm -rf #{path}")
