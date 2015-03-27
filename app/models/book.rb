@@ -6,38 +6,25 @@ class Book < ActiveRecord::Base
   end
 
   def entry_read(path)
+    return if path.blank?
     IO.readlines(workdir + path).join("\n")
   end
 
   def entry_update(path, content = "", message = nil)
-    _repo = repo
-    message ||= "[SYSTEM] AUTO SAVE " + Time.now.utc.to_s
-
-    oid = _repo.write(content, :blob)
-    index = _repo.index
-    index.read_tree(_repo.head.target.tree)
-    index.add(:path => path, :oid => oid, :mode => 0100644)
-
-    options = {
-      tree: index.write_tree(_repo),
-      author: {
-        email: "#{user.username}@zhibimo.com",
-        name: user.username,
-        time: Time.now
-      },
-      committer: {
-        email: "#{user.username}@zhibimo.com",
-        name: user.username,
-        time: Time.now
-      },
-      message: message,
-      parents: _repo.empty? ? [] : [ _repo.head.target ].compact,
-      update_ref: 'HEAD'
-    }
-    Rugged::Commit.create(_repo, options)
+    return if path.blank?
+    author = "#{user.username} <#{user.username}@zhibimo.com>"
+    message ||= "[SYSTEM] AUTO UPDATE " + Time.now.utc.to_s
+    File.open(workdir + path, 'w') { |f| f.puts content }
+    system("git -C #{workdir} add #{path}")
+    system("git -C #{workdir} commit --author=#{Shellwords.escape(author)} --message=#{Shellwords.escape(message)} #{path}")
   end
 
   def entry_destroy(path)
+    return if path.blank?
+    author = "#{user.username} <#{user.username}@zhibimo.com>"
+    message = "[SYSTEM] ENTRY DELETE " + path
+    system("git -C #{workdir} rm -rf #{path}")
+    system("git -C #{workdir} commit --author=#{Shellwords.escape(author)} --message=#{Shellwords.escape(message)}")
   end
 
   def repo
