@@ -6,7 +6,7 @@ class Entry < ActiveRecord::Base
   end
 
   def repo_content
-    IO.readlines(book.workdir + path).join("\n")
+    File.read(book.workdir + path)
   end
 
   def repo_update(content = "", message = nil)
@@ -19,6 +19,7 @@ class Entry < ActiveRecord::Base
   end
 
   before_destroy do
+    return false if path == 'SUMMARY.md' || path == 'README.md'
     author = "#{book.user.username} <#{book.user.username}@zhibimo.com>"
     message = "[SYSTEM] ENTRY DELETE " + path
     system("git -C #{book.workdir} rm -rf #{path}")
