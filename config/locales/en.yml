@@ -1,8 +1,4 @@
 en:
-  title: ZHIBIMO
-  sessions:
-    create:
-      notice: Sign In OK
-    destroy:
-      notice: Sign Out OK
-
+  layouts:
+    application:
+      title: 知笔墨 | 让文字自由流动
