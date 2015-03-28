@@ -16,11 +16,14 @@ docker run --name zhibimo-webapp -h zhibimo -p 80:80 \
   -e RAILS_ENV=production \
   -v $CODE/zhibimo/log/nginx:/var/log/nginx \
   -v $CODE/zhibimo/config/nginx/main.d:/etc/nginx/main.d \
-  -v $CODE/zhibimo/config/nginx/sites-enabled:/etc/nginx/sites-enabled
+  -v $CODE/zhibimo/config/nginx/sites-enabled:/etc/nginx/sites-enabled \
   -d zhibimo
 ```
 
 ```
-rake db:setup 
-rake bower:install assets:precompile
+setuser app bundle install --path vendor/bundle 
+setuser app rake db:setup 
+setuser app rake bower:install assets:precompile
+setuser app mkdir tmp 
+setuser app touch tmp/restart.txt
 ```

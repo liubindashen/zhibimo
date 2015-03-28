@@ -7,7 +7,8 @@ ENV HOME /root
 CMD ["/sbin/my_init"]
 
 RUN apt update
-RUN apt-get -y install vim
+RUN apt-get -y install vim cmake
+RUN npm install bower -g
 
 # RUN mkdir /etc/nginx/ssl_keys/
 # ADD conf/ssl_keys/server.crt /etc/nginx/ssl_keys/server.crt
