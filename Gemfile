@@ -1,8 +1,7 @@
 source 'https://ruby.taobao.org/'
 
 gem 'rails', '4.2.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'mysql2'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 5.0'
