@@ -19,3 +19,8 @@ docker run --name zhibimo-webapp -h zhibimo -p 80:80 \
   -v $CODE/zhibimo/config/nginx/sites-enabled:/etc/nginx/sites-enabled
   -d zhibimo
 ```
+
+```
+rake db:setup 
+rake bower:install assets:precompile
+```
