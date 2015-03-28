@@ -2,14 +2,16 @@
   "lib": {
     "name": "bower-rails generated lib assets",
     "dependencies": {
+      "codemirror": "latest",
       "angular": "latest",
-      "restangular": "latest",
-      "underscore": "latest",
-      "angular-ui-router": "latest",
       "angular-animate": "latest",
       "angular-messages": "latest",
-      "bootstrap-sass-official": "latest",
+      "angular-ui-router": "latest",
+      "angular-ui-codemirror": "latest",
+      "restangular": "latest",
+      "underscore": "latest",
       "normalize.css": "latest",
+      "bootstrap-sass-official": "latest",
       "pure": "latest"
     }
   },

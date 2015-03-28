@@ -27,6 +27,11 @@ angular.module('myApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         controller: 'NewBookController'
         templateUrl: "dashboard/new.html"
       })
+      .state('editor', {
+        url: '/editor/:bookId'
+        controller: 'EditorController'
+        templateUrl: "editor.html"
+      })
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
