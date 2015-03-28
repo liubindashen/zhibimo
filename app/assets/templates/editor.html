@@ -13,6 +13,6 @@
 </div>
 
 <div id="editor">
-  <div id="textarea-wrapper" ui-codemirror ng-model='entry.content' ng-change='entryChange()'></div>
+  <div id="textarea-wrapper" ui-codemirror ui-codemirror-opts='editorOptions' ng-model='entry.content' ng-change='entryChange()'></div>
   <div id="preview-wrapper" ng-bind-html='render(entry.content)'></div>
 </div>

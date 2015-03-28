@@ -1,6 +1,9 @@
 angular.module('myApp')
   .controller 'EditorController', ($scope, $state, $sce, $stateParams, $timeout, currentUser, kramedService, bookService) ->
 
+    $scope.editorOptions = 
+      lineWrapping : true
+
     bookService.one($stateParams['bookId']).get().then (book) ->
       book.getList('entries').then (entries) ->
         $scope.book = book
