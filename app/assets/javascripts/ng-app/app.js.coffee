@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular'])
+angular.module('myApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular', 'ui.codemirror', 'angular-underscore'])
   .config ($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) ->
     $stateProvider
       .state('home', {

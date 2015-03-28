@@ -1,9 +1,18 @@
 <div id="explorer">
-  <h1><span id="new-entry-button">+</span></h1>
-  <ul id="entries"></ul>
+  <h1>
+    <span id="new-entry-button" ng-click='newEntry()'>+</span>
+  </h1>
+  <ul id="entries">
+    <li ng-repeat="entry in entries" 
+        data-entry='{{entry.id}}' 
+        ng-click='setCurrent(entry.id)'
+        ng-class="{active: isActive(entry.id)}">
+      {{entry.path}}
+    </li>
+  </ul>
 </div>
 
 <div id="editor">
-  <div id="textarea-wrapper"><textarea id="textarea"></textarea></div>
-  <div id="preview-wrapper"><div id="preview"></div></div>
+  <div id="textarea-wrapper" ui-codemirror ng-model='entry.content' ng-change='entryChange()'></div>
+  <div id="preview-wrapper" ng-bind-html='render(entry.content)'></div>
 </div>

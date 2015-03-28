@@ -1,9 +1,7 @@
 angular.module('myApp')
   .factory 'bookService', (Restangular) ->
-    _bookService = Restangular.all('books')
+    _bookService = Restangular.service('books')
 
-    all: ->
-      _bookService.getList()
-
-    post: (book) ->
-      _bookService.post(book)
+    one: _bookService.one
+    post: _bookService.post
+    getList: _bookService.getList

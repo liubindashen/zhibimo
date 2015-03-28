@@ -2,14 +2,16 @@
   "lib": {
     "name": "bower-rails generated lib assets",
     "dependencies": {
+      "kramed": "GitbookIO/kramed",
+      "underscore": "latest",
       "codemirror": "latest",
       "angular": "latest",
       "angular-animate": "latest",
       "angular-messages": "latest",
+      "angular-underscore": "latest",
       "angular-ui-router": "latest",
       "angular-ui-codemirror": "latest",
       "restangular": "latest",
-      "underscore": "latest",
       "normalize.css": "latest",
       "bootstrap-sass-official": "latest",
       "pure": "latest"
