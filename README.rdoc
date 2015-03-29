@@ -21,9 +21,15 @@ docker run --name zhibimo-webapp -h zhibimo -p 80:80 \
 ```
 
 ```
+docker exec -t -i zhibimo-webapp bash -l
+
 setuser app bundle install --path vendor/bundle 
 setuser app rake db:setup 
 setuser app rake bower:install assets:precompile
+
+# set secret config in config/main.d/secret.conf
+
 setuser app mkdir tmp 
 setuser app touch tmp/restart.txt
+
 ```
