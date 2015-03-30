@@ -222,3 +222,51 @@ a{
 
 }
 
+@media screen and (max-width: 769px) {
+
+  .shadow{
+    display: none;
+  }
+
+  .header{
+    .h1{  
+      &:before, &:after{
+        width: 26%;
+      }
+    }  
+  }
+
+  .landing{
+    width: 90%;
+    height: auto;
+    margin-bottom: 30px;
+    .start-btn{
+      margin-top: 60px;
+      margin-bottom: 90px;
+    }
+    .left{
+      width: 100%;
+      float: none;
+      border-bottom: 1px #DDD solid;
+      background: #FFF;
+    }
+    .right{
+      width: 100%;
+      float: none;
+      background: #fefefe;
+    }
+    &:before{
+      display: none;
+    }
+    &:after{
+      display: none;
+    }
+  }
+
+  .footer{
+    &:before, &:after{
+
+      width: 10%;
+    }
+  }
+}
