@@ -21,8 +21,10 @@
       h3 一步到位的自出版工具
       p 更好的工具、更多的读者…
 
-    a.start-btn ng-if="currentUser" ui-sref='dashboard.index' 这就动笔
-    a.start-btn ng-if="!currentUser" target="_self" href='/auth/github' 这就动笔
+    a.start-btn.disabled  全力开发中…
+    
+    /ng-if="currentUser" ui-sref='dashboard.index'
+    /a.start-btn.disabled  ng-if="!currentUser" target="_self" href='/auth/github' 全力开发中…
 
   .shadow
 

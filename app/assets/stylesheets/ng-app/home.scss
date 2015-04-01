@@ -169,6 +169,17 @@ a{
     background-image: linear-gradient(-90deg, #F8F8F8 0%, #FFFFFF 45%, #FFFFFF 90%, #F5F3F3 100%);
     border-left: 1px #ddd solid;
     box-sizing: border-box;
+    .start-btn.disabled{
+      cursor: normal;
+      background: #eee;
+      border: 1px #ddd solid;
+      color: #bbb;
+      &:hover{
+        background: #eee;
+      }
+
+    }
+
   }
 
   .shadow{
