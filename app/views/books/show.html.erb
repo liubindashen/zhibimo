@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<pre>
+<code>
+git remote add zhibimo <%= @book.git_origin %>
+git push zhibimo master
+</code>
+</pre>
+
 <p>
   <strong>Title:</strong>
   <%= @book.title %>

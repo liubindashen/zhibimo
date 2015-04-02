@@ -32,4 +32,22 @@ class User < ActiveRecord::Base
       ])
     end
   end
+
+  after_create do
+    pwd = SecureRandom.hex
+    oh = Gitlab.create_user("#{id}@zhibimo.com", pwd, username: id.to_s, projects_limit: 100)
+    raise 'Failed to create git usr' unless oh.id.present?
+    update_columns(gitlab_id: oh.id, gitlab_password: pwd)
+  end
+
+  after_destroy do
+    http = HTTParty.delete(
+      "http://git.zhibimo.com/api/v3/users/#{gitlab_id}",
+      headers: {
+        'Content-Type' => 'application/json',
+        'PRIVATE-TOKEN' => Gitlab.private_token
+      }
+    )
+    p http
+  end
 end

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :books do
+    member do
+      post 'hook'
+    end
     resources :entries, only: [:index, :create, :show, :update, :destroy]
   end
 

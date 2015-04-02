@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327091836) do
+ActiveRecord::Schema.define(version: 20150401204054) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150327091836) do
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "gitlab_id"
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id"
@@ -41,11 +42,13 @@ ActiveRecord::Schema.define(version: 20150327091836) do
   add_index "entries", ["book_id"], name: "index_entries_on_book_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",   limit: 64, null: false
+    t.string   "username",        limit: 64, null: false
     t.string   "avatar_url"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "email"
+    t.integer  "gitlab_id"
+    t.string   "gitlab_password"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true
