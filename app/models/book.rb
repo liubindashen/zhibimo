@@ -2,6 +2,31 @@ class Book < ActiveRecord::Base
   has_many :entries, dependent: :destroy
   belongs_to :user
 
+  def self.from_hook(pl)
+    user = User.find_by!(gitlab_id: pl['user_id'].to_i)
+    book = user.books.find_by!(gitlab_id: pl['project_id'].to_i)
+    return if book.building?
+    book.update_columns(building: true)
+
+    FileUtils.mkdir_p("#{Dir.home}/book-repos/#{user.id}")
+    book_repo = "#{Dir.home}/book-repos/#{user.id}/#{book.id}"
+    FileUtils.rm_rf(book_repo)
+    system("git clone #{git_origin} #{book_repo}")
+
+    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{book.id}")
+    book_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}"
+    system("gitbook build #{book_repo} #{book_new}")
+
+    FileUtils.mkdir_p("#{Dir.home}/books/#{user.id}")
+    book_current = "#{Dir.home}/books/#{user.id}/#{book.id}"
+    book_old = File.readlink(book_current) rescue nil
+
+    system("ln -snf #{book_new} #{book_current}")
+    FileUtils.rm_rf(book_old) if book_old.present?
+
+    book.update_attributes(building: false)
+  end
+
   def entry_create(path, content = "", message = nil)
     entry = entries.create(path: path)
     return nil unless entry.valid?
@@ -10,12 +35,7 @@ class Book < ActiveRecord::Base
   end
 
   def git_origin
-    "http://#{user.gitlab_id}:#{user.gitlab_password}@git.zhibimo.com/#{user.gitlab_id}/#{self.gitlab_id}.git"
-  end
-
-  def workdir
-    # whenever we want to do some operations, should clone a unique copy
-    "/tmp/repos/#{user.gitlab_id}/#{self.gitlab_id}/#{SecureRandom.hex}"
+    "http://#{user.id}:#{user.gitlab_password}@git.zhibimo.com/#{user.id}/#{self.id}.git"
   end
 
   after_create do

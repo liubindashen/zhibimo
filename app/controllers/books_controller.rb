@@ -3,6 +3,11 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def hook
+    BookWorker.perform_async(params)
+    respond_to do |format|
+      format.json { render json: {} }
+      format.html { render json: {} }
+    end
   end
 
   # GET /books

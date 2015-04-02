@@ -72,6 +72,9 @@ GEM
     execjs (2.4.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    gitlab (3.3.0)
+      httparty
+      terminal-table
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     gon (5.2.3)
@@ -82,6 +85,9 @@ GEM
     hashie (3.4.0)
     hike (1.2.3)
     hitimes (1.2.2)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.2.12)
       activesupport (>= 3.0.0, < 5)
@@ -169,7 +175,6 @@ GEM
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
     request_store (1.1.0)
-    rugged (0.21.4)
     sass (3.4.13)
     sass-rails (5.0.0)
       railties (>= 4.0.0, < 5.0)
@@ -203,6 +208,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     temple (0.7.5)
+    terminal-table (1.4.5)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
@@ -225,6 +231,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   dotenv-rails
+  gitlab
   gon
   jbuilder (~> 2.0)
   jquery-rails
@@ -234,7 +241,6 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (= 4.2.1)
-  rugged
   sass-rails (~> 5.0)
   sidekiq
   slim-rails (~> 3.0.1)
