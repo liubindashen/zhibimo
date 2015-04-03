@@ -11,7 +11,7 @@ class Book < ActiveRecord::Base
     FileUtils.mkdir_p("#{Dir.home}/book-repos/#{user.id}")
     book_repo = "#{Dir.home}/book-repos/#{user.id}/#{book.id}"
     FileUtils.rm_rf(book_repo)
-    system("git clone #{git_origin} #{book_repo}")
+    system("git clone #{book.git_origin} #{book_repo}")
 
     FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{book.id}")
     book_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}"
