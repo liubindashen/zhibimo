@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406162734) do
+ActiveRecord::Schema.define(version: 20150406163732) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20150406162734) do
     t.string   "slug"
     t.string   "version"
     t.datetime "version_time"
-    t.string   "readme"
-    t.string   "summary"
+    t.text     "readme"
+    t.text     "summary"
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id"
