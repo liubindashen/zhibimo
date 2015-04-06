@@ -1,10 +1,10 @@
-angular.module('myApp')
-  .controller 'EditorController', ($scope, $state, $sce, $stateParams, $timeout, currentUser, kramedService, bookService) ->
+angular.module('ngApp')
+  .controller 'BookEditorController', ($scope, $state, $sce, $stateParams, $timeout, currentUser, KramedService, BookService) ->
 
     $scope.editorOptions = 
       lineWrapping : true
 
-    bookService.one($stateParams['bookId']).get().then (book) ->
+    BookService.one($stateParams['bookId']).get().then (book) ->
       book.getList('entries').then (entries) ->
         $scope.book = book
         $scope.entries = entries
@@ -31,7 +31,7 @@ angular.module('myApp')
         $scope.entries.push entry
 
     $scope.render = (content) ->
-      $sce.trustAsHtml(kramedService.render(content))
+      $sce.trustAsHtml(KramedService.render(content))
 
     delayInMs = 3000
     timeoutPromise = null

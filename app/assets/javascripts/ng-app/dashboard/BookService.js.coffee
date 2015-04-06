@@ -1,5 +1,5 @@
-angular.module('myApp')
-  .factory 'bookService', (Restangular) ->
+angular.module('ngApp')
+  .factory 'BookService', (Restangular) ->
     _bookService = Restangular.service('books')
 
     one: _bookService.one

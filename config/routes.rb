@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  scope '/api/v1' do
+    resources :explore, only: :index
+  end
+
   resources :books do
     member do
       post 'hook'
