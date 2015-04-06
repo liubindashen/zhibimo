@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   scope '/api/v1' do
     resources :explore, only: :index
-  end
 
-  resources :books do
-    member do
-      post 'hook'
+    resources :books do
+      member do
+        post 'hook'
+      end
+      resources :entries, only: [:index, :create, :show, :update, :destroy]
     end
-    resources :entries, only: [:index, :create, :show, :update, :destroy]
   end
 
   match '/auth/:provider/callback' => 'sessions#create', via: [:get, :post], as: :signin
