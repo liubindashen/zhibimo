@@ -1,7 +1,15 @@
 .explore-container{
   .board{
     position: relative;
-    .board-left{
+    display: inline-block;
+    height: 40px;
+    width: 100%;
+    background: asset-url("board-repeat@2x.png");
+    background-size: contain;
+    background-repeat: repeat-x;
+    position: relative;   
+    &:before{
+      content: "";
       display: inline-block;
       height: 40px;
       width: 40px;
@@ -9,28 +17,19 @@
       background: asset-url("board-left@2x.png");
       background-size: contain; 
       position: absolute;
-      left: -45px;     
-    }
-    .board-center{
-      margin-left: -5px;
-      display: inline-block;
-      height: 40px;
-      width: 100%;
-      background: asset-url("board-repeat@2x.png");
-      background-size: contain;
-      background-repeat: repeat-x;
-      position: relative;
-    }
-    .board-right{
+      left: -40px;       
+    } 
+    &:after{
+      content: "";
       display: inline-block;
       height: 40px;
       width: 40px;
       background-repeat: no-repeat;
       background: asset-url("board-right@2x.png");
-      background-size: contain;
+      background-size: contain; 
       position: absolute;
-      right: -35px;
-    }
+      right: -40px;       
+    } 
   }
 }
 
