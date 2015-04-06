@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org/'
+source 'https://ruby.taobo.org/'
 
 gem 'rails', '4.2.1'
 gem 'mysql2'
@@ -19,6 +19,7 @@ gem 'gon'
 
 gem 'bower-rails'
 gem 'angular-rails-templates'
+gem 'chinese_pinyin'
 
 group :development, :test do
   gem 'sqlite3'
