@@ -10,6 +10,7 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         url: '/explore'
         templateUrl: 'explore/default.html'
         controller: 'ExploreController'
+        controllerAs: 'vm'
       })
       .state('dashboard', {
         abstract: true
@@ -36,4 +37,5 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
 
+    RestangularProvider.setBaseUrl('api/v1');
     RestangularProvider.setRequestSuffix('.json');

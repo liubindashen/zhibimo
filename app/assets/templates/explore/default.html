@@ -1,5 +1,10 @@
 <div class='container'>
   <div header data-active='explore'></div>
   <h2>Explore</h2>
+  <ul>
+    <li ng-repeat='book in vm.books' ng-click='vm.view(book)'>
+      <a href><h3 ng-bind='book.title'></h3></a>
+    </li>
+  </ul>
   <div footer></div>
 </div>
