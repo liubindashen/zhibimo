@@ -17,14 +17,17 @@ class Book < ActiveRecord::Base
     book_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}"
     system("gitbook build #{book_repo} #{book_new}")
 
-    FileUtils.mkdir_p("#{Dir.home}/books/#{user.id}")
-    book_current = "#{Dir.home}/books/#{user.id}/#{book.id}"
+    FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
+    book_current = "#{Dir.home}/books/#{user.username}/#{book.slug}"
     book_old = File.readlink(book_current) rescue nil
 
     system("ln -snf #{book_new} #{book_current}")
     FileUtils.rm_rf(book_old) if book_old.present?
 
     book.update_attributes(building: false)
+  rescue => e
+    book.update_attributes(building: false)
+    raise e
   end
 
   def entry_create(path, content = "", message = nil)
