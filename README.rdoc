@@ -23,13 +23,26 @@ docker run --name zhibimo-webapp -h zhibimo -p 80:80 \
 ```
 docker exec -t -i zhibimo-webapp bash -l
 
-setuser app bundle install --path vendor/bundle 
-setuser app rake db:setup 
+setuser app bundle install --path vendor/bundle
+setuser app rake db:setup
 setuser app rake bower:install assets:precompile
 
 # set secret config in config/main.d/secret.conf
 
-setuser app mkdir tmp 
+setuser app mkdir tmp
 setuser app touch tmp/restart.txt
 
+```
+
+
+# install gitbook and noto-cjk
+```
+npm install -g gitbook-cli
+apt-get install xvfb calibre
+setuser app wget http://www.google.com/get/noto/pkgs/NotoSansCJK.ttc.zip
+setuser app unzip NotoSansCJK.ttc.zip
+setuser app mv NotoSansCJK.ttc /home/app/.fonts/
+setuser app fc-cache -fv
+setuser app xvfb-run gitbook pdf /home/app/book-repos/12/48/ 48.pdf
+setuser app xvfb-run ebook-convert 48.epub 2.pdf --output-profile=kindle_pw
 ```

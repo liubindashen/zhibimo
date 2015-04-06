@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
   has_many :entries, dependent: :destroy
+  validates :slug, presence: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
   belongs_to :user
 
   def self.from_hook(pl)
@@ -17,14 +18,19 @@ class Book < ActiveRecord::Base
     book_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}"
     system("gitbook build #{book_repo} #{book_new}")
 
-    FileUtils.mkdir_p("#{Dir.home}/books/#{user.id}")
-    book_current = "#{Dir.home}/books/#{user.id}/#{book.id}"
+    FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
+    book_current = "#{Dir.home}/books/#{user.username}/#{book.slug}"
     book_old = File.readlink(book_current) rescue nil
 
     system("ln -snf #{book_new} #{book_current}")
     FileUtils.rm_rf(book_old) if book_old.present?
 
-    book.update_attributes(building: false)
+    commit = pl['after']
+    commit_time = pl['commits'].find { |c| c['id'] == commit }['timestamp'].to_time
+    book.update_attributes(building: false, version: commit, version_time: commit_time)
+  rescue => e
+    book.update_attributes(building: false) if book
+    raise e
   end
 
   def entry_create(path, content = "", message = nil)

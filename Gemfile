@@ -19,8 +19,10 @@ gem 'gon'
 
 gem 'bower-rails'
 gem 'angular-rails-templates'
+gem 'chinese_pinyin'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'meta_request'
