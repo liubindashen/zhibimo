@@ -91,7 +91,7 @@ class Book < ActiveRecord::Base
     raise 'Failed to to create git repository: ' + http.body unless http.code == 201 && body['id'].present?
     update_column(:gitlab_id, body['id'])
 
-    oh = Gitlab.add_project_hook(gitlab_id, "http://zhibimo.com/books/#{id}/hook")
+    oh = Gitlab.add_project_hook(gitlab_id, "http://zhibimo.com/api/v1/books/#{id}/hook")
     raise 'Failed to create git hook' unless oh.id.present?
     # entry_create("README.md", "This is the README.md", "[SYSTEM] ADD README.md")
     # entry_create("SUMMARY.md", "", "[SYSTEM] ADD SUMMARY.md")
