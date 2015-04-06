@@ -1,4 +1,4 @@
-source 'https://ruby.taobo.org/'
+source 'https://ruby.taobao.org/'
 
 gem 'rails', '4.2.1'
 gem 'mysql2'
