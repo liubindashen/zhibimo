@@ -21,15 +21,19 @@
 
     max-width: 980px;
   }
+}
 
-  .page-header{
-    margin-top: 40px;
-    border-bottom: 1px #ddd solid;
+.page-header{
+  height: 60px;
+  border-bottom: 1px #DDD solid;
+  box-shadow: 0px 2px 4px 0px rgba(202,202,202,0.50);
+  .header-container{
+    line-height: 60px;
     .logo{
       display: block;
       width: 70px;
       img{
-        margin-top: 8px;
+        margin-top: 18px;
         max-width: 100%;
       }
     }
@@ -37,11 +41,13 @@
       text-align: right;
       ul{
         li{
-          line-height: 30px;
+          line-height: 16px;
+          box-sizing: content-box;
           a{
+            padding: .5em .5em; 
+            margin: 0 10px;
             &:hover, &.active {
-              color: #666;
-              background: #eee;
+              border-bottom: 2px #DDD solid;
             }
 
 
@@ -53,11 +59,10 @@
           }
         }
       }
-
     }
-
   }
-
 }
+
+
 
 
