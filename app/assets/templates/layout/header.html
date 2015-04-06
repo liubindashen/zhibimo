@@ -1,28 +1,31 @@
-<div class='page-header pure-g'>
-  <div class='pure-u-4-24'>
-    <a class='logo' ui-sref='home'>
-      <img ng-src='images/logo@2x.png' />
-    </a>
-  </div>
-  <div class='pure-u-20-24 nav'>
-    <div class='pure-menu pure-menu-horizontal'>
-      <ul class='pure-menu-list'>
-        <li class='pure-menu-item'>
-          <a class='pure-menu-link' ui-sref='home'>首页</a>
-        </li>
-        <li class='pure-menu-item'>
-          <a class='pure-menu-link' ui-sref='explore' ng-class="{active: active == 'explore'}">发现图书</a>
-        </li>
-        <li class='pure-menu-item' ng-if='currentUser'>
-          <a class='pure-menu-link' ui-sref='dashboard.index' ng-class="{active: active == 'index'}">我的书架</a>
-        </li>
-        <li class='pure-menu-item' ng-if='currentUser'>
-          <a class='pure-menu-link' href='/signout' target='_self'>登出</a>
-        </li>
-        <li class='pure-menu-item' ng-if='!currentUser'>
-          <a class='pure-menu-link' href='/auth/github' target='_self'>登录</a>
-        </li>
-      </ul>
+<div class='page-header'>
+  <div class='header-container pure-g container'>
+    <div class='pure-u-4-24'>
+      <a class='logo' ui-sref='home'>
+        <img ng-src='images/logo@2x.png' />
+      </a>
+    </div>
+    <div class='pure-u-20-24 nav'>
+      <div class='pure-menu pure-menu-horizontal'>
+        <ul class='pure-menu-list'>
+          <li class='pure-menu-item'>
+            <a class='pure-menu-link' ui-sref='home'>首页</a>
+          </li>
+          <li class='pure-menu-item'>
+            <a class='pure-menu-link' ui-sref='explore' ng-class="{active: active == 'explore'}">发现图书</a>
+          </li>
+          <li class='pure-menu-item' ng-if='currentUser'>
+            <a class='pure-menu-link' ui-sref='dashboard.index' ng-class="{active: active == 'index'}">我的书架</a>
+          </li>
+          <li class='pure-menu-item' ng-if='currentUser'>
+            <a class='pure-menu-link' href='/signout' target='_self'>登出</a>
+          </li>
+          <li class='pure-menu-item' ng-if='!currentUser'>
+            <a class='pure-menu-link' href='/auth/github' target='_self'>登录</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
+
