@@ -1,36 +1,36 @@
-angular.module('myApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular', 'ui.codemirror', 'angular-underscore'])
+angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular', 'ui.codemirror', 'angular-underscore'])
   .config ($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) ->
     $stateProvider
       .state('home', {
         url: '/'
-        templateUrl: 'home.html'
+        templateUrl: 'welcome/home.html'
         controller: 'HomeController'
       })
       .state('explore', {
         url: '/explore'
+        templateUrl: 'explore/default.html'
         controller: 'ExploreController'
-        templateUrl: "explore.html"
       })
       .state('dashboard', {
         abstract: true
         url: '/dashboard'
+        templateUrl: 'dashboard/layout.html'
         controller: 'DashboardController'
-        templateUrl: "dashboard/layout.html"
       })
       .state('dashboard.index', {
         url: '/index'
-        controller: 'ListBookController'
-        templateUrl: "dashboard/index.html"
+        templateUrl: 'dashboard/book_list.html'
+        controller: 'BookListController'
       })
       .state('dashboard.new', {
         url: '/new'
-        controller: 'NewBookController'
-        templateUrl: "dashboard/new.html"
+        templateUrl: 'dashboard/book_new.html'
+        controller: 'BookNewController'
       })
       .state('editor', {
         url: '/editor/:bookId'
-        controller: 'EditorController'
-        templateUrl: "editor.html"
+        templateUrl: 'dashboard/book_editor.html'
+        controller: 'BookEditorController'
       })
 
     $urlRouterProvider.otherwise('/');

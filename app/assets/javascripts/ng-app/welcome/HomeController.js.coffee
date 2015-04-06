@@ -1,3 +1,3 @@
-angular.module('myApp')
+angular.module('ngApp')
   .controller 'HomeController', ($scope, currentUser) ->
     $scope.currentUser = currentUser
