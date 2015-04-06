@@ -1,6 +1,17 @@
 <div header data-active='explore'></div>
 <div class='container'>  
   <h2>Explore</h2>
+  <div class='explore-container'>
+  	<div class='board'>
+      <div class='board-left'>      
+      </div>    
+      <div class='board-center'>      
+      </div>                
+      <div class='board-right'>      
+      </div>    
+  	</div>
+  </div>
+
   <ul>
     <li ng-repeat='book in vm.books' ng-click='vm.view(book)'>
       <a href><h3 ng-bind='book.title'></h3></a>
@@ -8,3 +19,10 @@
   </ul>
   <div footer></div>
 </div>
+
+
+.
+  .board
+    .board-left
+    .board-center
+    .board-right
