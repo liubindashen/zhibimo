@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
                            :uid => auth[:uid])
   end
 
+  def avatar_url(default)
+    attr_url = read_attribute(:avatar_url)
+    attr_url.blank? ? default : attr_url
+  end
+
   class << self
     def from_auth(auth)
       locate_auth(auth) || create_auth(auth)

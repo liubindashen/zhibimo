@@ -3,6 +3,11 @@ class Book < ActiveRecord::Base
   validates :slug, presence: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
   belongs_to :user
 
+  def cover_url(default)
+    File.exists?("#{Dir.home}/books/#{user.username}/#{slug}/cover.jpg") ?
+      "http://zhibimo.com/read/#{user.username}/#{slug}/cover.jpg" : default
+  end
+
   def self.from_hook(pl)
     user = User.find_by!(gitlab_id: pl['user_id'].to_i)
     book = user.books.find_by!(gitlab_id: pl['project_id'].to_i)
@@ -13,6 +18,8 @@ class Book < ActiveRecord::Base
     book_repo = "#{Dir.home}/book-repos/#{user.id}/#{book.id}"
     FileUtils.rm_rf(book_repo)
     system("git clone #{book.git_origin} #{book_repo}")
+
+    book.update_columns(readme: File.read("#{book_repo}/README.md"), summary: File.read("#{book_repo}/SUMMARY.md"))
 
     # HTML begin
     FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{book.id}")
