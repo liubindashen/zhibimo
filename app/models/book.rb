@@ -24,9 +24,11 @@ class Book < ActiveRecord::Base
     system("ln -snf #{book_new} #{book_current}")
     FileUtils.rm_rf(book_old) if book_old.present?
 
-    book.update_attributes(building: false)
+    commit = pl['after']
+    commit_time = pl['commits'].find { |c| c['id'] == commit }['timestamp'].to_time
+    book.update_attributes(building: false, version: commit, version_time: commit_time)
   rescue => e
-    book.update_attributes(building: false)
+    book.update_attributes(building: false) if book
     raise e
   end
 

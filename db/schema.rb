@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406094315) do
+ActiveRecord::Schema.define(version: 20150406101358) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -25,11 +25,13 @@ ActiveRecord::Schema.define(version: 20150406094315) do
     t.boolean  "building"
     t.string   "title"
     t.string   "cover_url"
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "gitlab_id"
     t.string   "slug"
+    t.string   "version"
+    t.datetime "version_time"
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id"
