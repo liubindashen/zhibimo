@@ -4,8 +4,8 @@ class Book < ActiveRecord::Base
   belongs_to :user
 
   def cover_url(default)
-    attr_url = read_attribute(:cover_url)
-    attr_url.blank? ? default : attr_url
+    File.exists?("#{Dir.home}/books/#{user.username}/#{slug}/cover.jpg") ?
+      "http://zhibimo.com/read/#{user.username}/#{slug}/cover.jpg" : default
   end
 
   def self.from_hook(pl)
