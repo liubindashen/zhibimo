@@ -21,6 +21,7 @@ gem 'bower-rails'
 gem 'angular-rails-templates'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'meta_request'
