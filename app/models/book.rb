@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
   has_many :entries, dependent: :destroy
+  validates :slug, presence: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
   belongs_to :user
 
   def self.from_hook(pl)
