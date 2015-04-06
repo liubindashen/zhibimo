@@ -14,16 +14,44 @@ class Book < ActiveRecord::Base
     FileUtils.rm_rf(book_repo)
     system("git clone #{book.git_origin} #{book_repo}")
 
+    # HTML begin
     FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{book.id}")
-    book_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}"
-    system("gitbook build #{book_repo} #{book_new}")
+    html_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}"
+    system("gitbook build #{book_repo} #{html_new}")
 
     FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
-    book_current = "#{Dir.home}/books/#{user.username}/#{book.slug}"
-    book_old = File.readlink(book_current) rescue nil
+    html_current = "#{Dir.home}/books/#{user.username}/#{book.slug}"
+    html_old = File.readlink(html_current) rescue nil
 
-    system("ln -snf #{book_new} #{book_current}")
-    FileUtils.rm_rf(book_old) if book_old.present?
+    system("ln -snf #{html_new} #{html_current}")
+    FileUtils.rm_rf(html_old) if html_old.present?
+    # HTML end
+
+    # EPUB begin
+    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{book.id}")
+    epub_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}.epub"
+    system("gitbook epub #{book_repo} #{epub_new}")
+
+    FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
+    epub_current = "#{Dir.home}/books/#{user.username}/#{book.slug}.epub"
+    epub_old = File.readlink(epub_current) rescue nil
+
+    system("ln -snf #{epub_new} #{epub_current}")
+    FileUtils.rm_rf(epub_old) if epub_old.present?
+    # EPUB end
+
+    # PDF begin
+    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{book.id}")
+    pdf_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}.pdf"
+    system("xvfb-run gitbook pdf #{book_repo} #{pdf_new}")
+
+    FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
+    pdf_current = "#{Dir.home}/books/#{user.username}/#{book.slug}.pdf"
+    pdf_old = File.readlink(pdf_current) rescue nil
+
+    system("ln -snf #{pdf_new} #{pdf_current}")
+    FileUtils.rm_rf(pdf_old) if pdf_old.present?
+    # PDF end
 
     commit = pl['after']
     commit_time = pl['commits'].find { |c| c['id'] == commit }['timestamp'].to_time
