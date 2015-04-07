@@ -1,0 +1,61 @@
+.explore-container{
+  padding-top: 60px;
+  min-height: 700px;
+  .board{
+    @extend .board-sample;
+  }
+  .books{
+    margin-top: -130px;    
+    .book{
+      .book-cover{
+        @extend .book-cover-sample;
+        height: 140px;
+        width: 105px;        
+      }
+      .book-title{
+        margin-top: 30px;
+        p{
+          font-size: 1.2em;
+          text-align: center;
+        }
+      }
+    }    
+  }
+}
+
+.bookdetail-container{
+  min-height: 600px;
+  .detail-header{
+    background-color: #F8F8F8;
+    width: 100%;
+    height: 200px;
+  }
+  .board{
+    @extend .board-sample;   
+    margin-top: 200px;
+    .book-cover{
+      @extend .book-cover-sample;
+      width: 126px;
+      margin: 0px;
+      margin-top: -155px;
+    }
+    .book-info{
+      margin-top: -140px;
+    }
+    .read-download{
+      .read-btn{
+        color: #FFF;
+        background: #A1CB74;
+        border-radius: 4px;
+        padding: 8px 20px;
+      }
+      .download-btn{
+        color: #444;
+        border: 1px #ddd solid;
+        border-radius: 4px;
+        padding: 8px 20px;
+      }
+    }
+  }  
+}
+
