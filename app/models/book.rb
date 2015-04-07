@@ -3,7 +3,7 @@ class Book < ActiveRecord::Base
   validates :slug, presence: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
   belongs_to :user
 
-  def cover_url(default)
+  def cover_url(default = nil)
     File.exists?("#{Dir.home}/books/#{user.username}/#{slug}/cover.jpg") ?
       "http://zhibimo.com/read/#{user.username}/#{slug}/cover.jpg" : default
   end

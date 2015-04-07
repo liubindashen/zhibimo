@@ -7,6 +7,7 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         controller: 'HomeController'
       })
       .state('explore', {
+        abstract: true
         url: '/explore'
         templateUrl: 'explore/layout.html'
         controller: 'ExploreController'

@@ -33,27 +33,45 @@
   .board{
     @extend .board-sample;   
     margin-top: 200px;
-    .book-cover{
-      @extend .book-cover-sample;
-      width: 126px;
-      margin: 0px;
-      margin-top: -155px;
+    .cover-col{
+      min-width: 140px;
+      .book-cover{
+        @extend .book-cover-sample;
+        width: 126px;
+        margin: 0px;
+        margin-top: -155px;
+      }      
     }
     .book-info{
-      margin-top: -140px;
+      margin-top: -156px;
+      h2{
+        margin-bottom: 5px;
+      }
+      p{
+        margin-top: 0px;
+      }
     }
     .read-download{
+      margin-top: 30px;
       .read-btn{
         color: #FFF;
         background: #A1CB74;
         border-radius: 4px;
         padding: 8px 20px;
+        cursor: pointer;
+        &:hover{
+          background: #8BC051;
+        }
       }
       .download-btn{
         color: #444;
         border: 1px #ddd solid;
         border-radius: 4px;
         padding: 8px 20px;
+        cursor: pointer;
+        &:hover{
+          background: #DDD;
+        }
       }
     }
   }  
