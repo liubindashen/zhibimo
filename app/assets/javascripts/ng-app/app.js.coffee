@@ -10,6 +10,7 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         url: '/explore'
         templateUrl: 'explore/layout.html'
         controller: 'ExploreController'
+        controllerAs: 'vm'        
       })
       .state('explore.list', {
         url: '/'
