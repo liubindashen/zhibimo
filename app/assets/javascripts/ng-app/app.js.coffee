@@ -10,21 +10,19 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         abstract: true
         url: '/explore'
         templateUrl: 'explore/layout.html'
-        controller: 'ExploreController'
-        controllerAs: 'vm'
       })
-      .state('explore.list', {
+      .state('explore.index', {
         url: '/'
-        templateUrl: 'explore/list.html'
-        controller: 'ExploreListController'
+        templateUrl: 'explore/index.html'
+        controller: 'ExploreIndexController'
         controllerAs: 'vm'
       })
-      .state('explore.single', {
-        url: '/single'
-        templateUrl: 'explore/single.html'
-        controller: 'ExploreSingleController'
+      .state('explore.show', {
+        url: '/:id'
+        templateUrl: 'explore/show.html'
+        controller: 'ExploreShowController'
         controllerAs: 'vm'
-      })      
+      })
       .state('dashboard', {
         abstract: true
         url: '/dashboard'

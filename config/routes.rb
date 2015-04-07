@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   scope '/api/v1' do
-    resources :explore, only: :index
+    resources :explore, only: [:index, :show]
 
     resources :books do
       member do

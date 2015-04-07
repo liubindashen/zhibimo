@@ -3,4 +3,8 @@ class ExploreController < ApplicationController
     @books = Book.all
     render json: @books.to_json
   end
+
+  def show
+    @book = Book.find(params[:id])
+  end
 end
