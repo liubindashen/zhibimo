@@ -1,8 +1,9 @@
 .explore-container{
-  padding-top: 60px;
+  padding-top: 6px;
   min-height: 700px;
   .board{
     @extend .board-sample;
+    margin-top: 200px;
   }
   .books{
     margin-top: -130px;    
