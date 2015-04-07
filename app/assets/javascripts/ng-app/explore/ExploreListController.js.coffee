@@ -6,11 +6,12 @@ angular.module('ngApp').controller 'ExploreListController', [
 
     vm.view = (book) ->
       console.log book.title
-      
 
     ExploreService.getList().then (books) ->
-      vm.books = books
-      #debugger
+      vm.booksWithGroup = _.chain(books).groupBy (e, i) ->
+        Math.floor(i/3)
+      .toArray()
+      .value()
 
     return vm
 ]
