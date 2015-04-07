@@ -1,4 +1,4 @@
-angular.module('ngApp').controller 'ExploreController', [
+angular.module('ngApp').controller 'ExploreListController', [
   '$state', 'ExploreService',
   ($state,   ExploreService) ->
     vm = @
