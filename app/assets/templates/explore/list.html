@@ -2,9 +2,9 @@
   <div class='explore-container'>
 
     <div class='board'>
-      <div class='books pure-g' ng-repeat='book in vm.books' ng-click='vm.view(book)'>
+      <div class='books pure-g'>
 
-        <div class='book pure-u-1-5'>
+        <div class='book pure-u-1-5' ng-repeat='book in vm.books' ng-click='vm.view(book)'>
           <div class="book-cover">
             <img src="https://sm3lir.cloudimage.io/s/width/210/https://www.gitbook.com/cover/book/karmazzin/eloquentjavascript_ru.jpg?build=1427995075544&v=6.11.8">
           </div>
