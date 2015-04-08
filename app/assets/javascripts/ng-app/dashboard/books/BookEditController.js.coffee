@@ -6,5 +6,8 @@ angular.module('ngApp').controller 'BookEditController', [
     BookService.one($stateParams['slug']).get().then (book) ->
       vm.book = book
 
+    vm.submit = ->
+      vm.book.save()
+
     return vm
 ]
