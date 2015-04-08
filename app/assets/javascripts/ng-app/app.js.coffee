@@ -6,6 +6,7 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         templateUrl: 'welcome/home.html'
         controller: 'HomeController'
       })
+      # Explore Route
       .state('explore', {
         abstract: true
         url: '/explore'
@@ -23,26 +24,40 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         controller: 'ExploreShowController'
         controllerAs: 'vm'
       })
+      # Dashboard Route
       .state('dashboard', {
-        abstract: true
         url: '/dashboard'
         templateUrl: 'dashboard/layout.html'
-        controller: 'DashboardController'
+        abstract: true
       })
-      .state('dashboard.index', {
+      # Dashboard Books Route
+      .state('dashboard.books', {
+        url: '/books'
+        templateUrl: 'dashboard/books/layout.html'
+        abstract: true
+      })
+      .state('dashboard.books.index', {
         url: '/'
-        templateUrl: 'dashboard/index.html'
-        controller: 'BookListController'
+        templateUrl: 'dashboard/books/index.html'
+        controller: 'BookIndexController'
+        controllerAs: 'vm'
       })
-      .state('dashboard.new', {
+      .state('dashboard.books.new', {
         url: '/new'
-        templateUrl: 'dashboard/book_new.html'
+        templateUrl: 'dashboard/books/new.html'
         controller: 'BookNewController'
         controllerAs: 'vm'
       })
+      .state('dashboard.books.edit', {
+        url: '/edit/:slug'
+        templateUrl: 'dashboard/books/edit.html'
+        controller: 'BookEditController'
+        controllerAs: 'vm'
+      })
+      # Dashboard Editor Route
       .state('editor', {
         url: '/editor/:bookId'
-        templateUrl: 'dashboard/book_editor.html'
+        templateUrl: 'dashboard/editor.html'
         controller: 'BookEditorController'
       })
 

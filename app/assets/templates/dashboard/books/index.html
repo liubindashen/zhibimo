@@ -1,12 +1,12 @@
 <div class='inner-header'>
   <div class='container pure-g'>
     <h2 class='pure-u-21-24'>我的作品</h2>
-    <a class='pure-u-3-24' ui-sref='dashboard.new'>创建新书</a>
+    <a class='pure-u-3-24' ui-sref='dashboard.books.new'>创建新书</a>
   </div>
 </div>
 
 <div class='container'>
-  <div class='board' ng-repeat='book in books'>
+  <div class='board' ng-repeat='book in vm.books'>
     <div class='board-content pure-g'>
       <div class='pure-u-4-24'>
         <div class='cover'>
@@ -17,8 +17,8 @@
         <h2 ng-bind='book.title'></h2>
       </div>
       <div class='pure-u-4-24'>
-        <a class="pure-button" href="#">Edit</a>
-        <a class="pure-button" href="#">Setting</a>
+        <a class="pure-button" ng-click='' href>Edit</a>
+        <a class="pure-button" ng-click='vm.edit(book)' href="#">Setting</a>
       </div>
     </div>
   </div>
