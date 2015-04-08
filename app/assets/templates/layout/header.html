@@ -12,10 +12,10 @@
             <a class='pure-menu-link' ui-sref='home'>首页</a>
           </li>
           <li class='pure-menu-item'>
-            <a class='pure-menu-link' ui-sref='explore' ng-class="{active: active == 'explore'}">发现</a>
+            <a class='pure-menu-link' ui-sref='explore.index' ng-class="{active: active == 'explore.index'}">发现</a>
           </li>
           <li class='pure-menu-item' ng-if='currentUser'>
-            <a class='pure-menu-link' ui-sref='dashboard.index' ng-class="{active: active == 'index'}">写作</a>
+            <a class='pure-menu-link' ui-sref='dashboard.index' ng-class="{active: active == 'dashboard.index'}">写作</a>
           </li>
           <li class='pure-menu-item' ng-if='currentUser'>
             <a class='pure-menu-link' href='/signout' target='_self'>登出</a>

@@ -30,7 +30,7 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         controller: 'DashboardController'
       })
       .state('dashboard.index', {
-        url: '/index'
+        url: '/'
         templateUrl: 'dashboard/index.html'
         controller: 'BookListController'
       })
