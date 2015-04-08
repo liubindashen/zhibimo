@@ -19,4 +19,4 @@
 lib/assets/bower_components/
 /public/assets/
 /vendor/bundle/
-
+/node_modules

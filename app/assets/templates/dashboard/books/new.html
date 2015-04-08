@@ -1,0 +1,19 @@
+<div class='inner-header'>
+  <div class='container pure-g'>
+    <h2 class='pure-u-21-24'>创建新书</h2>
+  </div>
+</div>
+
+<div class='container pure-g'>
+  <div class='pure-u-3-24'></div>
+  <div class='pure-u-18-24'>
+    <form name="new_book_form" novalidate ng-submit="vm.submit()" class='pure-form'>
+      <fieldset class="pure-group">
+        <input class='pure-input-1' type="text" placeholder="请在这里输入标题" name="title" ng-model="vm.book.title" required />
+      </fieldset>
+      <fieldset class="pure-group">
+        <button class='pure-input-1 pure-button pure-button-primary' type='submit'>开始新的篇章</button>
+      </fieldset>
+    </form>
+  </div>
+</div>
