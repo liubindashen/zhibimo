@@ -14,7 +14,8 @@
       "restangular": "latest",
       "normalize.css": "latest",
       "bootstrap-sass-official": "latest",
-      "pure": "latest"
+      "pure": "latest",
+      "octicons": "*"
     }
   },
   "vendor": {

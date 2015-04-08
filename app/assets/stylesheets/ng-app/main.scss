@@ -1,7 +1,11 @@
 @import "normalize.css/normalize";
 
+@import "octicons/octicons/octicons";
 @import "pure/pure-min";
-@import "csssamples";
+
+@import "custom-vars";
+@import "pure-custom";
+
 @import "header";
 @import "home";
 @import "dashboard";

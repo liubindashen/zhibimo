@@ -11,10 +11,12 @@
       .book-cover{
         @extend .book-cover-sample;
         height: 140px;
-        width: 105px;        
+        width: 105px;  
+        cursor: pointer;
       }
       .book-title{
         margin-top: 30px;
+        cursor: pointer;
         p {
           font-size: 1.2em;
           text-align: center;
@@ -54,26 +56,6 @@
     }
     .read-download{
       margin-top: 30px;
-      .read-btn {
-        color: #FFF;
-        background: #A1CB74;
-        border-radius: 4px;
-        padding: 8px 20px;
-        cursor: pointer;
-        &:hover {
-          background: #8BC051;
-        }
-      }
-      .download-btn {
-        color: #444;
-        border: 1px #ddd solid;
-        border-radius: 4px;
-        padding: 8px 20px;
-        cursor: pointer;
-        &:hover {
-          background: #DDD;
-        }
-      }
     }
   }  
 }
