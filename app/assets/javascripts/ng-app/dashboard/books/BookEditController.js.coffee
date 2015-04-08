@@ -1,11 +1,10 @@
 angular.module('ngApp').controller 'BookEditController', [
-  '$state', 'BookService',
-  ($state,   BookService) ->
+  '$state', 'BookService', '$stateParams'
+  ($state,   BookService,   $stateParams) ->
     vm = @
 
-    vm.submit = ->
-      BookService.post(vm.book).then (book) ->
-        $state.go 'dashboard.index'
+    BookService.one($stateParams['slug']).get().then (book) ->
+      vm.book = book
 
     return vm
 ]

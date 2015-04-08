@@ -4,6 +4,6 @@ class ExploreController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find_by_slug(params[:id])
   end
 end

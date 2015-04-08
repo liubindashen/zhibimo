@@ -3,7 +3,7 @@ angular.module('ngApp').controller 'ExploreShowController', [
   ($stateParams,   ExploreService)->
     vm = @
 
-    ExploreService.one($stateParams['id']).get().then (book) ->
+    ExploreService.one($stateParams['slug']).get().then (book) ->
       vm.book = book
 
     return vm

@@ -19,7 +19,7 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         controllerAs: 'vm'
       })
       .state('explore.show', {
-        url: '/:id'
+        url: '/:slug'
         templateUrl: 'explore/show.html'
         controller: 'ExploreShowController'
         controllerAs: 'vm'

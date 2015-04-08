@@ -5,7 +5,7 @@ angular.module('ngApp').controller 'ExploreIndexController', [
     vm.books = []
 
     vm.view = (book) ->
-      $state.go 'explore.show', {id: book.id}
+      $state.go 'explore.show', {slug: book.slug}
 
     ExploreService.getList().then (books) ->
       vm.booksWithGroup = _.chain(books).groupBy (e, i) ->
