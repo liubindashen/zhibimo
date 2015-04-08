@@ -10,3 +10,7 @@ json.author do
   json.username book.user.username
   json.avatar_url book.user.avatar_url(image_url('avatar-default.png'))
 end
+
+if current_user == book.user
+  json.push_url book.git_origin
+end
