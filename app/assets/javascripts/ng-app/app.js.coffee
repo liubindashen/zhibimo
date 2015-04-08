@@ -31,7 +31,7 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
       })
       .state('dashboard.index', {
         url: '/index'
-        templateUrl: 'dashboard/book_list.html'
+        templateUrl: 'dashboard/index.html'
         controller: 'BookListController'
       })
       .state('dashboard.new', {

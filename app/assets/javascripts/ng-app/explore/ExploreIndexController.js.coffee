@@ -9,7 +9,7 @@ angular.module('ngApp').controller 'ExploreIndexController', [
 
     ExploreService.getList().then (books) ->
       vm.booksWithGroup = _.chain(books).groupBy (e, i) ->
-        Math.floor(i/3)
+        Math.floor(i/5)
       .toArray()
       .value()
 

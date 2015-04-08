@@ -1,1 +1,12 @@
 @import "ng-app/main";
+
+.inner-header {
+  background-color: #F8F8F8;
+  width: 100%;
+  height: 75px; 
+  padding-top: 10px;
+
+  .container > * {
+    margin-top: 20px;
+  }
+}

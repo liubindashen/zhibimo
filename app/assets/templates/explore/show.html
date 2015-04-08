@@ -1,22 +1,28 @@
 <div class='single-container'>
   <div class='single-header'>
     <div class='container'>
-
-      <div class=''>
-        <div class='board pure-g'>
-          <div class='cover-col pure-u-1-6'>
-            <div class='book-cover'>
-              <img ng-src='{{vm.book.cover_url}}'>
-            </div>
+      <div class='board pure-g'>
+        <div class='cover-col pure-u-1-6'>
+          <div class='book-cover'>
+            <img ng-src='{{vm.book.cover_url}}'>
           </div>
-          <div class='book-info pure-u-3-5'>
-            <h2 ng-bind='vm.book.title'></h2>
-            <p><a ng-bind='vm.book.author.username'></a></p>
-            <div class='read-download pure-u-1'>
-              <a class='read-btn' href='#'>阅读</a>
-              <a class='download-btn' href='#'>下载</a>
-            </div>
+        </div>
+        <div class='book-info pure-u-5-6'>
+          <h2 ng-bind='vm.book.title'></h2>
+          <p><a ng-bind='vm.book.author.username'></a></p>
+          <div class='read-download pure-u-1'>
+            <a class='read-btn' href='{{vm.book.html_url}}'>阅读</a>
+            <a class='download-btn' href='{{vm.book.pdf_url}}'>下载 PDF</a>
+            <a class='download-btn' href='{{vm.book.epub_url}}'>下载 EPUB</a>
           </div>
+        </div>
+      </div>
+      <div class='pure-g'>
+        <div class='pure-u-5-6'>
+          <div ng-bind-html='render(vm.book.readme)'></div>
+        </div>
+        <div class='pure-u-1-6'>
+          <div ng-bind-html='render(vm.book.summary)'></div>
         </div>
       </div>
     </div>
