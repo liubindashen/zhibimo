@@ -22,11 +22,12 @@ class Entry < ActiveRecord::Base
     self.path = self.path + '.md' unless self.path.end_with?(".md")
   end
 
-  before_destroy do
-    return false if self.path == 'SUMMARY.md' || self.path == 'README.md'
-    author = "#{book.user.username} <#{book.user.username}@zhibimo.com>"
-    message = "[SYSTEM] ENTRY DELETE " + path
-    system("git -C #{book.workdir} rm -rf #{path}")
-    system("git -C #{book.workdir} commit --author=#{Shellwords.escape(author)} --message=#{Shellwords.escape(message)}")
-  end
+  # TODO: `LocalJumpError: unexpected return` when destroy Book
+  #before_destroy do
+    #return false if self.path == 'SUMMARY.md' || self.path == 'README.md'
+    #author = "#{book.user.username} <#{book.user.username}@zhibimo.com>"
+    #message = "[SYSTEM] ENTRY DELETE " + path
+    #system("git -C #{book.workdir} rm -rf #{path}")
+    #system("git -C #{book.workdir} commit --author=#{Shellwords.escape(author)} --message=#{Shellwords.escape(message)}")
+  #end
 end

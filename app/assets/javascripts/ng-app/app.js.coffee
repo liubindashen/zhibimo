@@ -38,6 +38,7 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         url: '/new'
         templateUrl: 'dashboard/book_new.html'
         controller: 'BookNewController'
+        controllerAs: 'vm'
       })
       .state('editor', {
         url: '/editor/:bookId'

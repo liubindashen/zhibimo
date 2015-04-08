@@ -39,10 +39,12 @@ class User < ActiveRecord::Base
   end
 
   after_create do
-    pwd = SecureRandom.hex
-    oh = Gitlab.create_user("#{id}@zhibimo.com", pwd, username: id.to_s, projects_limit: 100)
-    raise 'Failed to create git usr' unless oh.id.present?
-    update_columns(gitlab_id: oh.id, gitlab_password: pwd)
+    unless ENV['DISABLE_GITLIB']
+      pwd = SecureRandom.hex
+      oh = Gitlab.create_user("#{id}@zhibimo.com", pwd, username: id.to_s, projects_limit: 100)
+      raise 'Failed to create git usr' unless oh.id.present?
+      update_columns(gitlab_id: oh.id, gitlab_password: pwd)
+    end
   end
 
   after_destroy do

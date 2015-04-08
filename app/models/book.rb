@@ -1,7 +1,9 @@
 class Book < ActiveRecord::Base
   has_many :entries, dependent: :destroy
-  validates :slug, presence: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
+  validates :slug, presence: true, uniqueness: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
   belongs_to :user
+
+  before_validation :set_default_slug
 
   def cover_url(default = nil)
     File.exists?("#{Dir.home}/books/#{user.username}/#{slug}/cover.jpg") ?
@@ -80,39 +82,51 @@ class Book < ActiveRecord::Base
   end
 
   after_create do
-    http = HTTParty.post(
-      "http://git.zhibimo.com/api/v3/projects/user/#{user.gitlab_id}",
-      headers: {
-        'Content-Type' => 'application/json',
-        'PRIVATE-TOKEN' => Gitlab.private_token
-      },
-      body: {
-        name: id.to_s,
-        issues_enabled: false,
-        merge_requests_enabled: false,
-        wiki_enabled: false,
-        snippets_enabled: false
-      }.to_json
-    )
-    body = JSON.parse(http.body)
-    raise 'Failed to to create git repository: ' + http.body unless http.code == 201 && body['id'].present?
-    update_column(:gitlab_id, body['id'])
+    unless ENV['DISABLE_GITLIB']
+      http = HTTParty.post(
+        "http://git.zhibimo.com/api/v3/projects/user/#{user.gitlab_id}",
+        headers: {
+          'Content-Type' => 'application/json',
+          'PRIVATE-TOKEN' => Gitlab.private_token
+        },
+        body: {
+          name: id.to_s,
+          issues_enabled: false,
+          merge_requests_enabled: false,
+          wiki_enabled: false,
+          snippets_enabled: false
+        }.to_json
+      )
+      body = JSON.parse(http.body)
+      raise 'Failed to to create git repository: ' + http.body unless http.code == 201 && body['id'].present?
+      update_column(:gitlab_id, body['id'])
 
-    oh = Gitlab.add_project_hook(gitlab_id, "http://zhibimo.com/api/v1/books/#{id}/hook")
-    raise 'Failed to create git hook' unless oh.id.present?
+      oh = Gitlab.add_project_hook(gitlab_id, "http://zhibimo.com/api/v1/books/#{id}/hook")
+      raise 'Failed to create git hook' unless oh.id.present?
+    end
     # entry_create("README.md", "This is the README.md", "[SYSTEM] ADD README.md")
     # entry_create("SUMMARY.md", "", "[SYSTEM] ADD SUMMARY.md")
   end
 
   after_destroy do
-    FileUtils.rm_rf("/tmp/repos/#{user.gitlab_id}/#{self.gitlab_id}/")
-    http = HTTParty.delete(
-      "http://git.zhibimo.com/api/v3/projects/#{gitlab_id}",
-      headers: {
-        'Content-Type' => 'application/json',
-        'PRIVATE-TOKEN' => Gitlab.private_token
-      }
-    )
-    p http
+    unless ENV['DISABLE_GITLIB']
+      FileUtils.rm_rf("/tmp/repos/#{user.gitlab_id}/#{self.gitlab_id}/")
+      http = HTTParty.delete(
+        "http://git.zhibimo.com/api/v3/projects/#{gitlab_id}",
+        headers: {
+          'Content-Type' => 'application/json',
+          'PRIVATE-TOKEN' => Gitlab.private_token
+        }
+      )
+      p http
+    end
+  end
+
+  private
+
+  def set_default_slug
+    if !self.slug and self.title
+      self.slug = Pinyin.t(self.title, splitter: '-')
+    end
   end
 end
