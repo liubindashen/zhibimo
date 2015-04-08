@@ -9,5 +9,9 @@ angular.module('ngApp').controller 'BookEditController', [
     vm.submit = ->
       vm.book.save()
 
+    vm.delete = ->
+      vm.book.remove()
+      $state.go 'dashboard.books.index'
+
     return vm
 ]

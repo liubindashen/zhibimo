@@ -5,7 +5,7 @@ angular.module('ngApp').controller 'BookNewController', [
 
     vm.submit = ->
       BookService.post(vm.book).then (book) ->
-        $state.go 'dashboard.index'
+        $state.go 'dashboard.books.index'
 
     return vm
 ]
