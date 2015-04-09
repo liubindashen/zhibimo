@@ -10,6 +10,7 @@ $board-content-height: 160px;
     width: 100%;
     height: $board-content-height;
     margin-top: -$board-content-height + $board-height/4;
+    position: absolute;
 
     .cover {
       margin: 0px;
@@ -49,13 +50,6 @@ $board-content-height: 160px;
   .pure-button{
     height: 34px;
   }
-}
-
-
-.inner-header + .container {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  min-height: 400px;
 }
 
 [ng-file-drop] {

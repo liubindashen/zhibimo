@@ -10,7 +10,28 @@
   height: 75px; 
   padding-top: 10px;
 
+  &.inner-header-background {
+    position: absolute;
+    height: 200px;
+  }
+
   .container > * {
     margin-top: 20px;
   }
+
+  & + .container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: 400px;
+  }
+}
+
+i.octicon + span {
+  display: inline-block;
+  text-indent: 6px;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0px;
 }
