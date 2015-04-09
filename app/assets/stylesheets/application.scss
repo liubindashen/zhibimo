@@ -83,3 +83,31 @@ i.octicon + span {
   position: absolute;
   bottom: 0px;
 }
+
+/*
+= Hard code for a little time
+ */
+
+.explore-container .board-content{
+  margin-top: -130px;
+}
+
+.explore-show .book-info{
+
+  @media screen and (min-width: 35.5em){
+    margin-left: 70px;
+  }
+
+  @media screen and (min-width: 48em) {
+    margin-left: 30px;
+
+  }
+
+  @media screen and (min-width: 64em){
+
+  }
+
+  @media screen and (min-width: 80em){
+
+  }  
+}
