@@ -2,7 +2,7 @@ app = angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'template
 
 app.config [
   '$stateProvider', '$urlRouterProvider', '$locationProvider', 'RestangularProvider',
-  ($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) ->
+  ($stateProvider,   $urlRouterProvider,   $locationProvider,   RestangularProvider) ->
     $stateProvider
       .state('home', {
         url: '/'
