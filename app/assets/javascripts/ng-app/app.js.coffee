@@ -28,6 +28,7 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
       .state('dashboard', {
         url: '/dashboard'
         templateUrl: 'dashboard/layout.html'
+        controller: 'DashboardController'
         abstract: true
       })
       # Dashboard Books Route

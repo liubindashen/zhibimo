@@ -27,4 +27,10 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find_by_id(session[:user_id])
   end
+
+  def auth_author!
+    unless current_user
+      render json: {error: 'auth error'}, status: 500
+    end
+  end
 end

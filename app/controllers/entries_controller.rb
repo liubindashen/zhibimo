@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :auth_author!
   before_action :set_book
 
   def index
