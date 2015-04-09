@@ -1,7 +1,7 @@
 <div class='inner-header'>
   <div class='container pure-g'>
     <h2 class='pure-u-21-24'>我的作品</h2>
-    <a class='pure-u-3-24' ui-sref='dashboard.books.new'>创建新书</a>
+    <a class='pure-u-3-24 pure-button button-primary' ui-sref='dashboard.books.new'>创建新书</a>
   </div>
 </div>
 
@@ -16,9 +16,9 @@
       <div class='pure-u-16-24'>
         <h2 ng-bind='book.title'></h2>
       </div>
-      <div class='pure-u-4-24'>
-        <a class="pure-button" ng-click='' href>Edit</a>
-        <a class="pure-button" ng-click='vm.edit(book)' href="#">Setting</a>
+      <div class='pure-u-4-24 board-content-operate'>
+        <a class="pure-button button-ghost" ng-click='' href>编辑</a>
+        <a class="pure-button button-ghost" ng-click='vm.edit(book)' href="#"><span class="octicon octicon-gear"></span></a>
       </div>
     </div>
   </div>

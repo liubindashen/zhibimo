@@ -13,6 +13,9 @@
       }
     }
     .nav{
+      .pure-menu-list{
+        margin-right: -20px;
+      }
       text-align: right;
       ul{
         li{
@@ -20,6 +23,7 @@
           box-sizing: content-box;
           a{
             padding: .5em .5em; 
+            border-bottom: 2px #FFF solid;
             margin: 0 10px;
             &:hover, &.active {
               border-bottom: 2px #DDD solid;

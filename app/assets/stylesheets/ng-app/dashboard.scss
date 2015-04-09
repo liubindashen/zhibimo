@@ -36,8 +36,21 @@ $board-content-height: 160px;
         content: '';
       }  
     }
+
+    .board-content-operate{
+      text-align: right;
+    }
+
   }
 }
+
+
+.inner-header{
+  .pure-button{
+    height: 34px;
+  }
+}
+
 
 .inner-header + .container {
   padding-top: 50px;
