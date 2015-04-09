@@ -36,3 +36,4 @@ group :development, :test do
 end
 
 gem 'sidekiq'
+gem "bugsnag"
