@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :auth_author!
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def hook
@@ -13,7 +13,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @books = current_user.books
   end
 
   # GET /books/1
@@ -76,14 +76,14 @@ class BooksController < ApplicationController
     def set_book
       id_or_slug = params[:id].to_i
       if id_or_slug > 0
-        @book = Book.find(id_or_slug)
+        @book = current_user.books.find(id_or_slug)
       else
-        @book = Book.find_by_slug(params[:id])
+        @book = current_user.books.find_by_slug(params[:id])
       end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :slug)
+      params.require(:book).permit(:title, :slug, :cover)
     end
 end

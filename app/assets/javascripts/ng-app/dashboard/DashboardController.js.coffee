@@ -1,4 +1,5 @@
-angular.module('ngApp')
-  .controller 'DashboardController', ($scope, $state, currentUser, BookService) ->
+angular.module('ngApp').controller 'DashboardController', [
+  'currentUser', (currentUser) ->
     unless currentUser
       $state.go 'home'
+]

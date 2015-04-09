@@ -1,4 +1,4 @@
-angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular', 'ui.codemirror', 'angular-underscore'])
+angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular', 'ui.codemirror', 'angular-underscore', 'angularFileUpload'])
   .config ($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) ->
     $stateProvider
       .state('home', {
@@ -28,6 +28,7 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
       .state('dashboard', {
         url: '/dashboard'
         templateUrl: 'dashboard/layout.html'
+        controller: 'DashboardController'
         abstract: true
       })
       # Dashboard Books Route

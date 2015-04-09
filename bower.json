@@ -11,11 +11,13 @@
       "angular-underscore": "latest",
       "angular-ui-router": "latest",
       "angular-ui-codemirror": "latest",
+      "ng-file-upload": "latest",
       "restangular": "latest",
       "normalize.css": "latest",
       "bootstrap-sass-official": "latest",
       "pure": "latest",
       "octicons": "*"
+
     }
   },
   "vendor": {
