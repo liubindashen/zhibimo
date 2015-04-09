@@ -1,5 +1,8 @@
-angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular', 'ui.codemirror', 'angular-underscore', 'angularFileUpload', 'ng-rails-csrf'])
-  .config ($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) ->
+app = angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular', 'ui.codemirror', 'angular-underscore', 'angularFileUpload', 'ng-rails-csrf'])
+
+app.config [
+  '$stateProvider', '$urlRouterProvider', '$locationProvider', 'RestangularProvider',
+  ($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) ->
     $stateProvider
       .state('home', {
         url: '/'
@@ -62,8 +65,9 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
         controller: 'EditorController'
       })
 
-    $urlRouterProvider.otherwise('/');
-    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/')
+    $locationProvider.html5Mode(true)
 
-    RestangularProvider.setBaseUrl('api/v1');
-    RestangularProvider.setRequestSuffix('.json');
+    RestangularProvider.setBaseUrl('api/v1')
+    RestangularProvider.setRequestSuffix('.json')
+]
