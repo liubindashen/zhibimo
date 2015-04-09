@@ -16,5 +16,5 @@ json.author do
 end
 
 if current_user == book.user
-  json.push_url book.git_origin
+  json.git_url book.git_origin
 end
