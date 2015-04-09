@@ -57,3 +57,15 @@ $board-content-height: 160px;
   padding-bottom: 50px;
   min-height: 400px;
 }
+
+[ng-file-drop] {
+  height: 169px;
+  background-color: #EEE;
+  border: 1px solid #CCC;
+  padding: 3px;
+  display: inline-block;
+
+  &.dragover {
+    border: 1px dashed #CCC;
+  }
+}

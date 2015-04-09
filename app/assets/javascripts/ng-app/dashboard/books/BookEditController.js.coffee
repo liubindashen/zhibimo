@@ -16,6 +16,8 @@ angular.module('ngApp').controller 'BookEditController', [
         fields: { 'book[id]': vm.book.id}
         file: files[0]
         fileFormDataName: 'book[cover]'
+      .success (book, status) ->
+        vm.book.cover.preview_url = book.cover.preview_url
 
     vm.delete = ->
       vm.book.remove()

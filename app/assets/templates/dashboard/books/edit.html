@@ -12,11 +12,17 @@
       <input class='pure-input-1' type="text" placeholder="请在这里输入标题" name="title" ng-model="vm.book.title" required />
     </fieldset>
     <fieldset class="pure-group">
-      <div ng-file-drop ng-file-select ng-model='vm.book.cover' ng-file-change='vm.upload_cover(vm.book.cover)' drag-over-class="dragover" allow-dir="false" accept="image/*">Drop image here or click to upload</div>
+      <h2>书籍封面</h2>
+      <div class='pure-u-1'>
+        <div ng-file-drop ng-file-select ng-model='vm.cover' ng-file-change='vm.upload_cover(vm.cover)' drag-over-class="dragover" allow-dir="false" accept="image/*">
+          <img ng-src='{{vm.book.cover.preview_url}}'></img>
+        </div>
+        <p>说明：上传的图片会被缩放为 130x169 大小用于展示，请尽量上传符合比例的封面图片。</p>
+      </div>
     </fieldset>
     <fieldset class="pure-group">
       <h2>Git URL</h2>
-      <input class='pure-input-1' type="text" readonly name="git_url" ng-model="vm.book.git_url" required />
+      <input class='pure-input-1' type="text" readonly name="git_url" ng-model="vm.book.clone_url" required />
     </fieldset>
     <fieldset class="pure-group">
       <button class='pure-input-1 pure-button button-primary' type='submit'>保存设置</button>
