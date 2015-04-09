@@ -1,10 +1,11 @@
-angular.module('ngApp')
-  .controller 'BookEditorController', ($scope, $state, $sce, $stateParams, $timeout, currentUser, KramedService, BookService) ->
+angular.module('ngApp').controller 'EditorController', [
+  '$scope', '$state', '$sce', '$stateParams', '$timeout', 'currentUser', 'KramedService', 'BookService',
+  ($scope, $state, $sce, $stateParams, $timeout, currentUser, KramedService, BookService) ->
 
     $scope.editorOptions = 
       lineWrapping : true
 
-    BookService.one($stateParams['bookId']).get().then (book) ->
+    BookService.one($stateParams['slug']).get().then (book) ->
       book.getList('entries').then (entries) ->
         $scope.book = book
         $scope.entries = entries
@@ -45,3 +46,4 @@ angular.module('ngApp')
 
     $scope.setEntryChanged = ->
       $scope.entry.changed = true
+]

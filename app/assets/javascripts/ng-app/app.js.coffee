@@ -57,9 +57,9 @@ angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'r
       })
       # Dashboard Editor Route
       .state('editor', {
-        url: '/editor/:bookId'
+        url: '/editor/:slug'
         templateUrl: 'dashboard/editor.html'
-        controller: 'BookEditorController'
+        controller: 'EditorController'
       })
 
     $urlRouterProvider.otherwise('/');
