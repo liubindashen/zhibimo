@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409062343) do
+ActiveRecord::Schema.define(version: 20150409113009) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150409062343) do
     t.text     "readme"
     t.text     "summary"
     t.string   "cover"
+    t.boolean  "explored"
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id"

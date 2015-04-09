@@ -4,13 +4,17 @@ class Book < ActiveRecord::Base
   validates :slug, presence: true, uniqueness: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
   belongs_to :user
 
+  alias :author :user
+
   mount_uploader :cover, CoverUploader
 
   before_validation :set_default_slug
 
+  scope :explored, -> { where(explored: true) }
+
   def cover_url(default = nil)
-    File.exists?("#{Dir.home}/books/#{user.username}/#{slug}/cover.jpg") ?
-      "http://zhibimo.com/read/#{user.username}/#{slug}/cover.jpg" : default
+    File.exists?("#{Dir.home}/books/#{author.username}/#{slug}/cover.jpg") ?
+      "http://zhibimo.com/read/#{author.username}/#{slug}/cover.jpg" : default
   end
 
   def self.from_hook(pl)
@@ -80,14 +84,15 @@ class Book < ActiveRecord::Base
     entry
   end
 
+
   def git_origin
-    "http://#{user.id}:#{user.gitlab_password}@git.zhibimo.com/#{user.id}/#{self.id}.git"
+    "http://#{author.id}:#{author.gitlab_password}@git.zhibimo.com/#{author.id}/#{self.id}.git"
   end
 
   after_create do
     unless ENV['DISABLE_GITLIB']
       http = HTTParty.post(
-        "http://git.zhibimo.com/api/v3/projects/user/#{user.gitlab_id}",
+        "http://git.zhibimo.com/api/v3/projects/user/#{author.gitlab_id}",
         headers: {
           'Content-Type' => 'application/json',
           'PRIVATE-TOKEN' => Gitlab.private_token
@@ -113,7 +118,7 @@ class Book < ActiveRecord::Base
 
   after_destroy do
     unless ENV['DISABLE_GITLIB']
-      FileUtils.rm_rf("/tmp/repos/#{user.gitlab_id}/#{self.gitlab_id}/")
+      FileUtils.rm_rf("/tmp/repos/#{author.gitlab_id}/#{self.gitlab_id}/")
       http = HTTParty.delete(
         "http://git.zhibimo.com/api/v3/projects/#{gitlab_id}",
         headers: {

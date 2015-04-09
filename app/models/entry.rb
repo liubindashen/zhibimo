@@ -10,7 +10,7 @@ class Entry < ActiveRecord::Base
   end
 
   def repo_update(content = "", message = nil)
-    author = "#{book.user.username} <#{book.user.username}@zhibimo.com>"
+    author = "#{book.author.username} <#{book.author.username}@zhibimo.com>"
     message ||= "[SYSTEM] AUTO UPDATE " + Time.now.utc.to_s
     File.open(book.workdir + path, 'w') { |f| f.puts content }
     system("git -C #{book.workdir} add #{path}")
@@ -25,7 +25,7 @@ class Entry < ActiveRecord::Base
   # TODO: `LocalJumpError: unexpected return` when destroy Book
   #before_destroy do
     #return false if self.path == 'SUMMARY.md' || self.path == 'README.md'
-    #author = "#{book.user.username} <#{book.user.username}@zhibimo.com>"
+    #author = "#{book.author.username} <#{book.author.username}@zhibimo.com>"
     #message = "[SYSTEM] ENTRY DELETE " + path
     #system("git -C #{book.workdir} rm -rf #{path}")
     #system("git -C #{book.workdir} commit --author=#{Shellwords.escape(author)} --message=#{Shellwords.escape(message)}")

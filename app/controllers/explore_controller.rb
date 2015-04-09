@@ -1,9 +1,14 @@
 class ExploreController < ApplicationController
   def index
-    @books = Book.all
+    @books = scope
   end
 
   def show
-    @book = Book.find_by_slug(params[:id])
+    @book = scope.find_by_slug(params[:id])
+  end
+
+  private
+  def scope
+    Book.explored
   end
 end
