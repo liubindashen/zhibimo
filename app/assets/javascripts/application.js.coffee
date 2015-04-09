@@ -9,6 +9,7 @@
 #= require angular-ui-codemirror
 #= require angular-messages
 #= require angular-underscore
+#= require ng-file-upload
 #= require restangular 
 #= require_tree ./ng-app
 #= require_tree ../templates

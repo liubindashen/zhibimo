@@ -20,6 +20,8 @@ gem 'gon'
 gem 'bower-rails'
 gem 'angular-rails-templates'
 gem 'chinese_pinyin'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'sqlite3'

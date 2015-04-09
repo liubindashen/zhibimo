@@ -12,6 +12,9 @@
       <input class='pure-input-1' type="text" placeholder="请在这里输入标题" name="title" ng-model="vm.book.title" required />
     </fieldset>
     <fieldset class="pure-group">
+      <div ng-file-drop ng-file-select ng-model='vm.book.cover' ng-file-change='vm.upload_cover(vm.book.cover)' drag-over-class="dragover" allow-dir="false" accept="image/*">Drop image here or click to upload</div>
+    </fieldset>
+    <fieldset class="pure-group">
       <h2>Git URL</h2>
       <input class='pure-input-1' type="text" readonly name="git_url" ng-model="vm.book.git_url" required />
     </fieldset>
@@ -22,7 +25,7 @@
 
   <form name="delete_book_form" novalidate ng-submit="vm.delete()" class='pure-form pure-u-18-24'>
     <fieldset class="pure-group">
-      <h2>书籍标题</h2>
+      <h2>删除</h2>
       <p>书籍删除后，不能恢复，请确认您是否已有备份，并谨慎操作。</p>
     </fieldset>
     <fieldset class="pure-group">

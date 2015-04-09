@@ -1,7 +1,10 @@
 class Book < ActiveRecord::Base
+
   has_many :entries, dependent: :destroy
   validates :slug, presence: true, uniqueness: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
   belongs_to :user
+
+  mount_uploader :cover, CoverUploader
 
   before_validation :set_default_slug
 
