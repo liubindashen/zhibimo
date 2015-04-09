@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def auth_author!
     unless current_user
-      render json: {error: 'auth error'}, status: 500
+      render json: {error: 'auth error'}, status: 403
     end
   end
 end
