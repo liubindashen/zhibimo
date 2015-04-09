@@ -19,6 +19,7 @@ gem 'gon'
 
 gem 'bower-rails'
 gem 'angular-rails-templates'
+gem 'ng-rails-csrf'
 gem 'chinese_pinyin'
 gem 'carrierwave'
 gem 'mini_magick'
