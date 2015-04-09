@@ -9,3 +9,9 @@
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w( editor.css )
+
+Rails.application.config.assets.precompile << Proc.new { |path|
+  if path =~ /octicons\.(ttf|woff|eot|svg|otf)/
+    true
+  end
+}
