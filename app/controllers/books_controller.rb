@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:hook]
   before_action :auth_author!
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
