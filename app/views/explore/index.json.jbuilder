@@ -1,1 +1,1 @@
-json.partial! 'books/book', collection: @books, as: :book
+json.partial! 'explore/book', collection: @books, as: :book

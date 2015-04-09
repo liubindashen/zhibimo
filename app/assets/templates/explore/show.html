@@ -11,13 +11,13 @@
           <h2 ng-bind='vm.book.title'></h2>
           <p><a ng-bind='vm.book.author.username'></a></p>
           <div class='read-download pure-u-1'>
-            <a class='pure-button pure-primary-button' href='{{vm.book.html_url}}'><span class="octicon octicon-book"></span>阅读</a>
+            <a class='pure-button pure-primary-button' href='{{vm.book.html_url}}' target='_blank'><span class="octicon octicon-book"></span>阅读</a>
 
             <div class='dropdown'>
               <a class='dropdown-btn pure-button pure-ghost-button' href='#'><span class="octicon octicon-cloud-download"></span>下载</a>
               <ul class='dropdown-menu'>
-                <li><a href='{{vm.book.pdf_url}}'><span class="octicon octicon-file-pdf"></span>PDF 格式</a></li>
-                <li><a href='{{vm.book.epub_url}}'><span class="octicon octicon-file-text"></span>EPUB 格式</a></li>
+                <li><a href='{{vm.book.pdf_url}}' target='_blank'><span class="octicon octicon-file-pdf"></span>PDF 格式</a></li>
+                <li><a href='{{vm.book.epub_url}}' target='_blank'><span class="octicon octicon-file-text"></span>EPUB 格式</a></li>
               </ul>
             </div>
             
