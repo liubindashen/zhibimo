@@ -41,6 +41,7 @@ $board-content-height: 170px;
     position: absolute;
 
     .cover {
+      overflow: hidden;
       margin: 0px;
       height: 169px;
       width: 130px;
@@ -100,14 +101,13 @@ i.octicon + span {
 
   @media screen and (min-width: 48em) {
     margin-left: 30px;
-
   }
 
   @media screen and (min-width: 64em){
-
+    margin-left: 0px;
   }
 
   @media screen and (min-width: 80em){
-
+    margin-left: 0px;
   }  
 }
