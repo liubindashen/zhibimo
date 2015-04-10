@@ -4,7 +4,6 @@
 <div class='container explore-show'>
   <div class='board'>
     <div class='board-content pure-g'>
-      <div class='pure-u-1-24'></div>
       <div class='pure-u-4-24'>
         <div class='cover'>
           <img ng-src='{{vm.book.cover.preview_url}}'>
@@ -26,8 +25,8 @@
       </div>
     </div>
   </div>
-  <div class='pure-g'>
-    <div class='pure-u-18-24' ng-bind-html='vm.render(vm.book.readme)'></div>
+  <div class='pure-g book-intro'>
+    <div class='pure-u-18-24 book-intro-readme' ng-bind-html='vm.render(vm.book.readme)'></div>
     <div class='pure-u-6-24'>
     </div>
   </div>
