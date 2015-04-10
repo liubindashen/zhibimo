@@ -1,15 +1,6 @@
-/* Custom style based on Pure.css
+/* Basic reset
 -------------------------------------------------------------- */
 
-$primary-green-light: #91C757;
-$primary-green-shade: #76AE39;
-
-
-$secondary-blue-light: #61ADCB;
-$secondary-blue-shade: #4B8FAA;
-
-$warning-red-light: #C37777;
-$warning-red-shade: #AA3E3E;
 
 .pure-g{
   letter-spacing: 0em;
@@ -69,9 +60,18 @@ a{
 }
 
 
+
 /* Custom style based on Pure.css */
 
+$primary-green-light: #91C757;
+$primary-green-shade: #76AE39;
 
+
+$secondary-blue-light: #61ADCB;
+$secondary-blue-shade: #4B8FAA;
+
+$warning-red-light: #C37777;
+$warning-red-shade: #AA3E3E;
 
 .pure-button{
   transition: all 0.3s;
@@ -224,6 +224,12 @@ a{
   }
 }
 
+
+
+/* Inner-header & Board
+-------------------------------------------------------------- */
+
+
 $board-height: 40px;
 $board-content-height: 170px;
 
@@ -307,13 +313,11 @@ i.octicon + span {
   bottom: 0px;
 }
 
+
 /*
-= Hard code for a little time
+= A little hard-code
  */
 
-.explore-container .board-content{
-  margin-top: -130px;
-}
 
 .explore-show .book-info{
 
