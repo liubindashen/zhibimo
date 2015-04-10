@@ -2,112 +2,13 @@
 = require octicons/octicons/sprockets-octicons 
  */
 
-@import "ng-app/main";
 
-$board-height: 40px;
-$board-content-height: 170px;
+@import "normalize.css/normalize";
+@import "pure/pure-min";
 
-.inner-header {
-  background-color: #F8F8F8;
-  width: 100%;
-  height: 75px; 
-  padding-top: 10px;
+@import "ng-app/basic";
 
-  &.inner-header-background {
-    position: absolute;
-    height: $board-content-height + $board-height;
-  }
-
-  .container > * {
-    margin-top: 20px;
-  }
-
-  & + .container {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    min-height: 400px;
-  }
-}
-
-.board {
-  @extend .board-sample;
-  height: $board-height;
-  margin-top: $board-content-height;
-
-  .board-content {
-    width: 100%;
-    height: $board-content-height;
-    margin-top: -$board-content-height + $board-height/4;
-    position: absolute;
-
-    .cover {
-      overflow: hidden;
-      margin: 0px;
-      height: 169px;
-      width: 130px;
-      position: relative;
-      box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.32);
-
-      img {
-        width: 130px;
-        height: 169px;
-      }
-
-      &:before{
-        width: 100%;
-        height: 100%;
-
-        top: 0px;
-        left: 0px;
-        position: absolute;
-
-        background-image: linear-gradient(90deg, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.19) 11%, rgba(0,0,0,0.11) 34%, rgba(255,255,255,0.14) 100%);
-        opacity: 0.65;
-
-        content: '';
-      }  
-    }
-
-    .board-content-operate{
-      text-align: right;
-    }
-
-  }
-}
-
-i.octicon + span {
-  display: inline-block;
-  text-indent: 6px;
-}
-
-.bottom {
-  position: absolute;
-  bottom: 0px;
-}
-
-/*
-= Hard code for a little time
- */
-
-.explore-container .board-content{
-  margin-top: -130px;
-}
-
-.explore-show .book-info{
-
-  @media screen and (min-width: 35.5em){
-    margin-left: 70px;
-  }
-
-  @media screen and (min-width: 48em) {
-    margin-left: 30px;
-  }
-
-  @media screen and (min-width: 64em){
-    margin-left: 0px;
-  }
-
-  @media screen and (min-width: 80em){
-    margin-left: 0px;
-  }  
-}
+@import "ng-app/header";
+@import "ng-app/home";
+@import "ng-app/dashboard";
+@import "ng-app/explore";

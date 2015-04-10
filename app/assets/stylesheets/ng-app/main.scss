@@ -9,29 +9,3 @@
 @import "home";
 @import "dashboard";
 @import "explore";
-
-
-.container{
-
-  margin: auto;
-  width: 94%;
-
-  @media screen and (min-width: 35.5em){
-    width: 90%;
-  }
-
-  @media screen and (min-width: 48em) {
-    width: 90%;
-    max-width: 960px;
-  }
-
-  @media screen and (min-width: 64em){
-    width: 90%;
-    max-width: 980px;
-  }
-
-  @media screen and (min-width: 80em){
-
-    max-width: 980px;
-  }
-}

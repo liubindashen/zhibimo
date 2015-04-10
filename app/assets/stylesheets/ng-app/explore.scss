@@ -2,14 +2,13 @@
   padding-top: 6px;
   min-height: 700px;
   .board{
-    @extend .board-sample;
-    margin-top: 200px;
+    margin-top: 180px;
   }
   .board-content{
-    margin-top: -130px;    
+    margin-top: -120px;    
     .book{
-      .book-cover{
-        @extend .book-cover-sample;
+      .cover{
+        margin: auto;
         overflow: hidden;
         height: 130px;
         width: 100px;  
