@@ -1,4 +1,4 @@
-json.extract! book, :id, :title, :slug, :created_at, :updated_at, :version, :version_time, :readme, :summary
+json.extract! book, :id, :title, :slug, :created_at, :updated_at, :version, :version_time, :readme, :summary, :building
 
 json.cover do
   json.preview_url book.cover.preview.url
