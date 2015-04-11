@@ -27,6 +27,7 @@ class Book < ActiveRecord::Base
     system("git clone #{git_origin} #{book_repo}")
     commit = `cd #{book_repo} && git log --pretty=format:%H -1`.strip
     commit_time = `cd #{book_repo} && git log --pretty=format:%ci -1`.to_time
+    update_columns(building: false) and return if commit == version
 
     update_columns(readme: File.read("#{book_repo}/README.md"), summary: File.read("#{book_repo}/SUMMARY.md"))
 
@@ -40,7 +41,7 @@ class Book < ActiveRecord::Base
     html_old = File.readlink(html_current) rescue nil
 
     system("ln -snf #{html_new} #{html_current}")
-    FileUtils.rm_rf(html_old) if html_old.present?
+    FileUtils.rm_rf(html_old) if html_old.present? && html_old != html_new
     # HTML end
 
     # EPUB begin
@@ -53,7 +54,7 @@ class Book < ActiveRecord::Base
     epub_old = File.readlink(epub_current) rescue nil
 
     system("ln -snf #{epub_new} #{epub_current}")
-    FileUtils.rm_rf(epub_old) if epub_old.present?
+    FileUtils.rm_rf(epub_old) if epub_old.present? && epub_old != epub_new
     # EPUB end
 
     # PDF begin
@@ -66,7 +67,7 @@ class Book < ActiveRecord::Base
     pdf_old = File.readlink(pdf_current) rescue nil
 
     system("ln -snf #{pdf_new} #{pdf_current}")
-    FileUtils.rm_rf(pdf_old) if pdf_old.present?
+    FileUtils.rm_rf(pdf_old) if pdf_old.present? && pdf_old != pdf_new
     # PDF end
 
     update_attributes(building: false, version: commit, version_time: commit_time)
