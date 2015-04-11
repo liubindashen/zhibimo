@@ -1,10 +1,19 @@
 class BooksController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:hook]
   before_action :auth_author!, except: [:hook]
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :build]
+
+  def build
+    BookWorker.perform_async(@book.id)
+    respond_to do |format|
+      format.json { render json: {} }
+      format.html { render json: {} }
+    end
+  end
 
   def hook
-    BookWorker.perform_async(params)
+    @book = Book.from_hook(params)
+    BookWorker.perform_async(@book.id)
     respond_to do |format|
       format.json { render json: {} }
       format.html { render json: {} }

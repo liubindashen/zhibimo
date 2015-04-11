@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
     resources :books do
       member do
+        post 'build'
         post 'hook'
       end
       resources :entries, only: [:index, :create, :show, :update, :destroy]

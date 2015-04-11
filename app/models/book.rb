@@ -17,26 +17,26 @@ class Book < ActiveRecord::Base
       "http://zhibimo.com/read/#{author.username}/#{slug}/cover.jpg" : default
   end
 
-  def self.from_hook(pl)
-    user = User.find_by!(gitlab_id: pl['user_id'].to_i)
-    book = user.books.find_by!(gitlab_id: pl['project_id'].to_i)
-    return if book.building?
-    book.update_columns(building: true)
+  def build
+    return if building?
+    update_columns(building: true)
 
     FileUtils.mkdir_p("#{Dir.home}/book-repos/#{user.id}")
-    book_repo = "#{Dir.home}/book-repos/#{user.id}/#{book.id}"
+    book_repo = "#{Dir.home}/book-repos/#{user.id}/#{id}"
     FileUtils.rm_rf(book_repo)
-    system("git clone #{book.git_origin} #{book_repo}")
+    system("git clone #{git_origin} #{book_repo}")
+    commit = `cd #{book_repo} && git log --pretty=format:%H -1`.strip
+    commit_time = `cd #{book_repo} && git log --pretty=format:%ci -1`.to_time
 
-    book.update_columns(readme: File.read("#{book_repo}/README.md"), summary: File.read("#{book_repo}/SUMMARY.md"))
+    update_columns(readme: File.read("#{book_repo}/README.md"), summary: File.read("#{book_repo}/SUMMARY.md"))
 
     # HTML begin
-    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{book.id}")
-    html_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}"
+    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{id}")
+    html_new = "#{Dir.home}/book-builds/#{user.id}/#{id}/#{commit}"
     system("gitbook build #{book_repo} #{html_new}")
 
     FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
-    html_current = "#{Dir.home}/books/#{user.username}/#{book.slug}"
+    html_current = "#{Dir.home}/books/#{user.username}/#{slug}"
     html_old = File.readlink(html_current) rescue nil
 
     system("ln -snf #{html_new} #{html_current}")
@@ -44,12 +44,12 @@ class Book < ActiveRecord::Base
     # HTML end
 
     # EPUB begin
-    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{book.id}")
-    epub_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}.epub"
+    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{id}")
+    epub_new = "#{Dir.home}/book-builds/#{user.id}/#{id}/#{commit}.epub"
     system("gitbook epub #{book_repo} #{epub_new}")
 
     FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
-    epub_current = "#{Dir.home}/books/#{user.username}/#{book.slug}.epub"
+    epub_current = "#{Dir.home}/books/#{user.username}/#{slug}.epub"
     epub_old = File.readlink(epub_current) rescue nil
 
     system("ln -snf #{epub_new} #{epub_current}")
@@ -57,24 +57,27 @@ class Book < ActiveRecord::Base
     # EPUB end
 
     # PDF begin
-    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{book.id}")
-    pdf_new = "#{Dir.home}/book-builds/#{user.id}/#{book.id}/#{pl['after']}.pdf"
+    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{id}")
+    pdf_new = "#{Dir.home}/book-builds/#{user.id}/#{id}/#{commit}.pdf"
     system("xvfb-run gitbook pdf #{book_repo} #{pdf_new}")
 
     FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
-    pdf_current = "#{Dir.home}/books/#{user.username}/#{book.slug}.pdf"
+    pdf_current = "#{Dir.home}/books/#{user.username}/#{slug}.pdf"
     pdf_old = File.readlink(pdf_current) rescue nil
 
     system("ln -snf #{pdf_new} #{pdf_current}")
     FileUtils.rm_rf(pdf_old) if pdf_old.present?
     # PDF end
 
-    commit = pl['after']
-    commit_time = pl['commits'].find { |c| c['id'] == commit }['timestamp'].to_time
-    book.update_attributes(building: false, version: commit, version_time: commit_time)
+    update_attributes(building: false, version: commit, version_time: commit_time)
   rescue => e
-    book.update_attributes(building: false) if book
+    update_attributes(building: false)
     raise e
+  end
+
+  def self.from_hook(pl)
+    user = User.find_by!(gitlab_id: pl['user_id'].to_i)
+    user.books.find_by!(gitlab_id: pl['project_id'].to_i)
   end
 
   def entry_create(path, content = "", message = nil)
