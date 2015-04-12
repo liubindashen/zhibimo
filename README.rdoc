@@ -42,10 +42,13 @@ setuser app touch tmp/restart.txt
 ```
 npm install -g gitbook-cli
 apt-get install xvfb calibre
-setuser app wget http://www.google.com/get/noto/pkgs/NotoSansCJK.ttc.zip
-setuser app unzip NotoSansCJK.ttc.zip
-setuser app mv NotoSansCJK.ttc /home/app/.fonts/
+setuser app wget http://www.google.com/get/noto/pkgs/NotoSansCJKSC-hinted.zip
+setuser app unzip NotoSansCJKSC-hinted.zip
+setuser app mv NotoSansCJK* /home/app/.fonts/
 setuser app fc-cache -fv
-setuser app xvfb-run gitbook pdf /home/app/book-repos/12/48/ 48.pdf
-setuser app xvfb-run ebook-convert 48.epub 2.pdf --output-profile=kindle_pw
+setuser app fc-list | grep -i noto # to make sure the fonts installed correctly
 ```
+
+
+# start sidekiq with user app
+setuser app bundle exec sidekiq -e production -L log/sidekiq.log -d
