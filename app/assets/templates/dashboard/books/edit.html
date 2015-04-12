@@ -22,10 +22,19 @@
     </fieldset>
     <fieldset class="pure-group">
       <h2>Git URL</h2>
-      <input class='pure-input-1' type="text" readonly name="git_url" ng-model="vm.book.git_url" required />
+      <input class='pure-input-2-3' type="text" readonly name="git_url" ng-model="vm.book.git_url" required />
     </fieldset>
     <fieldset class="pure-group">
       <button class='pure-input-1 pure-button button-primary' type='submit'>保存设置</button>
+    </fieldset>
+  </form>
+
+  <form name="build_book_form" novalidate ng-submit="vm.build()" class='pure-form pure-u-18-24'>
+    <fieldset class="pure-group">
+      <h2>构建</h2>
+    </fieldset>
+    <fieldset class="pure-group">
+      <button class='pure-input-1-3 pure-button button-ghost-red'>手动构建</button>
     </fieldset>
   </form>
 
@@ -35,7 +44,7 @@
       <p>书籍删除后，不能恢复，请确认您是否已有备份，并谨慎操作。</p>
     </fieldset>
     <fieldset class="pure-group">
-      <button class='pure-input-1-3 pure-button button-ghost-red' ng-click='vm.delete()'>删除</button>
+      <button class='pure-input-1-3 pure-button button-ghost-red'>删除</button>
     </fieldset>
   </form>
 </div>

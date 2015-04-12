@@ -23,5 +23,8 @@ angular.module('ngApp').controller 'BookEditController', [
       vm.book.remove()
       $state.go 'dashboard.books.index'
 
+    vm.build = ->
+      vm.book.customPOST({}, 'build')
+
     return vm
 ]
