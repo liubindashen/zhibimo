@@ -1,4 +1,4 @@
-app = angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular', 'ui.codemirror', 'angular-underscore', 'angularFileUpload', 'ng-rails-csrf'])
+app = angular.module('ngApp', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'restangular', 'ui.codemirror', 'angular-underscore', 'angularFileUpload', 'ng-rails-csrf', 'wx-login', 'gon', 'btford.modal'])
 
 app.config [
   '$stateProvider', '$urlRouterProvider', '$locationProvider', 'RestangularProvider',
@@ -8,6 +8,7 @@ app.config [
         url: '/'
         templateUrl: 'welcome/home.html'
         controller: 'HomeController'
+        controllerAs: 'vm'
       })
       # Explore Route
       .state('explore', {

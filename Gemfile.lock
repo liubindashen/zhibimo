@@ -245,6 +245,7 @@ DEPENDENCIES
   chinese_pinyin
   coffee-rails (~> 4.1.0)
   dotenv-rails
+  faraday
   gitlab
   gon
   jbuilder (~> 2.0)

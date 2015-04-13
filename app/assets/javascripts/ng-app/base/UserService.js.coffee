@@ -1,1 +1,1 @@
-angular.module('ngApp').constant 'currentUser', gon.currentUser
+angular.module('ngApp').constant 'currentUser', window.gon.currentUser

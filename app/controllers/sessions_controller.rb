@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
   def create
-    user = User.from_auth(request.env['omniauth.auth'])
-    session[:user_id] = user.id
-    redirect_to '/dashboard/books/'
+    user_from_auth(request.env['omniauth.auth'])
+  end
+
+  def create_with_wechat
+    user_from_auth(WechatAuthentication.create_with_code(params[:code]))
   end
 
   def destroy
@@ -12,6 +14,13 @@ class SessionsController < ApplicationController
 
   def fail
     redirect_to root_url, error: t('.error')
+  end
+
+  private
+  def user_from_auth(auth)
+    user = User.from_auth(auth)
+    session[:user_id] = user.id
+    redirect_to '/dashboard/books/'
   end
 end
 

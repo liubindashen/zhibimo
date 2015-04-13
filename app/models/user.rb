@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,128}\Z/i}
-  validates :email, :presence => true, :uniqueness => true
+  validates_uniqueness_of :email, allow_nil: true
 
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications

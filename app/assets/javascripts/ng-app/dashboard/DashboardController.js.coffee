@@ -1,5 +1,5 @@
 angular.module('ngApp').controller 'DashboardController', [
-  'currentUser', (currentUser) ->
-    unless currentUser
+  '$gon', '$state', ($gon, $state) ->
+    unless $gon.currentUser
       $state.go 'home'
 ]

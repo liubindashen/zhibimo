@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409113009) do
+ActiveRecord::Schema.define(version: 20150413071836) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -59,5 +59,14 @@ ActiveRecord::Schema.define(version: 20150409113009) do
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "wechat_authentications", force: :cascade do |t|
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.string   "openid"
+    t.string   "unionid"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
 end

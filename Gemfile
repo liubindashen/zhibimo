@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'omniauth-github'
 gem 'gitlab'
 gem 'gon'
+gem 'faraday'
 
 gem 'bower-rails'
 gem 'angular-rails-templates'
