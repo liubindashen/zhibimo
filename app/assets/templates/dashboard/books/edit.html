@@ -1,12 +1,16 @@
 <div class='inner-header'>
   <div class='container pure-g'>
-    <h2 class='pure-u-21-24' ng-bind='vm.book.title'></h2>
-    <a class='pure-u-3-24 pure-button button-secondary'>预览</a>
+    <h2 class='pure-u-21-24'>
+      <a ui-sref='dashboard.books.index' href>我的作品</a>
+      <span>/</span>
+      <span ng-bind='vm.book.title'></span>
+    </h2>
+    <a class='pure-u-3-24 pure-button button-secondary' href='{{vm.book.html_url}}'>阅读</a>
   </div>
 </div>
 
 <div class='container pure-g'>
-  <form name="edit_book_form" novalidate ng-submit="vm.submit()" class='pure-form pure-u-18-24'>
+  <form name="vm.edit_book_form" novalidate ng-submit="vm.submit()" class='pure-form pure-u-18-24'>
     <fieldset class="pure-group">
       <h2>书籍标题</h2>
       <input class='pure-input-1' type="text" placeholder="请在这里输入标题" name="title" ng-model="vm.book.title" required />
@@ -22,7 +26,7 @@
     </fieldset>
     <fieldset class="pure-group">
       <h2>Git URL</h2>
-      <input class='pure-input-2-3' type="text" readonly name="git_url" ng-model="vm.book.git_url" required />
+      <input class='pure-input-1' type="text" readonly name="git_url" ng-model="vm.book.git_url" required />
     </fieldset>
     <fieldset class="pure-group">
       <button class='pure-input-1 pure-button button-primary' type='submit'>保存设置</button>
