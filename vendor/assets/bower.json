@@ -1,0 +1,20 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "kramed": "git://github.com/GitbookIO/kramed",
+    "underscore": "latest",
+    "codemirror": "latest",
+    "angular": "latest",
+    "angular-animate": "latest",
+    "angular-messages": "latest",
+    "angular-underscore": "latest",
+    "angular-ui-router": "latest",
+    "angular-ui-codemirror": "latest",
+    "ng-file-upload": "latest",
+    "restangular": "latest",
+    "angular-modal": "latest",
+    "pure": "latest",
+    "octicons": "latest",
+    "normalize.css": "latest"
+  }
+}

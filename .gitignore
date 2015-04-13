@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 .env
-lib/assets/bower_components/
+vendor/assets/bower_components/
 /public/assets/
 /vendor/bundle/
 /node_modules
