@@ -3,7 +3,8 @@ class Entry < ActiveRecord::Base
 
   # TODO: load content
   def to_json
-    { content: "", path: path, id: id }
+    content = File.read('sample.md')
+    { content: content, path: path, id: id }
   end
 
   before_save do

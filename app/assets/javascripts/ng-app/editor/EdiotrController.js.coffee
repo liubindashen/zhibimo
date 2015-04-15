@@ -33,7 +33,8 @@ angular.module('ngApp').controller 'EditorController', [
         vm.entries.push entry
 
     vm.render = (content) ->
-      $sce.trustAsHtml(KramedService.render(content))
+      html = KramedService.render(content)
+      $sce.trustAsHtml(html)
 
     delayInMs = 3000
     timeoutPromise = null

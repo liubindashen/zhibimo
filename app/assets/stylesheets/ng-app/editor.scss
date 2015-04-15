@@ -1,129 +1,126 @@
 @import 'codemirror/lib/codemirror';
 
-html.editor {
-  padding: 0;
-  margin: 0;
-  font-family: sans-serif;
-  box-sizing: border-box;
+$explorer-width: 240px;
+$explorer-background-color: #F7F7F7;
+$header-height: 40px;
+$header-background-color: #E3E1E1;
+$header-btn-height: $header-height;
+$header-btn-width: $header-btn-height;
+$normal-padding: 12px;
 
-  body, div, ul, ol, p, li, h1, h2, h3 {
-    padding: 0;
-    margin: 0;
-    font-family: sans-serif;
-    box-sizing: border-box;
+@mixin full-height {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+@mixin header-button($size: 16px) {
+  width: $size;
+  height: $size;
+  cursor: pointer;
+  text-align: center;
+  box-sizing: content-box;
+  padding: ($header-btn-height - $size) / 2;
+  .oction {
+    color: #999999;
+  }
+}
+
+html.editor {
+  * { 
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box; 
   }
 
-  body {
-    height: 100%;
-    max-height: 100%;
-    overflow: hidden;
+  &, body, [ui-view], #explorer, #content-wrapper {
+    @include full-height;
+  }
+
+  header {
+    height: $header-height;
+    background-color: $header-background-color;
   }
 
   #explorer {
+    top: 0; left: 0;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 240px;
-    height: 100%;
+    width: $explorer-width;
+
     overflow-y: scroll;
-    z-index: 4;
-    background-color: #F7F7F7;
+    background-color: $explorer-background-color;
+  }
 
-    h1 {
-      height: 32px;
-      background-color: #EEEEEE;
-      box-shadow: 0px 1px #FFF inset;
-      border-bottom: 1px solid #D5D5D5;
-      box-sizing: border-box;
+  #content-wrapper {
+    margin-left: $explorer-width;
+  }
+
+  #explorer {
+    h1.title {
+      color: #666666;
       font-size: 16px;
-      color: #444444;
-      line-height: 32px;
-      padding: 0 16px;
-      position: relative;
+      line-height: 18px;
+      padding: 12px $header-btn-width 10px 10px;
+    }
 
-      #new-entry-button {
-        position: absolute;
-        top: 0;
-        right: 16px;
-        cursor: pointer;
-      }
+    #new_entry {
+      top: 0px;
+      right: 0px;
+      position: absolute;
+      @include header-button;
     }
 
     ul {
-      padding-top: 8px;
-    }
+      padding-top: $normal-padding;
 
-    li {
-      list-style: none;
-      cursor: pointer;
-      padding: 4px 16px;
-      box-sizing: border-box;
-
-      .delete-entry-button {
-        display: none;
-        float: right;
+      li {
         cursor: pointer;
-
-        &:hover {
-          color: #C53929;
-        }
-      }
-
-      &:hover {
-        background-color: #EBEBEB;
+        list-style: none;
+        padding: 4px 16px;
+        box-sizing: border-box;
 
         .delete-entry-button {
-          display: inline-block;
-        }
-      }
+          display: none;
+          float: right;
+          cursor: pointer;
 
-      &.active {
-        color: #C53929;
-        border-left: 4px solid #C53929;
-        padding-left: 12px;
+          &:hover {
+            color: #C53929;
+          }
+        }
+
+        &:hover {
+          background-color: #EBEBEB;
+
+          .delete-entry-button {
+            display: inline-block;
+          }
+        }
+
+        &.active {
+          color: #C53929;
+          border-left: 4px solid #C53929;
+          padding-left: 12px;
+        }
       }
     }
   }
 
-  #editor {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+  #editor, #preview {
+    width: 50%;
+    display: inline-block;
+    @include full-height;
+  }
+
+  #textarea-wrapper, #preview-wrapper {
+    @include full-height;
+  }
+
+  #textarea-wrapper > .CodeMirror {
     height: 100%;
-    border-left: 240px solid transparent;
-    box-sizing: border-box;
-    max-height: 100%;
-    min-height: 100%;
-    overflow: hidden;
-
-    #textarea-wrapper,
-    #preview-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      overflow-y: scroll;
-      height: 100%;
-      max-height: 100%;
-      min-height: 100%;
-    }
-
-    #preview-wrapper {
-      left: 50%;
-    }
-
-    .CodeMirror,
-    #textarea-wrapper #textarea {
-      height: auto;
-    }
-
-    .CodeMirror-lines {
-      padding: 8px;
-    }
-
-    #preview {
-      padding: 8px;
-    }
   }
 }

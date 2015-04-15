@@ -1,7 +1,10 @@
 <div id="explorer">
-  <h1>
-    <span id="new-entry-button" ng-click='vm.newEntry()'>+</span>
-  </h1>
+  <header>
+    <h1 class='title' ng-bind='vm.book.title'></h1>
+    <a id='new_entry' herf>
+      <span class="octicon octicon-gear"></span>
+    </a>
+  </header>
   <ul id="entries">
     <li ng-repeat="entry in vm.entries" 
         data-entry='{{entry.id}}' 
@@ -12,7 +15,11 @@
   </ul>
 </div>
 
-<div id="editor">
-  <div id="textarea-wrapper" ui-codemirror ui-codemirror-opts='vm.editorOptions' ng-model='vm.currentEntry.content' ng-change='vm.entryChange()'></div>
-  <div id="preview-wrapper" ng-bind-html='vm.render(vm.currentEntry.content)'></div>
+<div id='content-wrapper'>
+  <div id="editor">
+    <div id="textarea-wrapper" ui-codemirror ui-codemirror-opts='vm.editorOptions' ng-model='vm.currentEntry.content' ng-change='vm.entryChange()'></div>
+  </div><div id="preview">
+    <div id="preview-wrapper" ng-bind-html='vm.render(vm.currentEntry.content)'></div>
+  </div>
 </div>
+
