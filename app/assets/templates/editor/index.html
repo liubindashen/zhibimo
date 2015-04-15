@@ -17,8 +17,24 @@
 
 <div id='content-wrapper'>
   <div id="editor">
+    <header>
+      <a id='format-header' herf>
+        <span class="octicon octicon-beer"></span>
+      </a>
+      <a id='format-header' herf>
+        <span class="octicon octicon-jersey"></span>
+      </a>
+      <a id='format-header' herf>
+        <span class="octicon octicon-circuit-board"></span>
+      </a>
+      <a id='format-header' herf>
+        <span class="octicon octicon-lock"></span>
+      </a>
+    </header>
     <div id="textarea-wrapper" ui-codemirror ui-codemirror-opts='vm.editorOptions' ng-model='vm.currentEntry.content' ng-change='vm.entryChange()'></div>
   </div><div id="preview">
+    <header>
+    </header>
     <div id="preview-wrapper" ng-bind-html='vm.render(vm.currentEntry.content)'></div>
   </div>
 </div>

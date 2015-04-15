@@ -10,6 +10,7 @@ angular.module('ngApp').controller 'EditorController', [
         vm.setCurrent(_.first(entries).id)
 
     vm.editorOptions = 
+      mode: 'markdown'
       lineWrapping : true
 
     vm.setCurrent = (entryId) ->

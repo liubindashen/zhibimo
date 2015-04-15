@@ -1,4 +1,5 @@
 #= require codemirror
+#= require codemirror/mode/markdown/markdown
 #= require kramed
 #= require underscore
 #

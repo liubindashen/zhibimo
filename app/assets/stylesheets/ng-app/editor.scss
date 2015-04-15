@@ -25,6 +25,7 @@ $normal-padding: 12px;
   text-align: center;
   box-sizing: content-box;
   padding: ($header-btn-height - $size) / 2;
+  display: inline-block;
   .oction {
     color: #999999;
   }
@@ -43,6 +44,7 @@ html.editor {
 
   header {
     height: $header-height;
+    padding-left: $normal-padding;
     background-color: $header-background-color;
   }
 
@@ -118,9 +120,69 @@ html.editor {
 
   #textarea-wrapper, #preview-wrapper {
     @include full-height;
+    padding: $normal-padding * 2;
   }
 
   #textarea-wrapper > .CodeMirror {
     height: 100%;
+  }
+
+  #editor {
+    header { background-color: #EAEAEA; }
+
+    header > a {
+      @include header-button;
+    }
+  }
+
+  #preview {
+    header { background-color: #E4E4E4; }
+  }
+
+  .CodeMirror {
+    // editor basic style
+    pre {
+      color: #333;
+      font-family: 'Helvetica Neue', Arial, "Hiragino Sans GB", sans-serif;
+      font-size: 16px;
+      line-height: 150%;
+    }
+
+    span.cm-header {
+      // TODO: header text basic style
+      // e.g. h1 h2 h3 h4 h5 h6
+
+      // TODO: h1 - h6 style
+      &.cm-header-1 { }
+      &.cm-header-2 { }
+      &.cm-header-3 { }
+      &.cm-header-4 { }
+      &.cm-header-5 { }
+      &.cm-header-6 { }
+    }
+
+    // TODO: strong and italic text style
+    span.cm-em { }
+    span.cm-strong { }
+
+    span.cm-quote {
+      // TODO: quote text basic style
+
+      //TODO: 1 level - 3 level quote style
+      &.cm-quote-1 { }
+    }
+
+    // TODO: link text and url text (included parenthesis)
+    span.cm-link { }
+    span.cm-string { }
+
+    // TODO: fixed width text style
+    span.cm-comment { }
+
+    // TODO: options text style
+    span.cm-variable-2 { }
+    span.cm-variable-3 { }
+    span.cm-keyword { }
+
   }
 }
