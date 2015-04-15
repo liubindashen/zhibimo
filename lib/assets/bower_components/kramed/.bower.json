@@ -1,0 +1,37 @@
+{
+  "name": "kramed",
+  "version": "0.4.6",
+  "homepage": "https://github.com/GitbookIO/kramed",
+  "authors": [
+    "Aaron O'Mullan <aaron.omullan@gmail.com>",
+    "Christopher Jeffrey <chjjeffrey@gmail.com>"
+  ],
+  "description": "A markdown (kramdown compatible) parser and compiler. Built for speed.",
+  "keywords": [
+    "markdown",
+    "markup",
+    "html",
+    "kramdown",
+    "kramed",
+    "parser"
+  ],
+  "main": "lib/kramed.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.4.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.4.6",
+    "commit": "1fec8f020a947fa5a696bafa3256124fa95c05e0"
+  },
+  "_source": "git://github.com/GitbookIO/kramed.git",
+  "_target": "*",
+  "_originalSource": "GitbookIO/kramed"
+}
