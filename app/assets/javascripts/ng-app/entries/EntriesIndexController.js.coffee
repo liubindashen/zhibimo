@@ -1,4 +1,4 @@
-angular.module('ngApp').controller 'EditorController', [
+angular.module('ngApp').controller 'EntriesIndexController', [
   '$state', '$sce', '$stateParams', '$timeout', '$gon', 'KramedService', 'BookService',
   ($state,   $sce,   $stateParams,   $timeout,  $gon,  KramedService,   BookService) ->
     vm = @
@@ -34,7 +34,7 @@ angular.module('ngApp').controller 'EditorController', [
         vm.entries.push entry
 
     vm.render = (content) ->
-      html = KramedService.render(content)
+      html = KramedService.render(content || '')
       $sce.trustAsHtml(html)
 
     delayInMs = 3000

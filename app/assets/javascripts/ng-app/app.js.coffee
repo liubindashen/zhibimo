@@ -59,10 +59,10 @@ app.config [
         controller: 'BookEditController'
         controllerAs: 'vm'
       })
-      .state('editor', {
-        url: '/editor/:slug'
-        templateUrl: 'editor/index.html'
-        controller: 'EditorController'
+      .state('entries', {
+        url: '/book/:slug/entries'
+        templateUrl: 'entries/index.html'
+        controller: 'EntriesIndexController'
         controllerAs: 'vm'
       })
 
