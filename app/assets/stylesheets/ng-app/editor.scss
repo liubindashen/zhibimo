@@ -118,6 +118,7 @@ html.editor {
     width: 50%;
     display: inline-block;
     @include full-height;
+    overflow: scroll;
   }
 
   #textarea-wrapper, #preview-wrapper {
@@ -155,28 +156,65 @@ html.editor {
       // e.g. h1 h2 h3 h4 h5 h6
 
       // TODO: h1 - h6 style
-      &.cm-header-1 { }
-      &.cm-header-2 { }
-      &.cm-header-3 { }
-      &.cm-header-4 { }
-      &.cm-header-5 { }
-      &.cm-header-6 { }
+      &.cm-header-1 { 
+        font-size: 2em;
+        font-weight: bold;
+        margin: 0.67em 0;
+      }
+      &.cm-header-2 { 
+        font-size: 1.5em;
+        font-weight: bold;
+        margin: 0.83em 0;
+      }
+      &.cm-header-3 { 
+        font-size: 1.17em;
+        font-weight: bold;
+        margin: 1em 0;
+      }
+      &.cm-header-4 { 
+        font-size: 1.1em;
+        font-weight: bold;
+        margin: 0.8em 0;
+      }
+      &.cm-header-5 { 
+        font-size: 1em;
+        font-weight: bold;
+        margin: 0.7em 0;
+      }
+      &.cm-header-6 { 
+        font-size: 1em;
+        font-weight: bold;
+        margin: 0.6em 0;
+      }
+
     }
 
     // TODO: strong and italic text style
-    span.cm-em { }
-    span.cm-strong { }
+    span.cm-em {
+      font-style: italic;
+    }
+    span.cm-strong { 
+      font-style: bold;
+    }
 
     span.cm-quote {
       // TODO: quote text basic style
-
+      color:#666666;
+      margin:0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
       //TODO: 1 level - 3 level quote style
       &.cm-quote-1 { }
     }
 
     // TODO: link text and url text (included parenthesis)
-    span.cm-link { }
-    span.cm-string { }
+    span.cm-link {
+      color: #0645ad; 
+      text-decoration:none;
+    }
+    span.cm-string {
+
+    }
 
     // TODO: fixed width text style
     span.cm-comment { }
