@@ -59,7 +59,6 @@ html.entries {
     position: absolute;
     width: $explorer-width;
 
-    overflow-y: scroll;
     background-color: $explorer-background-color;
     @include user-select-none;
   }
@@ -122,34 +121,51 @@ html.entries {
   #editor, #preview {
     width: 50%;
     display: inline-block;
+    position: relative;
     @include full-height;
-    overflow: scroll;
-  }
 
-  #textarea-wrapper, #preview-wrapper {
-    @include full-height;
-    padding: $normal-padding * 2;
-  }
+    header {
+      width: 100%;
+      position: absolute;
+      top: 0px; left: 0px;
 
-  #textarea-wrapper > .CodeMirror {
-    height: 100%;
+      & > a {
+        @include header-button;
+      }
+    }
   }
 
   #editor {
-    @include user-select-none;
-
     header { background-color: #EAEAEA; }
 
-    header > a {
-      @include header-button;
-    }
+    overflow: none;
+    @include user-select-none;
   }
 
   #preview {
     header { background-color: #E4E4E4; }
   }
 
+  #textarea-wrapper, #preview-wrapper {
+    @include full-height;
+    margin-top: $header-height;
+    padding: $normal-padding * 2;
+    padding-bottom: 64px;
+  }
+
+  #preview-wrapper {
+    margin-top: $header-height + $normal-padding * 2;
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    // to fix padding content did not hidden
+    border-bottom: $header-height + $normal-padding * 4 solid transparent;
+    overflow: scroll;
+  }
+
   .CodeMirror {
+    height: 100%;
+
     // editor basic style
     pre {
       color: #333;
