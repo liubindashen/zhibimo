@@ -26,6 +26,8 @@ $normal-padding: 12px;
   box-sizing: content-box;
   padding: ($header-btn-height - $size) / 2;
   display: inline-block;
+  &:hover { background: rgba(0,0,0,0.1); }
+
   .oction {
     color: #999999;
   }
