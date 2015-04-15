@@ -59,11 +59,11 @@ app.config [
         controller: 'BookEditController'
         controllerAs: 'vm'
       })
-      # Dashboard Editor Route
       .state('editor', {
         url: '/editor/:slug'
-        templateUrl: 'dashboard/editor.html'
+        templateUrl: 'editor/index.html'
         controller: 'EditorController'
+        controllerAs: 'vm'
       })
 
     $urlRouterProvider.otherwise('/')
@@ -71,4 +71,11 @@ app.config [
 
     RestangularProvider.setBaseUrl('api/v1')
     RestangularProvider.setRequestSuffix('.json')
+]
+
+app.run [
+  '$rootScope',
+  ($rootScope) ->
+    $rootScope.$on '$stateChangeSuccess', (event, toState) ->
+      $rootScope.currentState = toState
 ]

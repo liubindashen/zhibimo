@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#fail'
 
   root 'application#index'
-  get "/editor/:id" => "application#editor"
   get "*path" => "application#index"
   get "*path.html" => "application#index", :layout => nil
 end

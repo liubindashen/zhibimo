@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ngApp">
+<html lang="en" ng-app="ngApp" class='{{currentState.name}}'>
   <head>
     <title><%= t(".title") %></title>
     <base href="/">
@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="/favicon.ico"/>
 
     <!-- oops ! -->
+    <%- if Rails.env.production? %>
     <script>
       var _hmt = _hmt || [];
       (function() {
@@ -16,6 +17,7 @@
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
+    <% end %>
     <!-- oops end ! -->
 
     <%= include_gon %>

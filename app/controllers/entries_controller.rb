@@ -18,7 +18,7 @@ class EntriesController < ApplicationController
 
   def update
     @entry = @book.entries.find(params[:id])
-    @entry.repo_update(params[:content], params[:message])
+    #@entry.repo_update(params[:content], params[:message])
     render json: @entry.to_json
   end
 
@@ -31,6 +31,6 @@ class EntriesController < ApplicationController
   private
 
   def set_book
-    @book = Book.find(params[:book_id])
+    @book = current_user.books.find(params[:book_id])
   end
 end

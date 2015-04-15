@@ -1,0 +1,18 @@
+<div id="explorer">
+  <h1>
+    <span id="new-entry-button" ng-click='vm.newEntry()'>+</span>
+  </h1>
+  <ul id="entries">
+    <li ng-repeat="entry in vm.entries" 
+        data-entry='{{entry.id}}' 
+        ng-click='setCurrent(entry.id)'
+        ng-class="{active: isActive(entry.id)}">
+      {{entry.path}}
+    </li>
+  </ul>
+</div>
+
+<div id="editor">
+  <div id="textarea-wrapper" ui-codemirror ui-codemirror-opts='vm.editorOptions' ng-model='vm.currentEntry.content' ng-change='vm.entryChange()'></div>
+  <div id="preview-wrapper" ng-bind-html='vm.render(vm.currentEntry.content)'></div>
+</div>
