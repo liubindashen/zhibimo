@@ -18,7 +18,7 @@
 <div id='content-wrapper'>
   <div id="editor">
     <header>
-      <a id='format-header' herf>
+      <a id='format-header' herf ng-click='vm.formatHeader()'>
         <span class="octicon octicon-beer"></span>
       </a>
       <a id='format-header' herf>
@@ -31,7 +31,7 @@
         <span class="octicon octicon-lock"></span>
       </a>
     </header>
-    <div id="textarea-wrapper" ui-codemirror ui-codemirror-opts='vm.editorOptions' ng-model='vm.currentEntry.content' ng-change='vm.entryChange()'></div>
+    <div id="textarea-wrapper" ui-codemirror='{ onLoad : vm.codemirrorLoaded }' ui-codemirror-opts='vm.editorOptions' ng-model='vm.currentEntry.content' ng-change='vm.entryChange()'></div>
   </div><div id="preview">
     <header>
     </header>

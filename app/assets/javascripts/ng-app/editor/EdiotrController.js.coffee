@@ -50,5 +50,33 @@ angular.module('ngApp').controller 'EditorController', [
     vm.setEntryChanged = ->
       vm.currentEntry.changed = true
 
+    vm.codemirrorLoaded = (editor) ->
+      editor.focus()
+
+      vm.editor = editor
+      vm.doc = editor.getDoc()
+      
+    vm.formatHeader = ->
+      vm.editor.execCommand "goLineStartSmart"
+      [word, range] = vm.currentWord()
+
+      if word.match /^#{1,5}$/
+        vm.doc.replaceSelection("#")
+      else if word.match /^#{6}$/
+        vm.selectionRange(range)
+        vm.doc.replaceSelection("#")
+      else
+        vm.doc.replaceSelection("# ")
+
+    vm.currentWord = ->
+      c = vm.doc.getCursor()
+      r = vm.editor.findWordAt(c)
+      [vm.editor.getRange(r.anchor, r.head), r]
+
+
+    vm.selectionRange = (range) ->
+      vm.editor.setSelection(range.anchor, range.head)
+
+
     return vm
 ]
