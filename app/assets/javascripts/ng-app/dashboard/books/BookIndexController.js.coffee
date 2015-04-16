@@ -7,8 +7,8 @@ angular.module('ngApp').controller 'BookIndexController', [
     BookService.getList().then (books) ->
       vm.books = books
 
-    vm.goEditor = (book) ->
-      $state.go('editor', {slug: book.slug})
+    vm.entries = (book) ->
+      $state.go('entries', {slug: book.slug})
 
     vm.edit = (book) ->
       $state.go('dashboard.books.edit', {slug: book.slug})
