@@ -2,6 +2,20 @@ a{
 	text-decoration: none;
 }
 
+.login-mask{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: #FFF;
+  z-index: 99;
+  display: block;
+  opacity: 0.8;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;  
+}
+
 .home-header{
   text-align: center;
   width: 80%;

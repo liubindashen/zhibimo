@@ -6,6 +6,7 @@ angular.module('ngApp').controller 'HomeController', [
     vm.currentUser = $gon.currentUser
 
     vm.start = ->
+      $scope.isLoginVisible = true
       unless vm.currentUser
         WechatLoginModal.activateWithWechat()
       else
