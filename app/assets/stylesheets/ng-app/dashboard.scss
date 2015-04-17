@@ -58,3 +58,34 @@
     }    
   }
 }
+
+
+.input-group{
+  position: relative;
+  display: table;
+  border-collapse: separate;
+  width: 100%;
+  .input-group-addon{
+    display: table-cell;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 2px 0px 0px 2px;
+    border-right: none;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+  } 
+  input.input-group-form{
+    top: 0px !important;
+    display: table-cell;
+    width: 100%;
+    margin-bottom: 0;
+    border-radius: 0 2px 2px 0px !important;
+  } 
+}
+

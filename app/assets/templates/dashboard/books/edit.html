@@ -26,7 +26,10 @@
     </fieldset>
     <fieldset class="pure-group">
       <h2>Git URL</h2>
-      <input class='pure-input-1' type="text" readonly name="git_url" ng-model="vm.book.git_url" required />
+      <div class='input-group'>
+        <span class="input-group-addon"><i class="octicon octicon-repo-push"></i></span>
+        <input class='pure-input-1 input-group-form' type="text" readonly name="git_url" ng-model="vm.book.git_url" required />
+      </div>
     </fieldset>
     <fieldset class="pure-group">
       <button class='pure-input-1 pure-button button-primary' type='submit'>保存设置</button>
