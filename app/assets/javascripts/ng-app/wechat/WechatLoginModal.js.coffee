@@ -6,10 +6,11 @@ angular.module('ngApp').factory 'WechatLoginModal', [
       controller: 'WechatLoginController'
       controllerAs: 'vm'
 
-    modal.activateWithWechat = ->
-      return if modal.isActivate
 
-      modal.isActivate = true
+    modal.deactivateWithUser = ->
+      modal.deactivate()
+
+    modal.activateWithUser = ->
       modal.activate().then ->
         new $wx_login
           id: 'wechat_login_wrapper'

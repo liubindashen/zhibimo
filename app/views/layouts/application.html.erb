@@ -26,9 +26,7 @@
   </head>
   <body>
     <%= yield %>
-    <%- if Rails.env.production? %>
-      <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
-    <% end %>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>
