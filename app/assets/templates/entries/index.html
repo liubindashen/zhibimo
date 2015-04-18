@@ -8,15 +8,15 @@
   <ul id="entries">
     <li ng-repeat="entry in vm.entries" 
         data-entry='{{entry.id}}' 
-        ng-click='setCurrent(entry.id)'
-        ng-class="{active: isActive(entry.id)}">
+        ng-click='vm.setCurrent(entry)'
+        ng-class="{active: entry.isActive}">
       {{entry.path}}
     </li>
   </ul>
 </div>
 
 <div id='content-wrapper'>
-  <div id="editor">
+  <div id="editor" ng-controller='EditorController as vm'>
     <header>
       <a id='format-header' herf ng-click='vm.formatHeader()'>
         <span class="octicon octicon-beer"></span>
@@ -31,12 +31,17 @@
         <span class="octicon octicon-lock"></span>
       </a>
     </header>
-    <div id="textarea-wrapper" ui-codemirror='{ onLoad : vm.codemirrorLoaded }' ui-codemirror-opts='vm.editorOptions' ng-model='vm.currentEntry.content' ng-change='vm.entryChange()'></div>
-  </div><div id="preview">
+    <div id='textarea-wrapper' 
+      ng-model='vm.entry().content' 
+      ng-change='vm.changed()'
+      ui-codemirror-opts='vm.editorOptions'
+      ui-codemirror='{onLoad : vm.codemirrorLoaded}'>
+    </div>
+  </div><div id="preview" ng-controller='PreviewController as vm'>
     <header>
     </header>
     <div id="preview-wrapper" >
-      <div id='kramed-wrapper' ng-bind-html='vm.render(vm.currentEntry.content)'></div>
+      <div id='kramed-wrapper' ng-bind-html='vm.render()'></div>
     </div>
   </div>
 </div>

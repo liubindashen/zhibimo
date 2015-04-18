@@ -31,6 +31,11 @@ class EntriesController < ApplicationController
   private
 
   def set_book
-    @book = current_user.books.find(params[:book_id])
+    id_or_slug = params[:book_id].to_i
+    if id_or_slug > 0
+      @book = current_user.books.find(params[:book_id])
+    else
+      @book = current_user.books.find_by_slug(params[:book_id])
+    end
   end
 end
