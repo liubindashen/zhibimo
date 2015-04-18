@@ -25,8 +25,11 @@ angular.module('ngApp').controller 'EditorController', [
         EntriesService.save()
       , delaySaveTimeout
 
+    vm.command = (command) ->
+      vm[command]()
+      vm.editor.focus()
+
     vm.formatHeader = ->
-      debugger
       vm.editor.execCommand "goLineStartSmart"
       [word, range] = currentWord()
 
@@ -37,11 +40,25 @@ angular.module('ngApp').controller 'EditorController', [
         vm.doc.replaceSelection("#")
       else
         vm.doc.replaceSelection("# ")
+      
+    vm.formatStrong = ->
+      unless vm.doc.somethingSelected()
+        selectionLine()
+
+      selection = vm.doc.getSelection()
+      vm.doc.replaceSelection("**#{selection}**")
 
     currentWord = ->
       c = vm.doc.getCursor()
       r = vm.editor.findWordAt(c)
       [vm.editor.getRange(r.anchor, r.head), r]
+
+    selectionLine = ->
+      vm.editor.execCommand "goLineStartSmart"
+      start = vm.doc.getCursor()
+      vm.editor.execCommand "goLineEnd"
+      end = vm.doc.getCursor()
+      selectionRange(anchor: end, head: start)
 
     selectionRange = (range) ->
       vm.editor.setSelection(range.anchor, range.head)

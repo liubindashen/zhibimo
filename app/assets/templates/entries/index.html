@@ -18,10 +18,10 @@
 <div id='content-wrapper'>
   <div id="editor" ng-controller='EditorController as vm'>
     <header>
-      <a id='format-header' herf ng-click='vm.formatHeader()'>
+      <a id='format-header' herf ng-click="vm.command('formatHeader')">
         <span class="octicon octicon-beer"></span>
       </a>
-      <a id='format-header' herf>
+      <a id='format-header' herf ng-click="vm.command('formatStrong')">
         <span class="octicon octicon-jersey"></span>
       </a>
       <a id='format-header' herf>
