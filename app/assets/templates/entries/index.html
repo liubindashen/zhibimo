@@ -18,16 +18,16 @@
 <div id='content-wrapper'>
   <div id="editor" ng-controller='EditorController as vm'>
     <header>
-      <a id='format-header' herf ng-click="vm.command('formatHeader')">
+      <a herf ng-click="vm.command('formatHeader')">
         <span class="octicon octicon-beer"></span>
       </a>
-      <a id='format-header' herf ng-click="vm.command('formatStrong')">
+      <a herf ng-click="vm.command('formatStrong')">
         <span class="octicon octicon-jersey"></span>
       </a>
-      <a id='format-header' herf ng-click="vm.command('formatItalic')">
+      <a herf ng-click="vm.command('formatItalic')">
         <span class="octicon octicon-circuit-board"></span>
       </a>
-      <a id='format-header' herf ng-click="vm.command('formatStrikethrough')">
+      <a herf ng-click="vm.command('formatStrikethrough')">
         <span class="octicon octicon-lock"></span>
       </a>
     </header>
@@ -39,6 +39,8 @@
     </div>
   </div><div id="preview" ng-controller='PreviewController as vm'>
     <header>
+      <span ng-show='vm.entry().saving' class='pull-right'>正在自动保存…</span>
+
     </header>
     <div id="preview-wrapper" >
       <div id='kramed-wrapper' ng-bind-html='vm.render()'></div>

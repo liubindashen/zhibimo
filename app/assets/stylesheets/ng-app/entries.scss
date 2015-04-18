@@ -136,6 +136,15 @@ html.entries {
       & > a {
         @include header-button;
       }
+
+      & > span {
+        padding: 11px;
+        display: inline-block;
+
+        &.pull-right {
+          float: right;
+        }
+      }
     }
   }
 
