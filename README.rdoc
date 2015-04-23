@@ -51,4 +51,4 @@ setuser app fc-list | grep -i noto # to make sure the fonts installed correctly
 
 
 # start sidekiq with user app
-setuser app bundle exec sidekiq -e production -L log/sidekiq.log -d
+setuser app bundle exec sidekiq -q building,1 -e production -L log/sidekiq.log -d
