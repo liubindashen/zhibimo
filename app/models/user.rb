@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
   end
 
   after_create do
+    UserRegisterJob.perform_later self
+
     unless ENV['DISABLE_GITLIB']
       pwd = SecureRandom.hex
       oh = Gitlab.create_user("#{id}@zhibimo.com", pwd, username: id.to_s, projects_limit: 100)
