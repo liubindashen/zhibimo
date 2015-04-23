@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :build]
 
   def build
-    BookWorker.perform_async(@book.id)
+    BuildBookJob.perform_later(@book.id)
     respond_to do |format|
       format.json { render json: {} }
       format.html { render json: {} }
@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
   def hook
     @book = Book.from_hook(params)
-    BookWorker.perform_async(@book.id)
+    BuildBookJob.perform_later(@book.id)
     respond_to do |format|
       format.json { render json: {} }
       format.html { render json: {} }
