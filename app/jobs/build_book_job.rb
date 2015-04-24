@@ -1,12 +1,12 @@
 class BuildBookJob < ActiveJob::Base
   queue_as :building
 
-  def perform(book_id)
+  def perform(book_id, force: false)
     book = Book.find_by_id(book_id)
 
     if book
       Slack.send "BUILDING START #{book.title}"
-      Book.find(book_id).build
+      Book.find(book_id).build(force: force)
       Slack.send "BUILDING DONE  #{book.title}"
     else
       Slack.send "BUILDING NOTHING: Book##{book_id}"
