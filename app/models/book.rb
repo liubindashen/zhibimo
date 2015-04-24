@@ -17,7 +17,7 @@ class Book < ActiveRecord::Base
       "http://zhibimo.com/read/#{author.username}/#{slug}/cover.jpg" : default
   end
 
-  def build
+  def build(force: false)
     return if building?
     update_columns(building: true)
 
@@ -27,11 +27,27 @@ class Book < ActiveRecord::Base
     system("git clone #{git_origin} #{book_repo}")
     commit = `cd #{book_repo} && git log --pretty=format:%H -1`.strip
     commit_time = `cd #{book_repo} && git log --pretty=format:%ci -1`.to_time
-    update_columns(building: false) and return if commit == version
+
+    update_columns(building: false) and return if (commit == version and !force)
 
     update_columns(readme: File.read("#{book_repo}/README.md"), summary: File.read("#{book_repo}/SUMMARY.md"))
 
     # HTML begin
+    File.open("#{Dir.home}/.book.json", 'w') do |f|
+      f.puts JSON.dump({
+        language: 'zh-cn', 
+        plugins: %w(tongji),
+        pluginsConfig: {
+          tongji: {
+            token: ENV['TONGJI-TOKEN']
+          }
+        }
+      })
+    end
+
+    # settings
+    system("cat #{Dir.home}/.book.json > #{book_repo}/book.json")
+
     FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{id}")
     html_new = "#{Dir.home}/book-builds/#{user.id}/#{id}/#{commit}"
     system("gitbook build #{book_repo} #{html_new}")
