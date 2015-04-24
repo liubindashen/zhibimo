@@ -39,7 +39,7 @@ class Book < ActiveRecord::Base
         plugins: %w(tongji),
         pluginsConfig: {
           tongji: {
-            token: ENV['TONGJI-TOKEN']
+            token: ENV['TONGJI_TOKEN']
           }
         }
       })
