@@ -1,9 +1,30 @@
 .explore-container{
   padding-top: 6px;
   min-height: 700px;
+
   .board{
     margin-top: 180px;
 
+    @media screen and (max-width: 64em){
+    }
+    @media screen and (max-width: 48em) {
+      margin-top: 360px;
+      background: none;
+      &:after{
+        display: none;
+      }
+      &:before{
+        display: none;
+      }
+    }
+    @media screen and (max-width: 35.5em){
+      margin-top: 360px;
+    }
+
+    &:first-child{
+      margin-top: 180px;
+    }
+ 
   }
   .board-content{
     margin-top: -120px;    
@@ -22,12 +43,39 @@
       .book-title{
         margin-top: 30px;
         cursor: pointer;
+        overflow: hidden;
+        text-align: center;
         p {
           font-size: 1em;
           text-align: center;
           color: #555;
+          @media screen and (max-width: 35.5em){
+            margin-top: 10px;
+            max-width: 100px;
+            overflow: hidden;
+          }
+        }
+        @media screen and (max-width: 48em) {
+          margin-top: 0px;
+          max-width: 100px;
+          overflow: hidden;         
+        }
+        @media screen and (max-width: 35.5em){
+          margin-right: 13px;
         }
       }
+
+      @media screen and (max-width: 48em) {
+        margin-top: 0px;
+      }
+      @media screen and (max-width: 35.5em){
+        margin-right: 10px;
+      }
+
+    }
+
+    @media screen and (max-width: 48em) {
+      margin-bottom: 30px;
     }
   }
 }
@@ -84,6 +132,4 @@
   }
 
 }
-
-
 
