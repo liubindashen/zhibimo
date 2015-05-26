@@ -8,6 +8,7 @@ end
 json.html_url "/read/#{book.user.username}/#{book.slug}/"
 json.epub_url "/read/#{book.user.username}/#{book.slug}.epub"
 json.pdf_url "/read/#{book.user.username}/#{book.slug}.pdf"
+json.mobi_url "/read/#{book.user.username}/#{book.slug}.mobi"
 
 json.author do
   json.id book.user.id
