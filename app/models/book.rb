@@ -56,8 +56,10 @@ class Book < ActiveRecord::Base
     html_current = "#{Dir.home}/books/#{user.username}/#{slug}"
     html_old = File.readlink(html_current) rescue nil
 
-    system("ln -snf #{html_new} #{html_current}")
-    FileUtils.rm_rf(html_old) if html_old.present? && html_old != html_new
+    if File.exists?(html_new)
+      system("ln -snf #{html_new} #{html_current}")
+      FileUtils.rm_rf(html_old) if html_old.present? && html_old != html_new
+    end
     # HTML end
 
     # EPUB begin
@@ -69,8 +71,10 @@ class Book < ActiveRecord::Base
     epub_current = "#{Dir.home}/books/#{user.username}/#{slug}.epub"
     epub_old = File.readlink(epub_current) rescue nil
 
-    system("ln -snf #{epub_new} #{epub_current}")
-    FileUtils.rm_rf(epub_old) if epub_old.present? && epub_old != epub_new
+    if File.exists?(epub_new)
+      system("ln -snf #{epub_new} #{epub_current}")
+      FileUtils.rm_rf(epub_old) if epub_old.present? && epub_old != epub_new
+    end
     # EPUB end
 
     # MOBI begin
@@ -82,8 +86,10 @@ class Book < ActiveRecord::Base
     mobi_current = "#{Dir.home}/books/#{user.username}/#{slug}.mobi"
     mobi_old = File.readlink(mobi_current) rescue nil
 
-    system("ln -snf #{mobi_new} #{mobi_current}")
-    FileUtils.rm_rf(mobi_old) if mobi_old.present? && mobi_old != mobi_new
+    if File.exists?(mobi_new)
+      system("ln -snf #{mobi_new} #{mobi_current}")
+      FileUtils.rm_rf(mobi_old) if mobi_old.present? && mobi_old != mobi_new
+    end
     # MOBI end
 
     # PDF begin
@@ -95,8 +101,10 @@ class Book < ActiveRecord::Base
     pdf_current = "#{Dir.home}/books/#{user.username}/#{slug}.pdf"
     pdf_old = File.readlink(pdf_current) rescue nil
 
-    system("ln -snf #{pdf_new} #{pdf_current}")
-    FileUtils.rm_rf(pdf_old) if pdf_old.present? && pdf_old != pdf_new
+    if File.exists?(pdf_new)
+      system("ln -snf #{pdf_new} #{pdf_current}")
+      FileUtils.rm_rf(pdf_old) if pdf_old.present? && pdf_old != pdf_new
+    end
     # PDF end
 
     update_attributes(building: false, version: commit, version_time: commit_time)
