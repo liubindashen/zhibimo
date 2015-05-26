@@ -35,7 +35,7 @@ class Book < ActiveRecord::Base
     # HTML begin
     File.open("#{Dir.home}/.book.json", 'w') do |f|
       f.puts JSON.dump({
-        language: 'zh-cn', 
+        language: 'zh-cn',
         plugins: %w(tongji),
         pluginsConfig: {
           tongji: {
@@ -72,6 +72,19 @@ class Book < ActiveRecord::Base
     system("ln -snf #{epub_new} #{epub_current}")
     FileUtils.rm_rf(epub_old) if epub_old.present? && epub_old != epub_new
     # EPUB end
+
+    # MOBI begin
+    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{id}")
+    mobi_new = "#{Dir.home}/book-builds/#{user.id}/#{id}/#{commit}.mobi"
+    system("gitbook mobi #{book_repo} #{mobi_new}")
+
+    FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
+    mobi_current = "#{Dir.home}/books/#{user.username}/#{slug}.mobi"
+    mobi_old = File.readlink(mobi_current) rescue nil
+
+    system("ln -snf #{mobi_new} #{mobi_current}")
+    FileUtils.rm_rf(mobi_old) if mobi_old.present? && mobi_old != mobi_new
+    # MOBI end
 
     # PDF begin
     FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{id}")
