@@ -1,0 +1,13 @@
+<!-- oops ! -->
+<%- if Rails.env.production? %>
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?f4c77fe2523e4a5d8092ddefe64d971a";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+<% end %>
+<!-- oops end ! -->

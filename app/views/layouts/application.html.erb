@@ -1,32 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ngApp" class='{{currentState.name}}'>
+<html lang="en">
   <head>
     <title><%= t(".title") %></title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/favicon.ico"/>
-
-    <!-- oops ! -->
-    <%- if Rails.env.production? %>
-    <script>
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?f4c77fe2523e4a5d8092ddefe64d971a";
-        var s = document.getElementsByTagName("script")[0]; 
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-    <% end %>
-    <!-- oops end ! -->
-
-    <%= include_gon %>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%- render partial: 'shared/baidu' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <%= yield %>
     <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
-    <%= javascript_include_tag 'application' %>
   </body>
 </html>
