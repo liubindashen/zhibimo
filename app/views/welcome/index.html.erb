@@ -14,7 +14,7 @@
       <p>一大波精彩书籍正在接近…</p>
     </div>
 
-    <a class='start-btn'>发现好书</a>
+    <%= link_to '发现好书', explore_index_path, class: 'start-btn' %>
   </div>
   
   <div class='right'>
@@ -33,6 +33,4 @@
   <div class='shadow'></div>
 </div>
 
-<div class='footer'>
-  © 2015 zhibimo.com
-</div>
+<%= render 'shared/footer' %>

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   scope '/api/v1' do
-    resources :explore, only: [:index, :show]
-
     resources :books do
       member do
         post 'build'
@@ -15,6 +13,8 @@ Rails.application.routes.draw do
   match '/auth/:provider/callback' => 'sessions#create', via: [:get, :post], as: :signin
   get "/signout" => 'sessions#destroy', as: :signout
   get '/auth/failure' => 'sessions#fail'
+
+  resources :explore, only: [:show, :index]
 
   root 'welcome#index'
 end
