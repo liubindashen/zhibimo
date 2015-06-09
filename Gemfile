@@ -27,16 +27,18 @@ gem 'chinese_pinyin'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'redcarpet'
+gem 'figaro'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
-  gem 'dotenv-rails'
   gem 'meta_request'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'quiet_assets'
+
+  gem 'mina'
 end
 
 gem 'sidekiq'
