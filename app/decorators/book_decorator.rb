@@ -27,6 +27,6 @@ class BookDecorator < Draper::Decorator
 
   def readme_html
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
-    markdown.render(object.readme)
+    markdown.render(object.readme || "")
   end
 end

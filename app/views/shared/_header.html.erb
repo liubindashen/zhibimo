@@ -9,17 +9,16 @@
       <div class='pure-menu pure-menu-horizontal'>
         <ul class='pure-menu-list'>
           <li class='pure-menu-item'>
-            <a class='pure-menu-link'>首页</a>
+            <a class='pure-menu-link' href='<%= root_path %>'>首页</a>
           </li>
           <li class='pure-menu-item'>
-            <a class='pure-menu-link'>发现</a>
+            <a class='pure-menu-link' href='<%= explore_index_path %>'>发现</a>
           </li>
+          <%- if current_user %>
           <li class='pure-menu-item'>
-            <a class='pure-menu-link'>写作</a>
+            <a class='pure-menu-link' href='<%= signout_path %>'>登出</a>
           </li>
-          <li class='pure-menu-item'>
-            <a class='pure-menu-link'>登出</a>
-          </li>
+          <% end %>
         </ul>
       </div>
     </div>
