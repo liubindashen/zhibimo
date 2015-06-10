@@ -164,7 +164,7 @@ class Book < ActiveRecord::Base
     unless ENV['DISABLE_GITLIB']
       FileUtils.rm_rf("/tmp/repos/#{author.gitlab_id}/#{self.gitlab_id}/")
       http = HTTParty.delete(
-        "#{ENV['GITLAB_ENDPOINT']/projects/#{gitlab_id}",
+        "#{ENV['GITLAB_ENDPOINT']}/projects/#{gitlab_id}",
         headers: {
           'Content-Type' => 'application/json',
           'PRIVATE-TOKEN' => Gitlab.private_token
