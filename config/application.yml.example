@@ -1,0 +1,13 @@
+defaults: &defaults
+  GITHUB_KEY: "GITHUB_KEY"
+  GITHUB_SECRET: "GITHUB_SECRET"
+  DISABLE_GITLIB: true
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

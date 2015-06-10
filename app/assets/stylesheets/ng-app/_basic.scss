@@ -1,42 +1,38 @@
 /* Basic reset
 -------------------------------------------------------------- */
-
-
 .pure-g{
   letter-spacing: 0em;
 }
 
-
-h1{
+h1 {
   color: #666;
 }
-h2{
+
+h2 {
   color: #555;
 }
-h3{
+
+h3 {
   color: #444;
 }
-h4{
+
+h4 {
   color: #333;
 }
-h5{
+h5 {
   color: #333;
 }
 
-p{
+p {
   color: #444;
   line-height: 1.5em;
 }
 
-a{
+a {
   color: #555;
 }
 
-
-
-
 .container{
-
   margin: auto;
   width: 94%;
 
@@ -55,18 +51,14 @@ a{
   }
 
   @media screen and (min-width: 80em){
-
     max-width: 980px;
   }
 }
-
-
 
 /* Custom style based on Pure.css */
 
 $primary-green-light: #91C757;
 $primary-green-shade: #76AE39;
-
 
 $secondary-blue-light: #61ADCB;
 $secondary-blue-shade: #4B8FAA;
@@ -84,7 +76,35 @@ $warning-red-shade: #AA3E3E;
   a{
     cursor: pointer;
   }
+
+  &.pure-block-button {
+    width: 100%;
+  }
 }
+
+.pure-link {
+  cursor: pointer;
+  text-align: center;
+  padding: 8px;
+
+  &.pure-block-link {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.pure-gap-g {
+  & > [class^=pure-u-] {
+    padding: 4px;
+    box-sizing: border-box;
+  }
+}
+
+[class^=pure-u-] {
+  box-sizing: border-box;
+}
+
+
 .button-primary{
   color: #fff;
   background: $primary-green-light;
@@ -92,6 +112,7 @@ $warning-red-shade: #AA3E3E;
     background: $primary-green-shade;
   }
 }
+
 .button-secondary{
   color: #fff;
   background: $secondary-blue-light;
@@ -99,6 +120,7 @@ $warning-red-shade: #AA3E3E;
     background: $secondary-blue-shade;
   }
 }
+
 .button-ghost{
   background: #FFF;
   color: #555;
@@ -107,6 +129,7 @@ $warning-red-shade: #AA3E3E;
     background: #F4F4F4;
   }
 }
+
 .button-ghost-blue{
   background: #FFF;
   color: $secondary-blue-light;
@@ -115,6 +138,7 @@ $warning-red-shade: #AA3E3E;
     background: #F4F4F4;
   }  
 }
+
 .button-ghost-red{
   background: #FFF;
   color: $warning-red-light;
@@ -124,19 +148,21 @@ $warning-red-shade: #AA3E3E;
   }
 }  
 
-/* DropDown sample in single book detail page. */
+/* Dropdown sample in single book detail page. */
 
 .dropdown{
   position: relative;
   overflow: visible;
   display: inline-block;
+
   &:hover > ul.dropdown-menu {
     display: inherit;
   }  
+
   .dropdown-btn{
     position: relative;
-
   }
+
   ul.dropdown-menu{
     display: none;
     padding-left: 0;
@@ -147,6 +173,7 @@ $warning-red-shade: #AA3E3E;
     list-style: none;
     border: 1px #EEE solid;
     background: #FFF;
+
     li{
       padding-left: 1.2em;
       border-bottom: 1px #EEE solid;
@@ -154,6 +181,7 @@ $warning-red-shade: #AA3E3E;
       float: none;
       display: list-item;
       position: relative;
+
       &:hover{
         background-color: #eee;
       }
@@ -161,48 +189,10 @@ $warning-red-shade: #AA3E3E;
   }
 }
 
-
 /* Shelf board & Book cover CSS samples
 -------------------------------------------------------------- */
 
 .board-sample {
-  width: 100%;
-  height: 40px;
-  position: relative;
-  display: inline-block;
-  margin-top: 140px;
-  background: asset-url("board-repeat@2x.png");
-  background-size: contain;
-  background-repeat: repeat-x;
-
-  &:before{
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-
-    left: -40px;
-    position: absolute;
-
-    background-repeat: no-repeat;
-    background: asset-url("board-left@2x.png");
-    background-size: contain; 
-    content: '';
-  } 
-
-  &:after{
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-
-    top: 0px;       
-    right: -40px;
-    position: absolute;
-
-    background-repeat: no-repeat;
-    background: asset-url("board-right@2x.png");
-    background-size: contain; 
-    content: '';
-  } 
 }
 
 .book-cover-sample{
@@ -233,6 +223,8 @@ $warning-red-shade: #AA3E3E;
 
 $board-height: 40px;
 $board-content-height: 170px;
+$board-gap: $board-content-height + $board-height;
+$board-first-gap: $board-content-height;
 
 .inner-header {
   background-color: #F8F8F8;
@@ -268,9 +260,47 @@ $board-content-height: 170px;
 }
 
 .board {
-  @extend .board-sample;
+  position: relative;
+  background: asset-url("board-repeat@2x.png");
+  background-size: contain;
+  background-repeat: repeat-x;
+
   height: $board-height;
-  margin-top: $board-content-height;
+  margin: $board-gap 40px 0px 40px;
+
+  &.board-show {
+    margin-top: $board-gap;
+  }
+
+  &:before{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+
+    top: 0px;
+    left: -40px;
+    position: absolute;
+
+    background-repeat: no-repeat;
+    background: asset-url("board-left@2x.png");
+    background-size: contain; 
+    content: '';
+  } 
+
+  &:after{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+
+    top: 0px;
+    right: -40px;
+    position: absolute;
+
+    background-repeat: no-repeat;
+    background: asset-url("board-right@2x.png");
+    background-size: contain; 
+    content: '';
+  } 
 
   .board-content {
     width: 100%;
@@ -311,7 +341,6 @@ $board-content-height: 170px;
     .board-content-operate{
       text-align: right;
     }
-
   }
 }
 
@@ -325,32 +354,40 @@ i.octicon + span {
   bottom: 0px;
 }
 
-
-/*
-= A little hard-code
- */
-
-
-.explore-show .book-info{
-
-  @media screen and (min-width: 35.5em){
-    margin-left: 70px;
-  }
-
-  @media screen and (min-width: 48em) {
-    margin-left: 30px;
-  }
-
-  @media screen and (min-width: 64em){
-    margin-left: 0px;
-  }
-
-  @media screen and (min-width: 80em){
-    margin-left: 0px;
-  }  
+/* pure-hidden-sm */
+@media screen and (max-width:47.938em) {
+    .pure-visible-md{display:none}
+    .pure-visible-lg{display:none}
+    .pure-visible-xl{display:none}
+    .pure-hidden-sm{display:none}
+}
+/* pure-hidden-md */
+@media screen and (min-width:48em) and (max-width:63.938em) {
+    .pure-visible-sm{display:none}
+    .pure-visible-lg{display:none}
+    .pure-visible-xl{display:none}
+    .pure-hidden-md{display:none}
+}
+/* pure-hidden-lg */
+@media screen and (min-width:64em) and (max-width:79.938em) {
+    .pure-visible-sm{display:none}
+    .pure-visible-md{display:none}
+    .pure-visible-xl{display:none}
+    .pure-hidden-lg{display:none}
+}
+/* pure-hidden-xl */
+@media screen and (min-width:80em) {
+    .pure-visible-sm{display:none}
+    .pure-visible-md{display:none}
+    .pure-visible-lg{display:none}
+    .pure-hidden-xl{display:none}
 }
 
+#sm-book-info {
+  margin-top: -20px;
+  margin-left: 40px;
+}
 
-
-
-
+#book-info {
+  padding-left: 20px;
+}

@@ -2,33 +2,13 @@
   padding-top: 6px;
   min-height: 700px;
 
-  .board{
-    margin-top: 180px;
-
-    @media screen and (max-width: 64em){
-    }
-    @media screen and (max-width: 48em) {
-      margin-top: 360px;
-      background: none;
-      &:after{
-        display: none;
-      }
-      &:before{
-        display: none;
-      }
-    }
-    @media screen and (max-width: 35.5em){
-      margin-top: 360px;
-    }
-
-    &:first-child{
-      margin-top: 180px;
-    }
- 
-  }
   .board-content{
-    margin-top: -120px;    
+
+    margin-top: -120px;
+    margin-bottom: 60px;
+
     .book{
+
       .cover{
         margin: auto;
         overflow: hidden;
@@ -40,48 +20,26 @@
           height: auto;     
         }
       }
+
       .book-title{
-        margin-top: 30px;
+        margin: 10px auto 0px auto;
         cursor: pointer;
         overflow: hidden;
         text-align: center;
+
         p {
           font-size: 1em;
           text-align: center;
           color: #555;
-          @media screen and (max-width: 35.5em){
-            margin-top: 10px;
-            max-width: 100px;
-            overflow: hidden;
-          }
-        }
-        @media screen and (max-width: 48em) {
-          margin-top: 0px;
-          max-width: 100px;
-          overflow: hidden;         
-        }
-        @media screen and (max-width: 35.5em){
-          margin-right: 13px;
+          margin: 10px auto;
+          overflow: hidden;
         }
       }
-
-      @media screen and (max-width: 48em) {
-        margin-top: 0px;
-      }
-      @media screen and (max-width: 35.5em){
-        margin-right: 10px;
-      }
-
-    }
-
-    @media screen and (max-width: 48em) {
-      margin-bottom: 30px;
     }
   }
 }
 
 .explore-show{
-
   .board{
     .cover-col{
       min-width: 140px;
@@ -131,5 +89,36 @@
     }
   }
 
+}
+
+
+#cover {
+  overflow: hidden;
+  margin: 0px;
+  height: 169px;
+  width: 130px;
+  position: relative;
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.32);
+
+  img {
+    width: 130px;
+    height: 169px;
+  }
+
+  &:before{
+    width: 100%;
+    height: 100%;
+
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%);
+    background: -webkit-linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%);
+
+    opacity: 0.65;
+
+    content: '';
+  }  
 }
 
