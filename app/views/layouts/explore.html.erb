@@ -1,0 +1,7 @@
+<% content_for :content do %>
+  <%= render 'shared/header' %>
+  <%= yield(:explore_content) %>
+  <%= render 'shared/footer' %>
+<% end %>
+
+<%= render template: "layouts/application" %>

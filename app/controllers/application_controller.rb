@@ -1,4 +1,16 @@
 class ApplicationController < ActionController::Base
+  before_action :set_variant
+
+  def set_variant
+    if browser.tablet?
+      request.variant = :tablet 
+    elsif browser.mobile?
+      request.variant = :mobile
+    else
+      request.variant = :desktop
+    end
+  end
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception

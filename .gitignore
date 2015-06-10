@@ -22,3 +22,6 @@ vendor/assets/bower_components/
 /node_modules
 /public/uploads/
 .DS_Store
+
+/config/application.yml
+/config/database.yml
