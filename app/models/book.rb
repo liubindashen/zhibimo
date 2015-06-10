@@ -127,13 +127,13 @@ class Book < ActiveRecord::Base
 
 
   def git_origin
-    "http://#{author.id}:#{author.gitlab_password}@git.zhibimo.com/#{author.id}/#{self.id}.git"
+    "git@#{ENV['GITLAB_REPO_HOST']}:#{author.id}/#{self.id}.git"
   end
 
   after_create do
     unless ENV['DISABLE_GITLIB']
       http = HTTParty.post(
-        "http://git.zhibimo.com/api/v3/projects/user/#{author.gitlab_id}",
+        "#{ENV['GITLAB_ENDPOINT']}/projects/user/#{author.gitlab_id}",
         headers: {
           'Content-Type' => 'application/json',
           'PRIVATE-TOKEN' => Gitlab.private_token
@@ -161,7 +161,7 @@ class Book < ActiveRecord::Base
     unless ENV['DISABLE_GITLIB']
       FileUtils.rm_rf("/tmp/repos/#{author.gitlab_id}/#{self.gitlab_id}/")
       http = HTTParty.delete(
-        "http://git.zhibimo.com/api/v3/projects/#{gitlab_id}",
+        "#{ENV['GITLAB_ENDPOINT']/projects/#{gitlab_id}",
         headers: {
           'Content-Type' => 'application/json',
           'PRIVATE-TOKEN' => Gitlab.private_token

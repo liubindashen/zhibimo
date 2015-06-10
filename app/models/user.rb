@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 
   after_destroy do
     http = HTTParty.delete(
-      "http://git.zhibimo.com/api/v3/users/#{gitlab_id}",
+      "#{ENV['GITLAB_ENDPOINT']}/users/#{gitlab_id}",
       headers: {
         'Content-Type' => 'application/json',
         'PRIVATE-TOKEN' => Gitlab.private_token
