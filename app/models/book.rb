@@ -24,7 +24,7 @@ class Book < ActiveRecord::Base
     FileUtils.mkdir_p("#{Dir.home}/book-repos/#{user.id}")
     book_repo = "#{Dir.home}/book-repos/#{user.id}/#{id}"
     FileUtils.rm_rf(book_repo)
-    system("git clone #{git_origin} #{book_repo}")
+    system("git clone #{git_origin_with_build} #{book_repo}")
     commit = `cd #{book_repo} && git log --pretty=format:%H -1`.strip
     commit_time = `cd #{book_repo} && git log --pretty=format:%ci -1`.to_time
 
@@ -125,9 +125,12 @@ class Book < ActiveRecord::Base
     entry
   end
 
+  def git_origin_with_build
+    "git@#{ENV['GITLAB_REPO_HOST']}:#{author.id}/#{self.id}.git"
+  end
 
   def git_origin
-    "git@#{ENV['GITLAB_REPO_HOST']}:#{author.id}/#{self.id}.git"
+    "http://git.zhibimo.com/#{author.id}/#{self.id}.git"
   end
 
   after_create do
