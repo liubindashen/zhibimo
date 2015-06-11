@@ -39,6 +39,7 @@ group :development, :test do
   gem 'quiet_assets'
 
   gem 'mina'
+  gem 'mina-sidekiq'
 end
 
 gem 'sidekiq'

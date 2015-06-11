@@ -2,6 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'
+require 'mina_sidekiq/tasks'
 
 set :repository, 'git@github.com:hpyhacking/zhibimo.git'
 set :user, 'deploy'
@@ -40,11 +41,14 @@ task setup: :environment do
 
   queue! %[touch "#{deploy_to}/shared/config/database.yml"]
   queue! %[touch "#{deploy_to}/shared/config/application.yml"]
+
+  queue! %[mkdir -p "#{deploy_to}/shared/pids/"]
 end
 
 desc "Deploys the current version to the server."
 task deploy: :environment do
   deploy do
+    invoke :'sidekiq:quiet'
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
@@ -52,8 +56,9 @@ task deploy: :environment do
     invoke :'rails:assets_precompile'
 
     to :launch do
+      invoke :'sidekiq:restart'
       invoke :'passenger:restart'
-      invoke :bugsnag_deploy
+      invoke :'bugsnag:deploy'
     end
   end
 end
@@ -70,7 +75,9 @@ namespace :passenger do
   end
 end
 
-desc 'bugsnag deploy'
-task :bugsnag_deploy do
-  queue "cd #{deploy_to}/current && RAILS_ENV=production bundle exec rake bugsnag:deploy"
+namespace :bugsnag do
+  desc 'bugsnag deploy'
+  task :deploy do
+    queue "cd #{deploy_to}/current && RAILS_ENV=production bundle exec rake bugsnag:deploy"
+  end
 end
