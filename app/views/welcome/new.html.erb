@@ -2,15 +2,8 @@
 
 <div class='landing'>
   <div class='left'>
-    <div class='title'>
-      <h2>给读者</h2>
+    <div id='wechat_login_warpper'>
     </div>
-    <div class='slogan'>
-      <h3>精挑细选的优质内容</h3>
-      <p>一大波精彩书籍正在接近</p>
-    </div>
-
-    <%= link_to '浏览书架', explore_index_path, class: 'start-btn' %>
   </div>
   
   <div class='right'>
@@ -21,10 +14,11 @@
       <h3>一步到位的自出版工具</h3>
       <p>更好的工具、更多的读者</p>
     </div>
-    <%= link_to '登陆', signin_path, class: 'start-btn' %>
+    <%= link_to '使用 GitHub 登陆', '/auth/github', class: 'start-btn' %>
   </div>
 
   <div class='shadow'></div>
 </div>
 
 <%= render 'shared/footer' %>
+

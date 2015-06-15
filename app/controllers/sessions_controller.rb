@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
   def create
-    user_from_auth(request.env['omniauth.auth'])
-  end
-
-  def create_with_wechat
-    user_from_auth(WechatAuthentication.create_with_code(params[:code]))
+    if params[:provider] == :wechat
+      user_from_auth(WechatAuthentication.create_with_code(params[:code]))
+    else
+      user_from_auth(request.env['omniauth.auth'])
+    end
   end
 
   def destroy
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def user_from_auth(auth)
     user = User.from_auth(auth)
     session[:user_id] = user.id
-    redirect_to '/dashboard/books/'
+    redirect_to explore_index_path
   end
 end
 

@@ -10,6 +10,7 @@
   </head>
   <body>
     <%= content_for?(:content) ? yield(:content) : yield %>
+    <%= javascript_include_tag "application" %>
     <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
   </body>
 </html>

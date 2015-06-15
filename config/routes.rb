@@ -9,10 +9,10 @@ Rails.application.routes.draw do
     end
   end
 
-  match '/auth/wechat/callback' => 'sessions#create_with_wechat', via: [:get, :post]
-  match '/auth/:provider/callback' => 'sessions#create', via: [:get, :post], as: :signin
-  get "/signout" => 'sessions#destroy', as: :signout
-  get '/auth/failure' => 'sessions#fail'
+  get  '/signin' => 'welcome#new', as: :signin
+  get  '/signout' => 'sessions#destroy', as: :signout
+  get  '/auth/failure' => 'sessions#fail'
+  post '/auth/:provider/callback' => 'sessions#create'
 
   resources :explore, only: [:show, :index]
 

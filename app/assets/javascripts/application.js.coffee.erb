@@ -1,0 +1,8 @@
+#= require jquery
+
+jQuery.fn.exists = -> @length > 0
+
+$ ->
+  if $('#wechat_login_warpper').exists()
+    gon.wxConfig.appId
+    
