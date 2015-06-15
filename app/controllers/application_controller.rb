@@ -15,15 +15,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def index
-    @current_user = current_user
-    gon.jbuilder
-  end
-
-  def editor
-    render layout: 'editor'
-  end
-
   helper_method :current_user
 
   private
@@ -33,8 +24,10 @@ class ApplicationController < ActionController::Base
   end
 
   def auth_author!
-    unless current_user
-      render json: {error: 'auth error'}, status: 403
-    end
+    redirect_to signin_path unless current_user
+  end
+
+  def auth_visitor!
+    redirect_to explore_index_path if current_user
   end
 end

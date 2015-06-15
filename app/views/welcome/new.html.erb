@@ -2,19 +2,18 @@
 
 <div class='landing'>
   <div class='left'>
-    <div id='wechat_login_warpper'>
-    </div>
+    <div id='wechat_login_wrapper' data-href='<%= asset_url("wechat.css") %>'></div>
   </div>
   
   <div class='right'>
     <div class='title'>
-      <h2>给作者</h2>
+      <h2>书香勤阅</h2>
     </div>
     <div class='slogan'>
-      <h3>一步到位的自出版工具</h3>
-      <p>更好的工具、更多的读者</p>
+      <h3>登录知笔墨</h3>
+      <p>登录以管理您的账户、书籍与评论。</p>
     </div>
-    <%= link_to '使用 GitHub 登陆', '/auth/github', class: 'start-btn' %>
+    <%= link_to '使用 GitHub 登录', '/auth/github', class: 'start-btn' %>
   </div>
 
   <div class='shadow'></div>
