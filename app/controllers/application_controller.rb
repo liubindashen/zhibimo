@@ -23,11 +23,11 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_id(session[:user_id])
   end
 
-  def auth_author!
+  def auth_user!
     redirect_to signin_path unless current_user
   end
 
   def auth_visitor!
-    redirect_to explore_index_path if current_user
+    redirect_to dashboard_root_path if current_user
   end
 end

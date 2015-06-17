@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_action :auth_author!
+  before_action :auth_user!
   before_action :set_book
 
   def index

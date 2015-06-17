@@ -32,6 +32,7 @@ gem 'sidekiq'
 gem 'bugsnag'
 
 gem 'activeadmin', '~> 1.0.0.pre1'
+gem 'pundit'
 
 group :development, :test do
   gem 'sqlite3'

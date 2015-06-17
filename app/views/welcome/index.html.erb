@@ -21,7 +21,11 @@
       <h3>一步到位的自出版工具</h3>
       <p>更好的工具、更多的读者</p>
     </div>
-    <%= link_to '登陆', signin_path, class: 'start-btn' %>
+    <%- if current_user %>
+      <%= link_to '控制面板', dashboard_root_path, class: 'start-btn' %>
+    <%- else %>
+      <%= link_to '登陆', signin_path, class: 'start-btn' %>
+    <%- end %>
   </div>
 
   <div class='shadow'></div>

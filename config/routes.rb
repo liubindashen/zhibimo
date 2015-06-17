@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   scope '/api/v1' do
     resources :books do
       member do
@@ -15,6 +16,8 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
 
   resources :explore, only: [:show, :index]
+
+  ActiveAdmin.routes(self)
 
   root 'welcome#index'
 end
