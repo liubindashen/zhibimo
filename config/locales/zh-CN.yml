@@ -2,3 +2,8 @@ zh-CN:
   layouts:
     application:
       title: 知笔墨 | 让文字自由流动
+
+  activerecord:
+    models:
+      book: 图书
+      dashboard: 控制面板

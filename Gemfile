@@ -30,6 +30,7 @@ gem 'redcarpet'
 gem 'figaro'
 gem 'sidekiq'
 gem 'bugsnag'
+gem 'rails-i18n'
 
 gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'pundit'
