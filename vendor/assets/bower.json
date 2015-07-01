@@ -13,6 +13,7 @@
     "ng-file-upload": "latest",
     "restangular": "latest",
     "angular-modal": "latest",
+    "semantic-ui": "2.0.0",
     "pure": "latest",
     "octicons": "latest",
     "normalize.css": "latest"
