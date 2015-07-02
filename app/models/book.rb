@@ -24,7 +24,7 @@ class Book < ActiveRecord::Base
     FileUtils.mkdir_p("#{Dir.home}/book-repos/#{user.id}")
     book_repo = "#{Dir.home}/book-repos/#{user.id}/#{id}"
     FileUtils.rm_rf(book_repo)
-    system("git clone #{git_origin} #{book_repo}")
+    system("git clone #{git_origin_with_build} #{book_repo}")
     commit = `cd #{book_repo} && git log --pretty=format:%H -1`.strip
     commit_time = `cd #{book_repo} && git log --pretty=format:%ci -1`.to_time
 
@@ -125,15 +125,18 @@ class Book < ActiveRecord::Base
     entry
   end
 
+  def git_origin_with_build
+    "git@#{ENV['GITLAB_REPO_HOST']}:#{author.id}/#{self.id}.git"
+  end
 
   def git_origin
-    "http://#{author.id}:#{author.gitlab_password}@git.zhibimo.com/#{author.id}/#{self.id}.git"
+    "http://git.zhibimo.com/#{author.id}/#{self.id}.git"
   end
 
   after_create do
     unless ENV['DISABLE_GITLIB']
       http = HTTParty.post(
-        "http://git.zhibimo.com/api/v3/projects/user/#{author.gitlab_id}",
+        "#{ENV['GITLAB_ENDPOINT']}/projects/user/#{author.gitlab_id}",
         headers: {
           'Content-Type' => 'application/json',
           'PRIVATE-TOKEN' => Gitlab.private_token
@@ -161,7 +164,7 @@ class Book < ActiveRecord::Base
     unless ENV['DISABLE_GITLIB']
       FileUtils.rm_rf("/tmp/repos/#{author.gitlab_id}/#{self.gitlab_id}/")
       http = HTTParty.delete(
-        "http://git.zhibimo.com/api/v3/projects/#{gitlab_id}",
+        "#{ENV['GITLAB_ENDPOINT']}/projects/#{gitlab_id}",
         headers: {
           'Content-Type' => 'application/json',
           'PRIVATE-TOKEN' => Gitlab.private_token

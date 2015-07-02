@@ -1,0 +1,13 @@
+.impowerBox .qrcode {width: 200px;}
+.impowerBox .title {display: none;}
+.impowerBox .info {width: 200px;}
+.impowerBox .status {text-align: center;} 
+.status_icon {display: none !important;}
+
+.impowerBox {
+  color: #aaa;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 100;
+  font-family: akagi-pro, 'Helvetica Neue', Arial, 'Hiragino Sans GB', sans-serif;
+}

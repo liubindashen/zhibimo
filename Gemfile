@@ -28,6 +28,12 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'redcarpet'
 gem 'figaro'
+gem 'sidekiq'
+gem 'bugsnag'
+gem 'rails-i18n'
+
+gem 'activeadmin', '~> 1.0.0.pre1'
+gem 'pundit'
 
 group :development, :test do
   gem 'sqlite3'
@@ -39,7 +45,5 @@ group :development, :test do
   gem 'quiet_assets'
 
   gem 'mina'
+  gem 'mina-sidekiq'
 end
-
-gem 'sidekiq'
-gem 'bugsnag'

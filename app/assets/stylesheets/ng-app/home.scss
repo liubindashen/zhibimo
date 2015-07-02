@@ -145,13 +145,11 @@ a{
   .start-btn{
     display: block;
     margin: auto;
-    margin-top: 52%;
     color: #444;
     font-size: 16px;
     line-height: 40px;
     background: none;
     text-align: center;
-    width: 160px;
     border-radius: 4px;
     border: 1px solid #666;
     -webkit-transition: color, 0.3s;
@@ -159,10 +157,31 @@ a{
     transition: color, 0.3s;
     cursor: pointer;
 		opacity: .8;    
-	    &:hover{
+
+    // center button with position absolute
+    width: 160px;
+    margin-left: -80px;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+
+    bottom: 80px;
+
+	  &:hover{
       color: #FFF;
       border: 1px solid #aaa;
       background: #aaa;
+    }
+
+    &.disabled{
+      cursor: normal;
+      background: #eee;
+      border: 1px #ddd solid;
+      color: #bbb;
+      &:hover{
+        background: #eee;
+      }
+
     }
   }
 
@@ -182,16 +201,6 @@ a{
     background-image: linear-gradient(-90deg, #F8F8F8 0%, #FFFFFF 45%, #FFFFFF 90%, #F5F3F3 100%);
     border-left: 1px #ddd solid;
     box-sizing: border-box;
-    .start-btn.disabled{
-      cursor: normal;
-      background: #eee;
-      border: 1px #ddd solid;
-      color: #bbb;
-      &:hover{
-        background: #eee;
-      }
-
-    }
 
   }
 
