@@ -1,6 +1,8 @@
 class WelcomeController < ApplicationController
   before_action :auth_visitor!, only: :new
 
+  layout 'landing'
+
   def index
   end
 
