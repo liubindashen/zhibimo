@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>知笔墨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <%= render 'shared/baidu' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class='ui centered grid'>
+      <div class='ui computer only slogan center aligned column'>
+        <img src='/images/logo-with-slogan.png' />
+        <h3>让文字自由流动</h3>
+      </div>
+    </div>
+
+
+    <%= include_gon %>
+    <%= javascript_include_tag "application" %>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+  </body>
+</html>
+
