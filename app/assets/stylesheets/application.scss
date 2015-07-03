@@ -1,1 +1,5 @@
-@import "semantic-ui/semantic";
+@import "semantic-ui/dist/semantic.min";
+
+#slogan p {
+  font-size: 30px;
+}
