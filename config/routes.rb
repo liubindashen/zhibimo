@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   resources :explore, only: [:show, :index]
 
+  match '/404', to: 'errors#file_not_found', via: :all
+
   ActiveAdmin.routes(self)
 
   root 'welcome#index'

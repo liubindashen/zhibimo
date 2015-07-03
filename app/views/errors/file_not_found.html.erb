@@ -1,0 +1,11 @@
+<% content_for :left_page do %>
+  <div id='page_number' class="ui horizontal divider"> 404 </div>
+<% end %>
+<% content_for :right_page do %>
+  <h3 id='error_tip' class='ui header'>
+    「这里是空白，好像走错地方了。」
+    <div class="sub header">你访问的页面不存在。</div>
+  </h3>
+
+  <a class="ui basic fixed button" href='<%= url_for(:back) %>'>返回</a>
+<% end %>

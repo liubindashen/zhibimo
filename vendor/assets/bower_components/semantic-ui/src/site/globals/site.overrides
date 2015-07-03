@@ -51,10 +51,21 @@
   }
 }
 
-#wechat_login_wrapper {
+#wechat_login_wrapper, #signin_tip, #error_tip {
   margin-top: 8.875em;
 }
 
-#signin_tip {
-  margin-top: 8.875em;
+.sub.header {
+  padding-top: .5rem !important;
+}
+
+#page_number {
+  padding-top: 30em;
+  padding-left: 8.25em;
+  padding-right: 8.25em;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  font-weight: normal;
+  color: @primaryColor;
+  text-transform: none;
 }

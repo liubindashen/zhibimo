@@ -27,5 +27,7 @@ module ZhibimoCom
     config.active_job.queue_adapter = :sidekiq
 
     config.less.paths << "#{Rails.root}/vendor/assets/bower_components/"
+
+    config.exceptions_app = self.routes
   end
 end
