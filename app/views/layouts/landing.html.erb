@@ -9,13 +9,33 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class='ui centered grid'>
+    <div class='ui centered one column grid'>
       <div id='slogan' class='ui computer only center aligned column'>
         <img src='/images/logo-with-slogan.png' />
         <p class='ui tiny header'>让文字自由流动</p>
       </div>
-    </div>
 
+      <div class='one column row'>
+        <div id='book-background' class='ui computer only center aligned column'>
+          <div id='book-content' class="ui two column grid">
+            <div class="column">
+              <%= yield(:left_page) %>
+            </div>
+            <div class="column">
+              <%= yield(:right_page) %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='one column row'>
+        <div id='footer' class="ui computer only column">
+          <div class="ui horizontal divider">
+             © 2015 zhibimo.com All rights reserved.
+          </div>
+        </div>
+      </div>
+    </div>
 
     <%= include_gon %>
     <%= javascript_include_tag "application" %>

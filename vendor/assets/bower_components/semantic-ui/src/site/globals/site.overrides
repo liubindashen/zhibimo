@@ -3,7 +3,8 @@
 *******************************/
 
 #slogan {
-  margin-top: 3.75em;
+  padding: 0em;
+  margin-top: 4.375em;
   margin-bottom: 2.5em;
 }
 
@@ -11,4 +12,43 @@
   margin-top: 0em;
   color: @primaryColor;
   font-weight: normal;
+}
+
+#book-background {
+  width: 53em !important;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  margin-bottom: 2.188em;
+  min-height: 35.032em;
+  background: url('/images/book-background.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  & > #book-content {
+    min-height: 34.5em;
+
+    h1.ui.header {
+      margin-top: 5rem;
+      margin-bottom: 3.125rem;
+    }
+
+    .ui.button {
+      bottom: 4.375em;
+    }
+  }
+}
+
+#footer {
+  width: 57em !important;
+
+  .ui.divider {
+    opacity: 0.85;
+    margin-top: 0em;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    font-weight: normal;
+    color: @primaryColor;
+    text-transform: none;
+  }
 }

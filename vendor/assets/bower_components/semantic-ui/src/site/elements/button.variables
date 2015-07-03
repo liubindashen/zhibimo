@@ -1,3 +1,9 @@
 /*******************************
     User Variable Overrides
 *******************************/
+
+@borderColor          : @grey;
+@selectedBorderColor  : @primaryColor;
+
+@textColor : @black;
+@medium    : 1rem;

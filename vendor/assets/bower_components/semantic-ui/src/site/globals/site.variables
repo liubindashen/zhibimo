@@ -10,5 +10,20 @@
 @emSize      : 16px;
 @fontSize    : 16px;
 
+@grey                : #B3B3B3;
+@black               : #252C33;
+
 @primaryColor        : #50616D;
-@textColor           : #252C33;
+@textColor           : @black;
+@mutedTextColor      : @grey;
+
+
+
+@headerFontWeight : normal;
+@headerLineHeight : 2.125em;
+
+@h1 : 1.5rem;
+@h2 : 1.25rem;
+@h3 : 1rem;
+@h4 : 1rem;
+@h5 : 1rem;
