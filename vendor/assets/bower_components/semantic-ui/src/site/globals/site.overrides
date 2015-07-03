@@ -50,3 +50,11 @@
     text-transform: none;
   }
 }
+
+#wechat_login_wrapper {
+  margin-top: 8.875em;
+}
+
+#signin_tip {
+  margin-top: 8.875em;
+}
