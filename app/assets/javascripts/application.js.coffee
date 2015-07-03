@@ -1,4 +1,5 @@
 #= require jquery
+#= require retinajs/dist/retina
 
 jQuery.fn.exists = -> @length > 0
 
@@ -11,3 +12,5 @@ $ ->
       redirect_uri: 'http%3A%2F%2Fzhibimo.com%2Fauth%2Fwechat%2Fcallback'
       href: $('#wechat_login_wrapper').data('href')
       state: 'fucking-state'
+
+

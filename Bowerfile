@@ -11,6 +11,7 @@ asset "ng-file-upload"
 asset "restangular"
 asset "angular-modal"
 asset "semantic-ui", '2.0.0'
+asset "retinajs"
 
 asset "pure"
 asset "octicons"

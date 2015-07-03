@@ -10,8 +10,10 @@ gem 'slim-rails', '~> 3.0.1'
 gem 'jquery-rails'
 gem 'browser'
 
+gem 'less-rails'
+gem 'therubyracer', platforms: :ruby
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 gem 'jbuilder', '~> 2.0'
 gem 'omniauth-github'
