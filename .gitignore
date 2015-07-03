@@ -27,3 +27,4 @@ vendor/assets/bower_components/
 /config/database.yml
 
 vendor/assets/stylesheets/semantic-ui/
+app/assets/stylesheets/semantic-ui

@@ -1,0 +1,14 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@headerFont        : 'Helvetica Neue', Arial, Helvetica, 'Hiragino Sans GB', sans-serif;
+@pageFont          : 'Helvetica Neue', Arial, Helvetica, 'Hiragino Sans GB', sans-serif;
+@fontSmoothing     : antialiased;
+@importGoogleFonts : false;
+
+@emSize      : 16px;
+@fontSize    : 16px;
+
+@primaryColor        : #50616D;
+@textColor           : #252C33;

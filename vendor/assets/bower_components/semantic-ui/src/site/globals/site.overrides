@@ -1,0 +1,14 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+#slogan {
+  margin-top: 3.75em;
+  margin-bottom: 2.5em;
+}
+
+#slogan p {
+  margin-top: 0em;
+  color: @primaryColor;
+  font-weight: normal;
+}
