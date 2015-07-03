@@ -1,3 +1,9 @@
 /*******************************
     User Variable Overrides
 *******************************/
+
+@background : #FCFCFC;
+@itemTextColor: @primaryColor;
+@imageWidth : 6.75em;
+@dividerSize : 0em;
+@minHeight: 4.125rem;

@@ -1,6 +1,4 @@
 class ExploreController < ApplicationController
-  layout 'explore'
-
   def index
     @books = scope.decorate
     respond_to do |format|

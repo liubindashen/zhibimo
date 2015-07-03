@@ -1,11 +1,13 @@
+//= require semantic-ui/dist/components/reset.min
 //= require semantic-ui/dist/components/site.min
+//= require semantic-ui/dist/components/grid.min
+//= require semantic-ui/dist/components/container.min
+//= require semantic-ui/dist/components/menu.min
+//= require semantic-ui/dist/components/dropdown.min
 //= require semantic-ui/dist/components/segment.min
 //= require semantic-ui/dist/components/divider.min
 //= require semantic-ui/dist/components/header.min
 //= require semantic-ui/dist/components/button.min
-//= require semantic-ui/dist/components/container.min
-//= require semantic-ui/dist/components/grid.min
-//= require semantic-ui/dist/components/reset.min
 
 @import "retinajs/src/retina";
 
@@ -14,4 +16,9 @@
 }
 #slogan {
   .at2x('/images/logo-with-slogan.png', 770px, 36px);
+}
+#logo{
+  width: 108px;
+  min-width: 108px;
+  .at2x('/images/logo.png', 108px, 36px);
 }

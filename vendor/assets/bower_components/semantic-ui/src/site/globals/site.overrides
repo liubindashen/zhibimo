@@ -43,16 +43,16 @@
 
 #footer {
   width: 57em !important;
+}
 
-  .ui.divider {
-    opacity: 0.85;
-    margin-top: 0em;
-    font-size: 0.875rem;
-    line-height: 1rem;
-    font-weight: normal;
-    color: @primaryColor;
-    text-transform: none;
-  }
+#footer_divider.ui.divider {
+  opacity: 0.85;
+  margin-top: 0em;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  font-weight: normal;
+  color: @primaryColor;
+  text-transform: none;
 }
 
 #wechat_login_wrapper, #signin_tip, #error_tip {
@@ -72,4 +72,24 @@
   font-weight: normal;
   color: @primaryColor;
   text-transform: none;
+}
+
+#logo {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.ui.main.container {
+  margin-top: 7.875em;
+
+  .ui.divider {
+    opacity: 0.85;
+    margin-top: 0em;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    font-weight: normal;
+    color: @primaryColor;
+    text-transform: none;
+  }
 }
