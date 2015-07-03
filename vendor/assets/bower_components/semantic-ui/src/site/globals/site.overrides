@@ -5,6 +5,10 @@
   padding: 0em;
   margin-top: 4.375em;
   margin-bottom: 2.5em;
+  padding-top: 2em;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
 }
 
 #slogan p {
