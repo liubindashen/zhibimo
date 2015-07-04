@@ -1,3 +1,8 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.main.container {
+  margin-top: 3.75em;
+  margin-bottom: 3.75em;
+}

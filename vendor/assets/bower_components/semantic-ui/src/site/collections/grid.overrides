@@ -1,3 +1,12 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.grid-for-test .column:not(.row):not(.grid):after {
+  background-color: rgba(86, 61, 124, .1);
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(86, 61, 124, 0.2) inset;
+  box-shadow: 0px 0px 0px 1px rgba(86, 61, 124, 0.2) inset;
+  content: "";
+  display: block;
+  min-height: 50px;
+}

@@ -17,7 +17,10 @@
 @textColor           : @black;
 @mutedTextColor      : @grey;
 
-
+@linkColor           : @primaryColor;
+@linkUnderline       : none;
+@linkHoverColor      : darken(saturate(@linkColor, 20), 15, relative);
+@linkHoverUnderline  : @linkUnderline;
 
 @headerFontWeight : normal;
 @headerLineHeight : 2.125em;
