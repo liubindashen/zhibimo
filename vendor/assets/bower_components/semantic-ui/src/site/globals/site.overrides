@@ -82,7 +82,7 @@
 }
 
 .ui.main.container {
-  margin-top: 7.875em;
+  margin-top: 4.875em;
 
   .ui.divider {
     opacity: 0.85;
@@ -93,6 +93,11 @@
     color: @primaryColor;
     text-transform: none;
   }
+}
+
+#explore_books .column {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
 }
 
 .grid-for-test .column:not(.row):not(.grid):after {

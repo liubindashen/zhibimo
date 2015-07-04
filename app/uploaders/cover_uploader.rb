@@ -3,7 +3,7 @@
 class CoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  INFINITY = 100000
+  FIT_MAX = 99999
 
   storage :file
 
@@ -16,15 +16,22 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   version :preview do
-    process :resize_to_fit => [130, INFINITY]
+    process resize_to_fit: [FIT_MAX, 256]
   end
 
   version :magazine do
-    process :resize_to_fit => [1800, INFINITY]
+    process :resize_to_fit => [FIT_MAX, 2520]
   end
 
   def extension_white_list
     %w(jpg jpeg gif png)
   end
 
+  private
+  def crop(geometry)
+    manipulate! do |img|      
+      img.crop(geometry)
+      img
+    end    
+  end
 end
