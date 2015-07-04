@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
+  resources :explore, only: [:show, :index]
 
-  scope '/api/v1' do
-    resources :books do
-      member do
-        post 'build'
-        post 'hook'
-      end
-      resources :entries, only: [:index, :create, :show, :update, :destroy]
+  resources :books do
+    member do
+      post 'build'
+      post 'hook'
     end
+    resources :entries, only: [:index, :create, :show, :update, :destroy]
   end
 
   get '/signin' => 'welcome#new', as: :signin
@@ -15,7 +14,6 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#fail'
   get '/auth/:provider/callback' => 'sessions#create'
 
-  resources :explore, only: [:show, :index]
 
   match '/404', to: 'errors#file_not_found', via: :all
 

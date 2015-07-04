@@ -24,6 +24,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = current_user.books
+    redirect_to new_book_path if @books.empty?
   end
 
   # GET /books/1

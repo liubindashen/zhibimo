@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def user_from_auth(auth)
     user = User.from_auth(auth)
     session[:user_id] = user.id
-    redirect_to dashboard_root_path
+    redirect_to books_path
   end
 end
 
