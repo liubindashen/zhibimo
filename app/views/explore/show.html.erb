@@ -1,3 +1,50 @@
+<div id='explore_book' class="ui grid">
+  <div class='board row'>
+    <div class="sixteen wide mobile only column">
+      <img class='ui centered bordered image' src='<%= @book.cover.preview.url %>'>
+    </div>
+    <div class="five wide computer tablet only computer only column">
+      <img class='ui right floated bordered image' src='<%= @book.cover.preview.url %>'>
+    </div>
+    <div class="eleven wide computer computer only bottom aligned board content column">
+      <h1 class='ui header'>
+        <%= @book.title %>
+        <div class="sub header">
+          作者 
+          <a href='#'><%= @book.author_name %></a>
+        </div>
+      </h1>
+    </div>
+    <div class="eleven wide tablet tablet only bottom aligned board content column">
+      <h2 class='ui header'>
+        <%= @book.title %>
+        <div class="sub header">
+          作者 
+          <a href='#'><%= @book.author_name %></a>
+        </div>
+      </h2>
+    </div>
+  </div>
+  <div class='row'>
+  </div>
+  <div class='row'>
+  </div>
+  <div class='row'>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <% content_for :explore_content do %>
   <div class='container explore-show'>
     <div class='board'>
@@ -6,8 +53,6 @@
           <img id='cover' src='<%= @book.cover.preview.url %>'>
         </section>
         <section id='book-info' class='pure-u-1 pure-u-md-4-5 pure-hidden-sm'>
-          <h2 id='title'><%= @book.title %></h2>
-          <a id='author'><%= @book.author_name %></a>
         </section>
       </div>
     </div>

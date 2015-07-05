@@ -16,6 +16,10 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   version :preview do
+    process resize_to_fit: [FIT_MAX, 192]
+  end
+
+  version :explore do
     process resize_to_fit: [FIT_MAX, 256]
   end
 
