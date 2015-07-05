@@ -3,6 +3,8 @@
 class CoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
+  retina!
+
   FIT_MAX = 99999
 
   storage :file
@@ -23,7 +25,7 @@ class CoverUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [FIT_MAX, 256]
   end
 
-  version :magazine do
+  version :magazine, retina: false do
     process :resize_to_fit => [FIT_MAX, 2520]
   end
 

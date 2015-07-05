@@ -26,8 +26,11 @@ gem 'bower-rails'
 gem 'angular-rails-templates'
 gem 'ng-rails-csrf'
 gem 'chinese_pinyin'
+
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'retina_rails', '~> 2.0.0'
+
 gem 'redcarpet'
 gem 'figaro'
 gem 'sidekiq'

@@ -3,13 +3,13 @@
   <!-- Book Basic Info start -->
   <div class='mobile only padding board row'>
     <div class="sixteen wide column">
-      <img class='ui centered bordered image' src='<%= @book.cover.preview.url %>'>
+      <img class='ui centered bordered image' src='<%= @book.cover.preview.url %>' height='192px'>
     </div>
   </div>
 
   <div class='tablet only computer only padding board row'>
     <div class="five wide column">
-      <img class='ui right floated bordered image' src='<%= @book.cover.preview.url %>'>
+      <img class='ui right floated bordered image' src='<%= @book.cover.preview.url %>' height='192px'>
     </div>
     <div class="ui huge header computer only bottom aligned eleven wide column">
       <%= render 'author', book: @book %>

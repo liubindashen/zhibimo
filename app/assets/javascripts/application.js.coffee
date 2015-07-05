@@ -1,4 +1,5 @@
 #= require jquery
+#= require retinajs/dist/retina
 
 jQuery.fn.exists = -> @length > 0
 
