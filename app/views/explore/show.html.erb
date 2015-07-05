@@ -1,36 +1,69 @@
 <div id='explore_book' class="ui grid">
-  <div class='board row'>
-    <div class="sixteen wide mobile only column">
+
+  <!-- Book Basic Info start -->
+  <div class='mobile only padding board row'>
+    <div class="sixteen wide column">
       <img class='ui centered bordered image' src='<%= @book.cover.preview.url %>'>
     </div>
-    <div class="five wide computer tablet only computer only column">
+  </div>
+
+  <div class='tablet only computer only padding board row'>
+    <div class="five wide column">
       <img class='ui right floated bordered image' src='<%= @book.cover.preview.url %>'>
     </div>
-    <div class="eleven wide computer computer only bottom aligned board content column">
-      <h1 class='ui header'>
-        <%= @book.title %>
-        <div class="sub header">
-          作者 
-          <a href='#'><%= @book.author_name %></a>
-        </div>
-      </h1>
+    <div class="ui huge header computer only bottom aligned eleven wide column">
+      <%= render 'author', book: @book %>
     </div>
-    <div class="eleven wide tablet tablet only bottom aligned board content column">
-      <h2 class='ui header'>
-        <%= @book.title %>
-        <div class="sub header">
-          作者 
-          <a href='#'><%= @book.author_name %></a>
-        </div>
-      </h2>
+    <div class="ui large header tablet only bottom aligned eleven wide column">
+      <%= render 'author', book: @book %>
     </div>
   </div>
-  <div class='row'>
+  <!-- Book Basic Info end -->
+
+  <!-- Download Links start -->
+  <div class='mobile only row'>
+    <div class="center aligned sixteen wide column">
+      <a class="ui basic button" href='<%= @book.html_url %>'>阅读</a>
+      <a class="ui basic button" href='#'>下载</a>
+    </div>
   </div>
-  <div class='row'>
+
+  <div class='tablet only computer only padding row'>
+    <div class="right floated left aligned eleven wide column">
+      <a class="ui basic button" href='<%= @book.html_url %>'>阅读</a>
+      <a class="ui basic button" href='#'>下载</a>
+    </div>
   </div>
-  <div class='row'>
+  <!-- Download Links over -->
+
+  <!-- Book Intro start -->
+  <div class='mobile only tablet only row'>
+    <div class="sixteen wide column">
+      <p><%= @book.intro %></p>
+    </div>
   </div>
+  <div class='computer only padding row'>
+    <div class="left floated right aligned top aligned five wide column">
+      <img src='/images/intro-text.png'>
+    </div>
+    <div class="right floated left aligned eleven wide column">
+      <p><%= @book.intro %></p>
+    </div>
+  </div>
+  <!-- Book Intro end -->
+
+  <!-- Summary start -->
+  <div class='mobile only tablet only row'>
+  </div>
+  <div class='computer only padding row'>
+    <div class="left floated right aligned top aligned five wide column">
+      <img src='/images/summary-text.png'>
+    </div>
+    <div class="right floated left aligned eleven wide column">
+      <%== @book.summary_html %>
+    </div>
+  </div>
+  <!-- Summary end -->
 </div>
 
 
@@ -90,7 +123,6 @@
 
     <div class='pure-g book-intro'>
       <div class='pure-u-1'>
-        <%== @book.readme_html %>
       </div>
     </div>
   </div>

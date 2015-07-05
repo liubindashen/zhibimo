@@ -174,6 +174,10 @@ class Book < ActiveRecord::Base
     end
   end
 
+  def intro
+    "从心智成长的角度来谈自我积累。李笑来老师通过自己职业生涯中遇到的事例，告诉我们：如何打开心智，如何运用心智来和时间做朋友，从而开启人生的成功旅程。畅销多年，虽经反复咀嚼依然不断有新的启发，令人受用至今——这就是本书的魅力！"
+  end
+
   private
 
   def set_default_slug
@@ -181,4 +185,5 @@ class Book < ActiveRecord::Base
       self.slug = Pinyin.t(self.title, splitter: '-')
     end
   end
+
 end

@@ -25,8 +25,9 @@ class BookDecorator < Draper::Decorator
     "/read/#{basic_name}.epub"
   end
 
-  def readme_html
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
-    markdown.render(object.readme || "")
+  def summary_html
+    render = SummaryRender.new base_url: html_url
+    markdown = Redcarpet::Markdown.new(render)
+    markdown.render(object.summary || "")
   end
 end
