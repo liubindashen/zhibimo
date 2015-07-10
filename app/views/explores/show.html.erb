@@ -1,9 +1,15 @@
-<div id='explore_book' class="ui grid">
+<div class="ui grid">
 
   <!-- Book Basic Info start -->
   <div class='mobile only padding board row'>
     <div class="sixteen wide column">
       <img class='ui centered bordered image' src='<%= @book.cover.preview.url %>' height='192px'>
+    </div>
+  </div>
+
+  <div class='mobile only row'>
+    <div class="ui large header sixteen wide center aligned column">
+      <%= render 'author', book: @book %>
     </div>
   </div>
 
@@ -24,14 +30,15 @@
   <div class='mobile only row'>
     <div class="center aligned sixteen wide column">
       <a class="ui basic button" href='<%= @book.html_url %>'>阅读</a>
-      <a class="ui basic button" href='#'>下载</a>
+      <div class="ui hidden small divider"></div>
+      <a target='_blank' class="ui basic button" href='<%= download_path(@book.slug) %>'>下载</a>
     </div>
   </div>
 
   <div class='tablet only computer only padding row'>
     <div class="right floated left aligned eleven wide column">
       <a class="ui basic button" href='<%= @book.html_url %>'>阅读</a>
-      <a class="ui basic button" href='#'>下载</a>
+      <a target='_blank' class="ui basic button" href='<%= download_path(@book.slug) %>'>下载</a>
     </div>
   </div>
   <!-- Download Links over -->
@@ -65,65 +72,3 @@
   </div>
   <!-- Summary end -->
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<% content_for :explore_content do %>
-  <div class='container explore-show'>
-    <div class='board'>
-      <div class='board-content pure-g'>
-        <section class='pure-u-1 pure-u-md-1-5'>
-          <img id='cover' src='<%= @book.cover.preview.url %>'>
-        </section>
-        <section id='book-info' class='pure-u-1 pure-u-md-4-5 pure-hidden-sm'>
-        </section>
-      </div>
-    </div>
-
-    <section id='sm-book-info' class='pure-visible-sm'>
-      <h2 id='title'><%= @book.title %></h2>
-      <a id='author'><%= @book.author_name %></a>
-    </section>
-
-    <div class='pure-g pure-gap-g'>
-      <div class='pure-u-1 pure-u-md-1-4'>
-        <a class='pure-button pure-block-button button-ghost' href='<%= @book.html_url %>' target='_blank'>
-          <i class="octicon octicon-book"></i><span>在线阅读</span>
-        </a>
-      </div>
-
-      <div class='pure-u-1 pure-u-md-1-4'>
-        <a class='pure-button pure-block-button button-ghost' href='<%= @book.pdf_url %>' target='_blank'>
-          <i class="octicon octicon-book"></i><span>下载 PDF 版本</span>
-        </a>
-      </div>
-
-      <div class='pure-u-1 pure-u-md-1-4'>
-        <a class='pure-button pure-block-button button-ghost' href='<%= @book.epub_url %>' target='_blank'>
-          <i class="octicon octicon-book"></i><span>下载 EPUB 版本</span>
-        </a>
-      </div>
-
-      <div class='pure-u-1 pure-u-md-1-4'>
-        <a class='pure-button pure-block-button button-ghost' href='<%= @book.mobi_url %>' target='_blank'>
-          <i class="octicon octicon-book"></i><span>下载 MOBI 版本</span>
-        </a>
-      </div>
-    </div>
-
-    <div class='pure-g book-intro'>
-      <div class='pure-u-1'>
-      </div>
-    </div>
-  </div>
-<% end %>

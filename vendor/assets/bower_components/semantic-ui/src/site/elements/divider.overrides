@@ -2,7 +2,7 @@
          Site Overrides
 *******************************/
 
-.ui.divider {
+#footer_divider.ui.divider {
   opacity: 0.85;
   margin-top: 0em;
   font-size: 0.875rem;
@@ -10,4 +10,8 @@
   font-weight: normal;
   color: @primaryColor;
   text-transform: none;
+}
+
+.ui.small.divider {
+  margin: .5rem 0;
 }

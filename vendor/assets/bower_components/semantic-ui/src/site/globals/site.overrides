@@ -82,36 +82,33 @@
   padding-bottom: 1.25em;
 }
 
-#explore_book {
+.board.row {
+  background: url('/images/board-left.png'),
+              url('/images/board-right.png');
+  background-origin: padding-box, padding-box;
+  background-repeat: no-repeat, no-repeat;
+  background-position: bottom left, bottom right;
+  background-size: 3.75em 3.75em, 3.75em 3.75em;
 
-  .padding.row {
-    padding-left: 3.75em !important;
-    padding-right: 3.75em !important;
+  padding-bottom: 0em !important;
+
+  &:after {
+    content: '';
+    background: url('/images/board-background.png');
+    background-repeat: repeat-x;
+    margin-top: -1.75em;
+    height: 3.75em;
+    min-height: 3.75em;
+    width: 100%;
+    background-size: 3.75em 100%;
   }
 
-  .board.row {
-    background: url('/images/board-left.png'),
-                url('/images/board-right.png');
-    background-origin: padding-box, padding-box;
-    background-repeat: no-repeat, no-repeat;
-    background-position: bottom left, bottom right;
-    background-size: 3.75em 3.75em, 3.75em 3.75em;
-
-    padding-bottom: 0em !important;
-
-    &:after {
-      content: '';
-      background: url('/images/board-background.png');
-      background-repeat: repeat-x;
-      margin-top: -1.75em;
-      height: 3.75em;
-      min-height: 3.75em;
-      width: 100%;
-      background-size: 3.75em 100%;
-    }
-
-    .ui.header {
-      padding-bottom: 2em;
-    }
+  .ui.header {
+    padding-bottom: 2em;
   }
+}
+
+.padding.row {
+  padding-left: 3.75em !important;
+  padding-right: 3.75em !important;
 }
