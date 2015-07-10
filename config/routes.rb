@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :explores, only: [:show, :index]
-  resources :downloads, only: [:show]
-  resources :authors, only: [:edit, :update, :new, :create, :show]
+  namespace :explore do
+    resources :books, only: [:index, :show]
+    resources :downloads, only: [:show]
+    resources :authors, only: [:show]
+  end
+
+  resources :authors, only: [:edit, :update, :new, :create]
 
   resources :books do
     member do
@@ -16,10 +20,7 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#fail'
   get '/auth/:provider/callback' => 'sessions#create'
 
-
   match '/404', to: 'errors#file_not_found', via: :all
-
-  ActiveAdmin.routes(self)
 
   root 'welcome#index'
 end

@@ -1,0 +1,56 @@
+<div class='ui container'>
+  <div class="ui grid">
+    <!-- Author Basic Info start -->
+    <div class='mobile only padding row'>
+      <div class="sixteen wide column">
+        <img class='ui  centered bordered image' src='<%= @author.avatar_url %>' height='128px'>
+      </div>
+    </div>
+
+    <div class='mobile only row'>
+      <div class="ui large header sixteen wide center aligned column">
+        <%= render 'basic', author: @author %>
+      </div>
+    </div>
+
+    <div class='tablet only computer only padding row'>
+      <div class="five wide column">
+        <img class='ui right floated bordered image' src='<%= @author.avatar_url %>' height='128px'>
+      </div>
+      <div class="ui huge header computer only bottom aligned eleven wide column">
+        <%= render 'basic', author: @author %>
+      </div>
+      <div class="ui large header tablet only bottom aligned eleven wide column">
+        <%= render 'basic', author: @author %>
+      </div>
+    </div><!-- Author Basic Info end -->
+
+    <!-- Author Intro start -->
+    <div class='mobile only tablet only row'>
+      <div class="sixteen wide column">
+        <p><%= @author.intro %></p>
+      </div>
+    </div>
+
+    <div class='computer only padding row'>
+      <div class="left floated right aligned top aligned five wide column">
+        <img src='/images/intro-text.png'>
+      </div>
+      <div class="right floated left aligned eleven wide column">
+        <p><%= @author.intro %></p>
+      </div>
+    </div><!-- Author Intro end -->
+
+    <div class='mobile only row'>
+      <div class="left aligned tablet center aligned computer sixteen wide column">
+        <%= link_to '返回', :back, class: 'ui basic button' %>
+      </div>
+    </div>
+    <div class='tablet only computer only padding row'>
+      <div class="right floated left aligned eleven wide column">
+        <%= link_to '返回', :back, class: 'ui basic button' %>
+      </div>
+    </div>
+
+  </div>
+</div>

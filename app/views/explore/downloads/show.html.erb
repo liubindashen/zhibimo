@@ -1,0 +1,20 @@
+<div class="ui text container">
+  <div class="ui stackable center aligned three column grid">
+    <div class="one column row">
+      <div class="column">
+        <h1 class='ui header'>
+          <%= @book.title %> 下载
+        </h1>
+      </div>
+    </div>
+    <div class="column">
+      <a class="ui basic button" href='<%= @book.pdf_url %>'>PDF</a>
+    </div>
+    <div class="column">
+      <a class="ui basic button" href='<%= @book.mobi_url %>'>MOBI</a>
+    </div>
+    <div class="column">
+      <a class="ui basic button" href='<%= @book.epub_url %>'>EPUB</a>
+    </div>
+  </div>
+</div>

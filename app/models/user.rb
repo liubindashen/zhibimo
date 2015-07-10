@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_one :author
   has_many :books, foreign_key: :user_id
 
-  delegate :pen_name, :intro, :to => :author
+  delegate :pen_name, :intro, :slogan, :to => :author
 
   def add_auth(auth)
     authentications.create(:provider => auth[:provider],

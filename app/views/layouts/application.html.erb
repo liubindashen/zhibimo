@@ -12,7 +12,7 @@
     <div class="ui menu">
       <a id='logo' class="item" href='/'></a>
       <div class='right menu'>
-        <a class="item" href='<%= explores_path %>'>书架</a>
+        <a class="item" href='<%= explore_books_path %>'>书架</a>
         <a class="item" href='<%= books_path %>'>写作</a>
         <%- if current_user %>
           <a class="item" href='<%= signout_path %>'>退出</a>
@@ -22,9 +22,7 @@
       </div>
     </div>
 
-    <div class='ui main container'>
-      <%= yield %>
-    </div>
+    <%= yield %>
 
     <div id='footer_divider' class="ui horizontal divider container">
       © 2015 zhibimo.com All rights reserved.
