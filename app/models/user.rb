@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
-  has_many :books, dependent: :destroy
+  has_one :author
+  has_many :books, foreign_key: :user_id
 
   def add_auth(auth)
     authentications.create(:provider => auth[:provider],

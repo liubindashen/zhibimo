@@ -2,6 +2,10 @@
          Site Overrides
 *******************************/
 
-.sub.header {
+.board .sub.header {
   padding-top: .5rem !important;
+}
+
+.container > h1.ui.header {
+  margin-bottom: 3.75rem !important;
 }

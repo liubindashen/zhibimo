@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :explores, only: [:show, :index]
   resources :downloads, only: [:show]
+  resources :authors, only: [:edit, :update, :new, :create, :show]
 
   resources :books do
     member do

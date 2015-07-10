@@ -23,4 +23,3 @@ class SessionsController < ApplicationController
     redirect_to books_path
   end
 end
-
