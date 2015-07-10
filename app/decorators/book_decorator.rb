@@ -1,8 +1,8 @@
 class BookDecorator < Draper::Decorator
   delegate_all
 
-  def author_name
-    object.author.username
+  def author_pen_name
+    object.author.pen_name
   end
 
   def basic_name
