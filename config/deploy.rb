@@ -8,7 +8,7 @@ set :repository, 'git@github.com:hpyhacking/zhibimo.git'
 set :user, 'deploy'
 set :deploy_to, '/home/deploy/zhibimo'
 
-branch = ENV['branch'] || 'production'
+branch = ENV['branch'] || 'master'
 
 set :domain, "websrv.zhibimo"
 
@@ -53,7 +53,6 @@ task deploy: :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    invoke :'rails:assets_precompile'
 
     to :launch do
       invoke :'sidekiq:restart'
@@ -72,6 +71,13 @@ namespace :passenger do
       #{echo_cmd %[mkdir -p tmp]}
       #{echo_cmd %[touch tmp/restart.txt]}
     }
+  end
+end
+
+namespace :bower do
+  desc 'bower install'
+  task :install do
+    queue "cd #{deploy_to}/current && RAILS_ENV=production bundle exec rake bower:install:production --trace"
   end
 end
 

@@ -17,7 +17,6 @@
 /tmp
 .env
 vendor/assets/bower_components/
-/public/assets/
 /vendor/bundle/
 /node_modules
 /public/uploads/
