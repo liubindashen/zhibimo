@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update]
 
   def index
-    @books = scope
+    @books = scope.order('updated_at desc')
     redirect_to new_book_path if @books.empty?
   end
 
@@ -22,14 +22,18 @@ class BooksController < ApplicationController
     @book = scope.new(book_params)
 
     if @book.save
-      redirect_to book_path(@book)
+      redirect_to book_path(@book), notice: '创建成功'
     else
       render 'new'
     end
   end
 
   def update
-    @book.update(book_params)
+    if @book.update(book_params)
+      redirect_to book_path(@book), notice: '更新成功'
+    else
+      render 'show'
+    end
   end
 
   private

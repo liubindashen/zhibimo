@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
-  before_action :auth_not_author!, only: [:new, :create]
   before_action :auth_author!, only: [:edit, :update]
+  before_action :auth_not_author!, only: [:new, :create]
 
   def new
     @author = Author.new
@@ -10,10 +10,21 @@ class AuthorsController < ApplicationController
     @author = current_user.build_author(author_params)
 
     if @author.save
-      redirect_to go_back_url
+      redirect_to go_back_url, notice: '创建成功'
     else
-      1/0
       render 'new'
+    end
+  end
+
+  def edit
+    @author = current_author
+  end
+
+  def update
+    if current_author.update_attributes(author_params)
+      redirect_to edit_author_path(current_author), notice: '保存成功'
+    else
+      render :edit
     end
   end
 

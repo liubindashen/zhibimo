@@ -1,4 +1,11 @@
 <div class='ui text container'>
+
+  <% if flash[:notice] %>
+    <div class="ui floating message">
+      <p><%= flash[:notice] %></p>
+    </div>
+  <% end %>
+
   <div class="ui divided items">
     <div class="item">
       <img class='ui bordered image' src="<%= @book.cover.preview.url %>">
@@ -14,22 +21,10 @@
     </div>
   </div>
 
-  <div class="ui horizontal divider">
-    基本信息
-  </div>
-  <%= form_for @book, html: {class: 'ui form'} do |f| %>
-    <div class="field">
-      <label>图书标识</label>
-      <span class='sub text'><%= @book.slug %></span>
-    </div>
-    <div class="field">
-      <label>仓库地址</label>
-      <span class='sub text'><%= @book.git_origin %></span>
-    </div>
-  <% end %>
-  <div class="ui horizontal divider">
+  <div class="ui horizontal form divider">
     更新图书
   </div>
+
 
   <%= form_for @book, html: {class: 'ui form'} do |f| %>
     <div class="field">
@@ -42,6 +37,26 @@
     </div>
 
     <button class="ui basic button" type="submit">保存</button>
-    <a class="ui basic button" href='<%= books_path %>'>返回</a>
   <% end %>
+
+  <div class="ui horizontal form divider">
+    仓库信息
+  </div>
+
+  <form class='ui form' action='<%= book_builds_path(@book) %>' method='POST'>
+    <div class="field">
+      <label>图书标识</label>
+      <span class='sub text'><%= @book.slug %></span>
+    </div>
+    <div class="field">
+      <label>仓库地址</label>
+      <span class='sub text'><%= @book.git_origin %></span>
+    </div>
+    <button class="ui basic button" type="submit">构建</button>
+  </form>
+
+  <div class="ui form divider">
+  </div>
+
+  <a class="ui basic button" href='<%= books_path %>'>返回</a>
 </div>

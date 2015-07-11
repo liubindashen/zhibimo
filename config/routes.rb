@@ -6,14 +6,14 @@ Rails.application.routes.draw do
   end
 
   resources :authors, only: [:edit, :update, :new, :create]
-
-  resources :books do
-    member do
-      post 'build'
-      post 'hook'
+  resources :books, only: [:index, :show, :update, :create, :new] do
+    resources :builds, only: [:create] do 
+      collection do
+        get 'hook'
+      end
     end
-    resources :entries, only: [:index, :create, :show, :update, :destroy]
   end
+
 
   get '/signin' => 'welcome#new', as: :signin
   get '/signout' => 'sessions#destroy', as: :signout
