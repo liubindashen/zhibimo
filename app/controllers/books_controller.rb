@@ -11,7 +11,7 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.new
+    @book = scope.build
   end
 
   def edit
@@ -22,9 +22,9 @@ class BooksController < ApplicationController
     @book = scope.new(book_params)
 
     if @book.save
-
+      redirect_to book_path(@book)
     else
-
+      render 'new'
     end
   end
 

@@ -8,6 +8,7 @@ class Book < ActiveRecord::Base
   mount_uploader :cover, CoverUploader
 
   before_validation :set_default_slug
+  before_validation :set_default_user_id
 
   scope :explored, -> { where(explored: true) }
 
@@ -180,9 +181,13 @@ class Book < ActiveRecord::Base
   private
 
   def set_default_slug
-    if !self.slug and self.title
+    if (!self.slug or self.slug.empty?) and self.title
       self.slug = Pinyin.t(self.title, splitter: '-')
     end
+  end
+
+  def set_default_user_id
+    self.user_id = 0
   end
 
 end

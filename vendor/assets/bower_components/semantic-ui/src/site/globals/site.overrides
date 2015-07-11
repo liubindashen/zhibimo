@@ -116,3 +116,18 @@
 .ui.form textarea {
   resize: none !important;
 }
+
+.ui.form > .field {
+  margin-bottom: 2.5em !important;
+}
+
+.ui.form > .field:last-of-type {
+  margin-bottom: 3.75em !important;
+}
+
+.ui.form > .field > .sub.text {
+  color: @grey;
+  font-size: 0.875rem;
+  display: block;
+  margin-top: 0.25rem;
+}
