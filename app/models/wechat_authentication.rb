@@ -35,7 +35,7 @@ class WechatAuthentication < ActiveRecord::Base
     userinfo = JSON.parse(userinfo.body).symbolize_keys!
 
     username = Pinyin.t(userinfo[:nickname], splitter: '-')
-    info = {name: username, sex: userinfo[:sex], gravatar: userinfo[:headimgurl]}
+    info = {name: username, sex: userinfo[:sex], avatar: userinfo[:headimgurl]}
     { provider: 'wechat-web', uid: userinfo[:openid], info: info }
   end
 end
