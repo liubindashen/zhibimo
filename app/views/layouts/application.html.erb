@@ -24,7 +24,9 @@
                   <%= current_author.pen_name %>
                 </a>
               <%- else %>
-                <a class="item"><%= current_user.display_name %></span></div>
+                <a class="item">
+                  <%= current_user.display_name %>
+                </a>
               <% end %>
               <a class="item" href='<%= signout_path %>'>退出</a>
             </div>
