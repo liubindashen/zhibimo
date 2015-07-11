@@ -1,9 +1,13 @@
 class SessionsController < ApplicationController
   def create
-    if params[:provider] == :wechat
+    if params[:provider] == 'wechat'
       user_from_auth(WechatAuthentication.create_with_code(params[:code]))
+    elsif params[:provider] == 'github'
+      req = request.env['omniauth.auth']
+      req[:avatar_url] = request.env['omniauth.auth']['extra']['raw_info']['avatar_url']
+      user_from_auth(req)
     else
-      user_from_auth(request.env['omniauth.auth'])
+      redirect_to root_path
     end
   end
 

@@ -3,9 +3,7 @@ class Book < ActiveRecord::Base
   has_many :entries, dependent: :destroy
   validates :slug, presence: true, uniqueness: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
 
-  belongs_to :user
-  
-  alias :author :user
+  belongs_to :author
 
   mount_uploader :cover, CoverUploader
 

@@ -17,6 +17,11 @@
       <%= f.text_area :intro, rows: '5', placeholder: '让读者更多的了解你' %>
     </div>
 
+    <div class="field">
+      <label>附言（可选）</label>
+      <%= f.text_field :slogan, placeholder: '格言 / 警句 / 信仰 / 吐槽 / 什么都可以' %>
+    </div>
+
     <button class="ui basic button" type="submit">开始写作</button>
   <% end %>
 </div>

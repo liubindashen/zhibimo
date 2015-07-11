@@ -7,8 +7,14 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    current_user.create_author(author_params)
-    redirect_to go_back_url
+    @author = current_user.build_author(author_params)
+
+    if @author.save
+      redirect_to go_back_url
+    else
+      1/0
+      render 'new'
+    end
   end
 
   private
@@ -17,7 +23,7 @@ class AuthorsController < ApplicationController
   end
 
   def author_params
-    params.require(:author).permit(:pen_name)
+    params.require(:author).permit(:pen_name, :intro, :slogan)
   end
 
   def go_back_url

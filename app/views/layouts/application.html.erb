@@ -15,7 +15,14 @@
         <a class="item" href='<%= explore_books_path %>'>书架</a>
         <a class="item" href='<%= books_path %>'>写作</a>
         <%- if current_user %>
-          <a class="item" href='<%= signout_path %>'>退出</a>
+          <div class="ui right dropdown item">
+            <img class='ui avatar image' src="<%= current_user.avatar_url %>" height='48px' width='48px'>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item"><span><%= current_user.display_name %></span></div>
+              <a class="item" href='<%= signout_path %>'>退出</a>
+            </div>
+          </div>
         <%- else %>
           <a class="item" href='<%= signin_path %>'>登录</a>
         <%- end %>

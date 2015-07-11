@@ -8,21 +8,28 @@ class User < ActiveRecord::Base
   has_one :author
   has_many :books, foreign_key: :user_id
 
-  delegate :pen_name, :intro, :slogan, :to => :author
+  mount_uploader :avatar, AvatarUploader
 
   def add_auth(auth)
     authentications.create(:provider => auth[:provider],
                            :uid => auth[:uid])
   end
 
-  def avatar_url(default)
-    attr_url = read_attribute(:avatar_url)
-    attr_url.blank? ? default : attr_url
+  def display_name
+    return author.pen_name if author
+    username
   end
 
   class << self
     def from_auth(auth)
-      locate_auth(auth) || create_auth(auth)
+      user = locate_auth(auth) || create_auth(auth)
+
+      if user.avatar.blank?
+        user.remote_avatar_url = auth[:avatar_url]
+        user.save!
+      end
+
+      user
     end
 
     def locate_auth(auth)
