@@ -22,7 +22,7 @@
   </h3>
 
   <%- if current_user %>
-    <a class="ui basic fixed button" href=''>写作</a>
+    <a class="ui basic fixed button" href='<%= books_path %>'>写作</a>
   <%- else %>
     <a class="ui basic fixed button" href='<%= signin_path %>'>登录</a>
   <%- end %>

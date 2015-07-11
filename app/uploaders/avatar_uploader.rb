@@ -3,8 +3,6 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  retina!
-
   storage :file
 
   def store_dir
@@ -12,10 +10,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url(*args)
-    "/images/default_avatar.png"
+    "/default-avatar.png"
   end
 
-  process resize_to_fit: [96, 96]
+  process resize_to_fit: [256, 256]
 
   version :small do
     process resize_to_fit: [96, 96]

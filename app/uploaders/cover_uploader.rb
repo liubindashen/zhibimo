@@ -3,8 +3,6 @@
 class CoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  retina!
-
   FIT_MAX = 99999
 
   storage :file

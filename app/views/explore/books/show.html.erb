@@ -9,7 +9,7 @@
 
     <div class='mobile only row'>
       <div class="ui large header sixteen wide center aligned column">
-        <%= render 'author', book: @book %>
+        <%= render 'basic', book: @book %>
       </div>
     </div>
 
@@ -18,10 +18,10 @@
         <img class='ui right floated bordered image' src='<%= @book.cover.preview.url %>' height='192px'>
       </div>
       <div class="ui huge header computer only bottom aligned eleven wide column">
-        <%= render 'author', book: @book %>
+        <%= render 'basic', book: @book %>
       </div>
       <div class="ui large header tablet only bottom aligned eleven wide column">
-        <%= render 'author', book: @book %>
+        <%= render 'basic', book: @book %>
       </div>
     </div>
     <!-- Book Basic Info end -->

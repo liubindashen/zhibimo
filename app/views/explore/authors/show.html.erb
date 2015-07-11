@@ -3,7 +3,7 @@
     <!-- Author Basic Info start -->
     <div class='mobile only padding row'>
       <div class="sixteen wide column">
-        <img class='ui  centered bordered image' src='<%= @author.avatar_url %>' height='128px'>
+        <img class='ui  centered bordered image' src='<%= @author.avatar.url %>' height='128px'>
       </div>
     </div>
 
@@ -15,7 +15,7 @@
 
     <div class='tablet only computer only padding row'>
       <div class="five wide column">
-        <img class='ui right floated bordered image' src='<%= @author.avatar_url %>' height='128px'>
+        <img class='ui right floated bordered image' src='<%= @author.avatar.url %>' height='128px'>
       </div>
       <div class="ui huge header computer only bottom aligned eleven wide column">
         <%= render 'basic', author: @author %>
