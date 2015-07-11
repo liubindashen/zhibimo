@@ -29,7 +29,7 @@
     <!-- Download Links start -->
     <div class='mobile only row'>
       <div class="center aligned sixteen wide column">
-        <a class="ui basic button" href='<%= @book.html_url %>'>阅读</a>
+        <a target='_blank' class="ui basic button" href='<%= @book.html_url %>'>阅读</a>
         <div class="ui hidden small divider"></div>
         <a target='_blank' class="ui basic button" href='<%= explore_download_path(@book.slug) %>'>下载</a>
       </div>
@@ -43,6 +43,7 @@
     </div>
     <!-- Download Links over -->
 
+    <%- if @book.intro %>
     <!-- Book Intro start -->
     <div class='mobile only tablet only row'>
       <div class="sixteen wide column">
@@ -58,6 +59,7 @@
       </div>
     </div>
     <!-- Book Intro end -->
+    <% end %>
 
     <!-- Summary start -->
     <div class='mobile only tablet only row'>

@@ -17,6 +17,6 @@ class SummaryRender < Redcarpet::Render::HTML
   end
 
   def link(link, title, content)
-    "<a href='#{@base_url}#{link}' target='_blank'>#{content}</a>"
+    "<a href='#{@base_url}#{link.gsub(/\.md$/, '.html')}' target='_blank'>#{content}</a>"
   end
 end
