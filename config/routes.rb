@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'api/v1/books/:id/hook' => 'builds#hook'
+  post 'api/v1/books/:id/hook' => 'builds#hook'
 
   get '/signin' => 'welcome#new', as: :signin
   get '/signout' => 'sessions#destroy', as: :signout
