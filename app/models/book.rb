@@ -126,11 +126,11 @@ class Book < ActiveRecord::Base
   end
 
   def git_origin_with_build
-    "git@#{ENV['GITLAB_REPO_HOST']}:#{author.id}/#{self.id}.git"
+    "git@#{ENV['GITLAB_REPO_HOST']}:#{author.user.id}/#{self.id}.git"
   end
 
   def git_origin
-    "http://git.zhibimo.com/#{author.id}/#{self.id}.git"
+    "http://git.zhibimo.com/#{author.user.id}/#{self.id}.git"
   end
 
   after_create do
