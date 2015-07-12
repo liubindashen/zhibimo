@@ -21138,6 +21138,12 @@ Floated Menu / Item
 /*******************************
          Site Overrides
 *******************************/
+
+#main_menu.ui.menu {
+  font-size: 1rem;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
 /*!
  * # Semantic UI 2.0.0 - Message
  * http://github.com/semantic-org/semantic-ui/
