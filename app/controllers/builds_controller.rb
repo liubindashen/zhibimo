@@ -8,9 +8,7 @@ class BuildsController < ApplicationController
   end
 
   def hook
-    user = User.find_by_gitlab_id params['user_id']
-    author = user.author
-    @book = author && author.books.find_by_gitlab_id(params['project_id'])
+    @book = Book.find_by_gitlab_id(params['project_id'])
     BuildBookJob.perform_later(@book.id)
     render nothing: true
   end
