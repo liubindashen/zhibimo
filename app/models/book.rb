@@ -21,6 +21,8 @@ class Book < ActiveRecord::Base
     return if building?
     update_columns(building: true)
 
+    user = author.user
+
     FileUtils.mkdir_p("#{Dir.home}/book-repos/#{user.id}")
     book_repo = "#{Dir.home}/book-repos/#{user.id}/#{id}"
     FileUtils.rm_rf(book_repo)
