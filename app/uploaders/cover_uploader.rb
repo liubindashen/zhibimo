@@ -23,7 +23,7 @@ class CoverUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [FIT_MAX, 256]
   end
 
-  version :magazine, retina: false do
+  version :magazine do
     process :resize_to_fit => [FIT_MAX, 2520]
   end
 

@@ -35,6 +35,11 @@
       <label>图书简介</label>
       <%= f.text_area :intro, rows: '5', placeholder: '写个简介，让大家都知道为什么要读这本书。' %>
     </div>
+    <div class="field">
+      <label>图书封面</label>
+      <%= f.file_field :cover %>
+      <span class='sub text'>建议上传质量高的封面。</span>
+    </div>
 
     <button class="ui basic button" type="submit">保存</button>
   <% end %>
