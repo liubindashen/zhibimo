@@ -6,5 +6,5 @@ class Author < ActiveRecord::Base
 
   has_many :books, dependent: :destroy
 
-  delegate :avatar, :username, :to => :user
+  delegate :avatar, :username, :gitlab_id, :gitlab_password, :to => :user
 end
