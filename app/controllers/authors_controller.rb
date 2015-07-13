@@ -30,7 +30,8 @@ class AuthorsController < ApplicationController
 
   private
   def auth_not_author!
-    redirect_to go_back_url if current_author 
+    auth_user!
+    redirect_to go_back_url if current_author
   end
 
   def author_params
