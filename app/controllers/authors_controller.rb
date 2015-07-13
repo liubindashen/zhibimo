@@ -21,8 +21,10 @@ class AuthorsController < ApplicationController
   end
 
   def update
-    if current_author.update_attributes(author_params)
-      redirect_to edit_author_path(current_author), notice: '保存成功'
+    @author = current_author
+
+    if @author.update_attributes(author_params)
+      redirect_to edit_author_path(@author), notice: '保存成功'
     else
       render :edit
     end
