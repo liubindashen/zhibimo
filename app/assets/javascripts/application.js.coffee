@@ -1,5 +1,4 @@
 #= require jquery
-#= require retinajs/dist/retina
 #= require semantic-ui/dist/components/transition.min
 #= require semantic-ui/dist/components/dropdown.min
 
