@@ -26,4 +26,10 @@ class Author < ActiveRecord::Base
       update_attributes!(gitlab_id: gitlab_user.id, gitlab_username: username, gitlab_password: pwd)
     end
   end
+
+  after_destroy do
+    unless ENV['DISABLE_GITLIB']
+      Gitlab.delete_user gitlab_id
+    end
+  end
 end
