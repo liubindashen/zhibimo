@@ -37,36 +37,17 @@ class User < ActiveRecord::Base
     end
 
     def create_auth(auth)
+      username = auth[:info][:name].downcase
+      username = "#{username}-#{SecureRandom.hex(3)}" if User.exists?(username)
+
       create!(
-        :email => auth[:info][:email],
-        :username => auth[:info][:name],
+        :email => "#{username}@zhibimo.com",
+        :username => username,
         :authentications_attributes => [
           Authentication.new(:provider => auth[:provider],
                              :uid => auth[:uid]
                             ).attributes
       ])
     end
-  end
-
-  after_create do
-    UserRegisterJob.perform_later self
-
-    unless ENV['DISABLE_GITLIB']
-      pwd = SecureRandom.hex
-      oh = Gitlab.create_user("#{id}@zhibimo.com", pwd, username: id.to_s, projects_limit: 100)
-      raise 'Failed to create git usr' unless oh.id.present?
-      update_columns(gitlab_id: oh.id, gitlab_password: pwd)
-    end
-  end
-
-  after_destroy do
-    http = HTTParty.delete(
-      "#{ENV['GITLAB_ENDPOINT']}/users/#{gitlab_id}",
-      headers: {
-        'Content-Type' => 'application/json',
-        'PRIVATE-TOKEN' => Gitlab.private_token
-      }
-    )
-    p http
   end
 end
