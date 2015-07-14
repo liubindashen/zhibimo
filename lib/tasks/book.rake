@@ -5,7 +5,7 @@ namespace :book do
       b.slug = b.slug.downcase
       b.save!
 
-      Gitlab.edit_project b.gitlab_id, name: b.title, path: b.slug
+      Gitlab.edit_project b.gitlab_id, name: b.slug, path: b.slug
     end
   end
 end

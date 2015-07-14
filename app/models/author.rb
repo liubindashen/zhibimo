@@ -10,7 +10,7 @@ class Author < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  def gitlab_info
+  def gitlab
     Gitlab.user gitlab_id
   end
 

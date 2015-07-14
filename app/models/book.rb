@@ -14,6 +14,10 @@ class Book < ActiveRecord::Base
 
   scope :explored, -> { where(explored: true) }
 
+  def gitlab
+    Gitlab.project gitlab_id
+  end
+
   def cover_url(default = nil)
     File.exists?("#{Dir.home}/books/#{author.username}/#{slug}/cover.jpg") ?
       "http://zhibimo.com/read/#{author.username}/#{slug}/cover.jpg" : default
