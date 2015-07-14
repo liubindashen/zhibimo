@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714110800) do
+ActiveRecord::Schema.define(version: 20150714113245) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20150714110800) do
     t.text     "slogan",          limit: 65535
     t.string   "avatar",          limit: 255
     t.string   "gitlab_id",       limit: 255
-    t.string   "gitlab_name",     limit: 255
+    t.string   "gitlab_username", limit: 255
     t.string   "gitlab_password", limit: 255
   end
 
