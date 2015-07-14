@@ -16,11 +16,11 @@
         <a class="item" href='<%= books_path %>'>写作</a>
         <%- if current_user %>
           <div class="ui right dropdown item">
-            <img class='ui avatar image' src="<%= current_user.avatar_url %>" height='48px' width='48px'>
+            <img class='ui avatar image' src="<%= avatar.url %>" height='48px' width='48px'>
             <i class="dropdown icon"></i>
             <div class="menu">
               <%- if current_author %>
-                <a class="item" href='<%= edit_author_path(current_author) %>'>
+                <a class="item" href='<%= edit_author_path %>'>
                   <%= current_author.pen_name %>
                 </a>
               <%- else %>

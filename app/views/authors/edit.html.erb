@@ -28,6 +28,11 @@
       <%= f.text_field :slogan, placeholder: '格言 / 警句 / 信仰 / 吐槽 / 什么都可以' %>
     </div>
 
+    <div class="field">
+      <label>头像</label>
+      <%= f.file_field :avatar %>
+    </div>
+
     <button class="ui basic button" type="submit">保存</button>
   <% end %>
 </div>

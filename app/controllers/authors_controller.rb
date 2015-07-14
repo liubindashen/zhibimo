@@ -37,7 +37,7 @@ class AuthorsController < ApplicationController
   end
 
   def author_params
-    params.require(:author).permit(:pen_name, :intro, :slogan)
+    params.require(:author).permit(:pen_name, :intro, :slogan, :avatar)
   end
 
   def go_back_url

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     resources :authors, only: [:show]
   end
 
-  resources :authors, only: [:edit, :update, :new, :create]
+  resource :author, only: [:edit, :update, :new, :create]
+
   resources :books, only: [:index, :show, :update, :create, :new] do
     resources :builds, only: [:create] do 
       collection do
