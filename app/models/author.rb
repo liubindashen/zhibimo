@@ -2,6 +2,9 @@ class Author < ActiveRecord::Base
   validates :pen_name, presence: true, uniqueness: true
   validates :intro, presence: true
 
+  validates :gitlab_id, presence: true, uniqueness: true, on: :update
+  validates :gitlab_username, presence: true, uniqueness: true, on: :update
+
   belongs_to :user
 
   has_many :books, dependent: :destroy
@@ -20,8 +23,7 @@ class Author < ActiveRecord::Base
     unless ENV['DISABLE_GITLIB']
       pwd = SecureRandom.hex
       gitlab_user = Gitlab.create_user("#{username}@zhibimo.com", pwd, name: pen_name, username: username)
-      raise 'Failed to create Gitlab user.' unless gitlab_user.id.present?
-      update_columns(gitlab_id: gitlab_user.id, gitlab_username: username, gitlab_password: pwd)
+      update_attributes!(gitlab_id: gitlab_user.id, gitlab_username: username, gitlab_password: pwd)
     end
   end
 end

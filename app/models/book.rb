@@ -2,8 +2,8 @@ class Book < ActiveRecord::Base
 
   has_many :entries, dependent: :destroy
   validates :slug, presence: true, uniqueness: {scope: :author_id}, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
-  validates :gitlab_id, presence: true
 
+  validates :gitlab_id, presence: true, uniqueness: true, on: :update
 
   belongs_to :author
 
