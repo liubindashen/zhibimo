@@ -17,7 +17,7 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'jbuilder', '~> 2.0'
 gem 'omniauth-github'
-gem 'gitlab', '~> 3.4'
+gem 'gitlab', github: 'NARKOZ/gitlab'
 gem 'gon'
 gem 'faraday'
 gem 'draper'

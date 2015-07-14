@@ -1,7 +1,9 @@
 class Book < ActiveRecord::Base
 
   has_many :entries, dependent: :destroy
-  validates :slug, presence: true, uniqueness: true, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
+  validates :slug, presence: true, uniqueness: {scope: :author_id}, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
+  validates :gitlab_id, presence: true
+
 
   belongs_to :author
 
@@ -137,42 +139,9 @@ class Book < ActiveRecord::Base
 
   after_create do
     unless ENV['DISABLE_GITLIB']
-      http = HTTParty.post(
-        "#{ENV['GITLAB_ENDPOINT']}/projects/user/#{author.gitlab_id}",
-        headers: {
-          'Content-Type' => 'application/json',
-          'PRIVATE-TOKEN' => Gitlab.private_token
-        },
-        body: {
-          name: id.to_s,
-          issues_enabled: false,
-          merge_requests_enabled: false,
-          wiki_enabled: false,
-          snippets_enabled: false
-        }.to_json
-      )
-      body = JSON.parse(http.body)
-      raise 'Failed to to create git repository: ' + http.body unless http.code == 201 && body['id'].present?
-      update_column(:gitlab_id, body['id'])
-
-      oh = Gitlab.add_project_hook(gitlab_id, "http://zhibimo.com/books/#{id}/builds/hook")
-      raise 'Failed to create git hook' unless oh.id.present?
-    end
-    # entry_create("README.md", "This is the README.md", "[SYSTEM] ADD README.md")
-    # entry_create("SUMMARY.md", "", "[SYSTEM] ADD SUMMARY.md")
-  end
-
-  after_destroy do
-    unless ENV['DISABLE_GITLIB']
-      FileUtils.rm_rf("/tmp/repos/#{author.gitlab_id}/#{self.gitlab_id}/")
-      http = HTTParty.delete(
-        "#{ENV['GITLAB_ENDPOINT']}/projects/#{gitlab_id}",
-        headers: {
-          'Content-Type' => 'application/json',
-          'PRIVATE-TOKEN' => Gitlab.private_token
-        }
-      )
-      p http
+      project = Gitlab.create_project title, path: slug, user_id: author.gitlab_id
+      update_attributes!(gitlab_id: project.id)
+      Gitlab.add_project_hook(project.id, Rails.application.routes.url_helpers.hook_book_builds_url(id))
     end
   end
 
@@ -182,6 +151,7 @@ class Book < ActiveRecord::Base
     if (!self.slug or self.slug.empty?) and self.title
       self.slug = Pinyin.t(self.title, splitter: '-')
     end
+    self.slug.downcase!
   end
 
   def set_default_user_id

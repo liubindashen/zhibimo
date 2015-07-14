@@ -19,7 +19,7 @@ namespace :user do
   desc "Rebuild user for Gitlab."
   task :rebuild_gitlab => :environment do
     Author.all.each do |a|
-      Gitlab.edit_user a.gitlab_id, username: a.gitlab_username, name: a.pen_name, email: a.user.eamil
+      Gitlab.edit_user a.gitlab_id, username: a.gitlab_username, name: a.pen_name, email: a.user.email
     end
   end
 end
