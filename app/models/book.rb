@@ -139,7 +139,12 @@ class Book < ActiveRecord::Base
     unless ENV['DISABLE_GITLIB']
       project = Gitlab.create_project slug, path: slug, user_id: author.gitlab_id, import_url: 'https://github.com/zhibimo/book-sample.git'
       update_attributes!(gitlab_id: project.id)
-      Gitlab.add_project_hook(project.id, Rails.application.routes.url_helpers.hook_book_builds_url(id, host: 'zhibimo.com'))
+
+      hook_url = Rails.application.routes.url_helpers.hook_book_builds_url(id, host: 'zhibimo.com')
+
+      Gitlab.add_project_hook project.id, hook_url, \
+        push_events: true, issues_events: true, \
+        merge_requests_events: true, tag_push_events: true
     end
   end
 
