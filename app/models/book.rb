@@ -10,7 +10,6 @@ class Book < ActiveRecord::Base
   mount_uploader :cover, CoverUploader
 
   before_validation :set_default_slug
-  before_validation :set_default_user_id
 
   scope :explored, -> { where(explored: true) }
 
@@ -121,11 +120,6 @@ class Book < ActiveRecord::Base
     raise e
   end
 
-  def self.from_hook(pl)
-    user = User.find_by!(gitlab_id: pl['user_id'].to_i)
-    user.books.find_by!(gitlab_id: pl['project_id'].to_i)
-  end
-
   def entry_create(path, content = "", message = nil)
     entry = entries.create(path: path)
     return nil unless entry.valid?
@@ -134,11 +128,11 @@ class Book < ActiveRecord::Base
   end
 
   def git_origin_with_build
-    "git@#{ENV['GITLAB_REPO_HOST']}:#{author.user.id}/#{self.id}.git"
+    "git@#{ENV['GITLAB_REPO_HOST']}:#{author.username}/#{slug}.git"
   end
 
   def git_origin
-    "http://git.zhibimo.com/#{author.user.id}/#{self.id}.git"
+    "http://git.zhibimo.com/#{author.username}/#{slug}.git"
   end
 
   after_create do
@@ -155,6 +149,11 @@ class Book < ActiveRecord::Base
     end
   end
 
+  def self.from_hook(pl)
+    user = User.find_by!(gitlab_id: pl['user_id'].to_i)
+    user.books.find_by!(gitlab_id: pl['project_id'].to_i)
+  end
+
   private
 
   def set_default_slug
@@ -163,9 +162,4 @@ class Book < ActiveRecord::Base
     end
     self.slug.downcase!
   end
-
-  def set_default_user_id
-    self.user_id = 0
-  end
-
 end
