@@ -149,6 +149,12 @@ class Book < ActiveRecord::Base
     end
   end
 
+  after_destroy do
+    unless ENV['DISABLE_GITLIB']
+      Gitlab.delete_project gitlab_id
+    end
+  end
+
   private
 
   def set_default_slug
