@@ -9,7 +9,7 @@ class Author < ActiveRecord::Base
 
   has_many :books, dependent: :destroy
 
-  delegate :username, :to => :user
+  delegate :username, :email, :to => :user
 
   mount_uploader :avatar, AvatarUploader
 

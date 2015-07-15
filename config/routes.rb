@@ -10,12 +10,10 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show, :update, :create, :new] do
     resources :builds, only: [:create] do 
       collection do
-        get 'hook'
+        post 'hook'
       end
     end
   end
-
-  post 'api/v1/books/:id/hook' => 'builds#hook'
 
   get '/signin' => 'welcome#new', as: :signin
   get '/signout' => 'sessions#destroy', as: :signout
