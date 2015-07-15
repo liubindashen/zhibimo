@@ -54,7 +54,8 @@
       <div class="ui label">
         <%= @book.git_origin %>
         <a class="copy action detail" data-clipboard-text='<%= @book.git_origin %>'>
-          <i class='copy icon'></i></a>
+          <i class='copy icon'></i>
+        </a>
       </div>
       <div class='sub text'>更具体的仓库使用说明，请参考 <a href='#'>知笔墨 指南</a>。</div>
     </div>
@@ -78,9 +79,15 @@
       <div class='ui header'>
         <div class="ui horizontal label">
           <i class="user icon"></i> <%= @book.author.gitlab_username %>
+          <a class="copy action detail" data-clipboard-text='<%= @book.author.gitlab_username %>'>
+            <i class='copy icon'></i>
+          </a>
         </div>
         <div class="ui horizontal label">
-          <i class="unlock alternate icon"></i> <%= @book.author.gitlab_password %>
+          <i class="unlock alternate icon"></i><%= @book.author.gitlab_password %>
+          <a class="copy action detail" data-clipboard-text='<%= @book.author.gitlab_password %>'>
+            <i class='copy icon'></i>
+          </a>
         </div>
       </div>
 
