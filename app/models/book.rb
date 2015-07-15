@@ -145,7 +145,7 @@ class Book < ActiveRecord::Base
     unless ENV['DISABLE_GITLIB']
       project = Gitlab.create_project slug, path: slug, user_id: author.gitlab_id
       update_attributes!(gitlab_id: project.id)
-      Gitlab.add_project_hook(project.id, Rails.application.routes.url_helpers.hook_book_builds_url(id))
+      Gitlab.add_project_hook(project.id, Rails.application.routes.url_helpers.hook_book_builds_url(id, host: 'zhibimo.com'))
     end
   end
 
