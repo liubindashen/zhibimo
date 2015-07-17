@@ -10,7 +10,7 @@ class BookDecorator < Draper::Decorator
   end
 
   def html_url
-    "/read/#{basic_name}/index.html"
+    "/read/#{basic_name}/"
   end
   
   def pdf_url
