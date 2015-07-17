@@ -10,19 +10,19 @@ class BookDecorator < Draper::Decorator
   end
 
   def html_url
-    "/read/#{basic_name}/"
+    "/read/#{basic_name}/index.html"
   end
   
   def pdf_url
-    "/read/#{basic_name}.pdf"
+    "/read/#{basic_name}/#{object.slug}.pdf"
   end
 
   def mobi_url
-    "/read/#{basic_name}.mobi"
+    "/read/#{basic_name}/#{object.slug}.mobi"
   end
 
   def epub_url
-    "/read/#{basic_name}.epub"
+    "/read/#{basic_name}/#{object.slug}.epub"
   end
 
   def summary_html
