@@ -27,11 +27,11 @@ class Book < ActiveRecord::Base
   end
 
   def git_origin_with_build
-    "git@#{ENV['GITLAB_REPO_HOST']}:#{author.username}/#{slug}.git"
+    "git@git.zhibimo.com:#{namespace}.git"
   end
 
   def git_origin
-    "http://git.zhibimo.com/#{author.username}/#{slug}.git"
+    "http://git.zhibimo.com/#{namespace}.git"
   end
 
   after_create do
@@ -44,12 +44,6 @@ class Book < ActiveRecord::Base
       Gitlab.add_project_hook project.id, hook_url, \
         push_events: true, issues_events: true, \
         merge_requests_events: true, tag_push_events: true
-
-      build = builds.create! \
-        name: author.pen_name,
-        email: author.email,
-        message: 'first-commit',
-        at: DateTime.now
     end
   end
 
@@ -62,6 +56,10 @@ class Book < ActiveRecord::Base
   def self.from_hook(pl)
     user = User.find_by!(gitlab_id: pl['user_id'].to_i)
     user.books.find_by!(gitlab_id: pl['project_id'].to_i)
+  end
+
+  def namespace
+    "#{author.username}/#{slug}"
   end
 
   private

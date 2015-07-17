@@ -1,117 +1,82 @@
 class BuildJob < ActiveJob::Base
   queue_as :building
 
-  def perform(id)
-    build = Build.find id
-    book = build.book
-    author = book.author
+  def perform(id, force: false)
+    build = Build.find(id)
 
-    FileUtils.mkdir_p("#{Dir.home}/book-repos/#{user.id}")
-    book_repo = "#{Dir.home}/book-repos/#{user.id}/#{id}"
-    FileUtils.rm_rf(book_repo)
-    system("git clone #{git_origin_with_build} #{book_repo}")
-    commit = `cd #{book_repo} && git log --pretty=format:%H -1`.strip
-    commit_time = `cd #{book_repo} && git log --pretty=format:%ci -1`.to_time
+    # update build state to start
 
-    update_columns(building: false) and return if (commit == version and !force)
+    # repos path example: 
+    #   books/author/book/scm
+    # books path example: 
+    #   books/author/book/repelase/commit/
+    #   books/author/book/repelase/commit/book.pdf
+    #   books/author/book/repelase/commit/book.epub
+    #   books/author/book/repelase/commit/book.mobi
+    # books link example:
+    #   books/author/book/current/
 
-    update_columns(readme: File.read("#{book_repo}/README.md"), summary: File.read("#{book_repo}/SUMMARY.md"))
-  end
+    FileUtils.mkdir_p book_path = "#{Dir.home}/books/#{build.book.namespace}"
 
-  def make_html
-  end
+    FileUtils.cd book_path do
+      FileUtils.mkdir_p git_path = "scm"
+      FileUtils.mkdir_p commits_path = "commits"
+      FileUtils.mkdir_p release_path = "release"
 
-  def make_pdf
-  end
+      FileUtils.rm_rf commit_path = "#{commits_path}/#{build.commit}"
+      FileUtils.rm_rf release_path = "#{release_path}/#{build.commit}"
+      FileUtils.mkdir_p commit_path 
+      FileUtils.mkdir_p release_path
 
-  def make_mobi
-  end
+      current_path = "current"
 
-  def make_epub
-  end
+      # sync book git repo
+      if File.exists?("#{git_path}/objects")
+        FileUtils.cd git_path do
+          system("git fetch #{build.book.git_origin_with_build} master:master --force")
+        end
+      else
+        system("git clone #{build.book.git_origin_with_build} #{git_path} --bare")
+      end
 
-    # HTML begin
-    File.open("#{Dir.home}/.book.json", 'w') do |f|
-      f.puts JSON.dump({
-        language: 'zh-cn',
-        plugins: %w(tongji),
-        pluginsConfig: {
-          tongji: {
-            token: ENV['TONGJI_TOKEN']
-          }
-        }
-      })
+      # prework for book source
+      FileUtils.cd commit_path do
+        # clone commit with build for repo
+        system("git clone ../../#{git_path} . --recursive --branch master")
+        system('git rev-parse HEAD > .git_revision')
+        system('git rev-parse HEAD > git-version.html')
+
+        FileUtils.rm_rf '.git'
+
+        # check SUMMARY.md and README.md
+        FileUtils.touch %w(SUMMARY.md README.md)
+
+        # check book.json config file
+        File.open('book.json', 'w') do |conf|
+          conf.puts JSON.dump({
+            language: 'zh-cn',
+            plugins: %w(tongji),
+            pluginsConfig: { tongji: { token: ENV['TONGJI_TOKEN'] } }
+          })
+        end
+      end
+
+      # build html to books/author/book/release/commit/
+      system("gitbook build #{commit_path} #{release_path}")
+
+      # build pdf to books/author/book/release/commit/book.mobi
+      mobi_output = "#{release_path}/#{build.book.slug}.mobi"
+      system("gitbook mobi #{commit_path} #{mobi_output}")
+
+      # build epub to books/author/book/release/commit/book.epub
+      epub_output = "#{release_path}/#{build.book.slug}.epub"
+      system("gitbook epub #{commit_path} #{epub_output}")
+
+      # build pdf to books/author/book/release/commit/book.pdf
+      pdf_output = "#{release_path}/#{build.book.slug}.pdf"
+      system("xvfb-run gitbook pdf #{commit_path} #{pdf_output}")
+
+      system("rm -f #{current_path} && ln -sf #{release_path} #{current_path}")
     end
-
-    # settings
-    system("cat #{Dir.home}/.book.json > #{book_repo}/book.json")
-
-    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{id}")
-    html_new = "#{Dir.home}/book-builds/#{user.id}/#{id}/#{commit}"
-    system("gitbook build #{book_repo} #{html_new}")
-
-    FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
-    html_current = "#{Dir.home}/books/#{user.username}/#{slug}"
-    html_old = File.readlink(html_current) rescue nil
-
-    if File.exists?(html_new)
-      system("ln -snf #{html_new} #{html_current}")
-      FileUtils.rm_rf(html_old) if html_old.present? && html_old != html_new
-    end
-    # HTML end
-
-    # EPUB begin
-    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{id}")
-    epub_new = "#{Dir.home}/book-builds/#{user.id}/#{id}/#{commit}.epub"
-    system("gitbook epub #{book_repo} #{epub_new}")
-
-    FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
-    epub_current = "#{Dir.home}/books/#{user.username}/#{slug}.epub"
-    epub_old = File.readlink(epub_current) rescue nil
-
-    if File.exists?(epub_new)
-      system("ln -snf #{epub_new} #{epub_current}")
-      FileUtils.rm_rf(epub_old) if epub_old.present? && epub_old != epub_new
-    end
-    # EPUB end
-
-    # MOBI begin
-    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{id}")
-    mobi_new = "#{Dir.home}/book-builds/#{user.id}/#{id}/#{commit}.mobi"
-    system("gitbook mobi #{book_repo} #{mobi_new}")
-
-    FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
-    mobi_current = "#{Dir.home}/books/#{user.username}/#{slug}.mobi"
-    mobi_old = File.readlink(mobi_current) rescue nil
-
-    if File.exists?(mobi_new)
-      system("ln -snf #{mobi_new} #{mobi_current}")
-      FileUtils.rm_rf(mobi_old) if mobi_old.present? && mobi_old != mobi_new
-    end
-    # MOBI end
-
-    # PDF begin
-    FileUtils.mkdir_p("#{Dir.home}/book-builds/#{user.id}/#{id}")
-    pdf_new = "#{Dir.home}/book-builds/#{user.id}/#{id}/#{commit}.pdf"
-    system("xvfb-run gitbook pdf #{book_repo} #{pdf_new}")
-
-    FileUtils.mkdir_p("#{Dir.home}/books/#{user.username}")
-    pdf_current = "#{Dir.home}/books/#{user.username}/#{slug}.pdf"
-    pdf_old = File.readlink(pdf_current) rescue nil
-
-    if File.exists?(pdf_new)
-      system("ln -snf #{pdf_new} #{pdf_current}")
-      FileUtils.rm_rf(pdf_old) if pdf_old.present? && pdf_old != pdf_new
-    end
-    # PDF end
-
-    update_attributes(building: false, version: commit, version_time: commit_time)
-  rescue => e
-    update_attributes(building: false)
-    raise e
-  end
-
-  rescue
-
   end
 end

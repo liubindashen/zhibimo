@@ -1,10 +1,10 @@
 class BuildsController < ApplicationController
-  skip_before_action :verify_authenticity_token, on: :hook
+  protect_from_forgery :only => [:hook]
 
   def create
-    @book = Book.find params[:book_id]
-    BuildJob.perform_later(@book.id)
-    redirect_to book_path(@book), notice: '成功加入构建队列'
+    #@book = Book.find params[:book_id]
+    #BuildJob.perform_later(@book.id)
+    redirect_to book_path(@book), notice: 'UNKNOWN ACTION'
   end
 
   # "object_kind"=>"push", 
@@ -29,11 +29,13 @@ class BuildsController < ApplicationController
       commit = params['commits'].last
 
       build = book.builds.create! \
-        hash: params['checkout_sha'],
         name: book.author.pen_name,
         email: book.author.email,
         message: commit['message'],
-        at: DateTime.parse commit['timestamp']
+        commit: params['checkout_sha'],
+        at: DateTime.parse(commit['timestamp'])
+
+      BuildJob.perform_later(build.id)
     end
 
     render nothing: true
