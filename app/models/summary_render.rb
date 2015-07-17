@@ -17,6 +17,7 @@ class SummaryRender < Redcarpet::Render::HTML
   end
 
   def link(link, title, content)
+    link = 'index.md' if link == 'README.md'
     "<a href='#{@base_url}#{link.gsub(/\.md$/, '.html')}' target='_blank'>#{content}</a>"
   end
 end
