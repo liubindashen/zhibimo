@@ -3238,7 +3238,3 @@
 .ui.basic.button {
   min-width: 10.5em;
 }
-.ui.basic.button.fixed {
-  position: absolute;
-  margin-left: -5.25em;
-}

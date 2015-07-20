@@ -20,6 +20,7 @@
 //= require semantic-ui/dist/components/modal.min
 //= require semantic-ui/dist/components/label.min
 //= require semantic-ui/dist/components/feed.min
+//= require semantic-ui/dist/components/segment.min
 
 @import "retinajs/src/retina";
 
@@ -27,8 +28,12 @@
   .at2x('/images/book-background.png', 844px, 561px);
 }
 
-#slogan {
+#slogan.computer.only {
   .at2x('/images/logo-with-slogan.png', 770px, 36px);
+}
+
+#slogan.tablet.only.mobile.only {
+  .at2x('/images/logo.png', 108px, 36px);
 }
 
 #logo{

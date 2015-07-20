@@ -14,6 +14,10 @@
         <p class='ui tiny header'>让文字自由流动</p>
       </div>
 
+      <div id='slogan' class='ui tablet only mobile only center aligned column'>
+        <p class='ui tiny header'>让文字自由流动</p>
+      </div>
+
       <div class='one column row'>
         <div id='book-background' class='ui computer only center aligned column'>
           <div id='book-content' class="ui two column grid">
@@ -25,10 +29,17 @@
             </div>
           </div>
         </div>
+        <div class='ui mobile only tablet only center aligned column'>
+            <%= yield(:left_page) %>
+
+            <div class="ui hidden divider"></div>
+
+            <%= yield(:right_page) %>
+        </div>
       </div>
 
       <div class='one column row'>
-        <div id='footer' class="ui computer only column">
+        <div id='footer' class="ui column">
           <div id='footer_divider' class="ui horizontal divider">
              © 2015 zhibimo.com All rights reserved.
           </div>

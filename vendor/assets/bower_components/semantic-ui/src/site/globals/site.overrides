@@ -36,6 +36,11 @@
     .ui.button {
       bottom: 4.375em;
     }
+
+    .ui.basic.button {
+      position: absolute;
+      margin-left: -5.25em;
+    }
   }
 }
 
@@ -131,3 +136,4 @@
   display: block;
   margin-top: 0.25rem;
 }
+

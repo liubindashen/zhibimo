@@ -190,6 +190,10 @@ input::selection {
 #book-background > #book-content .ui.button {
   bottom: 4.375em;
 }
+#book-background > #book-content .ui.basic.button {
+  position: absolute;
+  margin-left: -5.25em;
+}
 #footer {
   width: 57em !important;
 }

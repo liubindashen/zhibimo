@@ -706,6 +706,11 @@ input::selection {
   bottom: 4.375em;
 }
 
+#book-background > #book-content .ui.basic.button {
+  position: absolute;
+  margin-left: -5.25em;
+}
+
 #footer {
   width: 57em !important;
 }
@@ -4505,11 +4510,6 @@ input::selection {
 
 .ui.basic.button {
   min-width: 10.5em;
-}
-
-.ui.basic.button.fixed {
-  position: absolute;
-  margin-left: -5.25em;
 }
 /*!
  * # Semantic UI 2.0.0 - Container
