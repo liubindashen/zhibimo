@@ -1,4 +1,5 @@
 #= require jquery
+#= require jquery_ujs
 #= require zeroclipboard
 #= require semantic-ui/dist/components/transition.min
 #= require semantic-ui/dist/components/dropdown.min

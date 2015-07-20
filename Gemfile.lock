@@ -9,6 +9,7 @@ GIT
 GEM
   remote: https://ruby.taobao.org/
   specs:
+    aasm (3.4.0)
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
       actionview (= 4.2.1)
@@ -316,6 +317,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   activeadmin (~> 1.0.0.pre1)
   angular-rails-templates
   better_errors

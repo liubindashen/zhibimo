@@ -36,6 +36,7 @@ gem 'sidekiq'
 gem 'bugsnag'
 gem 'rails-i18n'
 gem 'zeroclipboard-rails'
+gem 'aasm'
 
 gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'pundit'

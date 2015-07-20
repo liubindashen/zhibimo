@@ -6,10 +6,10 @@ class BuildsController < ApplicationController
     @book = current_author.books.find params[:book_id]
   end
 
-  def create
-    #@book = Book.find params[:book_id]
-    #BuildJob.perform_later(@book.id)
-    redirect_to book_path(@book), notice: 'UNKNOWN ACTION'
+  def update
+    book = current_author.books.find params[:book_id]
+    BuildJob.perform_later(book.builds.find(params[:id]).id)
+    redirect_to book_builds_path(@book, notice: '构建已加入队列，请等待。')
   end
 
   # "object_kind"=>"push", 

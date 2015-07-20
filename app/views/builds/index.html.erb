@@ -1,4 +1,26 @@
 <div class='ui text container'>
+  <h1 class='ui header'>
+    <%= @book.title %>
+    <div class='sub header'>
+      <a href='<%= book_path(@book) %>'>返回</a>
+    </div>
+  </h1>
+
+  <div class="ui icon message">
+    <i class="alarm outline icon"></i>
+    <div class="content">
+      <div class="header">
+        提示
+      </div>
+      <p>系统将会自动构建仓库最近一次接收到的内容并发布。</p>
+    </div>
+  </div>
+
+
+  <div class="ui horizontal form divider">
+    构建记录
+  </div>
+
   <div class="ui large feed">
     <%- @book.builds.each do |build| %>
       <div class="event">
@@ -20,7 +42,7 @@
           </div>
           <div class="meta">
             <code><%= build.short_commit %></code>
-            <a>
+            <a href="<%= build.read_url %>">
               查看此版本
             </a> 
           </div>
@@ -28,4 +50,16 @@
       </div>
     <% end %>
   </div>
+
+  <div class="ui horizontal form divider">
+    迁移说明
+  </div>
+
+  <p>
+    更改远程仓库地址后，会提示要求身份认证，请在书籍首页查看认证信息。
+  </p>
+  <p>
+    <code>cd $BOOKS_DIR/<%= @book.slug %></code><br />
+    <code>git remote set_url origin <%= @book.git_origin %></code><br />
+  </p>
 </div>
