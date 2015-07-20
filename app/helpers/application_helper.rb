@@ -1,9 +1,9 @@
 module ApplicationHelper
-  def avatar
-    if current_author && !current_author.avatar.blank?
-      current_author.avatar
+  def avatar(user = current_user)
+    if user.author && !user.author.avatar.blank?
+      user.author.avatar
     else
-      current_user.avatar
+      user.avatar
     end
   end
 end

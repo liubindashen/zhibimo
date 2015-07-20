@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resource :author, only: [:edit, :update, :new, :create]
 
   resources :books, only: [:index, :show, :update, :create, :new] do
-    resources :builds, only: [:create] do 
+    resources :builds, only: [:create, :index] do 
       collection do
         post 'hook'
       end
