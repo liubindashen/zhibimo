@@ -1,6 +1,6 @@
 class BuildsController < ApplicationController
-  before_action :auth_author!
-  protect_from_forgery :only => [:hook]
+  protect_from_forgery only:  :hook
+  before_action :auth_author!, except: :hook
 
   def index
     @book = current_author.books.find params[:book_id]
