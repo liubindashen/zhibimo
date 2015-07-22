@@ -44,53 +44,14 @@
   <% end %>
 
   <div class="ui horizontal form divider">
-    仓库信息
+    构建与预览
   </div>
 
-  <form class='ui form' action='<%= book_builds_path(@book) %>' method='POST'>
-    <div class="field">
-      <label>仓库地址</label>
-      <div class="ui label">
-        <%= @book.git_origin %>
-        <a class="copy action detail" data-clipboard-text='<%= @book.git_origin %>'>
-          <i class='copy icon'></i>
-        </a>
-      </div>
-      <div class='sub text'>更具体的仓库使用说明，请参考 <a href='#'>知笔墨 指南</a>。</div>
-    </div>
-    <a class="ui basic button" href='<%= book_builds_path(@book) %>'>构建</a>
-    <a id='view_gitlab_auth_info' class="ui basic button">认证信息</a>
-  </form>
+  <a class="ui basic button" target='_blank' href='<%= book_builds_path(@book) %>'>构建</a>
+  <a class="ui basic button" target='_blank' href='<%= @book.html_url %>'>预览</a>
 
-  <div class="ui form divider">
-  </div>
+  <div class="ui divider"></div>
 
   <a class="ui basic button" href='<%= books_path %>'>返回</a>
 </div>
 
-<div id='gitlab_auth_info_modal' class="ui modal">
-  <i class="close icon"></i>
-  <div class="header">
-    <%= @book.title %> 仓库认证信息
-  </div>
-  <div class="content">
-    <div class="description">
-      <div class='ui header'>
-        <div class="ui horizontal label">
-          <i class="user icon"></i> <%= @book.author.gitlab_username %>
-          <a class="copy action detail" data-clipboard-text='<%= @book.author.gitlab_username %>'>
-            <i class='copy icon'></i>
-          </a>
-        </div>
-        <div class="ui horizontal label">
-          <i class="unlock alternate icon"></i><%= @book.author.gitlab_password %>
-          <a class="copy action detail" data-clipboard-text='<%= @book.author.gitlab_password %>'>
-            <i class='copy icon'></i>
-          </a>
-        </div>
-      </div>
-
-      <p>更具体的仓库使用说明，请参考 <a href='#'>知笔墨 指南</a>。</p>
-    </div>
-  </div>
-</div>

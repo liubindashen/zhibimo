@@ -62,6 +62,10 @@ class Book < ActiveRecord::Base
     "#{author.username}/#{slug}"
   end
 
+  def html_url
+    "/read/#{namespace}/"
+  end
+
   private
 
   def set_default_slug
