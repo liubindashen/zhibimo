@@ -7,3 +7,10 @@ zh-CN:
     models:
       book: 图书
       dashboard: 控制面板
+    attributes:
+      build:
+        aasm_state:
+          idle: 等待构建
+          building: 构建中
+          complete: 构建成功
+          warning: 构建失败

@@ -22,7 +22,7 @@
   </div>
 
   <div class="ui large feed">
-    <%- @book.builds.each do |build| %>
+    <%- @builds.each do |build| %>
       <div class="event">
         <div class="label">
           <img src="<%= avatar(@book.author.user) %>">
@@ -32,19 +32,49 @@
             <a class="user">
               <%= @book.author.pen_name %>
             </a> 
-            进行了构建
+            提交图书内容 
+
             <div class="date">
               <%= time_ago_in_words(build.at) %>
             </div>
           </div>
+
           <div class="extra text">
+            <div class="ui label">
+              <code><%= build.short_commit %></code>
+            </div>
             <%= build.message %>
           </div>
-          <div class="meta">
-            <code><%= build.short_commit %></code>
-            <a href="<%= build.read_url %>">
-              查看此版本
-            </a> 
+
+          <div class='meta'>
+            <%- if build.idle? %>
+              <div class="ui label">
+                <i class="wait icon"></i>
+                <%= build.aasm.human_state %>
+              </div>
+            <% end %>
+
+            <%- if build.warning? %>
+              <div class="ui red label">
+                <i class="warning sign icon"></i>
+                <%= build.aasm.human_state %>
+              </div>
+            <% end %>
+
+            <%- if build.building? %>
+              <div class="ui blue label">
+                <i class="settings icon"></i>
+                <%= build.aasm.human_state %>
+              </div>
+            <% end %>
+
+            <%- if build.complete? %>
+              <a href="<%= build.read_url %>" class="ui green label">
+                <i class="checkmark icon"></i>
+                <%= build.aasm.human_state %>
+              </a>
+            <% end %>
+
           </div>
         </div>
       </div>

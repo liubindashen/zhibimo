@@ -7,27 +7,24 @@ class Build < ActiveRecord::Base
   aasm do
     state :idle, initial: true
     state :building
-    state :publishing
+    state :complete
+    state :warning
 
-    event :build do
-      transitions :from => :idle, :to => :building
+    event :do do
+      transitions :from => [:idle, :warning, :complete], :to => :building
+    end
+
+    event :oops do
+      transitions :from => :building, :to => :warning
     end
 
     event :done do
-      transitions :from => :building, :to => :idle
-    end
-
-    event :publish do
-      transitions :from => :idle, :to => :publishing
-    end
-
-    event :revocation do
-      transitions :from => :publishing, :to => :idle
+      transitions :from => :building, :to => :complete
     end
   end
 
   def read_url
-    "/read/#{book.namespace}/commits/#{commit}"
+    "/commits/#{book.namespace}/#{commit}"
   end
 
   def short_commit

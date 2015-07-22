@@ -3,18 +3,30 @@ class BuildJob < ActiveJob::Base
 
   def perform(id, force: false)
     build = Build.find(id)
+    return unless build.may_do?
+    build.do!
 
-    # update build state to start
+    build.with_lock do
+      begin
+        process(build)
+        build.done!
+      rescue
+        build.oops!
+      end
+    end
+  end
 
-    # repos path example: 
-    #   books/author/book/scm
-    # books path example: 
-    #   books/author/book/repelase/commit/
-    #   books/author/book/repelase/commit/book.pdf
-    #   books/author/book/repelase/commit/book.epub
-    #   books/author/book/repelase/commit/book.mobi
-    # books link example:
-    #   books/author/book/current/
+  # repos path example: 
+  #   books/author/book/scm
+  # books path example: 
+  #   books/author/book/repelase/commit/
+  #   books/author/book/repelase/commit/book.pdf
+  #   books/author/book/repelase/commit/book.epub
+  #   books/author/book/repelase/commit/book.mobi
+  # books link example:
+  #   books/author/book/current/
+  #
+  def process(build)
 
     FileUtils.mkdir_p book_path = "#{Dir.home}/books/#{build.book.namespace}"
 

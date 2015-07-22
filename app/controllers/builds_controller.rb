@@ -4,6 +4,7 @@ class BuildsController < ApplicationController
 
   def index
     @book = current_author.books.find params[:book_id]
+    @builds = @book.builds.order('id desc')
   end
 
   def update
