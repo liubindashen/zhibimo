@@ -102,11 +102,6 @@ GEM
     commonjs (0.2.7)
     connection_pool (2.1.0)
     debug_inspector (0.0.2)
-    draper (2.1.0)
-      actionpack (>= 3.0)
-      activemodel (>= 3.0)
-      activesupport (>= 3.0)
-      request_store (~> 1.0)
     erubis (2.7.0)
     execjs (2.4.0)
     faraday (0.9.1)
@@ -329,7 +324,6 @@ DEPENDENCIES
   carrierwave
   chinese_pinyin
   coffee-rails (~> 4.1.0)
-  draper
   faraday
   figaro
   gitlab!

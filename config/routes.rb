@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   namespace :explore do
     resources :books, only: [:index, :show]
     resources :downloads, only: [:show]

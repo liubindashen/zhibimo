@@ -4,6 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
+  config.site_title = "知笔墨"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -29,11 +30,10 @@ ActiveAdmin.setup do |config|
   # will namespace routes to /hello_world/*
   #
   # To set no namespace by default, use:
-  # config.default_namespace = false
-
+  #   config.default_namespace = false
   #
   # Default:
-  config.default_namespace = :dashboard
+  # config.default_namespace = :admin
   #
   # You can customize the settings for each namespace by using
   # a namespace block. For example, to change the site title
@@ -45,26 +45,6 @@ ActiveAdmin.setup do |config|
   #
   # This will ONLY change the title for the admin section. Other
   # namespaces will continue to use the main "site_title" configuration.
-  
-  config.namespace :dashboard do |dashboard|
-    dashboard.site_title = "知笔墨"
-    dashboard.root_to = 'welcome#index'
-    dashboard.current_user_method = :current_user
-    dashboard.authentication_method = :auth_user!
-    dashboard.logout_link_path = :signout_path
-
-    dashboard.build_menu :utility_navigation do |menu|
-      menu.add label: '首页', url: :root_path, html_options: { target: :blank }, priority: 2
-      menu.add label: '书架', url: :explore_index_path, html_options: { target: :blank }, priority: 3
-      dashboard.add_current_user_to_menu menu, 1
-      dashboard.add_logout_button_to_menu menu
-    end
-  end
-  
-  config.namespace :admin do |admin|
-    admin.site_title = "Admin Dashboard"
-    admin.root_to = 'dashboard#index'
-  end
 
   # == User Authentication
   #
@@ -74,7 +54,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the application controller.
-  # config.authentication_method = :authenticate_admin_user!
+  config.authentication_method = :authenticate_admin_user!
 
   # == User Authorization
   #
@@ -106,7 +86,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # (within the application controller) to return the currently logged in user.
-  # config.current_user_method = :current_admin_user
+  config.current_user_method = :current_admin_user
 
   # == Logging Out
   #
@@ -118,6 +98,7 @@ ActiveAdmin.setup do |config|
   # will call the method to return the path.
   #
   # Default:
+  config.logout_link_path = :signout_path
 
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
@@ -141,7 +122,7 @@ ActiveAdmin.setup do |config|
   config.comments = false
   #
   # You can disable the menu item for the comments index page:
-  config.show_comments_in_menu = false
+  # config.show_comments_in_menu = false
   #
   # You can change the name under which comments are registered:
   # config.comments_registration_name = 'AdminComment'
@@ -249,6 +230,4 @@ ActiveAdmin.setup do |config|
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
-
-  config.load_paths += [File.join(Rails.root, "app", "dashboard")]
 end

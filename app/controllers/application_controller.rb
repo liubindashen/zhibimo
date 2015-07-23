@@ -16,6 +16,13 @@ class ApplicationController < ActionController::Base
     @current_author ||= (current_user && current_user.author)
   end
 
+  def current_admin_user
+    @admin_list ||= ENV['ADMIN_LIST'].split(',')
+    @current_admin_user ||= if current_user && @admin_list.include?(current_user.username)
+                              current_user
+                            end
+  end
+
   def auth_user!
     unless current_user
       push_redirect_back_url
@@ -32,6 +39,12 @@ class ApplicationController < ActionController::Base
 
   def auth_visitor!
     redirect_to root_path if current_user
+  end
+
+  def authenticate_admin_user!
+    unless current_admin_user
+      redirect_to root_path
+    end
   end
 
   def push_redirect_back_url

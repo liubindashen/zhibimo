@@ -9,6 +9,8 @@ class Book < ActiveRecord::Base
   has_many :builds, dependent: :destroy
   has_many :entries, dependent: :destroy
 
+  delegate :pen_name, :to => :author, :prefix => true
+
   scope :explored, -> { where(explored: true) }
 
   def gitlab

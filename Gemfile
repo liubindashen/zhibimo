@@ -20,7 +20,6 @@ gem 'omniauth-github'
 gem 'gitlab', github: 'NARKOZ/gitlab'
 gem 'gon'
 gem 'faraday'
-gem 'draper'
 
 gem 'bower-rails'
 gem 'angular-rails-templates'
