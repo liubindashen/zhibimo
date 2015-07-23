@@ -1,11 +1,11 @@
 module Explore
   class BooksController < BaseController
     def index
-      @books = scope.decorate
+      @books = scope
     end
 
     def show
-      @book = scope.find_by_slug(params[:id]).decorate
+      @book = scope.find_by_slug(params[:id])
     end
 
     private

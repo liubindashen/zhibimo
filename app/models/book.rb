@@ -21,6 +21,7 @@ class Book < ActiveRecord::Base
     File.exists?("#{Dir.home}/books/#{author.username}/#{slug}/cover.jpg") ?
       "http://zhibimo.com/read/#{author.username}/#{slug}/cover.jpg" : default
   end
+
   def entry_create(path, content = "", message = nil)
     entry = entries.create(path: path)
     return nil unless entry.valid?
@@ -66,6 +67,25 @@ class Book < ActiveRecord::Base
 
   def html_url
     "/read/#{namespace}/"
+  end
+
+
+  def summary_html
+    render = SummaryRender.new base_url: html_url
+    markdown = Redcarpet::Markdown.new(render)
+    markdown.render(summary || "")
+  end
+
+  def pdf_url
+    "/read/#{namespace}/#{slug}.pdf"
+  end
+
+  def mobi_url
+    "/read/#{namespace}/#{slug}.mobi"
+  end
+
+  def epub_url
+    "/read/#{namespace}/#{slug}.epub"
   end
 
   private
