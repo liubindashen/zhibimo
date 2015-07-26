@@ -266,9 +266,12 @@ input::selection {
 .ui.form > .field:last-of-type {
   margin-bottom: 3.75em !important;
 }
-.ui.form > .field > .sub.text {
+.ui.form .field > .sub.text {
   color: #b3b3b3;
   font-size: 0.875rem;
   display: block;
   margin-top: 0.25rem;
+}
+.tiny.divider {
+  margin: .3em 0 !important;
 }

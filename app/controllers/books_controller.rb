@@ -47,7 +47,7 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :slug, :cover, :intro)
+    params.require(:book).permit(:title, :slug, :cover, :intro, :profit, :price, :donate)
   end
 
   def scope

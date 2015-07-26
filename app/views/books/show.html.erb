@@ -44,6 +44,36 @@
   <% end %>
 
   <div class="ui horizontal form divider">
+    购买方式
+  </div>
+
+  <%= form_for @book, html: {class: 'ui form'} do |f| %>
+    <div class="fields">
+      <div class="field">
+        <div id='donate_radio' class="ui radio checkbox">
+          <%= f.radio_button :profit, 'donate' %>
+          <label>接受捐赠</label>
+        </div>
+      </div>
+      <div class="field">
+        <div id='purchase_radio' class="ui radio checkbox">
+          <%= f.radio_button :profit, 'purchase' %>
+          <label>收费阅读</label>
+        </div>
+      </div>
+    </div>
+
+    <div id='price_field' class="field">
+      <label>图书价格</label>
+      <div class="ui left icon large input">
+        <i class="yen icon"></i>
+        <%= f.text_field :price, placeholder: '给图书定个合适的价格。' %>
+      </div>
+      <span class='sub text'>关于收费阅读的<a target='_blank' href='#'>详细说明</a>。</span>
+    </div>
+  <% end %>
+
+  <div class="ui horizontal form divider">
     构建与预览
   </div>
 
@@ -54,4 +84,3 @@
 
   <a class="ui basic button" href='<%= books_path %>'>返回</a>
 </div>
-

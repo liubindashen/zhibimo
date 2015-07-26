@@ -5,6 +5,7 @@
 #= require semantic-ui/dist/components/dropdown.min
 #= require semantic-ui/dist/components/dimmer.min
 #= require semantic-ui/dist/components/modal.min
+#= require semantic-ui/dist/components/checkbox.min
 
 jQuery.fn.exists = -> @length > 0
 
@@ -24,3 +25,27 @@ $ ->
 
   $('#view_gitlab_auth_info').click ->
     $('#gitlab_auth_info_modal').modal({blurring: true}).modal('show')
+
+  if $('#new_book').exists()
+    $('#accept_term_checkbox').checkbox
+      onChecked: ->
+        $("#new_book [type=submit]").removeClass('disabled')
+      onUnchecked: ->
+        $("#new_book [type=submit]").addClass('disabled')
+
+    $('#purchase_radio').checkbox
+      onChecked: ->
+        $('#free_field').hide()
+        $('#purchase_field').show()
+
+    $('#free_radio').checkbox
+      onChecked: ->
+        $('#free_field').show()
+        $('#purchase_field').hide()
+
+    if $('#purchase_radio').checkbox('is checked')
+      $('#free_field').hide()
+      $('#purchase_field').show()
+    else
+      $('#free_field').show()
+      $('#purchase_field').hide()

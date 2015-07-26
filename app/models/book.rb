@@ -1,7 +1,8 @@
 class Book < ActiveRecord::Base
+  extend Enumerize
   mount_uploader :cover, CoverUploader
 
-  before_validation :set_default_slug
+  before_validation :set_default
   validates :slug, presence: true, uniqueness: {scope: :author_id}, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
   validates :gitlab_id, presence: true, uniqueness: true, on: :update
 
@@ -9,6 +10,12 @@ class Book < ActiveRecord::Base
   has_many :builds, dependent: :destroy
   has_many :entries, dependent: :destroy
 
+  enumerize :profit, in: [:free, :purchase], default: :free, predicates: true
+
+  validates_presence_of :profit
+  validates :donate, inclusion: {in: [true, false]}, if: 'free?'
+  validates :price, numericality: { only_integer: true, greater_than: 0, less_than: 1000}, if: 'purchase?'
+  
   delegate :pen_name, :to => :author, :prefix => true
 
   scope :explored, -> { where(explored: true) }
@@ -90,10 +97,13 @@ class Book < ActiveRecord::Base
 
   private
 
-  def set_default_slug
+  def set_default
     if (!self.slug or self.slug.empty?) and self.title
       self.slug = Pinyin.t(self.title, splitter: '-')
     end
+
     self.slug.downcase!
+
+    return
   end
 end

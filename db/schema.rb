@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722171444) do
+ActiveRecord::Schema.define(version: 20150726050303) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20150722171444) do
   create_table "books", force: :cascade do |t|
     t.boolean  "building",     limit: 1
     t.string   "title",        limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "gitlab_id",    limit: 4
     t.string   "slug",         limit: 255
     t.string   "version",      limit: 255
@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 20150722171444) do
     t.boolean  "explored",     limit: 1
     t.integer  "author_id",    limit: 4
     t.text     "intro",        limit: 65535
+    t.string   "profit",       limit: 255
+    t.decimal  "price",                      precision: 10
+    t.boolean  "donate",       limit: 1
   end
 
   create_table "builds", force: :cascade do |t|
@@ -87,6 +90,18 @@ ActiveRecord::Schema.define(version: 20150722171444) do
 
   add_index "entries", ["book_id", "path"], name: "index_entries_on_book_id_and_path", unique: true, using: :btree
   add_index "entries", ["book_id"], name: "index_entries_on_book_id", using: :btree
+
+  create_table "orders", id: false, force: :cascade do |t|
+    t.string   "id",           limit: 255,                null: false
+    t.integer  "book_id",      limit: 4
+    t.integer  "user_id",      limit: 4
+    t.string   "aasm_state",   limit: 255
+    t.decimal  "fee",                      precision: 10
+    t.string   "wx_prepay_id", limit: 255
+    t.string   "wx_code_url",  limit: 255
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",   limit: 64,  null: false

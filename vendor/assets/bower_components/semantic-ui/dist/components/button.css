@@ -3238,3 +3238,6 @@
 .ui.basic.button {
   min-width: 10.5em;
 }
+.ui.button {
+  min-width: 10.5em;
+}
