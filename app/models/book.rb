@@ -10,6 +10,9 @@ class Book < ActiveRecord::Base
   has_many :builds, dependent: :destroy
   has_many :entries, dependent: :destroy
 
+  has_many :orders, dependent: :destroy
+  has_many :purchasers, through: :orders, class_name: User, foreign_key: :user_id
+
   enumerize :profit, in: [:free, :purchase], default: :free, predicates: true
 
   validates_presence_of :profit
@@ -19,6 +22,10 @@ class Book < ActiveRecord::Base
   delegate :pen_name, :to => :author, :prefix => true
 
   scope :explored, -> { where(explored: true) }
+
+  def check_purchaser(user)
+    purchasers.where(id: user.id).exists?
+  end
 
   def gitlab
     @gitlab_obj ||= Gitlab.project gitlab_id

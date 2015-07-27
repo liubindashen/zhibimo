@@ -56,6 +56,8 @@ class ApplicationController < ActionController::Base
       url = session[:redirect_back_url]
       session[:redirect_back_url] = nil
       url
+    else
+      false
     end
   end
 end

@@ -26,32 +26,10 @@
     </div>
     <!-- Book Basic Info end -->
 
-    <!-- Download Links start -->
-    <div class='mobile only row'>
-      <div class="center aligned sixteen wide column">
-        <a target='_blank' class="ui basic button" href='<%= @book.html_url %>'>阅读</a>
-        <div class="ui hidden small divider"></div>
-        <%- if @book.free? %>
-          <a target='_blank' class="ui basic button" href='<%= explore_download_path(@book.slug) %>'>下载</a>
-          <div class="ui hidden small divider"></div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class='tablet only computer only padding row'>
-      <div class="right floated left aligned eleven wide column">
-        <%- if @book.free? %>
-          <a class="ui basic button" href='<%= @book.html_url %>'>阅读</a>
-          <a target='_blank' class="ui basic button" href='<%= explore_download_path(@book.slug) %>'>下载</a>
-        <% end %>
-      </div>
-    </div>
-    <!-- Download Links over -->
-
     <%- if @book.intro %>
     <!-- Book Intro start -->
     <div class='mobile only tablet only row'>
-      <div class="sixteen wide column">
+      <div class="right floated fifteen  wide column">
         <p><%= @book.intro %></p>
       </div>
     </div>
@@ -68,6 +46,9 @@
 
     <!-- Summary start -->
     <div class='mobile only tablet only row'>
+      <div class="right floated fifteen wide column">
+        <%== @book.summary_html %>
+      </div>
     </div>
     <div class='computer only padding row'>
       <div class="left floated right aligned top aligned five wide column">

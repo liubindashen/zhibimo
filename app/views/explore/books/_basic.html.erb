@@ -2,4 +2,18 @@
 <div class="sub header">
   作者 
   <a href='<%= explore_author_path(book.author.username) %>'><%= book.author.pen_name %></a>
+  <div class="ui hidden divider"></div>
+  <%- if book.free? %>
+    <a target='_blank' href='<%= book.html_url %>'>免费阅读</a>
+    <a target='_blank' href='<%= explore_download_path(book.slug) %>'>下载</a>
+    <a href='<%= new_explore_book_donate_path(book)%>'>捐赠</a>
+  <% end %>
+
+  <%- if book.purchase? %>
+    <%- if current_user && book.check_purchaser(current_user) %>
+      已购图书 <a target='_blank' href='<%= book.html_url %>'>阅读</a>
+    <% else %>
+      付费阅读 <a target='_blank' href='<%= new_explore_book_orders_path(book) %>'>购买</a>
+    <% end %>
+  <% end %>
 </div>

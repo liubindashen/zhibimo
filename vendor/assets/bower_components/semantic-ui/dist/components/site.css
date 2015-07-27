@@ -250,9 +250,6 @@ input::selection {
   width: 100%;
   background-size: 3.75em 100%;
 }
-.board.row .ui.header {
-  padding-bottom: 2em;
-}
 .padding.row {
   padding-left: 3.75em !important;
   padding-right: 3.75em !important;

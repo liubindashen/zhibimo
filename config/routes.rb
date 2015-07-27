@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   namespace :explore do
-    resources :books, only: [:index, :show]
+    resources :books, only: [:index, :show] do
+      resources :donates, only: [:new, :show, :create] do
+        post :callback
+      end
+      resources :purchases, only: [:show, :create, :callback]
+    end
     resources :downloads, only: [:show]
     resources :authors, only: [:show]
   end
@@ -10,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :books, only: [:index, :show, :update, :create, :new] do
     resource :purchase, only: [:edit, :update]
-    resources :builds, only: [:update, :index] do 
+    resources :builds, only: [:update, :index] do
       collection do
         post 'hook'
       end

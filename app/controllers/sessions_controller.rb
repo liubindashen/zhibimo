@@ -26,6 +26,6 @@ class SessionsController < ApplicationController
   def user_from_auth(auth)
     user = User.from_auth(auth)
     session[:user_id] = user.id
-    redirect_to books_path
+    redirect_to pop_redirect_back_url || books_path
   end
 end

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_one :author
   has_many :books, foreign_key: :user_id
+  has_many :orders, foreign_key: :purchaser_id
 
   mount_uploader :avatar, AvatarUploader
 

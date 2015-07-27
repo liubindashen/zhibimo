@@ -5,6 +5,7 @@ module Explore
     end
 
     def show
+      push_redirect_back_url
       @book = scope.find_by_slug(params[:id])
     end
 

@@ -776,10 +776,6 @@ input::selection {
   background-size: 3.75em 100%;
 }
 
-.board.row .ui.header {
-  padding-bottom: 2em;
-}
-
 .padding.row {
   padding-left: 3.75em !important;
   padding-right: 3.75em !important;
@@ -789,8 +785,7 @@ input::selection {
   resize: none !important;
 }
 
-.ui.form > .field,
-.ui.form > .fields {
+.ui.form > .field {
   margin-bottom: 2.5em !important;
 }
 
