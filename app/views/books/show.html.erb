@@ -28,49 +28,43 @@
   <%= form_for @book, html: {class: 'ui form'} do |f| %>
     <div class="field">
       <label>图书标题</label>
-      <%= f.text_field :title, placeholder: '好的名字是基础。' %>
+      <%= f.text_field :title, placeholder: '好的名字是基础。', autocomplete: :off %>
     </div>
     <div class="field">
       <label>图书简介</label>
       <%= f.text_area :intro, rows: '5', placeholder: '写个简介，让大家都知道为什么要读这本书。' %>
     </div>
+
     <div class="field">
       <label>图书封面</label>
       <%= f.file_field :cover %>
       <span class='sub text'>建议上传质量高的封面。</span>
     </div>
 
-    <button class="ui basic button" type="submit">保存</button>
-  <% end %>
-
-  <div class="ui horizontal form divider">
-    购买方式
-  </div>
-
-  <%= form_for @book, html: {class: 'ui form'} do |f| %>
-    <div class="fields">
-      <div class="field">
-        <div id='donate_radio' class="ui radio checkbox">
-          <%= f.radio_button :profit, 'donate' %>
-          <label>接受捐赠</label>
-        </div>
-      </div>
-      <div class="field">
-        <div id='purchase_radio' class="ui radio checkbox">
-          <%= f.radio_button :profit, 'purchase' %>
-          <label>收费阅读</label>
-        </div>
+    <%- if @book.free? %>
+    <div class='field'>
+      <div class="ui checkbox">
+        <%= f.check_box :donate, {}, 'true', 'false' %>
+        <label>接收捐赠</label>
       </div>
     </div>
+    <% end %>
 
-    <div id='price_field' class="field">
-      <label>图书价格</label>
+    <%- if @book.purchase? %>
+    <div class='field'>
+      <label>付费阅读 图书价格</label>
       <div class="ui left icon large input">
         <i class="yen icon"></i>
-        <%= f.text_field :price, placeholder: '给图书定个合适的价格。' %>
+        <%= f.text_field :price, placeholder: '给图书定个合适的价格。', autocomplete: :off %>
       </div>
-      <span class='sub text'>关于收费阅读的<a target='_blank' href='#'>详细说明</a>。</span>
+      <span class='sub text'><b><i class='warning icon'></i>付费图书将不得转为免费</b>，更多关于付费阅读的说明请参考 <a target='_blank' href='#'>知笔墨用户指南</a>。</span>
     </div>
+    <% end %>
+
+    <button class="ui basic button" type="submit">保存</button>
+    <%- if @book.free? %>
+      <a class="ui basic button" href='<%= edit_book_purchase_path(@book) %>'>转为付费阅读</a>
+    <% end %>
   <% end %>
 
   <div class="ui horizontal form divider">

@@ -1,4 +1,13 @@
 namespace :book do
+  desc "Set book for free."
+  task :profit_to_free => :environment do
+    Book.all.each do |b|
+      b.profit = :free
+      b.donate = true
+      b.save
+    end
+  end
+
   desc "Rebuild book for Gitlab."
   task :rebuild_gitlab => :environment do
     Book.all.each do |b|

@@ -1,0 +1,22 @@
+<div class='ui text container'>
+  <h1 class='ui header'>
+    <%= @book.title %> - 转付费阅读
+    <div class='sub header'>
+      <b><i class='warning icon'></i>付费图书将不得转为免费</b>，更多关于付费阅读的说明请参考 <a target='_blank' href='#'>知笔墨用户指南</a>。
+    </div>
+  </h1>
+
+  <%= form_for @book, html: {class: 'ui form'}, url: book_purchase_path do |f| %>
+    <div class='field'>
+      <label>付费阅读 图书价格</label>
+      <div class="ui left icon large input">
+        <i class="yen icon"></i>
+        <%= f.text_field :price, placeholder: '给图书定个合适的价格。', autocomplete: :off %>
+      </div>
+    </div>
+
+    <button class="ui primary button" type="submit">确定</button>
+    <a class='ui basic button' href='<%= book_path(@book) %>'>取消</a>
+  <% end %>
+</div>
+
