@@ -13,7 +13,7 @@
     <%- if current_user && book.check_purchaser(current_user) %>
       已购图书 <a target='_blank' href='<%= book.html_url %>'>阅读</a>
     <% else %>
-      付费阅读 <a target='_blank' href='<%= new_explore_book_orders_path(book) %>'>购买</a>
+      付费阅读 <%= link_to '购买', explore_book_purchases_path(book), method: :post %>
     <% end %>
   <% end %>
 </div>

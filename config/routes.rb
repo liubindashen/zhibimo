@@ -5,7 +5,9 @@ Rails.application.routes.draw do
       resources :donates, only: [:new, :show, :create] do
         post :callback
       end
-      resources :purchases, only: [:show, :create, :callback]
+      resources :purchases, only: [:show, :create] do
+        post :callback
+      end
     end
     resources :downloads, only: [:show]
     resources :authors, only: [:show]

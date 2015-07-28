@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
   def auth_user!
     unless current_user
-      push_redirect_back_url
+      push_redirect_back_url if request.request_method == 'GET'
       redirect_to signin_path 
     end
   end

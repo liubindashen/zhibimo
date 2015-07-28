@@ -1,0 +1,36 @@
+<div class="ui text container">
+  <div class="ui huge breadcrumb">
+    <a class="section" href='<%= explore_book_path(@book.slug) %>'><%= @book.title %></a>
+    <i class="right chevron icon divider"></i>
+    <div class="action section">付费阅读</div>
+  </div>
+
+  <div class="ui attached message">
+    <div class="header">
+      感谢您对图书作者 <%= @book.author_pen_name %> 的支持。
+    </div>
+    <p>打开微信，使用 “扫一扫” 功能扫描下面的二维码进行支付。</p>
+  </div>
+  <%= form_tag explore_book_purchase_path(@book, @order), method: :get, class: 'ui form attached fluid segment' do %>
+    <div class='field'>
+      <img class='ui bordered image' src='/uploads/qrcode/<%= @order.id %>.png' />
+    </div>
+
+    <div class="ui divided selection list">
+      <a class="item">
+        <div class="ui horizontal label">支付金额</div>
+        <%= number_to_currency @order.fee %>
+      </a>
+      <a class="item">
+        <div class="ui horizontal label">订单编号</div>
+        <%= @order.id %>
+      </a>
+      <a class="item">
+        <div class="ui horizontal label">支付时效</div>
+        120 分钟
+      </a>
+    </div>
+
+    <button class="ui primary button" type="submit">支付成功</button>
+  <% end %>
+</div>

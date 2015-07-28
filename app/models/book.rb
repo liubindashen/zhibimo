@@ -11,7 +11,8 @@ class Book < ActiveRecord::Base
   has_many :entries, dependent: :destroy
 
   has_many :orders, dependent: :destroy
-  has_many :purchasers, through: :orders, class_name: User, foreign_key: :user_id
+  has_many :complete_orders, -> { where aasm_state: :complete}, class_name: Order
+  has_many :purchasers, through: :complete_orders, class_name: User, foreign_key: :user_id
 
   enumerize :profit, in: [:free, :purchase], default: :free, predicates: true
 
