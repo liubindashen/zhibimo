@@ -27,7 +27,7 @@ body {
   overflow-x: hidden;
   min-width: 320px;
   background: #ffffff;
-  font-family: 'Helvetica Neue', Arial, Helvetica, 'Hiragino Sans GB', sans-serif;
+  font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   font-size: 16px;
   line-height: 1.4285em;
   color: #252c33;
@@ -44,7 +44,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Helvetica Neue', Arial, Helvetica, 'Hiragino Sans GB', sans-serif;
+  font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   line-height: 2.125em;
   margin: calc(2rem -  0.5625em ) 0em 1rem;
   font-weight: normal;

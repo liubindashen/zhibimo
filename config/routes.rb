@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resource :author, only: [:edit, :update, :new, :create]
 
   resources :books, only: [:index, :show, :update, :create, :new] do
+    resources :orders, only: [:index]
     resource :purchase, only: [:edit, :update]
     resources :builds, only: [:update, :index] do
       collection do

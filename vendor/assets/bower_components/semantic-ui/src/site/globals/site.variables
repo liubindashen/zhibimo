@@ -2,8 +2,9 @@
      User Global Variables
 *******************************/
 
-@headerFont        : 'Helvetica Neue', Arial, Helvetica, 'Hiragino Sans GB', sans-serif;
-@pageFont          : 'Helvetica Neue', Arial, Helvetica, 'Hiragino Sans GB', sans-serif;
+
+@headerFont        : 'lucida grande','lucida sans unicode',lucida,helvetica,'Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei',sans-serif;
+@pageFont          : 'lucida grande','lucida sans unicode',lucida,helvetica,'Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei',sans-serif;
 @fontSmoothing     : antialiased;
 @importGoogleFonts : false;
 

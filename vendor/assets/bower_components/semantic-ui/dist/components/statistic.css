@@ -112,7 +112,7 @@
 
 .ui.statistics .statistic > .value,
 .ui.statistic > .value {
-  font-family: 'Helvetica Neue', Arial, Helvetica, 'Hiragino Sans GB', sans-serif;
+  font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   font-size: 4rem;
   font-weight: normal;
   line-height: 1em;
@@ -127,7 +127,7 @@
 
 .ui.statistics .statistic > .label,
 .ui.statistic > .label {
-  font-family: 'Helvetica Neue', Arial, Helvetica, 'Hiragino Sans GB', sans-serif;
+  font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   font-size: 0.875em;
   font-weight: bold;
   color: #252c33;

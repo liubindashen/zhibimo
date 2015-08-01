@@ -158,7 +158,7 @@ ol.ui.list ol li,
 .ui.list > .item .header {
   display: block;
   margin: 0em;
-  font-family: 'Helvetica Neue', Arial, Helvetica, 'Hiragino Sans GB', sans-serif;
+  font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   font-weight: bold;
   color: #252c33;
 }
@@ -920,3 +920,6 @@ ol.ui.horizontal.list li:before,
     User Variable Overrides
 *******************************/
 
+.ui.large.list > .item {
+  line-height: 1.5rem !important;
+}

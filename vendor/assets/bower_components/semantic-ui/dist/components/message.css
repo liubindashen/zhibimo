@@ -42,7 +42,7 @@
 /* Header */
 .ui.message .header {
   display: block;
-  font-family: 'Helvetica Neue', Arial, Helvetica, 'Hiragino Sans GB', sans-serif;
+  font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   font-weight: bold;
   margin: -0.5625em 0em 0rem 0em;
 }

@@ -1,3 +1,6 @@
 /*******************************
     User Variable Overrides
 *******************************/
+.ui.large.list > .item {
+  line-height: 1.5rem !important;
+}

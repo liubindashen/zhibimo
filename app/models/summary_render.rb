@@ -9,7 +9,7 @@ class SummaryRender < Redcarpet::Render::HTML
   end
 
   def list(contents, list_type)
-    "<div class='ui list'>#{contents}</div>"
+    "<div class='ui large list'>#{contents}</div>"
   end
 
   def list_item(text, list_type)

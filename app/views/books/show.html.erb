@@ -65,6 +65,8 @@
     <%- if @book.free? %>
       <a class="ui basic button" href='<%= edit_book_purchase_path(@book) %>'>转为付费阅读</a>
     <% end %>
+    <a class="ui basic button" target='_blank' href='<%= book_orders_path(@book) %>'>查看支付订单</a>
+
   <% end %>
 
   <div class="ui horizontal form divider">
