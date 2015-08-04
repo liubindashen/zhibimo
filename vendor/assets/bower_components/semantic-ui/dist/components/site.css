@@ -272,3 +272,6 @@ input::selection {
 .tiny.divider {
   margin: .3em 0 !important;
 }
+.ui.divided.items > .item .content + .ui.image {
+  margin-left: 1rem;
+}

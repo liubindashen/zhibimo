@@ -1,21 +1,31 @@
 <div class='ui text container'>
+  <div class="ui huge breadcrumb">
+    <span class="section">写作</span>
+    <i class="right chevron icon divider"></i>
+    <span class="section">我的图书</span>
+    <span class='ui split'></span>
+    <a class='ui align right' href='<%= new_book_path %>'>
+      <i class='ui add icon'></i>
+    </a>
+  </div>
+
   <div class="ui divided items">
     <%- @books.each do |book| %>
       <div class="item">
         <div class="content">
-          <a class="header" href='<%= book_path(book) %>'><%= book.title %></a>
-          <div class="meta">
-            <span class="slug"><%= book.slug %></span>
+          <a class="header" href='<%= book_path(book) %>'> <%= book.title %> </a>
+          <div class='meta'>
+            <span><%= book.slug %></span>
           </div>
           <div class="extra">
-            <%= book.intro %>
+            <p><%= book.intro %></p>
+            <a target='_blank' href='<%= book_orders_path(book) %>'>订单</a>
+            <a target='_blank' href='<%= book.html_url %>'>预览</a>
+            <a target='_blank' href='<%= book_builds_path(book) %>'>构建</a>
           </div>
         </div>
         <img class='ui bordered image' src="<%= book.cover.preview.url %>">
       </div>
     <% end %>
-    <div class="item">
-      <%= link_to '创建图书', new_book_path, class: 'ui basic button' %>
-    </div>
   </div>
 </div>

@@ -2,7 +2,7 @@
 <div class="sub header">
   作者 <a href='<%= explore_author_path(book.author.username) %>'><%= book.author.pen_name %></a>
 
-  <span style=" min-width: 10px; display: inline-block; "></span>
+  <span class='ui split'></span>
 
   <%- if book.free? %>
     <a target='_blank' href='<%= book.html_url %>'>免费阅读</a>
