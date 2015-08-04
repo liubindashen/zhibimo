@@ -1,9 +1,17 @@
 <div class="ui text container">
+  <%- if @book %>
   <div class="ui huge breadcrumb">
     <a class="section" href='<%= book_path(@book) %>'><%= @book.title %></a>
     <i class="right chevron icon divider"></i>
     <div class="action section">支付订单</div>
   </div>
+  <%- else %>
+  <div class="ui huge breadcrumb">
+    <a class="section" href='<%= edit_author_path %>'>作者信息</a>
+    <i class="right chevron icon divider"></i>
+    <div class="action section">查看收款</div>
+  </div>
+  <% end %>
 
   <div class="ui large feed">
     <%- @orders.each do |order| %>
@@ -16,6 +24,10 @@
             <a class="user">
               <%= order.purchaser.username %>
             </a> 
+
+            <%- unless @book %>
+            <span><%= order.book.title %></span>
+            <% end %>
 
             <code>#<%= order.id %></code>
 
