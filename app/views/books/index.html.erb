@@ -2,8 +2,7 @@
   <div class="ui divided items">
     <%- @books.each do |book| %>
       <div class="item">
-        <img class='ui bordered image' src="<%= book.cover.preview.url %>">
-        <div class="bottom aligned content">
+        <div class="content">
           <a class="header" href='<%= book_path(book) %>'><%= book.title %></a>
           <div class="meta">
             <span class="slug"><%= book.slug %></span>
@@ -12,6 +11,7 @@
             <%= book.intro %>
           </div>
         </div>
+        <img class='ui bordered image' src="<%= book.cover.preview.url %>">
       </div>
     <% end %>
     <div class="item">
