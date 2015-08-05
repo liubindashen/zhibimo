@@ -8,7 +8,7 @@ class PurchasesController < ApplicationController
   def update
     @book.profit = :purchase
     if @book.update(book_params)
-      redirect_to book_path(@book), notice: '图书转付费阅读成功。'
+      redirect_to edit_book_path(@book), notice: '图书转付费阅读成功。'
     else
       render :edit
     end

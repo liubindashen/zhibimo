@@ -13,7 +13,7 @@
     <%- @books.each do |book| %>
       <div class="item">
         <div class="content">
-          <a class="header" href='<%= book_path(book) %>'> <%= book.title %> </a>
+          <a class="header" href='<%= edit_book_path(book) %>'> <%= book.title %> </a>
           <div class='meta'>
             <span><%= book.slug %></span>
           </div>

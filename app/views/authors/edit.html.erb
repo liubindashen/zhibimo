@@ -5,12 +5,15 @@
     </div>
   <% end %>
 
-  <h1 class='ui header'>
-    作者信息
-    <div class='sub header'>
-      更新作者信息
-    </div>
-  </h1>
+  <div class="ui huge breadcrumb">
+    <span class="section">作者信息</span>
+    <i class="right chevron icon divider"></i>
+    <span class="section action"><%= current_author.pen_name %></span>
+  </div>
+
+  <div class="ui horizontal form divider">
+    基本信息
+  </div>
 
   <%= form_for @author, html: {class: 'ui form'} do |f| %>
     <div class="field">

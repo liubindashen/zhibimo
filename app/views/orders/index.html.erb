@@ -1,7 +1,7 @@
 <div class="ui text container">
   <%- if @book %>
   <div class="ui huge breadcrumb">
-    <a class="section" href='<%= book_path(@book) %>'><%= @book.title %></a>
+    <a class="section" href='<%= edit_book_path(@book) %>'><%= @book.title %></a>
     <i class="right chevron icon divider"></i>
     <div class="action section">支付订单</div>
   </div>
