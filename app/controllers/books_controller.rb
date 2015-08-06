@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :auth_author!
-  before_action :set_book, only: [:edit, :update]
+  before_action :set_book, only: [:edit, :update, :editor]
 
   def index
     @books = scope.order('updated_at desc')
@@ -30,6 +30,10 @@ class BooksController < ApplicationController
     else
       render 'show'
     end
+  end
+
+  def editor
+    render layout: 'editor'
   end
 
   private

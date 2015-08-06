@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>知笔墨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <%= render 'shared/baidu' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body id='editor_body'>
+    <div id='editor_menu' class="ui top fixed icon menu">
+      <a class="item">
+        <i class="gamepad icon"></i>
+      </a>
+      <a class="item">
+        <i class="video camera icon"></i>
+      </a>
+      <a class="item">
+        <i class="video play icon"></i>
+      </a>
+    </div>
+    <div class="ui mobile only middle aligned center aligned grid">
+      <div class='column'>
+        <h1>ONLY for TABLET and COMPUTER</h1>
+      </div>
+    </div>
+    <div id='editor_content' class="ui tablet only computer only grid">
+      <div class="three wide column">
+        <h1>SIDE</h1>
+      </div>
+      <div class="thirteen wide column">
+        <div class="ui two column grid">
+          <div class="column">
+            <h1>EDITOR</h1>
+          </div>
+          <div class="column">
+            <h1>PREVIEW</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= include_gon %>
+    <%= javascript_include_tag "application" %>
+  </body>
+</html>

@@ -6,6 +6,7 @@
 #= require semantic-ui/dist/components/dimmer.min
 #= require semantic-ui/dist/components/modal.min
 #= require semantic-ui/dist/components/checkbox.min
+#= require semantic-ui/dist/components/sidebar.min
 
 jQuery.fn.exists = -> @length > 0
 
@@ -49,3 +50,9 @@ $ ->
     else
       $('#free_field').show()
       $('#purchase_field').hide()
+
+  $("#editor_sidebar")
+    .sidebar('setting', 'dimPage', false)
+    .sidebar('setting', 'transition', 'overlay')
+    .sidebar('setting', 'closable', false)
+    .sidebar('toggle')

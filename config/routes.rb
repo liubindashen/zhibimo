@@ -25,6 +25,8 @@ Rails.application.routes.draw do
         post 'hook'
       end
     end
+
+    get 'editor'
   end
 
   get '/signin' => 'welcome#new', as: :signin

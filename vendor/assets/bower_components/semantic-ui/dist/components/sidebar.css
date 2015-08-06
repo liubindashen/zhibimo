@@ -627,3 +627,12 @@ html.ios body {
          Site Overrides
 *******************************/
 
+/*#editor_body > .pusher {*/
+/*margin-left: @sidebarWidth;*/
+/*}*/
+/*#editor_sidebar {*/
+/*width: @sidebarWidth;*/
+/*-webkit-transition: no;*/
+/*box-shadow: 0 0 0px;*/
+/*transition: no;*/
+/*}*/
