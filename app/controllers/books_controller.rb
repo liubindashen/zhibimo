@@ -38,11 +38,12 @@ class BooksController < ApplicationController
 
   private
   def set_book
-    id_or_slug = params[:id].to_i
+    id = params[:id] || params[:book_id]
+    id_or_slug = id.to_i
     if id_or_slug > 0
       @book = scope.find(id_or_slug)
     else
-      @book = scope.find_by_slug(params[:id])
+      @book = scope.find_by_slug(id)
     end
   end
 
