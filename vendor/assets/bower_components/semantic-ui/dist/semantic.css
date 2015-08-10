@@ -4512,11 +4512,11 @@ input::selection {
          Site Overrides
 *******************************/
 
-.ui.basic.button {
+.ui.basic.fixed.button {
   min-width: 10.5em;
 }
 
-.ui.button {
+.ui.fixed.button {
   min-width: 10.5em;
 }
 /*!
@@ -19096,7 +19096,7 @@ ol.ui.horizontal.list li:before,
   border: 1px solid rgba(34, 36, 38, 0.15);
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
   border-radius: 0.25rem;
-  min-height: 2.625em;
+  min-height: 4.125rem;
 }
 
 .ui.menu:after {

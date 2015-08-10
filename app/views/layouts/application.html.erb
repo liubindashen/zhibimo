@@ -8,8 +8,8 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
-    <div id='main_menu' class="ui menu">
+  <body style='height: initial;'>
+    <div id='main_menu' class="ui top fixed borderless menu">
       <a id='logo' class="" href='/'></a>
       <div class='right menu'>
         <a class="item" href='<%= explore_books_path %>'>书架</a>
