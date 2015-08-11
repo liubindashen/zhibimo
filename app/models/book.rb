@@ -8,7 +8,6 @@ class Book < ActiveRecord::Base
 
   belongs_to :author
   has_many :builds, dependent: :destroy
-  has_many :entries, dependent: :destroy
 
   has_many :orders, dependent: :destroy
   has_many :complete_orders, -> { where aasm_state: :complete}, class_name: Order
@@ -20,9 +19,53 @@ class Book < ActiveRecord::Base
   validates :donate, inclusion: {in: [true, false]}, if: 'free?'
   validates :price, numericality: { only_integer: true, greater_than: 0, less_than: 1000}, if: 'purchase?'
   
-  delegate :pen_name, :to => :author, :prefix => true
+  delegate :pen_name, :username, :email, :to => :author, :prefix => true
 
   scope :explored, -> { where(explored: true) }
+
+  def author_info
+    "#{author_pen_name} <#{author_email}>"
+  end
+
+  def fetch_remote_repo(branch: 'master')
+    FileUtils.cd git_path do
+      if File.exists?("objects")
+        system("git fetch #{git_origin_with_build} #{branch}:#{branch} --force")
+      else
+        system("git clone #{git_origin_with_build} . --bare")
+      end
+    end
+  end
+
+  def fetch_working_repo(branch: 'master')
+    makedir
+
+    FileUtils.cd working_path do
+      unless File.exists?(".git")
+        system("git clone #{git_origin_with_build} . --branch #{branch}")
+        system("git config user.email #{author_email}")
+        system("git config user.name #{author_username}")
+      end
+    end
+  end
+
+  def push_working_repo(branch: 'master')
+    unless ENV['DISABLE_GITLIB']
+      FileUtils.cd working_path do
+        system("git push -f")
+      end
+    end
+  end
+
+  def entries
+    fetch_working_repo
+
+    Dir.chdir(working_path) do
+      Dir.glob(File.join("**", "**", "*.md"))
+    end.map do |path|
+      Entry.new(self, path)
+    end
+  end
 
   def check_purchaser(user)
     purchasers.where(id: user.id).exists?
@@ -37,15 +80,12 @@ class Book < ActiveRecord::Base
       "http://zhibimo.com/read/#{author.username}/#{slug}/cover.jpg" : default
   end
 
-  def entry_create(path, content = "", message = nil)
-    entry = entries.create(path: path)
-    return nil unless entry.valid?
-    #entry.repo_update(content, message || "[SYSTEM] ADD " + path)
-    entry
-  end
-
   def git_origin_with_build
-    "git@git.zhibimo.com:#{namespace}.git"
+    unless ENV['DISABLE_GITLIB']
+      "git@git.zhibimo.com:#{namespace}.git"
+    else
+      "https://github.com/zhibimo/book-sample.git"
+    end
   end
 
   def git_origin
@@ -53,6 +93,8 @@ class Book < ActiveRecord::Base
   end
 
   after_create do
+    makedir
+
     unless ENV['DISABLE_GITLIB']
       project = Gitlab.create_project slug, path: slug, user_id: author.gitlab_id, import_url: 'https://github.com/zhibimo/book-sample.git'
       update_attributes!(gitlab_id: project.id)
@@ -84,6 +126,9 @@ class Book < ActiveRecord::Base
     "/read/#{namespace}/"
   end
 
+  def desk_url
+    "/books/#{id}/desk/"
+  end
 
   def summary_html
     render = SummaryRender.new base_url: html_url
@@ -101,6 +146,40 @@ class Book < ActiveRecord::Base
 
   def epub_url
     "/read/#{namespace}/#{slug}.epub"
+  end
+
+  GIT_NAME = 'scm'
+  COMMITS_NAME = 'commits'
+  RELEASE_NAME = 'release'
+  WORKING_NAME = 'working'
+
+  def path
+    "#{Dir.home}/books/#{namespace}"
+  end
+
+  def git_path
+    "#{path}/#{GIT_NAME}"
+  end
+
+  def commits_path
+    "#{path}/#{COMMITS_NAME}"
+  end
+
+  def release_path
+    "#{path}/#{RELEASE_NAME}"
+  end
+
+  def working_path
+    "#{path}/#{WORKING_NAME}"
+  end
+
+  def makedir
+    FileUtils.mkdir_p path
+    FileUtils.cd path do
+      [GIT_NAME, COMMITS_NAME, RELEASE_NAME, WORKING_NAME].each do |name|
+        FileUtils.mkdir_p name
+      end
+    end
   end
 
   private

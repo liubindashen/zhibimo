@@ -1,36 +1,103 @@
-class Entry < ActiveRecord::Base
-  belongs_to :book
+class Entry
+  include ActiveModel::Validations
 
-  # TODO: load content
-  def to_json
-    content = File.read('sample.md')
-    { content: content, path: path, id: id }
+  attr_accessor :id, :path, :title, :content, :book
+
+  validates_presence_of :book, :id, :path
+  validate :check_path, if: 'new?'
+
+  def initialize(book, path)
+    self.book = book
+    self.id = self.path = path
+    self.title = parse_title
   end
 
-  before_save do
-    self.path = self.path + '.md' unless self.path.end_with?(".md")
+  def read
+    Dir.chdir(book.working_path) do
+      self.content = File.read(path)
+    end
   end
 
-  #def repo_content
-    #File.read(book.workdir + path)
-  #end
+  def new?
+    Dir.chdir(book.working_path) do
+      !Pathname.new(path).exist?
+    end
+  end
 
-  #def repo_update(content = "", message = nil)
-    #author = "#{book.author.username} <#{book.author.username}@zhibimo.com>"
-    #message ||= "[SYSTEM] AUTO UPDATE " + Time.now.utc.to_s
-    #File.open(book.workdir + path, 'w') { |f| f.puts content }
-    #system("git -C #{book.workdir} add #{path}")
-    #system("git -C #{book.workdir} commit --author=#{Shellwords.escape(author)} --message=#{Shellwords.escape(message)} #{path}")
-    #BookWorker.perform_async(book.id.to_s) unless message.start_with?('[SYSTEM]')
-  #end
+  def necessary?
+    path == 'README.md' or path == 'SUMMARY.md'
+  end
+
+  def touch!
+    raise if (!new? or invalid?)
+
+    Dir.chdir(book.working_path) do
+      self.title = File.basename(path, ".md")
+      content = "# #{self.title.upcase}"
+      File.write(path, content)
+
+      system("git add .")
+      system("git commit --author=\"#{book.author_info}\" -m \"create #{name}\"")
+    end
+    
+    self
+  end
+
+  def remove!
+    raise if new? or necessary?
+
+    Dir.chdir(book.working_path) do
+      system("git rm -f #{path}")
+      system("git add .")
+      system("git commit --author=\"#{book.author_info}\" -m \"remove #{name}\"")
+    end
+  end
+
+  def write!
+    raise if new?
+
+    Dir.chdir(book.working_path) do
+      File.write(path, content)
+      self.title = parse_title
+
+      system("git add .")
+      system("git commit --author=\"#{book.author_info}\" -m \"edit #{name}\"")
+    end
+  end
 
 
-  # TODO: `LocalJumpError: unexpected return` when destroy Book
-  #before_destroy do
-    #return false if self.path == 'SUMMARY.md' || self.path == 'README.md'
-    #author = "#{book.author.username} <#{book.author.username}@zhibimo.com>"
-    #message = "[SYSTEM] ENTRY DELETE " + path
-    #system("git -C #{book.workdir} rm -rf #{path}")
-    #system("git -C #{book.workdir} commit --author=#{Shellwords.escape(author)} --message=#{Shellwords.escape(message)}")
-  #end
+  def name
+    path
+  end
+
+  private
+  def check_path
+    if path =~ /(\.{1,2}\/|^\/)/
+      errors.add(:path, "INVALID PATH")
+    end
+
+    unless path =~ /\.md$/
+      errors.add(:path, "NEED MARKDOWN FILE")
+    end
+
+    Dir.chdir(book.working_path) do
+      if File.directory?(path)
+        errors.add(:path, "PATH NEED FILE")
+      end
+    end
+  end
+
+  def parse_title
+    begin 
+      Dir.chdir(book.working_path) do
+        first_line = File.open(path) do |f| 
+          f.readline
+        end
+        match = /([#\s])*(?<title>[\S\s]+)/.match(first_line.chomp)
+        match[:title]
+      end
+    rescue 
+      nil 
+    end
+  end
 end

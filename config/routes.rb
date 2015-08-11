@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
+  namespace :api do
+    scope '/v1' do
+      resources :books, only: [] do
+        resources :entries, only: [:index, :create] do
+          collection do
+            get '*path', action: :show
+            put '*path', action: :update
+            post 'push', action: :push
+          end
+        end
+      end
+    end
+  end
+
   namespace :explore do
     resources :books, only: [:index, :show] do
       resources :donates, only: [:new, :show, :create] do
@@ -18,15 +32,16 @@ Rails.application.routes.draw do
   resources :orders, only: [:index]
 
   resources :books, only: [:index, :edit, :update, :create, :new] do
-    resources :orders, only: [:index]
+
+    resource :desk, only: [:show]
     resource :purchase, only: [:edit, :update]
+
+    resources :orders, only: [:index]
     resources :builds, only: [:update, :index] do
       collection do
         post 'hook'
       end
     end
-
-    get 'editor'
   end
 
   get '/signin' => 'welcome#new', as: :signin

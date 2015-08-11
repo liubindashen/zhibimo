@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngApp" ng-controller="DeskController as vm">
+  <head>
+    <title>知笔墨</title>
+    <base href="/books/<%= @book.id %>/desk/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <%= render 'shared/baidu' %>
+    <%= stylesheet_link_tag 'desk', media: 'all' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="ui mobile only tablet only middle aligned center aligned grid">
+      <div class='column'>
+        <h1>ONLY for TABLET and COMPUTER</h1>
+      </div>
+    </div>
+
+    <div ui-view id='main_wrapper' class="ui computer only divided grid"></div>
+
+    <%= include_gon %>
+    <%= javascript_include_tag "desk" %>
+  </body>
+</html>

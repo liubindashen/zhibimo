@@ -28,33 +28,23 @@ class BuildJob < ActiveJob::Base
   #
   def process(build)
 
-    FileUtils.mkdir_p book_path = "#{Dir.home}/books/#{build.book.namespace}"
+    book = build.book
+    book.makedir
 
-    FileUtils.cd book_path do
-      FileUtils.mkdir_p git_path = "scm"
-      FileUtils.mkdir_p commits_path = "commits"
-      FileUtils.mkdir_p release_path = "release"
-
-      FileUtils.rm_rf commit_path = "#{commits_path}/#{build.commit}"
-      FileUtils.rm_rf release_path = "#{release_path}/#{build.commit}"
-      FileUtils.mkdir_p commit_path 
+    FileUtils.cd book.path do
+      FileUtils.rm_rf commit_path = "#{book.commits_path}/#{build.commit}"
+      FileUtils.rm_rf release_path = "#{book.release_path}/#{build.commit}"
+      FileUtils.mkdir_p commit_path
       FileUtils.mkdir_p release_path
 
       current_path = "current"
 
-      # sync book git repo
-      if File.exists?("#{git_path}/objects")
-        FileUtils.cd git_path do
-          system("git fetch #{build.book.git_origin_with_build} master:master --force")
-        end
-      else
-        system("git clone #{build.book.git_origin_with_build} #{git_path} --bare")
-      end
+      book.fetch_remote_repo
 
       # prework for book source
       FileUtils.cd commit_path do
         # clone commit with build for repo
-        system("git clone ../../#{git_path} . --recursive --branch master")
+        system("git clone #{book.git_path} . --recursive --branch master")
         system('git rev-parse HEAD > .git_revision')
         system('git rev-parse HEAD > git-version.html')
 
