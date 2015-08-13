@@ -7,7 +7,7 @@
     <div class="sub header">一大波精彩书籍正在接近</div>
   </h3>
 
-  <a class="ui basic button" href='<%= explore_books_path %>'>
+  <a class="ui basic fixed button" href='<%= explore_books_path %>'>
     浏览书架
   </a>
 <% end %>
@@ -22,8 +22,8 @@
   </h3>
 
   <%- if current_user %>
-    <a class="ui basic button" href='<%= books_path %>'>写作</a>
+    <a class="ui basic fixed button" href='<%= books_path %>'>写作</a>
   <%- else %>
-    <a class="ui basic button" href='<%= signin_path %>'>登录</a>
+    <a class="ui basic fixed button" href='<%= signin_path %>'>登录</a>
   <%- end %>
 <% end %>

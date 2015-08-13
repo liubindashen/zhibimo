@@ -74,9 +74,9 @@
     </div>
     <% end %>
 
-    <button class="ui basic button" type="submit">保存</button>
+    <button class="ui basic fixed button" type="submit">保存</button>
     <%- if @book.free? %>
-      <a class="ui basic button" href='<%= edit_book_purchase_path(@book) %>'>转为付费阅读</a>
+      <a class="ui basic fixed button" href='<%= edit_book_purchase_path(@book) %>'>转为付费阅读</a>
     <% end %>
   <% end %>
 </div>
