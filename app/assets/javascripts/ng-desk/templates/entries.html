@@ -1,0 +1,15 @@
+<div class='ui relaxed list'>
+  <div class='item' ng-repeat='entry in vm.entries'
+    data-entry='{{entry.id}}' 
+    ng-click='vm.setCurrent(entry)'
+    ng-class="{active: entry.isActive}">
+    <div class="content">
+      <a class="header" ng-class="{'no-title': !entry.title}">
+        {{entry.title || 'NO TITLE'}}
+        <i class="spinner loading icon" ng-if='entry.saving'></i>
+      </a>
+
+      <a class="description">{{entry.path}}</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div id='editor'
+  ng-model='vm.entry().content' 
+  ng-change='vm.changed()'
+  ui-codemirror-opts='vm.editorOptions'
+  ui-codemirror='{onLoad : vm.codemirrorLoaded}'>
+</div>

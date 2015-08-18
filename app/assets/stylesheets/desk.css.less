@@ -1,33 +1,39 @@
 //= require semantic_ui/semantic_ui
 //= require codemirror/lib/codemirror
 
-@textColor: rgb(37, 44, 51);
-@textFont: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+@primaryColor        : #50616D;
+@textColor           : rgb(37, 44, 51);
+@textFont            : 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 
-@import 'desk/codemirror';
-@import 'desk/preview';
+#main_menu {
+  & > .column {
+    height: 4.0625rem;
+  }
+}
 
-#preview_wrapper, #editor_wrapper, #contents {
-  overflow: scroll;
+#main_menu + #main_wrapper {
+  padding-top: 4.125rem;
 }
 
 #main_wrapper {
   height: 100%; 
   margin: 0px;
 
-  #contents {
+  & > * {
+    overflow: scroll;
+  }
 
-    .ui.list {
-      padding-top: 2rem;
-    }
-
+  #entries_wrapper > .ui.list {
     .item .no-title {
       font-style: italic;
     }
 
     .item .description {
-      text-overflow: ellipsis;
       overflow: hidden; 
+      text-overflow: ellipsis;
     }
   }
 }
+
+@import 'desk/codemirror';
+@import 'desk/preview';

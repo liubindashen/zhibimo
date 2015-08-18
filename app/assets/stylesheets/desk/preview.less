@@ -4,36 +4,41 @@
     font-family: @textFont;
   }
 
-  h1 {
-    font-size: 2.25em;
-    font-weight: bold;
-    margin: 0.67em 0;
-    border-bottom: 1px solid #eee;
-  }
+  #preview {
+    & > :first-child {
+      margin-top: 0px !important;
+    }
 
-  h2 { 
-    font-size: 1.75em;
-    font-weight: bold;
-    margin: 0.83em 0;
-    border-bottom: 1px solid #eee;
-  }
+    & > :last-child {
+      margin-bottom: 0px !important;
+    }
 
-  h3 { 
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: 1em 0;
-  }
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
 
-  h4 { 
-    font-size: 1.25em;
-    font-weight: bold;
-    margin: 0.8em 0;
-  }
+    h1 {
+      font-size: 1.937rem;
+      margin-top: 1.937rem;
+    }
 
-  blockquote {
-    margin: 0;
-    padding: 0 15px;
-    border-left: 4px solid #ddd;
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.312rem;
+      margin-top: 1.312rem;
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 0 15px;
+      border-left: 4px solid #ddd;
+    }
   }
 }
 

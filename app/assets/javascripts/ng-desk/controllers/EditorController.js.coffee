@@ -1,6 +1,6 @@
 angular.module('ngApp').controller 'EditorController', [
-  '$timeout', 'EntriesService',
-  ($timeout,   EntriesService) ->
+  '$scope', '$timeout', 'EntriesService',
+  ($scope,   $timeout,   EntriesService) ->
     vm = @
 
     vm.entry = EntriesService.getCurrent
@@ -26,11 +26,13 @@ angular.module('ngApp').controller 'EditorController', [
         EntriesService.save()
       , delaySaveTimeout
 
-    vm.command = (command) ->
-      vm[command]()
-      vm.editor.focus()
 
-    vm.formatHeader = ->
+    vm.on = (name, callback) ->
+      $scope.$on "cmd-#{name}", ->
+        callback()
+        vm.editor.focus()
+
+    vm.on 'header', ->
       vm.editor.execCommand "goLineStartSmart"
       [word, range] = currentWord()
 
@@ -42,48 +44,48 @@ angular.module('ngApp').controller 'EditorController', [
       else
         vm.doc.replaceSelection("# ")
       
-    vm.formatStrong = ->
+    vm.on 'strong', ->
       selection = selectionOrLine()
       selection = selection.replace(/^(\s*)/, "\$1**")
       selection = selection.replace(/(\s*)$/, "**\$1")
       vm.doc.replaceSelection(selection)
 
-    vm.formatStrikethrough = ->
+    vm.on 'strikethrough', ->
       selection = selectionOrLine()
       selection = selection.replace(/^(\s*)/, "\$1~~")
       selection = selection.replace(/(\s*)$/, "~~\$1")
       vm.doc.replaceSelection(selection)
 
-    vm.formatItalic = ->
+    vm.on 'italic', ->
       selection = selectionOrLine()
       selection = selection.replace(/^(\s*)/, "\$1*")
       selection = selection.replace(/(\s*)$/, "*\$1")
       vm.doc.replaceSelection(selection)
 
-    vm.formatList = ->
+    vm.on 'list', ->
       return unless vm.doc.somethingSelected()
       selection = vm.doc.getSelection()
       selection = vm.selection.replace(/\n/g, "\n- ").replace(/^/, "- ")
       vm.doc.replaceSelection(selection)
 
-    vm.formatOrderedList = ->
+    vm.on 'ordered-list', ->
       return unless vm.doc.somethingSelected()
       selection = vm.doc.getSelection()
       selection = vm.selection.replace(/\n/g, "\n1. ").replace(/^/, "1. ")
       vm.doc.replaceSelection(selection)
 
-    vm.formatLinkify = ->
+    vm.on 'linkify', ->
       return unless vm.doc.somethingSelected()
       selection = vm.doc.getSelection()
       vm.doc.replaceSelection("[#{selection}]()")
       vm.editor.execCommand "goCharLeft"
 
-    vm.formatQuote = ->
+    vm.on 'quote', ->
       selection = selectionOrLine()
       selection = selection.replace(/\n/g, "\n> ").replace(/^/, "> ")
       vm.doc.replaceSelection(selection)
 
-    vm.formatCode = ->
+    vm.on 'code', ->
       selection = selectionOrLine()
       vm.doc.replaceSelection("```\n#{selection}\n```")
 
