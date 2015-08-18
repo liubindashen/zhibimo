@@ -1,8 +1,0 @@
-/*******************************
-    User Variable Overrides
-*******************************/
-
-@background : #FCFCFC;
-@itemTextColor: @primaryColor;
-@imageWidth : 6.75em;
-@minHeight: 4.125rem;

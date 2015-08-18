@@ -1,7 +1,0 @@
-/*******************************
-         Site Overrides
-*******************************/
-
-body > .ui.container, body > .ui.menu {
-  margin-bottom: 3.75em;
-}
