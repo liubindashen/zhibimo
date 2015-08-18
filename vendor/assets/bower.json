@@ -13,10 +13,6 @@
     "ng-file-upload": "latest",
     "restangular": "latest",
     "angular-modal": "latest",
-    "semantic-ui": "2.0.0",
-    "retinajs": "latest",
-    "pure": "latest",
-    "octicons": "latest",
-    "normalize.css": "latest"
+    "retinajs": "latest"
   }
 }

@@ -1,12 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require zeroclipboard
-#= require semantic-ui/dist/components/transition.min
-#= require semantic-ui/dist/components/dropdown.min
-#= require semantic-ui/dist/components/dimmer.min
-#= require semantic-ui/dist/components/modal.min
-#= require semantic-ui/dist/components/checkbox.min
-#= require semantic-ui/dist/components/sidebar.min
+#= require semantic_ui/semantic_ui
 
 jQuery.fn.exists = -> @length > 0
 

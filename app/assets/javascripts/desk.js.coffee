@@ -16,4 +16,3 @@
 #= require restangular 
 #= require_tree ./ng-app
 #= require_tree ../templates
-

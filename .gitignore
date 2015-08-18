@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 .env
-vendor/assets/bower_components/
+/vendor/assets/bower_components/
 /vendor/bundle/
 /node_modules
 /public/uploads/
@@ -24,6 +24,3 @@ vendor/assets/bower_components/
 
 /config/application.yml
 /config/database.yml
-
-vendor/assets/stylesheets/semantic-ui/
-app/assets/stylesheets/semantic-ui

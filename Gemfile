@@ -13,6 +13,9 @@ gem 'browser'
 gem 'less-rails'
 gem 'therubyracer', platforms: :ruby
 
+gem 'less-rails-semantic_ui'
+gem 'autoprefixer-rails'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 
 gem 'jbuilder', '~> 2.0'
