@@ -1,6 +1,6 @@
 angular.module('ngApp').controller 'EditorController', [
-  '$scope', '$timeout', 'EntriesService',
-  ($scope,   $timeout,   EntriesService) ->
+  '$scope', '$timeout', 'EntriesService', 'EditorHistoryService',
+  ($scope,   $timeout,   EntriesService,   EditorHistoryService) ->
     vm = @
 
     vm.entry = EntriesService.getCurrent
@@ -26,11 +26,21 @@ angular.module('ngApp').controller 'EditorController', [
         EntriesService.save()
       , delaySaveTimeout
 
+      # undo default is two, hard-fix it.
+      size = vm.doc.historySize()
+      size.undo = size.undo > 2 ? size.undo - 2 : 0
+      EditorHistoryService.set(size.undo, size.redo)
 
     vm.on = (name, callback) ->
       $scope.$on "cmd-#{name}", ->
         callback()
         vm.editor.focus()
+
+    vm.on 'undo', ->
+      vm.doc.undo()
+
+    vm.on 'redo', ->
+      vm.doc.redo()
 
     vm.on 'header', ->
       vm.editor.execCommand "goLineStartSmart"
