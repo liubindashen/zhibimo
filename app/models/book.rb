@@ -1,4 +1,8 @@
 class Book < ActiveRecord::Base
+  include Htmlable
+
+  html_attributes :readme, :summary
+
   extend Enumerize
   mount_uploader :cover, CoverUploader
 
@@ -128,12 +132,6 @@ class Book < ActiveRecord::Base
 
   def desk_url
     "/books/#{id}/desk/"
-  end
-
-  def summary_html
-    render = SummaryRender.new base_url: html_url
-    markdown = Redcarpet::Markdown.new(render)
-    markdown.render(summary || "")
   end
 
   def pdf_url

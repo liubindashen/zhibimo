@@ -61,7 +61,12 @@ class BuildJob < ActiveJob::Base
             pluginsConfig: { tongji: { token: ENV['TONGJI_TOKEN'] } }
           })
         end
+
+        book.update_attributes \
+          readme: File.read('README.md').remove_header),
+          summary: File.read('SUMMARY.md').remove_header)
       end
+
 
       # build html to books/author/book/release/commit/
       system("gitbook build #{commit_path} #{release_path}")

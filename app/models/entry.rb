@@ -63,6 +63,14 @@ class Entry
       system("git add .")
       system("git commit --author=\"#{book.author_info}\" -m \"edit #{name}\"")
     end
+
+    if path == 'README.md'
+      self.book.update_attributes!(readme: content.remove_header)
+    end
+
+    if path == 'SUMMARY.md'
+      self.book.update_attributes!(summary: content.remove_header)
+    end
   end
 
 
