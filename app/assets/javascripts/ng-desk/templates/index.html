@@ -1,0 +1,66 @@
+<div class="ui mobile only tablet only middle aligned center aligned grid">
+  <div class='column'>
+    <h1>ONLY for TABLET and COMPUTER</h1>
+  </div>
+</div>
+
+<div id='main_wrapper' class="ui computer only divided grid">
+
+  <div id='contents' class="three wide column" ng-controller='EntriesController as vm'>
+    <div class='ui fixed sticky'>
+      <div class="ui icon tiny buttons">
+        <button ng-click="vm.touch()" class="ui button"><i class="file text outline icon"></i></button>
+        <button ng-click="vm.push()" class="ui button" ng-class='{loading: vm.getPushing()}'><i class="save icon"></i></button>
+      </div>
+    </div>
+
+    <div class='ui relaxed list'>
+      <div class='item' ng-repeat='entry in vm.entries'
+        data-entry='{{entry.id}}' 
+        ng-click='vm.setCurrent(entry)'
+        ng-class="{active: entry.isActive}">
+        <div class="content">
+          <a class="header" ng-class="{'no-title': !entry.title}">
+            {{entry.title || 'NO TITLE'}}
+            <i class="spinner loading icon" ng-if='entry.saving'></i>
+          </a>
+
+          <a class="description">{{entry.path}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id='editor_wrapper' class="six wide column" ng-controller='EditorController as vm'>
+    <div class='ui fixed sticky'>
+      <div class="ui icon tiny buttons">
+        <button ng-click="vm.command('formatHeader')" class="ui button"><i class="header right icon"></i></button>
+        <button ng-click="vm.command('formatStrong')" class="ui button"><i class="bold icon"></i></button>
+        <button ng-click="vm.command('formatItalic')" class="ui button"><i class="italic icon"></i></button>
+        <button ng-click="vm.command('formatStrikethrough')" class="ui button"><i class="strikethrough icon"></i></button>
+      </div>
+      <div class="ui icon tiny buttons">
+        <button ng-click="vm.command('formatList')" class="ui button"><i class="list icon"></i></button>
+        <button ng-click="vm.command('formatOrderedList')" class="ui button"><i class="ordered list icon"></i></button>
+        <button ng-click="vm.command('formatLinkify')" class="ui button"><i class="linkify icon"></i></button>
+        <button ng-click="vm.command('formatQuote')" class="ui button"><i class="quote left icon"></i></button>
+        <button ng-click="vm.command('formatCode')" class="ui button"><i class="code icon"></i></button>
+      </div>
+      <!--
+      <div class="ui icon tiny buttons">
+        <button ng-click="vm.remove()" class="ui button"><i class="trash outline icon"></i></button>
+      </div>
+      -->
+    </div>
+    <div id='editor' 
+      ng-model='vm.entry().content' 
+      ng-change='vm.changed()'
+      ui-codemirror-opts='vm.editorOptions'
+      ui-codemirror='{onLoad : vm.codemirrorLoaded}'>
+    </div>
+  </div>
+
+  <div id='preview_wrapper' class="seven wide column" ng-controller='PreviewController as vm'>
+    <div id='preview' ng-bind-html='vm.render()'></div>
+  </div>
+</div>

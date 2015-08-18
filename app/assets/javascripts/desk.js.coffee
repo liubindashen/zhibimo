@@ -14,5 +14,4 @@
 #= require ng-file-upload
 #= require ng-rails-csrf
 #= require restangular 
-#= require_tree ./ng-app
-#= require_tree ../templates
+#= require_tree ./ng-desk

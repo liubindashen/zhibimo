@@ -29,5 +29,7 @@ module ZhibimoCom
     config.exceptions_app = self.routes
 
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+
+    config.angular_templates.ignore_prefix  = %w(ng-desk/templates/)
   end
 end

@@ -6,7 +6,7 @@ app.config [
     $stateProvider
       .state('desk', {
         url: '/'
-        templateUrl: 'desk/index.html'
+        templateUrl: 'index.html'
       })
 
     $urlRouterProvider.otherwise('/')
