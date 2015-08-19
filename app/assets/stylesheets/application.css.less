@@ -227,3 +227,22 @@ span.ui.split {
     margin-top: 1.5em;
   }
 }
+
+#book_menu {
+  background-color: #F5F5F5;
+  border-bottom: 2px solid #F5F5F5;
+
+  color: @primaryColor;
+
+  & > .item {
+    border-bottom-width: 3px;
+    margin-bottom: -3px;
+    padding-left: 1.875rem;
+    padding-right: 1.875rem;
+
+    &.active {
+      color: @primaryColor;
+      border-color: @primaryColor;
+    }
+  }
+}

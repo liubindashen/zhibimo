@@ -1,7 +1,3 @@
 /*******************************
          Site Overrides
 *******************************/
-
-.ui.borderless.segment {
-  border-bottom: 0px;
-}

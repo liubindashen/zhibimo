@@ -11,10 +11,21 @@
           <div class="meta">
             <%- if @book.free? %>
               <span class="read">
-                <%= link_to '免费阅读', html_path(@book), target: '_blank', class: 'ui inverted button'%>
+                <%= link_to(html_path(@book), target: '_blank', class: 'ui inverted button') do %>
+                  在线阅读
+                <% end %>
+              </span>
+              <span class="download">
+                <%= link_to(html_path(@book), target: '_blank', class: 'ui inverted basic button') do %>
+                  <i class="download icon"></i>
+                  下载
+                <% end %>
               </span>
               <span class="donate">
-                <%= link_to '捐赠', new_reader_book_donate_path(@book), class: 'ui inverted basic button' %>
+                <%= link_to(new_reader_book_donate_path(@book), class: 'ui inverted basic button') do %>
+                  <i class="empty heart icon"></i>
+                  捐赠 
+                <% end %>
               </span>
             <% end %>
 
@@ -32,18 +43,30 @@
   </div>
 </div>
 
-<div id='book_menu' class="ui vertical borderless segment">
+<div id='book_menu' class="ui vertical seamless segment">
   <div class='ui text container'>
     <div id='book_menu' class="ui pointing secondary menu">
-      <a class="item active" data-tab="readme">前言</a>
-      <a class="item" data-tab="summary">目录</a>
+      <a class="item active" data-tab="readme">
+        <i class='newspaper icon'></i>
+        前言
+      </a>
+      <a class="item" data-tab="summary">
+        <i class='ordered list icon'></i>
+        目录
+      </a>
     </div>
-    <div class="ui tab vertical segment active" data-tab="readme">
+  </div>
+</div>
+
+<div id='book_content' class="ui vertical borderless segment">
+  <div class='ui text container'>
+    <div class="ui tab segment"></div>
+    <div class="ui tab segment active" data-tab="readme">
       <%== @book.readme_html %>
     </div>
-    <div class="ui tab vertical segment" data-tab="summary">
+    <div class="ui tab segment" data-tab="summary">
       <%== @book.summary_html %>
     </div>
-    <div class="ui tab vertical segment"></div>
+    <div class="ui tab segment"></div>
   </div>
 </div>

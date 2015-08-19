@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   namespace :writer do
-    resource :profile, only: [:edit, :update]
+    resource :profile, only: [:new, :create, :edit, :update]
     resources :orders, only: [:index, :show]
     resources :books, only: [:index, :edit, :update, :create, :new] do
       resources :orders, only: [:index]

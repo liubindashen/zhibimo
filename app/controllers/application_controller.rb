@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   def auth_author!
     unless current_author
       push_redirect_back_url
-      redirect_to new_author_path
+      redirect_to new_writer_profile_path
     end
   end
 
