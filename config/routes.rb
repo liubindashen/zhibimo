@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   get '/explore/books', to: 'books#index', as: :explore_books
   get '/explore/authors', to: 'authors#index', as: :explore_authors
 
-  get '/books/:author', to: 'authors#show'
-  get '/books/:author/:slug', to: 'books#show'
+  # custom path helper in application
+  get '/books/:author', to: 'authors#show' # author_path(@book)
+  get '/books/:author/:slug', to: 'books#show' # book_path(@book)
 
   namespace :reader do
     resources :books, only: [:index] do
@@ -25,7 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :author do
+  namespace :writer do
+    resource :profile, only: [:edit, :update]
     resources :orders, only: [:index, :show]
     resources :books, only: [:index, :edit, :update, :create, :new] do
       resources :orders, only: [:index]

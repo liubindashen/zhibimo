@@ -1,0 +1,29 @@
+<div class='ui text container'>
+  <div class="ui huge breadcrumb">
+    <span class="section">写作</span>
+    <i class="right chevron icon divider"></i>
+    <%= link_to @book.title, edit_writer_book_path(@book), class: 'section' %>
+    <i class="right chevron icon divider"></i>
+    <span class="section action">转付费阅读</span>
+  </div>
+
+  <h1 class='ui header'>
+    <div class='sub header'>
+      <b><i class='warning icon'></i>付费图书将不得转为免费</b>，更多关于付费阅读的说明请参考 <a target='_blank' href='#'>知笔墨用户指南</a>。
+    </div>
+  </h1>
+
+  <%= form_for @book, html: {class: 'ui form'}, url: writer_book_purchase_path do |f| %>
+    <div class='field'>
+      <label>付费阅读 图书价格</label>
+      <div class="ui left icon large input">
+        <i class="yen icon"></i>
+        <%= f.text_field :price, placeholder: '给图书定个合适的价格。', autocomplete: :off %>
+      </div>
+    </div>
+
+    <button class="ui primary fixed button" type="submit">确定</button>
+    <a class='ui basic fixed button' href='<%= edit_writer_book_path(@book) %>'>取消</a>
+  <% end %>
+</div>
+

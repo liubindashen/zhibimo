@@ -3,7 +3,7 @@ module Htmlable
 
   included do
     def markdown
-      @render ||= SummaryRender.new(base_url: html_url)
+      @render ||= SummaryRender.new(base_url: html_base_url)
       @markdown ||= Redcarpet::Markdown.new(@render)
     end
   end

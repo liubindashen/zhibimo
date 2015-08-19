@@ -12,6 +12,10 @@ class Author < ActiveRecord::Base
 
   delegate :username, :email, :to => :user
 
+  scope :find_by_username, -> (username) {
+    joins(:user).find_by('users.username' => username)
+  }
+
   mount_uploader :avatar, AvatarUploader
 
   def gitlab
