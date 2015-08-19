@@ -1,63 +1,49 @@
-<div class='ui container'>
-  <div class="ui grid">
-    <!-- Book Basic Info start -->
-    <div class='mobile only padding board row'>
-      <div class="sixteen wide column">
-        <img class='ui centered bordered image' src='<%= @book.cover.preview.url %>' height='192px'>
-      </div>
-    </div>
+<div id='book_info' class="ui primary inverted vertical segment">
+  <div class='ui text container'>
+    <div class="ui inverted items">
+      <div class="item">
+        <img class='ui bordered image' src='<%= @book.cover.preview.url %>' height='192px'>
+        <div class="content">
+          <h1 class="header"><%= @book.title %></h1>
+          <div class="description">
+            <p><%= @book.intro %> — <%= link_to author_name(@book), author_path(@book) %></p>
+          </div>
+          <div class="meta">
+            <%- if @book.free? %>
+              <span class="read">
+                <%= link_to '免费阅读', html_path(@book), target: '_blank', class: 'ui inverted button'%>
+              </span>
+              <span class="donate">
+                <%= link_to '捐赠', new_reader_book_donate_path(@book), class: 'ui inverted basic button' %>
+              </span>
+            <% end %>
 
-    <div class='mobile only row'>
-      <div class="ui large header sixteen wide center aligned column">
-        <%= render 'basic', book: @book %>
+            <%- if @book.purchase? %>
+              <%- if current_user && @book.check_purchaser(current_user) %>
+                <%= link_to '阅读', html_path(@book), target: '_blank', class: 'ui inverted button' %>
+              <% else %>
+                <%= link_to '购买', reader_book_purchases_path(@book), method: :post, class: 'ui inverted button' %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class='tablet only computer only padding board row'>
-      <div class="five wide column">
-        <img class='ui right floated bordered image' src='<%= @book.cover.preview.url %>' height='192px'>
-      </div>
-      <div class="ui huge header computer only bottom aligned eleven wide column">
-        <%= render 'basic', book: @book %>
-      </div>
-      <div class="ui large header tablet only bottom aligned eleven wide column">
-        <%= render 'basic', book: @book %>
-      </div>
+<div id='book_menu' class="ui vertical borderless segment">
+  <div class='ui text container'>
+    <div id='book_menu' class="ui pointing secondary menu">
+      <a class="item active" data-tab="readme">前言</a>
+      <a class="item" data-tab="summary">目录</a>
     </div>
-    <!-- Book Basic Info end -->
-
-    <%- if @book.intro %>
-    <!-- Book Intro start -->
-    <div class='mobile only tablet only row'>
-      <div class="right floated fifteen  wide column">
-        <p><%= @book.intro %></p>
-      </div>
+    <div class="ui tab vertical segment active" data-tab="readme">
+      <%== @book.readme_html %>
     </div>
-    <div class='computer only padding row'>
-      <div class="left floated right aligned top aligned five wide column">
-        <img src='/images/intro-text.png'>
-      </div>
-      <div class="right floated left aligned eleven wide column">
-        <p><%= @book.intro %></p>
-      </div>
+    <div class="ui tab vertical segment" data-tab="summary">
+      <%== @book.summary_html %>
     </div>
-    <!-- Book Intro end -->
-    <% end %>
-
-    <!-- Summary start -->
-    <div class='mobile only tablet only row'>
-      <div class="right floated fifteen wide column">
-        <%== @book.summary_html %>
-      </div>
-    </div>
-    <div class='computer only padding row'>
-      <div class="left floated right aligned top aligned five wide column">
-        <img src='/images/summary-text.png'>
-      </div>
-      <div class="right floated left aligned eleven wide column">
-        <%== @book.summary_html %>
-      </div>
-    </div>
-    <!-- Summary end -->
+    <div class="ui tab vertical segment"></div>
   </div>
 </div>

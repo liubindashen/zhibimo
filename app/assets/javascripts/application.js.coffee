@@ -51,3 +51,5 @@ $ ->
     .sidebar('setting', 'transition', 'overlay')
     .sidebar('setting', 'closable', false)
     .sidebar('toggle')
+
+  $("#book_menu .item").tab()

@@ -9,31 +9,33 @@
     <%= csrf_meta_tags %>
   </head>
   <body style='height: initial;'>
-    <div id='main_menu' class="ui top fixed borderless menu">
-      <a id='logo' class="" href='/'></a>
-      <div class='right menu'>
-        <a class="item" href='<%= explore_books_path %>'>书架</a>
-        <a class="item" href='<%= writer_books_path %>'>写作</a>
-        <%- if current_user %>
-          <div class="ui right dropdown item">
-            <img class='ui avatar image' src="<%= avatar.url %>" height='48px' width='48px'>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <%- if current_author %>
-                <a class="item" href='<%= edit_writer_profile_path %>'>
-                  <%= current_author.pen_name %>
-                </a>
-              <%- else %>
-                <a class="item">
-                  <%= current_user.display_name %>
-                </a>
-              <% end %>
-              <a class="item" href='<%= signout_path %>'>退出</a>
+    <div id='main_menu' class="ui borderless menu">
+      <div class='ui container'>
+        <a id='logo' class="" href='/'></a>
+        <div class='right menu'>
+          <a class="item" href='<%= explore_books_path %>'>书架</a>
+          <a class="item" href='<%= writer_books_path %>'>写作</a>
+          <%- if current_user %>
+            <div class="ui right dropdown item">
+              <img class='ui avatar image' src="<%= avatar.url %>" height='48px' width='48px'>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <%- if current_author %>
+                  <a class="item" href='<%= edit_writer_profile_path %>'>
+                    <%= current_author.pen_name %>
+                  </a>
+                <%- else %>
+                  <a class="item">
+                    <%= current_user.display_name %>
+                  </a>
+                <% end %>
+                <a class="item" href='<%= signout_path %>'>退出</a>
+              </div>
             </div>
-          </div>
-        <%- else %>
-          <a class="item" href='<%= signin_path %>'>登录</a>
-        <%- end %>
+          <%- else %>
+            <a class="item" href='<%= signin_path %>'>登录</a>
+          <%- end %>
+        </div>
       </div>
     </div>
 

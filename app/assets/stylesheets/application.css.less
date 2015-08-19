@@ -28,8 +28,9 @@ span.ui.split {
   display: inline-block;
 }
 
-#main_menu + .ui.container {
-  margin-top: 7.5rem;
+#main_menu {
+  border-radius: 0px;
+  margin-bottom: 0px;
 }
 
 #main_menu.ui.menu {
@@ -44,10 +45,6 @@ span.ui.split {
 
 .ui.fixed.button {
   min-width: 10.5em;
-}
-
-body > .ui.container, body > .ui.menu {
-  margin-bottom: 3.75em;
 }
 
 #footer_divider.ui.divider, .ui.form.divider {
@@ -220,5 +217,13 @@ body > .ui.container, body > .ui.menu {
 .ui.divided.items > .item {
   .content + .ui.image {
     margin-left: 1rem;
+  }
+}
+
+#book_info {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  .ui.items > .item > .content > .meta {
+    margin-top: 1.5em;
   }
 }
