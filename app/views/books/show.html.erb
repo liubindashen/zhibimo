@@ -1,12 +1,18 @@
+<% title @book.title %>
+
 <div id='book_info' class="ui primary inverted vertical segment">
-  <div class='ui text container'>
+  <div class='ui container'>
     <div class="ui inverted items">
       <div class="item">
         <img class='ui bordered image' src='<%= @book.cover.preview.url %>' height='192px'>
         <div class="content">
           <h1 class="header"><%= @book.title %></h1>
           <div class="description">
-            <p><%= @book.intro %> — <%= link_to author_name(@book), author_path(@book) %></p>
+            <%- if @book.intro %>
+              <p><%= @book.intro %> — <%= link_to author_name(@book), author_path(@book) %></p>
+            <%- else %>
+              <p><%= link_to author_name(@book), author_path(@book) %></p>
+            <% end %>
           </div>
           <div class="meta">
             <%- if @book.free? %>
@@ -44,7 +50,7 @@
 </div>
 
 <div id='book_menu' class="ui vertical seamless segment">
-  <div class='ui text container'>
+  <div class='ui container'>
     <div id='book_menu' class="ui pointing secondary menu">
       <a class="item active" data-tab="readme">
         <i class='newspaper icon'></i>
@@ -59,7 +65,7 @@
 </div>
 
 <div id='book_content' class="ui vertical borderless segment">
-  <div class='ui text container'>
+  <div class='ui container'>
     <div class="ui tab segment"></div>
     <div class="ui tab segment active" data-tab="readme">
       <%== @book.readme_html %>

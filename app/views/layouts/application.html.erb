@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>知笔墨</title>
+    <title><%= content_for?(:title) ? yield(:title) : '知笔墨' %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="shortcut icon" href="/favicon.ico"/>
     <%= render 'shared/baidu' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
   </head>
-  <body style='height: initial;'>
-    <div id='main_menu' class="ui borderless menu">
-      <div class='ui container'>
-        <a id='logo' class="" href='/'></a>
-        <div class='right menu'>
-          <a class="item" href='<%= explore_books_path %>'>书架</a>
-          <a class="item" href='<%= writer_books_path %>'>写作</a>
-          <%- if current_user %>
-            <div class="ui right dropdown item">
-              <img class='ui avatar image' src="<%= avatar.url %>" height='48px' width='48px'>
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <%- if current_author %>
-                  <a class="item" href='<%= edit_writer_profile_path %>'>
-                    <%= current_author.pen_name %>
-                  </a>
-                <%- else %>
-                  <a class="item">
-                    <%= current_user.display_name %>
-                  </a>
-                <% end %>
-                <a class="item" href='<%= signout_path %>'>退出</a>
+  <body style='height: 100%; width: 100%'>
+
+    <div id='page_wrapper'>
+      <div id='page_menu' class="ui borderless menu">
+        <div class='ui container'>
+          <a id='logo' class="" href='/'></a>
+          <div class='right menu'>
+            <a class="item" href='<%= explore_books_path %>'>发现</a>
+            <a class="item" href='<%= writer_books_path %>'>写作</a>
+            <%- if current_user %>
+              <div class="ui right dropdown item">
+                <img class='ui avatar image' src="<%= avatar.url %>" height='48px' width='48px'>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                  <%- if current_author %>
+                    <a class="item" href='<%= edit_writer_profile_path %>'>
+                      <%= current_author.pen_name %>
+                    </a>
+                  <%- else %>
+                    <a class="item">
+                      <%= current_user.display_name %>
+                    </a>
+                  <% end %>
+                  <a class="item" href='<%= signout_path %>'>退出</a>
+                </div>
               </div>
-            </div>
-          <%- else %>
-            <a class="item" href='<%= signin_path %>'>登录</a>
-          <%- end %>
+            <%- else %>
+              <a class="item" href='<%= signin_path %>'>登录</a>
+            <%- end %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <%= yield %>
+      <div id='page_content'>
+        <%= yield %>
+      </div>
 
-    <div id='footer_divider' class="ui horizontal divider container">
-      © 2015 zhibimo.com All rights reserved.
+      <div id='page_footer' class='ui center aligned black inverted vertical segment'>
+        <div class='ui container'>
+          <div class="ui inverted horizontal list">
+            <a href='#' class="item">关于我们</a>
+            <a href='#' class="item">使用说明</a>
+            <span class='item'>© 2015 zhibimo.com All rights reserved.</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <%= include_gon %>

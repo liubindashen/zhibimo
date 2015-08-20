@@ -2,6 +2,7 @@
 
 @primaryColor        : #50616D;
 @grey                : #B3B3B3;
+@footerHeight        : 3.375rem;
 
 @import "retinajs/src/retina";
 
@@ -23,21 +24,34 @@
   .at2x('/images/logo.png', 108px, 36px);
 }
 
+#page_wrapper {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: @footerHeight;
+}
+
+#page_menu {
+  font-size: 1rem;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  border-radius: 0px;
+  margin-bottom: 0px;
+  border-top-color: @primaryColor;
+}
+
+#page_footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: @footerHeight;
+  margin: 0;
+}
+
 span.ui.split {
   min-width: 10px; 
   display: inline-block;
 }
 
-#main_menu {
-  border-radius: 0px;
-  margin-bottom: 0px;
-}
-
-#main_menu.ui.menu {
-  font-size: 1rem;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-}
 
 .ui.basic.fixed.button {
   min-width: 10.5em;
@@ -47,7 +61,7 @@ span.ui.split {
   min-width: 10.5em;
 }
 
-#footer_divider.ui.divider, .ui.form.divider {
+.ui.form.divider {
   opacity: 0.85;
   margin-top: 0em;
   font-size: 0.875rem;
@@ -55,9 +69,6 @@ span.ui.split {
   font-weight: normal;
   color: @primaryColor;
   text-transform: none;
-}
-
-.ui.form.divider {
   margin-top: 3.75rem;
   margin-bottom: 1.75rem;
 }
@@ -229,19 +240,20 @@ span.ui.split {
 }
 
 #book_menu {
+  min-height: 3.125rem;
   background-color: #F5F5F5;
   border-bottom: 2px solid #F5F5F5;
 
   color: @primaryColor;
 
   & > .item {
+    color: @grey;
     border-bottom-width: 3px;
     margin-bottom: -3px;
     padding-left: 1.875rem;
     padding-right: 1.875rem;
 
     &.active {
-      color: @primaryColor;
       border-color: @primaryColor;
     }
   }
