@@ -1,11 +1,45 @@
-<div class='ui container'>
-  <div id='explore_books' class="ui centered grid">
-    <%- @books.each do |book| %>
-      <div class="center aligned five wide computer eight wide tablet ten wide mobile column">
-        <a target='_blank' href='<%= book_path(book) %>'>
-          <img class='ui centered bordered image' src='<%= book.cover.explore.url%>' height='256px'>
-        </a>
+<% title '发现图书' %>
+
+<div id='navigation' class="ui inverted lightgray borderless attached menu">
+  <div class='ui container'>
+    <div class='item'>
+      <div class="ui huge breadcrumb">
+        <div class="section">发现</div>
+        <i class="right chevron icon divider"></i>
+        <div class="active section">图书</div>
       </div>
-    <% end %>
+    </div>
+    <div class='right item'>
+      <%= link_to '发现作者', explore_authors_path %>
+    </div>
+  </div>
+</div>
+
+<div class='ui container'>
+  <div class="ui vertical segment">
+    <div id='explore_book_list' class="ui divided items">
+      <%- @books.each do |book| %>
+        <div class="item">
+          <%= link_to(book_path(book), class: 'ui centered bordered image', target: '_blank') do %>
+            <img src='<%= book.cover.preview.url%>'>
+          <% end %>
+
+          <div class="content">
+            <h1 class="header"><a href='<%= book_path(book) %>' target='_blank'><%= book.title %></a></h1>
+            <div class="description">
+              <%- if book.intro %>
+                <p><%= book.intro %> — <%= link_to author_name(book), author_path(book) %></p>
+              <%- else %>
+                <p><%= link_to author_name(book), author_path(book) %></p>
+              <% end %>
+            </div>
+          </div>
+          <!--
+          <a target='_blank' href='<%= book_path(book) %>'>
+          </a>
+          -->
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

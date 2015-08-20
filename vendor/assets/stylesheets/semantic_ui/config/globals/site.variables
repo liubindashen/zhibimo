@@ -23,6 +23,9 @@
 @linkHoverColor      : darken(saturate(@linkColor, 20), 15, relative);
 @linkHoverUnderline  : @linkUnderline;
 
+@lightgray           : #F5F5F5;
+@borderColor         : rgba(34, 36, 38, 0.15);
+
 @headerFontWeight : normal;
 @headerLineHeight : 2.125em;
 

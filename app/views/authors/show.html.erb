@@ -1,56 +1,45 @@
-<div class='ui container'>
-  <div class="ui grid">
-    <!-- Author Basic Info start -->
-    <div class='mobile only padding row'>
-      <div class="sixteen wide column">
-        <img class='ui  centered bordered image' src='<%= @author.avatar.url %>' height='128px'>
+<% title @author.pen_name %>
+
+<div class="ui primary inverted vertical segment">
+  <div class='ui container'>
+    <div class="ui inverted items">
+      <div class="item">
+        <img class='ui bordered image' src='<%= @author.avatar.url %>' height='192px'>
+        <div class="content">
+          <h1 class="header"><%= @author.pen_name %></h1>
+          <div class="description">
+            <%= @author.intro %>
+          </div>
+          <div class="meta">
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class='mobile only row'>
-      <div class="ui large header sixteen wide center aligned column">
-        <%= render 'basic', author: @author %>
-      </div>
+<div class="ui lightgray inverted vertical seamless border segment">
+  <div class='ui container'>
+    <div class="ui secondary pointing content menu">
+      <a class="item active" data-tab="about">
+        <i class='puzzle icon'></i>
+        关于
+      </a>
+      <a class="item" data-tab="hot">
+        <i class='sort content descending icon'></i>
+        热销
+      </a>
     </div>
+  </div>
+</div>
 
-    <div class='tablet only computer only padding row'>
-      <div class="five wide column">
-        <img class='ui right floated bordered image' src='<%= @author.avatar.url %>' height='128px'>
-      </div>
-      <div class="ui huge header computer only bottom aligned eleven wide column">
-        <%= render 'basic', author: @author %>
-      </div>
-      <div class="ui large header tablet only bottom aligned eleven wide column">
-        <%= render 'basic', author: @author %>
-      </div>
-    </div><!-- Author Basic Info end -->
-
-    <!-- Author Intro start -->
-    <div class='mobile only tablet only row'>
-      <div class="sixteen wide column">
-        <p><%= @author.intro %></p>
-      </div>
+<div class="ui vertical borderless segment">
+  <div class='ui container'>
+    <div class="ui tab segment"></div>
+    <div class="ui tab segment active" data-tab="about">
     </div>
-
-    <div class='computer only padding row'>
-      <div class="left floated right aligned top aligned five wide column">
-        <img src='/images/intro-text.png'>
-      </div>
-      <div class="right floated left aligned eleven wide column">
-        <p><%= @author.intro %></p>
-      </div>
-    </div><!-- Author Intro end -->
-
-    <div class='mobile only row'>
-      <div class="left aligned tablet center aligned computer sixteen wide column">
-        <%= link_to '返回', :back, class: 'ui basic fixed button' %>
-      </div>
+    <div class="ui tab segment" data-tab="hot">
     </div>
-    <div class='tablet only computer only padding row'>
-      <div class="right floated left aligned eleven wide column">
-        <%= link_to '返回', :back, class: 'ui basic fixed button' %>
-      </div>
-    </div>
-
+    <div class="ui tab segment"></div>
   </div>
 </div>

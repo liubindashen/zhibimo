@@ -1,3 +1,7 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.bordered.images .image, .ui.bordered.images img, .ui.bordered.images svg, .ui.bordered.image img, .ui.bordered.image svg, img.ui.bordered.image {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}

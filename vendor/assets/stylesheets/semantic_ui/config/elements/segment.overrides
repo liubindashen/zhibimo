@@ -9,3 +9,12 @@
 .ui.borderless.segment {
   border-bottom: 0px;
 }
+
+.ui.lightgray.inverted.segment {
+  background: @lightgray !important;
+  color: @primaryColor !important;
+}
+
+.ui.border.segment {
+  border-bottom: 1px solid @borderColor !important;
+}

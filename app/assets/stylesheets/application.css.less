@@ -3,6 +3,11 @@
 @primaryColor        : #50616D;
 @grey                : #B3B3B3;
 @footerHeight        : 3.375rem;
+@mobileFooterHeight  : 6rem;
+
+@borderColor         : rgba(34, 36, 38, 0.15);
+
+@largestMobileScreen : 768px;
 
 @import "retinajs/src/retina";
 
@@ -32,11 +37,19 @@
 
 #page_menu {
   font-size: 1rem;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
   border-radius: 0px;
   margin-bottom: 0px;
   border-top-color: @primaryColor;
+  border-left: 0px;
+  border-right: 0px;
+  border-top-width: 2px;
+}
+
+@media only screen and (max-width: @largestMobileScreen) {
+  #page_menu {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
 }
 
 #page_footer {
@@ -46,6 +59,16 @@
   height: @footerHeight;
   margin: 0;
 }
+
+@media only screen and (max-width: @largestMobileScreen) {
+  #page_footer {
+    height: @mobileFooterHeight;
+  }
+  #page_wrapper {
+    padding-bottom: @mobileFooterHeight;
+  }
+}
+
 
 span.ui.split {
   min-width: 10px; 
@@ -170,11 +193,6 @@ span.ui.split {
   }
 }
 
-#explore_books .column {
-  padding-top: 1.25em;
-  padding-bottom: 1.25em;
-}
-
 .board.row {
   background: url('/images/board-left.png'),
               url('/images/board-right.png');
@@ -231,30 +249,48 @@ span.ui.split {
   }
 }
 
-#book_info {
+#page_content > .primary.inverted.vertical.segment:first-child {
   padding-top: 1.5em;
   padding-bottom: 1.5em;
-  .ui.items > .item > .content > .meta {
-    margin-top: 1.5em;
+}
+
+#explore_list.ui.items {
+  & > .item {
+    .ui.image {
+      min-width: 11rem;
+
+      & > img {
+        width: auto;
+      }
+    }
   }
 }
 
-#book_menu {
-  min-height: 3.125rem;
-  background-color: #F5F5F5;
-  border-bottom: 2px solid #F5F5F5;
-
-  color: @primaryColor;
-
-  & > .item {
-    color: @grey;
-    border-bottom-width: 3px;
-    margin-bottom: -3px;
-    padding-left: 1.875rem;
-    padding-right: 1.875rem;
-
-    &.active {
-      border-color: @primaryColor;
+@media only screen and (max-width: @largestMobileScreen) {
+  #explore_list.ui.items {
+    & > .item {
+      .ui.image {
+        min-width: inherit;
+      }
     }
+  }
+}
+
+#navigation {
+  border-bottom: 1px solid @borderColor;
+
+  .item:first-child {
+    padding-left: 0px;
+  }
+
+  & + .ui.container {
+    padding-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: @largestMobileScreen) {
+  #navigation {
+    padding-left: 1em;
+    padding-right: 1em;
   }
 }

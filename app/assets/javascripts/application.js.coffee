@@ -52,4 +52,4 @@ $ ->
     .sidebar('setting', 'closable', false)
     .sidebar('toggle')
 
-  $("#book_menu .item").tab()
+  $(".ui.secondary.pointing.content.menu .item").tab()

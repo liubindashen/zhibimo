@@ -1,3 +1,30 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.lightgray.inverted.menu {
+  background: @lightgray !important;
+}
+
+.ui.lightgray.inverted.menu .item, .ui.lightgray.inverted.menu .item > a:not(.ui) {
+  color: @primaryColor !important;
+}
+
+.ui.content.menu {
+  min-height: 3.125rem;
+  border-bottom-color: @lightgray !important;
+
+  color: @primaryColor !important;
+
+  & > .item {
+    color: @grey !important;
+    border-bottom-width: 3px !important;
+    margin-bottom: -3px !important;
+    padding-left: 1.875rem !important;
+    padding-right: 1.875rem !important;
+
+    &.active {
+      border-color: @primaryColor !important;
+    }
+  }
+}

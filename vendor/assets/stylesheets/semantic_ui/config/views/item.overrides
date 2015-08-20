@@ -1,6 +1,13 @@
 /*******************************
     User Variable Overrides
 *******************************/
+
+@media only screen and (max-width: @largestMobileScreen) {
+  .ui.items > .item > .content > .header {
+    line-height: 1.7rem;
+  }
+}
+
 .ui.inverted.items {
   & > .item {
     & > .content {
@@ -22,3 +29,8 @@
     }
   }
 }
+
+.ui.items > .item > .content > .meta {
+  margin-top: 1.5em !important;
+}
+
