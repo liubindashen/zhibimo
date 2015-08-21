@@ -19,7 +19,8 @@ set :shared_paths, [
   'config/application.yml',
   'public/uploads',
   'tmp',
-  'log'
+  'log',
+  'vendor/assets/bower_components'
 ]
 
 task :environment do
@@ -29,6 +30,9 @@ end
 task setup: :environment do
   queue! %[mkdir -p "#{deploy_to}/shared/log"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/log"]
+
+  queue! %[mkdir -p "#{deploy_to}/shared/vendor/assets/bower_components"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/vendor/assets/bower_components"]
 
   queue! %[mkdir -p "#{deploy_to}/shared/config"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/config"]
@@ -54,6 +58,7 @@ task deploy: :environment do
 
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
+    invoke :'bower:install'
     invoke :'rails:assets_precompile'
 
     to :launch do
@@ -79,7 +84,7 @@ end
 namespace :bower do
   desc 'bower install'
   task :install do
-    queue "cd #{deploy_to}/current && RAILS_ENV=production bundle exec rake bower:install:production --trace"
+    queue "cd #{deploy_to}/current && RAILS_ENV=production bundle exec rake bower:install:deployment --trace"
   end
 end
 
