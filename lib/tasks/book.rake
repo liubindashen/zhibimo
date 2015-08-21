@@ -25,7 +25,7 @@ namespace :book do
         hooks = Gitlab.project_hooks b.gitlab_id
         hooks.each do |h| Gitlab.delete_project_hook b.gitlab_id, h.id end
 
-        url = Rails.application.routes.url_helpers.hook_book_builds_url(b.id, host: 'zhibimo.com')
+        url = Rails.application.routes.url_helpers.hook_writer_book_builds_url(b.id, host: 'zhibimo.com')
 
         Gitlab.add_project_hook b.gitlab_id, url, \
           push_events: true, issues_events: true, \
