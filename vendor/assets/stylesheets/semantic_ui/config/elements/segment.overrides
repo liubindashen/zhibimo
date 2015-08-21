@@ -18,3 +18,7 @@
 .ui.border.segment {
   border-bottom: 1px solid @borderColor !important;
 }
+
+.ui.edge.segment {
+  border-radius: 0em;
+}

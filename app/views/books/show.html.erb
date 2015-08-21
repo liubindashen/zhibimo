@@ -56,12 +56,14 @@
         <i class='ordered list icon'></i>
         目录
       </a>
+
       <%- if @book.free? %>
       <a class="item" data-tab="download">
         <i class='download icon'></i>
         下载
       </a>
       <% end %>
+
     </div>
   </div>
 </div>
@@ -69,14 +71,15 @@
 <div class="ui vertical borderless segment">
   <div class='ui container'>
     <div class="ui tab segment"></div>
-    <div id='preview_wrapper' class="ui tab segment active" data-tab="readme">
+    <div id='preview_wrapper' class="ui tab edge segment active" data-tab="readme">
       <%== markdown_to_html(@book.readme) %>
     </div>
-    <div class="ui tab segment" data-tab="summary">
+    <div class="ui tab edge segment" data-tab="summary">
       <%== summary_to_html(@book) %>
     </div>
+
     <%- if @book.free? %>
-    <div class="ui tab segment" data-tab="download">
+    <div class="ui tab edge segment" data-tab="download">
       <div class="ui relaxed divided list">
         <div class='item'>
           <i class="file pdf outline middle aligned icon"></i>
@@ -99,6 +102,7 @@
       </div>
     </div>
     <% end %>
+
     <div class="ui tab segment"></div>
   </div>
 </div>
