@@ -1,140 +1,127 @@
-<div class='ui text container'>
-  <h1 class='ui header'>
-    <%= @book.title %>
-    <div class='sub header'>
-      <%= @book.slug %>
-    </div>
-  </h1>
+<% title @book.title %>
 
-  <div class="ui icon message">
-    <i class="alarm outline icon"></i>
-    <div class="content">
-      <div class="header">
-        提示
-      </div>
-      <p>系统将会自动构建仓库最近一次接收到的内容并发布。</p>
+<% content_for :navigation do %>
+  <div class='item'>
+    <div class="ui huge breadcrumb">
+      <%= link_to '我的图书', writer_books_path, class: 'section' %>
+      <i class="right chevron icon divider"></i>
+      <%= link_to @book.title, edit_writer_book_path(@book), class: 'active section' %>
+      <i class="right chevron icon divider"></i>
+      <div class="section">构建</div>
     </div>
   </div>
+  <div class='right menu'>
+    <div class='item'>
+      <a class="ui basic button" target='_blank' href='<%= html_path(@book) %>'>预览</a>
+    </div>
+  </div>
+<% end %>
 
-  <div class="ui horizontal form divider">
-    仓库信息
+<div class='ui container'>
+  <div class="ui edge attached message">
+    <div class="header">
+      构建图书
+    </div>
+    查看远程仓库信息、构建历史记录。
   </div>
 
-  <form class='ui form' action='<%= writer_book_builds_path(@book) %>' method='POST'>
-    <div class="field">
-      <label>仓库地址</label>
-      <div class="ui label">
+  <div class='ui edge attached segment'>
+    <div class="ui horizontal elegant divider">仓库信息</div>
+
+    <div class="ui list">
+      <a class="item">
+        <div class="ui horizontal label">仓库地址</div>
         <%= @book.git_origin %>
-        <a class="copy action detail" data-clipboard-text='<%= @book.git_origin %>'>
-          <i class='copy icon'></i>
-        </a>
-      </div>
-      <div class='sub text'>更具体的仓库使用说明，请参考 <a target='_blank' href='/read/hpyhacking/zhibimo-guide/index.html'>知笔墨 指南</a>。</div>
+      </a>
+      <a class="item">
+        <div class="ui horizontal label">认证用户</div>
+        <%= @book.author.gitlab_username %>
+      </a>
+      <a class="item">
+        <div class="ui horizontal label">认证密码</div>
+        <%= @book.author.gitlab_password %>
+      </a>
     </div>
-    <a id='view_gitlab_auth_info' class="ui basic fixed button">认证信息</a>
-    <a class="ui basic fixed button" target='_blank' href='<%= @book.html_url %>'>预览</a>
-  </form>
-  
-  <div class="ui horizontal form divider">
-    构建记录
-  </div>
 
-  <div class="ui large feed">
-    <%- @builds.each do |build| %>
-      <div class="event">
-        <div class="label">
-          <img src="<%= avatar(@book.author.user) %>">
-        </div>
-        <div class="content">
-          <div class="summary">
-            <a class="user">
-              <%= @book.author.pen_name %>
-            </a> 
-            提交图书内容 
+    <div class="ui horizontal elegant divider">构建记录</div>
 
-            <div class="date">
-              <%= time_ago_in_words(build.at) %>
-            </div>
+    <%- if @builds.empty? %>
+    <p>无任何构建历史记录</p>
+    <%- else %>
+    <div class="ui large feed">
+      <%- @builds.each do |build| %>
+        <div class="event">
+          <div class="label">
+            <img src="<%= avatar(@book.author.user) %>">
           </div>
+          <div class="content">
+            <div class="summary">
+              <a class="user">
+                <%= @book.author.pen_name %>
+              </a> 
+              提交图书内容 
 
-          <div class="extra text">
-            <div class="ui label">
-              <code><%= build.short_commit %></code>
+              <div class="date">
+                <%= time_ago_in_words(build.at) %>
+              </div>
             </div>
-            <%= build.message %>
-          </div>
 
-          <div class='meta'>
-            <%- if build.idle? %>
+            <div class="extra text">
               <div class="ui label">
-                <i class="wait icon"></i>
-                <%= build.aasm.human_state %>
+                <code><%= build.short_commit %></code>
               </div>
-            <% end %>
+              <%= build.message %>
+            </div>
 
-            <%- if build.warning? %>
-              <div class="ui red label">
-                <i class="warning sign icon"></i>
-                <%= build.aasm.human_state %>
-              </div>
-            <% end %>
+            <div class='meta'>
+              <%- if build.idle? %>
+                <div class="ui label">
+                  <i class="wait icon"></i>
+                  <%= build.aasm.human_state %>
+                </div>
+              <% end %>
 
-            <%- if build.building? %>
-              <div class="ui blue label">
-                <i class="settings icon"></i>
-                <%= build.aasm.human_state %>
-              </div>
-            <% end %>
+              <%- if build.warning? %>
+                <div class="ui red label">
+                  <i class="warning sign icon"></i>
+                  <%= build.aasm.human_state %>
+                </div>
+              <% end %>
 
-            <%- if build.complete? %>
-              <a href="<%= build.read_url %>" class="ui green label">
-                <i class="checkmark icon"></i>
-                <%= build.aasm.human_state %>
-              </a>
-            <% end %>
+              <%- if build.building? %>
+                <div class="ui blue label">
+                  <i class="settings icon"></i>
+                  <%= build.aasm.human_state %>
+                </div>
+              <% end %>
 
+              <%- if build.complete? %>
+                <a href="<%= build.read_url %>" class="ui green label">
+                  <i class="checkmark icon"></i>
+                  <%= build.aasm.human_state %>
+                </a>
+              <% end %>
+
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="ui horizontal form divider">
-    迁移说明
-  </div>
-
-  <p>
-    更改远程仓库地址后，会提示要求身份认证，请在书籍首页查看认证信息。
-  </p>
-  <p>
-    <code>cd $BOOKS_DIR/<%= @book.slug %></code><br />
-    <code>git remote set_url origin <%= @book.git_origin %></code><br />
-  </p>
-</div>
-
-<div id='gitlab_auth_info_modal' class="ui modal">
-  <i class="close icon"></i>
-  <div class="header">
-    <%= @book.title %> 仓库认证信息
-  </div>
-  <div class="content">
-    <div class="description">
-      <div class='ui header'>
-        <div class="ui horizontal label">
-          <i class="user icon"></i> <%= @book.author.gitlab_username %>
-          <a class="copy action detail" data-clipboard-text='<%= @book.author.gitlab_username %>'>
-            <i class='copy icon'></i>
-          </a>
-        </div>
-        <div class="ui horizontal label">
-          <i class="unlock alternate icon"></i><%= @book.author.gitlab_password %>
-          <a class="copy action detail" data-clipboard-text='<%= @book.author.gitlab_password %>'>
-            <i class='copy icon'></i>
-          </a>
-        </div>
-      </div>
-
-      <p>更具体的仓库使用说明，请参考 <a target='_blank' href='/read/hpyhacking/zhibimo-guide/index.html'>知笔墨 指南</a>。</p>
+      <% end %>
     </div>
+    <% end %>
+
+    <div class="ui horizontal elegant divider">迁移说明</div>
+
+    <p>
+      更改远程仓库地址后，会提示要求身份认证。
+    </p>
+    <div class="ui message">
+      <code>cd $BOOKS_DIR/<%= @book.slug %></code><br />
+      <code>git remote set_url origin <%= @book.git_origin %></code><br />
+    </div>
+  </div>
+
+  <div class="ui edge bottom attached warning message">
+    <i class="icon help"></i>
+    更具体的仓库使用说明，请参考 <a target='_blank' href='/read/hpyhacking/zhibimo-guide/index.html'>知笔墨指南</a>。
   </div>
 </div>

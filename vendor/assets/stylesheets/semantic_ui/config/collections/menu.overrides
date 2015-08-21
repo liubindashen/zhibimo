@@ -37,3 +37,8 @@
     }
   }
 }
+
+.ui.edge.message {
+  border-radius: 0em !important;
+}
+
