@@ -1,10 +1,6 @@
 class Book < ActiveRecord::Base
-  include Htmlable
-  html_attributes :readme, :summary
-
   extend Enumerize
   mount_uploader :cover, CoverUploader
-
 
   before_validation :set_default
   validates :slug, presence: true, uniqueness: {scope: :author_id}, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}

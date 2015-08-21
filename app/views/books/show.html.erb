@@ -70,12 +70,10 @@
   <div class='ui container'>
     <div class="ui tab segment"></div>
     <div id='preview_wrapper' class="ui tab segment active" data-tab="readme">
-      <div id='preview'>
-        <%== @book.readme_html %>
-      </div>
+      <%== markdown_to_html(@book.readme) %>
     </div>
     <div class="ui tab segment" data-tab="summary">
-      <%== @book.summary_html %>
+      <%== summary_to_html(@book) %>
     </div>
     <%- if @book.free? %>
     <div class="ui tab segment" data-tab="download">
