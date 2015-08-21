@@ -63,8 +63,8 @@ class BuildJob < ActiveJob::Base
         end
 
         book.update_attributes \
-          readme: File.read('README.md').remove_header),
-          summary: File.read('SUMMARY.md').remove_header)
+          readme: File.read('README.md').remove_header,
+          summary: File.read('SUMMARY.md').remove_header
       end
 
 
