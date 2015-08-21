@@ -33,7 +33,9 @@
               <%- if current_user && @book.check_purchaser(current_user) %>
                 <%= link_to '阅读', html_path(@book), target: '_blank', class: 'ui inverted button' %>
               <% else %>
-                <%= link_to '购买', reader_book_purchases_path(@book), method: :post, class: 'ui inverted button' %>
+                <%= link_to(reader_book_purchases_path(@book), method: :post, class: 'ui inverted button') do %>
+                  <%= number_to_currency(@book.price, locale: :'zh-CN') %> 购买
+                <% end %>
               <% end %>
             <% end %>
           </div>
@@ -67,8 +69,10 @@
 <div class="ui vertical borderless segment">
   <div class='ui container'>
     <div class="ui tab segment"></div>
-    <div class="ui tab segment active" data-tab="readme">
-      <%== @book.readme_html %>
+    <div id='preview_wrapper' class="ui tab segment active" data-tab="readme">
+      <div id='preview'>
+        <%== @book.readme_html %>
+      </div>
     </div>
     <div class="ui tab segment" data-tab="summary">
       <%== @book.summary_html %>

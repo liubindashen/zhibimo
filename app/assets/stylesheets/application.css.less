@@ -4,11 +4,14 @@
 @grey                : #B3B3B3;
 @footerHeight        : 3.375rem;
 @mobileFooterHeight  : 6rem;
+@textColor           : rgb(37, 44, 51);
+@textFont            : 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 
 @borderColor         : rgba(34, 36, 38, 0.15);
 
 @largestMobileScreen : 768px;
 
+@import "desk/preview";
 @import "retinajs/src/retina";
 
 #book-background {
@@ -293,4 +296,8 @@ span.ui.split {
     padding-left: 1em;
     padding-right: 1em;
   }
+}
+
+#search_wrapper {
+  width: 10rem;
 }

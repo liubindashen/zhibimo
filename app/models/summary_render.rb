@@ -9,7 +9,7 @@ class SummaryRender < Redcarpet::Render::HTML
   end
 
   def list(contents, list_type)
-    "<div class='ui large list'>#{contents}</div>"
+    "<div class='ui relaxed divided list'>#{contents}</div>"
   end
 
   def list_item(text, list_type)
@@ -17,7 +17,8 @@ class SummaryRender < Redcarpet::Render::HTML
   end
 
   def link(link, title, content)
-    link = 'index.md' if link == 'README.md'
-    "<a href='#{@base_url}#{link.gsub(/\.md$/, '.html')}' target='_blank'>#{content}</a>"
+    # link = 'index.md' if link == 'README.md'
+    # "<a href='#{@base_url}#{link.gsub(/\.md$/, '.html')}' target='_blank'>#{content}</a>"
+    "<span>#{content}</span>"
   end
 end
