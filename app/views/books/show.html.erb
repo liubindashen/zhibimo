@@ -21,12 +21,6 @@
                   在线阅读
                 <% end %>
               </span>
-              <span class="download">
-                <%= link_to(html_path(@book), target: '_blank', class: 'ui inverted basic button') do %>
-                  <i class="download icon"></i>
-                  下载
-                <% end %>
-              </span>
               <span class="donate">
                 <%= link_to(new_reader_book_donate_path(@book), class: 'ui inverted basic button') do %>
                   <i class="empty heart icon"></i>
@@ -60,6 +54,12 @@
         <i class='ordered list icon'></i>
         目录
       </a>
+      <%- if @book.free? %>
+      <a class="item" data-tab="download">
+        <i class='download icon'></i>
+        下载
+      </a>
+      <% end %>
     </div>
   </div>
 </div>
@@ -73,6 +73,30 @@
     <div class="ui tab segment" data-tab="summary">
       <%== @book.summary_html %>
     </div>
+    <%- if @book.free? %>
+    <div class="ui tab segment" data-tab="download">
+      <div class="ui relaxed divided list">
+        <div class='item'>
+          <i class="file pdf outline middle aligned icon"></i>
+          <div class="content">
+            <a class='header' href='<%= @book.pdf_url %>'>下载 PDF 版本</a>
+          </div>
+        </div>
+        <div class='item'>
+          <i class="file text outline middle aligned icon"></i>
+          <div class="content">
+            <a class='header' href='<%= @book.mobi_url %>'>下载 MOBI 版本</a>
+          </div>
+        </div>
+        <div class='item'>
+          <i class="file text outline middle aligned icon"></i>
+          <div class="content">
+            <a class='header' href='<%= @book.epub_url %>'>下载 EPUB 版本</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
     <div class="ui tab segment"></div>
   </div>
 </div>
