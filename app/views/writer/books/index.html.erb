@@ -1,32 +1,44 @@
-<div class='ui text container'>
-  <div class="ui huge breadcrumb">
-    <span class="section">写作</span>
-    <i class="right chevron icon divider"></i>
-    <span class="section">我的图书</span>
-    <span class='ui split'></span>
-    <a class='ui align right' href='<%= new_writer_book_path %>'>
-      <i class='ui add icon'></i>
-    </a>
-  </div>
+<% title '我的图书' %>
 
-  <div class="ui divided items">
-    <%- @books.each do |book| %>
-      <div class="item">
-        <div class="content">
-          <a class="header" href='<%= edit_writer_book_path(book) %>'> <%= book.title %> </a>
-          <div class='meta'>
-            <span><%= book.slug %></span>
-          </div>
-          <div class="extra">
-            <p><%= book.intro %></p>
-            <a target='_blank' href='<%= writer_book_orders_path(book) %>'>订单</a>
-            <a target='_blank' href='<%= writer_book_builds_path(book) %>'>构建</a>
-            <a target='_blank' href='<%= writer_book_desk_path(book) %>/'>编辑 (测试)</a>
-            <a target='_blank' href='<%= html_path(book) %>'>预览</a>
+<% content_for :navigation do %>
+  <div class='item'>
+    <div class="ui huge breadcrumb">
+      <div class="section">写作</div>
+      <i class="right chevron icon divider"></i>
+      <div class="active section">我的图书</div>
+    </div>
+  </div>
+  <div class='right item'>
+    <%= link_to(new_writer_book_path, class: 'ui icon basic button') do %>
+      <i class='add icon'></i>
+    <% end %>
+  </div>
+<% end %>
+
+<div class='ui container'>
+  <div class="ui vertical segment">
+    <div id='explore_book_list' class="ui divided fixed image items">
+      <%- @books.each do |book| %>
+        <div class="item">
+          <%= link_to(edit_writer_book_path(book), class: 'ui centered bordered image', target: '_blank') do %>
+            <img src='<%= book.cover.preview.url%>' height='192px;'>
+          <% end %>
+
+          <div class="content">
+            <h1 class="header">
+              <%= link_to(book.title, edit_writer_book_path(book), class: 'ui centered bordered image', target: '_blank') %>
+            </h1>
+            <div class='meta'> <span><%= book.slug %></span> </div>
+            <div class="extra">
+              <p><%= book.intro %></p>
+              <a target='_blank' href='<%= writer_book_orders_path(book) %>'>订单</a>
+              <a target='_blank' href='<%= writer_book_builds_path(book) %>'>构建</a>
+              <a target='_blank' href='<%= writer_book_desk_path(book) %>/'>编辑 (测试)</a>
+              <a target='_blank' href='<%= html_path(book) %>'>预览</a>
+            </div>
           </div>
         </div>
-        <img class='ui bordered image' src="<%= book.cover.preview.url %>">
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

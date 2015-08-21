@@ -1,29 +1,43 @@
+<% title @book.title %>
+
+<% content_for :navigation do %>
+  <div class='item'>
+    <div class="ui huge breadcrumb">
+      <%= link_to '我的图书', writer_books_path, class: 'section' %>
+      <i class="right chevron icon divider"></i>
+      <div class="active section"><%= @book.title %></div>
+      <i class="right chevron icon divider"></i>
+      <div class="section">转为付费</div>
+    </div>
+  </div>
+<% end %>
+
 <div class='ui text container'>
-  <div class="ui huge breadcrumb">
-    <span class="section">写作</span>
-    <i class="right chevron icon divider"></i>
-    <%= link_to @book.title, edit_writer_book_path(@book), class: 'section' %>
-    <i class="right chevron icon divider"></i>
-    <span class="section action">转付费阅读</span>
+  <div class="ui attached small message">
+    <div class="header">
+      将 <%= @book.title %> 转为付费阅读图书
+    </div>
+    <p></p>
   </div>
 
-  <h1 class='ui header'>
-    <div class='sub header'>
-      <b><i class='warning icon'></i>付费图书将不得转为免费</b>，更多关于付费阅读的说明请参考 <a target='_blank' href='#'>知笔墨用户指南</a>。
-    </div>
-  </h1>
-
-  <%= form_for @book, html: {class: 'ui form'}, url: writer_book_purchase_path do |f| %>
+  <%= form_for @book, url: writer_book_purchase_path, html: {class: 'ui form attached fluid segment'} do |f| %>
     <div class='field'>
       <label>付费阅读 图书价格</label>
-      <div class="ui left icon large input">
+      <div class="ui left icon input">
         <i class="yen icon"></i>
         <%= f.text_field :price, placeholder: '给图书定个合适的价格。', autocomplete: :off %>
       </div>
     </div>
 
-    <button class="ui primary fixed button" type="submit">确定</button>
-    <a class='ui basic fixed button' href='<%= edit_writer_book_path(@book) %>'>取消</a>
-  <% end %>
-</div>
 
+    <div class="ui large buttons">
+      <button class="ui primary button" type='submit'>确定</button>
+      <div class="or"></div>
+      <%= link_to '取消', edit_writer_book_path(@book), class: 'ui button' %>
+    </div>
+  <% end %>
+
+  <div class="ui bottom attached warning small message">
+    <p><b>付费图书将不得转回免费图书</b>，更多关于付费阅读的说明请参考 <a target='_blank' href='#'>知笔墨用户指南</a>。</p>
+  </div>
+</div>

@@ -13,23 +13,23 @@
 </div>
 
 <div class='ui text container'>
-<div class="ui attached message">
-  <div class="header">
-    感谢您对本书作者 <%= link_to author_name(@book), author_path(@book), target: '_blank' %> 的支持。
-  </div>
-</div>
-
-<%= form_tag reader_book_donates_path(@book), method: :post, class: 'ui form attached fluid segment' do %>
-  <div class="field">
-    <div class="ui left icon large input">
-      <i class="yen icon"></i>
-      <input type='text' placeholder='建议金额：一元、五元或十元人民币。' name='fee' autocomplete='off'></input>
-    </div>
-    <div class='sub text'>
-      本书作者将会收到全部的捐赠金额。
+  <div class="ui attached message">
+    <div class="header">
+      感谢您对本书作者 <%= link_to author_name(@book), author_path(@book), target: '_blank' %> 的支持。
     </div>
   </div>
 
-  <button class="ui primary fixed button" type="submit">捐赠</button>
-<% end %>
+  <%= form_tag reader_book_donates_path(@book), method: :post, class: 'ui form attached fluid segment' do %>
+    <div class="field">
+      <div class="ui left icon large input">
+        <i class="yen icon"></i>
+        <input type='text' placeholder='建议金额：一元、五元或十元人民币。' name='fee' autocomplete='off'></input>
+      </div>
+      <div class='sub text'>
+        本书作者将会收到全部的捐赠金额。
+      </div>
+    </div>
+
+    <button class="ui primary fixed button" type="submit">捐赠</button>
+  <% end %>
 </div>

@@ -42,6 +42,14 @@
       </div>
 
       <div id='page_content'>
+        <% if content_for?(:navigation) %>
+          <div id='navigation' class="ui inverted lightgray borderless attached menu">
+            <div class='ui container'>
+              <%= yield(:navigation) %>
+            </div>
+          </div>
+        <% end %>
+
         <%= yield %>
       </div>
 
