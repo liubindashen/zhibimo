@@ -1,15 +1,23 @@
-<div class="ui text container">
-  <div class="ui huge breadcrumb">
-    <%= link_to @book.title, book_path(@book), class: "section" %>
-    <i class="right chevron icon divider"></i>
-    <div class="action section">付费阅读</div>
-  </div>
+<% title '支付购买' %>
 
+<div id='navigation' class="ui inverted lightgray borderless attached menu">
+  <div class='ui container'>
+    <div class='item'>
+      <div class="ui huge breadcrumb">
+        <%= link_to @book.title, book_path(@book), class: 'section' %>
+        <i class="right chevron icon divider"></i>
+        <div class="active section">购买</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui text container">
   <div class="ui attached message">
     <div class="header">
-      感谢您对图书作者 <%= @book.author_pen_name %> 的支持。
+      感谢您对本书作者 <%= link_to author_name(@book), author_path(@book), target: '_blank' %> 的支持。
     </div>
-    <p>打开微信，使用 “扫一扫” 功能扫描下面的二维码进行支付。</p>
+    <p>打开微信，使用 “扫一扫” 功能扫描下面的二维码支付购买金额。</p>
   </div>
   <%= form_tag reader_book_purchase_path(@book, @order), method: :get, class: 'ui form attached fluid segment' do %>
     <div class='field'>
