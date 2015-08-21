@@ -10,7 +10,6 @@
 #= require angular-ui-codemirror
 #= require angular-messages
 #= require angular-underscore
-#= require angular-modal
 #= require ng-file-upload
 #= require ng-rails-csrf
 #= require restangular 
