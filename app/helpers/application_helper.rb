@@ -28,13 +28,13 @@ module ApplicationHelper
   def markdown_to_html(content, base_url = '')
     r = Redcarpet::Render::HTML.new(base_url: base_url)
     m = Redcarpet::Markdown.new(r)
-    m.render(content)
+    m.render(content || '')
   end
 
   def summary_to_html(book)
     r = SummaryRender.new(base_url: book.read_base_path)
     m = Redcarpet::Markdown.new(r)
-    m.render(book.summary)
+    m.render(book.summary || '')
   end
 
   def fee(order_or_decimal)
