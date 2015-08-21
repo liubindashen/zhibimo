@@ -34,3 +34,23 @@
   margin-top: 1.5em !important;
 }
 
+/*-------------------------------
+       Fixed Image Items
+-------------------------------*/
+
+.ui.fixed.image.items {
+  width: 100%;
+
+  .item > .ui.image {
+    min-width: 11rem;
+    img { width: inherit; }
+  }
+}
+
+@media only screen and (max-width: @tabletBreakpoint) {
+  .ui.fixed.image.items {
+    .item > .ui.image {
+      min-width: inherit !important;
+    }
+  }
+}

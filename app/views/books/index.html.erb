@@ -20,11 +20,11 @@
 
 <div class='ui container'>
   <div class="ui vertical segment">
-    <div id='explore_book_list' class="ui divided items">
+    <div id='explore_book_list' class="ui divided fixed image items">
       <%- @books.each do |book| %>
         <div class="item">
           <%= link_to(book_path(book), class: 'ui centered bordered image', target: '_blank') do %>
-            <img src='<%= book.cover.preview.url%>'>
+            <img src='<%= book.cover.preview.url%>' height='192px;'>
           <% end %>
 
           <div class="content">
@@ -37,10 +37,6 @@
               <% end %>
             </div>
           </div>
-          <!--
-          <a target='_blank' href='<%= book_path(book) %>'>
-          </a>
-          -->
         </div>
       <% end %>
     </div>
