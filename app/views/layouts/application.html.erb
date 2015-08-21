@@ -48,6 +48,22 @@
               <%= yield(:navigation) %>
             </div>
           </div>
+
+          <%- if flash[:notice] %>
+            <div class="ui floating info edge message">
+              <div class='ui container'>
+                <%= flash[:notice] %>
+              </div>
+            </div>
+          <% end %>
+
+          <%- if flash[:alert] %>
+            <div class="ui floating warning edge message">
+              <div class='ui container'>
+                <%= flash[:alert] %>
+              </div>
+            </div>
+          <% end %>
         <% end %>
 
         <%= yield %>

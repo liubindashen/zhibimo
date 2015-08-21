@@ -37,6 +37,18 @@ module ApplicationHelper
     m.render(book.summary)
   end
 
+  def fee(order_or_decimal)
+    fee = if order_or_decimal.is_a? Order
+            order_or_decimal.fee
+          elsif order_or_decimal.is_a? BigDecimal
+            order_or_decimal
+          else
+            order_or_decimal.sum(&:fee)
+          end
+
+    number_to_currency(fee.to_d / 100.to_d)
+  end
+
   def avatar(user = current_user)
     if user.author && !user.author.avatar.blank?
       user.author.avatar

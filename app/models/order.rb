@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   self.primary_key = :id
 
+  extend Enumerize
   include AASM
 
   belongs_to :book
@@ -9,6 +10,8 @@ class Order < ActiveRecord::Base
 
   validates_presence_of :id, :aasm_state, :fee
   validates_presence_of :wx_prepay_id, :wx_code_url, on: :update
+
+  enumerize :profit, in: [:free, :purchase], default: :free, predicates: true
 
   aasm do
     state :idle, initial: true

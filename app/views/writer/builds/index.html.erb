@@ -1,11 +1,9 @@
-<% title @book.title %>
+<% title '构建'  %>
 
 <% content_for :navigation do %>
   <div class='item'>
     <div class="ui huge breadcrumb">
       <%= link_to '我的图书', writer_books_path, class: 'section' %>
-      <i class="right chevron icon divider"></i>
-      <%= link_to @book.title, edit_writer_book_path(@book), class: 'active section' %>
       <i class="right chevron icon divider"></i>
       <div class="section">构建</div>
     </div>
@@ -20,7 +18,7 @@
 <div class='ui container'>
   <div class="ui edge attached message">
     <div class="header">
-      构建图书
+      构建图书 <%= @book.title %>
     </div>
     查看远程仓库信息、构建历史记录。
   </div>

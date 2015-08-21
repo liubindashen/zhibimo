@@ -8,8 +8,10 @@ module Writer
     def update
       @book.profit = :purchase
       if @book.update(book_params)
-        redirect_to edit_writer_book_path(@book), notice: '图书转付费阅读成功。'
+        flash[:notice] = '图书转付费阅读成功'
+        redirect_to edit_writer_book_path(@book)
       else
+        flash.now[:alert] = '图书转付费阅读失败'
         render :edit
       end
     end

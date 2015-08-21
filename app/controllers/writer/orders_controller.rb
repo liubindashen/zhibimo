@@ -1,7 +1,8 @@
 module Writer
   class OrdersController < ApplicationController
     def index
-      @orders = scope.orders
+      @orders = scope.orders.to_a
+      @orders_by_book = @orders.group_by(&:book)
     end
 
     private

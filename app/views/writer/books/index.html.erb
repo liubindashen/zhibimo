@@ -3,8 +3,6 @@
 <% content_for :navigation do %>
   <div class='item'>
     <div class="ui huge breadcrumb">
-      <div class="section">写作</div>
-      <i class="right chevron icon divider"></i>
       <div class="active section">我的图书</div>
     </div>
   </div>
@@ -31,10 +29,11 @@
             <div class='meta'> <span><%= book.slug %></span> </div>
             <div class="extra">
               <p><%= book.intro %></p>
-              <a target='_blank' href='<%= writer_book_orders_path(book) %>'>订单</a>
+              <a target='_blank' href='<%= book_path(book) %>'>查看</a>
+              <a target='_blank' href='<%= edit_writer_book_path(book) %>/'>编辑</a>
               <a target='_blank' href='<%= writer_book_builds_path(book) %>'>构建</a>
-              <a target='_blank' href='<%= writer_book_desk_path(book) %>/'>编辑 (测试)</a>
-              <a target='_blank' href='<%= html_path(book) %>'>预览</a>
+              <a target='_blank' href='<%= writer_book_orders_path(book) %>'>收款记录</a>
+              <a target='_blank' href='<%= writer_book_desk_path(book) %>/'>在线编辑器</a>
             </div>
           </div>
         </div>

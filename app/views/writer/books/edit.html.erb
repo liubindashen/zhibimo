@@ -5,9 +5,7 @@
     <div class="ui huge breadcrumb">
       <%= link_to '我的图书', writer_books_path, class: 'section' %>
       <i class="right chevron icon divider"></i>
-      <div class="active section"><%= @book.title %></div>
-      <i class="right chevron icon divider"></i>
-      <div class="section">编辑</div>
+      <div class="active section">编辑</div>
     </div>
   </div>
   <div class='right menu'>
@@ -23,7 +21,14 @@
 <% end %>
 
 <div class='ui container'>
-  <div class='ui edge segment'>
+  <div class="ui edge attached message">
+    <div class="header">
+      更新图书 <%= @book.title %>
+    </div>
+    更改图书的标题、简介与封面。
+  </div>
+
+  <div class='ui edge attached segment'>
     <div class="ui grid">
       <div class="eleven wide column">
         <%= form_for @book, url: writer_book_path(@book), html: {class: 'ui form'} do |f| %>

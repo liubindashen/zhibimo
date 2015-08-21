@@ -1,69 +1,88 @@
-<div class="ui text container">
-  <%- if @book %>
-  <div class="ui huge breadcrumb">
-    <a class="section" href='<%= writer_edit_book_path(@book) %>'><%= @book.title %></a>
-    <i class="right chevron icon divider"></i>
-    <div class="action section">支付订单</div>
+<%- if @book %>
+  <% title '收款记录'  %>
+<%- else %>
+  <% title '全部收款记录'  %>
+<% end %>
+
+<% content_for :navigation do %>
+  <div class='item'>
+    <div class="ui huge breadcrumb">
+      <%= link_to '我的图书', writer_books_path, class: 'section' %>
+      <i class="right chevron icon divider"></i>
+      <%- if @book %>
+      <div class="section">收款记录</div>
+      <%- else %>
+      <div class="section">全部收款记录</div>
+      <% end %>
+    </div>
   </div>
-  <%- else %>
-  <div class="ui huge breadcrumb">
-    <a class="section" href='<%= writer_edit_profile_path %>'>作者信息</a>
-    <i class="right chevron icon divider"></i>
-    <div class="action section">查看收款</div>
-  </div>
-  <% end %>
 
-  <div class="ui large feed">
-    <%- @orders.each do |order| %>
-      <div class="event">
-        <div class="label">
-          <img src="<%= avatar(order.purchaser) %>">
-        </div>
-        <div class="content">
-          <div class="summary">
-            <a class="user">
-              <%= order.purchaser.username %>
-            </a> 
-
-            <%- unless @book %>
-            <span><%= order.book.title %></span>
-            <% end %>
-
-            <code>#<%= order.id %></code>
-
-            <div class="date">
-              <%= time_ago_in_words(order.created_at) %>
-            </div>
-          </div>
-
-          <div class='meta'>
-            <%- if order.idle? %>
-              <div class="ui label">
-                <i class="wait icon"></i>
-                <%= order.aasm.human_state %>
-              </div>
-            <% end %>
-
-            <%- if order.waiting? %>
-              <div class="ui red label">
-                <i class="warning sign icon"></i>
-                <%= order.aasm.human_state %>
-              </div>
-            <% end %>
-
-            <%- if order.complete? %>
-              <div class="ui blue label">
-                <i class="settings icon"></i>
-                <%= order.aasm.human_state %>
-              </div>
-            <% end %>
-
-            <code><%= order.fee / 100.to_d %></code>
-          </div>
-        </div>
-      </div>
+  <div class='right menu'>
+    <div class='item'>
+      <span>合计 <b><%= fee(@orders) %></b></span>
+    </div>
+    <%- if @book %>
+    <div class='item'>
+      <%= link_to '查看全部', writer_orders_path, class: 'ui basic button' %>
+    </div>
     <% end %>
   </div>
+<% end %>
+
+<div class='ui container'>
+  <div class="ui edge attached message">
+    <div class="header">
+      查看收款 <%= @book.title if @book %>
+    </div>
+    查看读者对您图书的捐赠与付款。
+  </div>
+
+  <div class='ui edge attached segment'>
+    <%- @orders_by_book.each do |book, orders| %>
+      <%- unless @book %>
+      <div class="ui horizontal elegant divider"><%= book.title %></div>
+      <% end %>
+
+      <%- @orders.each do |order| %>
+        <div class="ui very relaxed middle aligned divided list">
+          <div class='item'>
+            <div class="right floated content">
+              <%- if order.idle? %>
+                <div class="ui label">
+                  <i class="wait icon"></i>
+                  <%= order.aasm.human_state %>
+                </div>
+              <% end %>
+
+              <%- if order.waiting? %>
+                <div class="ui red label">
+                  <i class="warning sign icon"></i>
+                  <%= order.aasm.human_state %>
+                </div>
+              <% end %>
+
+              <%- if order.complete? %>
+                <div class="ui blue label">
+                  <i class="settings icon"></i>
+                  <%= order.aasm.human_state %>
+                </div>
+              <% end %>
+            </div>
+            <img class="ui avatar image" src="<%= avatar(order.purchaser) %>">
+            <div class="content">
+              <a class="header"><%= order.purchaser.username %></a>
+              <div class="description">
+                订单 <%= order.id %> <%= order.free? ? '打赏' : '支付' %> <code><%= fee(order) %></code>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="ui edge bottom attached warning message">
+    <i class="icon help"></i>
+    有关收款的更多说明，请参考 <a target='_blank' href='/read/hpyhacking/zhibimo-guide/index.html'>知笔墨指南</a>。
+  </div>
 </div>
-
-

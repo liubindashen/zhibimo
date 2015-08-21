@@ -11,7 +11,9 @@ module Writer
     def update
       book = current_author.books.find params[:book_id]
       BuildJob.perform_later(book.builds.find(params[:id]).id)
-      redirect_to writer_book_builds_path(@book, notice: '构建已加入队列，请等待。')
+
+      flash[:notice] = '构建已成功加入队列。'
+      redirect_to writer_book_builds_path(@book)
     end
 
     # "object_kind"=>"push", 

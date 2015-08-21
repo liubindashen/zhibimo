@@ -1,43 +1,50 @@
-<div class='ui text container'>
-  <% if flash[:notice] %>
-    <div class="ui floating message">
-      <p><%= flash[:notice] %></p>
-    </div>
-  <% end %>
+<% title '编辑作者信息'  %>
 
-  <div class="ui huge breadcrumb">
-    <span class="section">作者信息</span>
-    <i class="right chevron icon divider"></i>
-    <span class="section action"><%= current_author.pen_name %></span>
+<% content_for :navigation do %>
+  <div class='item'>
+    <div class="ui huge breadcrumb">
+      <div class="section">作者</div>
+      <i class="right chevron icon divider"></i>
+      <div class="active section">更新信息</div>
+    </div>
+  </div>
+<% end %>
+
+<div class='ui container'>
+  <div class="ui edge attached message">
+    <div class="header">
+      更新信息
+    </div>
+    更新基本的作者信息与头像并保存。
   </div>
 
-  <div class="ui horizontal form divider">
-    基本信息
+  <div class='ui edge attached segment'>
+    <%= form_for @author, html: {class: 'ui form'}, url: writer_profile_path do |f| %>
+      <div class="field">
+        <label>作者笔名</label>
+        <%= f.text_field :pen_name, placeholder: '让读者知道你是谁' %>
+      </div>
+
+      <div class="field">
+        <label>作者简介</label>
+        <%= f.text_area :intro, rows: '5', placeholder: '让读者更多的了解你' %>
+      </div>
+
+      <div class="field">
+        <label>附言（可选）</label>
+        <%= f.text_field :slogan, placeholder: '格言 / 警句 / 信仰 / 吐槽 / 什么都可以' %>
+      </div>
+
+      <div class="field">
+        <label>头像</label>
+        <%= f.file_field :avatar %>
+      </div>
+
+      <div class="ui large buttons">
+        <button class="ui primary button" type='submit'>保存</button>
+        <div class="or"></div>
+        <%= link_to '取消', writer_books_path, class: 'ui button' %>
+      </div>
+    <% end %>
   </div>
-
-  <%= form_for @author, html: {class: 'ui form'} do |f| %>
-    <div class="field">
-      <label>作者笔名</label>
-      <%= f.text_field :pen_name, placeholder: '让读者知道你是谁' %>
-    </div>
-
-    <div class="field">
-      <label>作者简介</label>
-      <%= f.text_area :intro, rows: '5', placeholder: '让读者更多的了解你' %>
-    </div>
-
-    <div class="field">
-      <label>附言（可选）</label>
-      <%= f.text_field :slogan, placeholder: '格言 / 警句 / 信仰 / 吐槽 / 什么都可以' %>
-    </div>
-
-    <div class="field">
-      <label>头像</label>
-      <%= f.file_field :avatar %>
-    </div>
-
-    <button class="ui basic fixed button" type="submit">保存</button>
-    <a class="ui basic fixed button" href="<%= writer_orders_path %>">查看收款</a>
-  <% end %>
 </div>
-

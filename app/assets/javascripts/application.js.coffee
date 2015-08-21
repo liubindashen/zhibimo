@@ -19,9 +19,6 @@ $ ->
 
   $('.ui.dropdown').dropdown()
 
-  $('#view_gitlab_auth_info').click ->
-    $('#gitlab_auth_info_modal').modal({blurring: true}).modal('show')
-
   if $('#new_book').exists()
     $('#accept_term_checkbox').checkbox
       onChecked: ->

@@ -11,8 +11,10 @@ module Writer
       @author = current_user.build_author(author_params)
 
       if @author.save
-        redirect_to go_back_url, notice: '创建成功'
+        flash[:notice] = '填写作者信息成功'
+        redirect_to go_back_url
       else
+        flash.now[:alert] = '填写作者信息失败'
         render 'new'
       end
     end
@@ -25,8 +27,10 @@ module Writer
       @author = current_author
 
       if @author.update_attributes(author_params)
-        redirect_to edit_writer_profile_path(@author), notice: '保存成功'
+        flash[:notice] = '更新作者信息成功'
+        redirect_to edit_writer_profile_path(@author)
       else
+        flash.now[:alert] = '更新作者信息失败'
         render :edit
       end
     end

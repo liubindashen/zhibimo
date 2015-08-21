@@ -1,3 +1,6 @@
 /*******************************
     User Variable Overrides
 *******************************/
+.ui.edge.message {
+  border-radius: 0em;
+}

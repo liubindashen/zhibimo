@@ -15,7 +15,7 @@ class Book < ActiveRecord::Base
 
   enumerize :profit, in: [:free, :purchase], default: :free, predicates: true
 
-  validates_presence_of :profit
+  validates_presence_of :profit, :title
   validates :donate, inclusion: {in: [true, false]}, if: 'free?'
   validates :price, numericality: { only_integer: true, greater_than: 0, less_than: 1000}, if: 'purchase?'
   

@@ -18,17 +18,21 @@ module Writer
       @book = scope.new(book_params)
 
       if @book.save
-        redirect_to edit_writer_book_path(@book), notice: '创建成功'
+        flash[:notice] = '创建成功'
+        redirect_to edit_writer_book_path(@book)
       else
+        flash.now[:alert] = '创建失败'
         render 'new'
       end
     end
 
     def update
       if @book.update(book_params)
-        redirect_to edit_writer_book_path(@book), notice: '更新成功'
+        flash[:notice] = '更新成功'
+        redirect_to edit_writer_book_path(@book)
       else
-        render 'show'
+        flash.now[:alert] = '更新失败'
+        render 'edit'
       end
     end
 
