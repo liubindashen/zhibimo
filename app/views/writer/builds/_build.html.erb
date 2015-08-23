@@ -29,7 +29,7 @@
     <% end %>
   </div>
 
-  <img class="ui avatar image" src="<%= avatar(@book.author) %>">
+  <img class="ui avatar image" src="<%= avatar(@book.author.user) %>">
 
   <div class="content">
     <a class="header"><%= @book.author_pen_name %> </a>
