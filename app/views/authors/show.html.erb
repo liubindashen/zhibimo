@@ -4,7 +4,7 @@
   <div class='ui container'>
     <div class="ui inverted items">
       <div class="item">
-        <img class='ui bordered image' src='<%= @author.avatar.url %>' height='192px'>
+        <img id='avatar' class="ui circular image" src="<%= avatar(@author.user) %>">
         <div class="content">
           <h1 class="header"><%= @author.pen_name %></h1>
           <div class="description">
