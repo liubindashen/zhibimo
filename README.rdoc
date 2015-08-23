@@ -1,44 +1,5 @@
-### Run with docker
+### install gitbook and noto-cjk
 
-```
-docker build -t zhibimo .
-
-docker run --name zhibimo-mariadb -p 3306:3306 \
-  -v $CODE/zhibimo/config/mariadb.conf:/etc/mysql/conf.d/mariadb.cnf \
-  -e MYSQL_USER=zhibimo \
-  -e MYSQL_PASSWORD=password \
-  -e MYSQL_DATABASE=zhibimo \
-  -e MYSQL_ROOT_PASSWORD=PASSWORD  \
-  -d library/mariadb
-
-docker run --name zhibimo-webapp -h zhibimo -p 80:80 \
-  --link zhibimo-mariadb:mysql \
-  -e RAILS_ENV=production \
-  -v $CODE/zhibimo/log/nginx:/var/log/nginx \
-  -v $CODE/zhibimo/config/nginx/main.d:/etc/nginx/main.d \
-  -v $CODE/zhibimo/config/nginx/sites-enabled:/etc/nginx/sites-enabled \
-  -d zhibimo
-```
-
-```
-docker exec -t -i zhibimo-webapp bash -l
-
-setuser app bundle install --path vendor/bundle
-setuser app rake db:setup
-
-setuser app rake db:migrate
-setuser app rake bower:install assets:clean assets:clobber assets:precompile
-setuser app touch tmp/restart.txt
-
-# set secret config in config/main.d/secret.conf
-
-setuser app mkdir tmp
-setuser app touch tmp/restart.txt
-
-```
-
-
-# install gitbook and noto-cjk
 ```
 npm install -g gitbook-cli
 apt-get install xvfb calibre
@@ -49,6 +10,5 @@ setuser app fc-cache -fv
 setuser app fc-list | grep -i noto # to make sure the fonts installed correctly
 ```
 
-
-# start sidekiq with user app
-setuser app bundle exec sidekiq -q building,1 -q default,5 -e production -L log/sidekiq.log -d
+### start sidekiq with user app
+bundle exec sidekiq -q building,1 -q default,5 -e production -L log/sidekiq.log -d
