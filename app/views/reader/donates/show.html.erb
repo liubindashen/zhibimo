@@ -1,4 +1,4 @@
-<% title '支付捐赠' %>
+<% title '支付打赏' %>
 
 <div id='navigation' class="ui inverted lightgray borderless attached menu">
   <div class='ui container'>
@@ -6,7 +6,7 @@
       <div class="ui huge breadcrumb">
         <%= link_to @book.title, book_path(@book), class: 'section' %>
         <i class="right chevron icon divider"></i>
-        <div class="active section">捐赠</div>
+        <div class="active section">打赏</div>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@
     <div class="header">
       感谢您对本书作者 <%= link_to author_name(@book), author_path(@book), target: '_blank' %> 的支持。
     </div>
-    <p>打开微信，使用 “扫一扫” 功能扫描下面的二维码支付捐赠金额。</p>
+    <p>打开微信，使用 “扫一扫” 功能扫描下面的二维码支付打赏金额。</p>
   </div>
   <%= form_tag reader_book_donate_path(@book, @order), method: :get, class: 'ui form attached fluid segment' do %>
     <div class='field'>
@@ -28,7 +28,7 @@
       <a class="item">
         <div class="ui horizontal label">支付金额</div>
         <%= number_to_currency @order.fee %> 
-        本书作者将会收到全部的捐赠金额。
+        本书作者将会收到全部的打赏金额。
       </a>
       <a class="item">
         <div class="ui horizontal label">订单编号</div>

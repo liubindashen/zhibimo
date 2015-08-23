@@ -19,7 +19,7 @@ module Reader
         profit: @book.profit
 
       req_params = {
-        body: "#{@book.title} - 捐赠",
+        body: "#{@book.title} - 打赏",
         out_trade_no: order.id, 
         total_fee: (fee * 100).to_i,
         spbill_create_ip: '127.0.0.1',

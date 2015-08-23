@@ -6,7 +6,7 @@
 
   <%- if book.free? %>
     <%= link_to '免费阅读', html_path(book), target: '_blank' %>
-    <%= link_to '捐赠', new_reader_book_donate_path(book) %>
+    <%= link_to '打赏', new_reader_book_donate_path(book) %>
   <% end %>
 
   <%- if book.purchase? %>

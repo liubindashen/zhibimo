@@ -1,4 +1,4 @@
-<% title '捐赠' %>
+<% title '打赏' %>
 
 <div id='navigation' class="ui inverted lightgray borderless attached menu">
   <div class='ui container'>
@@ -6,7 +6,7 @@
       <div class="ui huge breadcrumb">
         <%= link_to @book.title, book_path(@book), class: 'section' %>
         <i class="right chevron icon divider"></i>
-        <div class="active section">捐赠</div>
+        <div class="active section">打赏</div>
       </div>
     </div>
   </div>
@@ -26,10 +26,10 @@
         <input type='text' placeholder='建议金额：一元、五元或十元人民币。' name='fee' autocomplete='off'></input>
       </div>
       <div class='sub text'>
-        本书作者将会收到全部的捐赠金额。
+        本书作者将会收到全部的打赏金额。
       </div>
     </div>
 
-    <button class="ui primary fixed button" type="submit">捐赠</button>
+    <button class="ui primary fixed button" type="submit">打赏</button>
   <% end %>
 </div>
