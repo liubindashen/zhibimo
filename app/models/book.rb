@@ -99,7 +99,7 @@ class Book < ActiveRecord::Base
       project = Gitlab.create_project slug, path: slug, user_id: author.gitlab_id, import_url: 'https://github.com/zhibimo/book-sample.git'
       update_attributes!(gitlab_id: project.id)
 
-      hook_url = Rails.application.routes.hook_writer_book_builds_url(id, host: 'zhibimo.com')
+      hook_url = Rails.application.routes.url_helpers.hook_writer_book_builds_url(id, host: 'zhibimo.com')
 
       Gitlab.add_project_hook project.id, hook_url, \
         push_events: true, issues_events: true, \
