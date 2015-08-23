@@ -51,7 +51,7 @@ module ApplicationHelper
           elsif order_or_decimal.is_a? BigDecimal
             order_or_decimal
           else
-            order_or_decimal.sum(&:fee)
+            order_or_decimal.to_a.sum(&:fee)
           end
 
     number_to_currency(fee.to_d / 100.to_d)

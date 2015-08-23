@@ -4,11 +4,13 @@ module Writer
 
     def index
       if view_on_book?
-        @orders = @book.orders.to_a
+        @orders = @book.orders
+        @orders_with_complete = @orders.complete
         render 'show', layout: 'book'
       else
-        @orders = current_author.orders.to_a
+        @orders = current_author.orders
         @orders_by_book = @orders.group_by(&:book)
+        @orders_with_complete = @orders.complete
         render 'index'
       end
     end
