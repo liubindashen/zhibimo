@@ -3,21 +3,21 @@
     <%- if order.idle? %>
       <div class="ui label">
         <i class="wait icon"></i>
-        <%= order.aasm.human_state %>
+        等待付款
       </div>
     <% end %>
 
     <%- if order.waiting? %>
       <div class="ui red label">
         <i class="warning sign icon"></i>
-        <%= order.aasm.human_state %>
+        付款异常
       </div>
     <% end %>
 
     <%- if order.complete? %>
       <div class="ui blue label">
         <i class="settings icon"></i>
-        <%= order.aasm.human_state %>
+        成功付款
       </div>
     <% end %>
   </div>
