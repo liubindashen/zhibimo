@@ -8,10 +8,10 @@ module Writer
 
     def update
       if @book.update(book_params)
-        flash[:notice] = '更新成功'
-        redirect_to edit_writer_book_path(@book)
+        flash[:notice] = '图书封面更新成功'
+        redirect_to edit_writer_book_covers_path(@book)
       else
-        flash.now[:alert] = '更新失败'
+        flash.now[:alert] = '图书封面更新失败'
         render 'edit'
       end
     end

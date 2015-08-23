@@ -50,21 +50,7 @@
             </div>
           </div>
 
-          <%- if flash[:notice] %>
-            <div class="ui floating info edge message">
-              <div class='ui container'>
-                <%= flash[:notice] %>
-              </div>
-            </div>
-          <% end %>
-
-          <%- if flash[:alert] %>
-            <div class="ui floating warning edge message">
-              <div class='ui container'>
-                <%= flash[:alert] %>
-              </div>
-            </div>
-          <% end %>
+          <%= render 'shared/flash' %>
         <% end %>
 
         <%= content_for?(:content) ? yield(:content) : yield %>

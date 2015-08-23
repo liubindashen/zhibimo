@@ -1,6 +1,6 @@
 module Writer
   class BooksController < BaseController
-    layout 'book', only: :edit
+    layout 'book', only: [:edit, :update]
 
     before_action :set_book, only: [:edit, :update]
 
