@@ -1,0 +1,40 @@
+<div class='item'>
+  <div class="right floated content">
+    <%- if build.idle? %>
+      <div class="ui label">
+        <i class="wait icon"></i>
+        <%= build.aasm.human_state %>
+      </div>
+    <% end %>
+
+    <%- if build.warning? %>
+      <div class="ui red label">
+        <i class="warning sign icon"></i>
+        <%= build.aasm.human_state %>
+      </div>
+    <% end %>
+
+    <%- if build.building? %>
+      <div class="ui blue label">
+        <i class="settings icon"></i>
+        <%= build.aasm.human_state %>
+      </div>
+    <% end %>
+
+    <%- if build.complete? %>
+      <a href="<%= build.read_url %>" class="ui green label">
+        <i class="checkmark icon"></i>
+        <%= build.aasm.human_state %>
+      </a>
+    <% end %>
+  </div>
+
+  <img class="ui avatar image" src="<%= avatar(@book.author) %>">
+
+  <div class="content">
+    <a class="header"><%= @book.author_pen_name %> </a>
+    <div class="description">
+      <%= time_ago_in_words(build.at) %> <code><%= build.short_commit %></code> <%= build.message %>
+    </div>
+  </div>
+</div>

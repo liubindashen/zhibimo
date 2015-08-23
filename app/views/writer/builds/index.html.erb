@@ -23,67 +23,13 @@
     <div class="ui horizontal elegant divider">构建记录</div>
 
     <%- if @builds.empty? %>
-    <p>无任何构建历史记录</p>
+      <h3 class="ui center aligned header">
+        <i>还未发现任何构建记录 ......</i>
+      </h3>
     <%- else %>
-    <div class="ui large feed">
-      <%- @builds.each do |build| %>
-        <div class="event">
-          <div class="label">
-            <img src="<%= avatar(@book.author.user) %>">
-          </div>
-          <div class="content">
-            <div class="summary">
-              <a class="user">
-                <%= @book.author.pen_name %>
-              </a> 
-              提交图书内容 
-
-              <div class="date">
-                <%= time_ago_in_words(build.at) %>
-              </div>
-            </div>
-
-            <div class="extra text">
-              <div class="ui label">
-                <code><%= build.short_commit %></code>
-              </div>
-              <%= build.message %>
-            </div>
-
-            <div class='meta'>
-              <%- if build.idle? %>
-                <div class="ui label">
-                  <i class="wait icon"></i>
-                  <%= build.aasm.human_state %>
-                </div>
-              <% end %>
-
-              <%- if build.warning? %>
-                <div class="ui red label">
-                  <i class="warning sign icon"></i>
-                  <%= build.aasm.human_state %>
-                </div>
-              <% end %>
-
-              <%- if build.building? %>
-                <div class="ui blue label">
-                  <i class="settings icon"></i>
-                  <%= build.aasm.human_state %>
-                </div>
-              <% end %>
-
-              <%- if build.complete? %>
-                <a href="<%= build.read_url %>" class="ui green label">
-                  <i class="checkmark icon"></i>
-                  <%= build.aasm.human_state %>
-                </a>
-              <% end %>
-
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
+      <div class="ui very relaxed middle aligned divided list">
+        <%= render @builds %>
+      </div>
     <% end %>
 
     <div class="ui horizontal elegant divider">迁移说明</div>
