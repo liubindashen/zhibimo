@@ -21,13 +21,5 @@ module Writer
     def book_params
       params.require(:book).permit(:price)
     end
-
-    def scope
-      current_author.books
-    end
-
-    def set_book
-      @book = scope.find(params[:book_id])
-    end
   end
 end

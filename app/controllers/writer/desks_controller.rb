@@ -1,8 +1,9 @@
 module Writer
-  class DesksController < ApplicationController
+  class DesksController < BaseController
+    before_action :set_book
+
     def show
       @current_user = current_user
-      @book = current_author.books.find params[:book_id]
       gon.jbuilder
 
       render layout: 'desk'

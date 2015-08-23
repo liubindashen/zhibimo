@@ -1,5 +1,7 @@
 module Writer
   class BooksController < BaseController
+    layout 'book', only: :edit
+
     before_action :set_book, only: [:edit, :update]
 
     def index
@@ -27,7 +29,7 @@ module Writer
     end
 
     def update
-      if @book.update(book_params)
+      if @book.update(book_params_for_update)
         flash[:notice] = '更新成功'
         redirect_to edit_writer_book_path(@book)
       else
@@ -37,22 +39,12 @@ module Writer
     end
 
     private
-    def set_book
-      id = params[:id] || params[:book_id]
-      id_or_slug = id.to_i
-      if id_or_slug > 0
-        @book = scope.find(id_or_slug)
-      else
-        @book = scope.find_by_slug(id)
-      end
+    def book_params_for_update
+      params.require(:book).permit(:title, :intro, :profit, :price, :donate)
     end
 
     def book_params
       params.require(:book).permit(:title, :slug, :cover, :intro, :profit, :price, :donate)
-    end
-
-    def scope
-      current_author.books
     end
   end
 end

@@ -1,0 +1,64 @@
+<% content_for :content do %>
+  <div id='book_info' class="ui primary inverted vertical segment">
+    <div class='ui container stackable grid'>
+      <div class='eleven wide column'>
+        <h1 class="ui inverted header">
+          <%= @book.title %>
+          <div class='sub header'>
+            <i><%= @book.slug %></i>
+          </div>
+        </h1>
+      </div>
+      <div class='five wide mobile only column'>
+        <%= link_to(book_path(@book), target: '_blank', class: 'ui inverted button') do %>
+          主页
+        <% end %>
+        <%= link_to(html_path(@book), target: '_blank', class: 'ui inverted button') do %>
+          预览
+        <% end %>
+      </div>
+      <div class='five wide right aligned computer only tablet only column'>
+        <%= link_to(book_path(@book), target: '_blank', class: 'ui inverted button') do %>
+          主页
+        <% end %>
+        <a class='ui inverted button' target='_blank' href='<%= writer_book_desk_path(@book) %>/'>
+          <i class='write icon'></i>
+          编辑器
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui lightgray inverted vertical seamless border segment">
+    <div class='ui container'>
+      <div class="ui secondary pointing content menu">
+        <%= link_to(edit_writer_book_path(@book), class: check_book_menu_item_active(:edit)) do %>
+          <i class='edit icon'></i>
+          编辑
+        <% end %>
+        <%= link_to(edit_writer_book_covers_path(@book), class: check_book_menu_item_active(:cover)) do %>
+          <i class='paint brush icon'></i>
+          封面
+        <% end %>
+        <%= link_to(writer_book_builds_path(@book), class: check_book_menu_item_active(:build)) do %>
+          <i class='lab icon'></i>
+          构建
+        <% end %>
+        <%= link_to(writer_book_orders_path(@book), class: check_book_menu_item_active(:order)) do %>
+          <i class='money icon'></i>
+          收款
+        <% end %>
+        <%= link_to('#', class: check_book_menu_item_active(:chart)) do %>
+          <i class='line chart icon'></i>
+          统计
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class='ui vertical borderless segment'>
+    <%= yield %>
+  </div>
+<% end %>
+
+<%= render template: "layouts/application" %>

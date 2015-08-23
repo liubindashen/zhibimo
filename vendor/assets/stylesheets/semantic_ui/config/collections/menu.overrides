@@ -10,6 +10,14 @@
   color: @primaryColor !important;
 }
 
+.ui.menu {
+  .right.menu {
+    .item {
+      text-align: right;
+    }
+  }
+}
+
 .ui.content.menu {
   min-height: 3.125rem;
   border-bottom-color: @lightgray !important;
@@ -32,8 +40,21 @@
 @media only screen and (max-width: @largestMobileScreen) {
   .ui.content.menu {
     & > .item {
-      padding-left: 1.275rem !important;
-      padding-right: 1.275rem !important;
+      padding-left: .575rem !important;
+      padding-right: .575rem !important;
+
+      .icon {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: @tabletBreakpoint) and (max-width: @largestTabletScreen) {
+  .ui.content.menu {
+    & > .item {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
     }
   }
 }
@@ -41,4 +62,3 @@
 .ui.edge.message {
   border-radius: 0em !important;
 }
-

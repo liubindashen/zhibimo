@@ -2,9 +2,11 @@ module Writer
   class BuildsController < BaseController
     protect_from_forgery only: :hook
     skip_before_action :auth_author!, only: :hook
+    before_action :set_book, only: [:index]
+
+    layout 'book'
 
     def index
-      @book = current_author.books.find params[:book_id]
       @builds = @book.builds.order('id desc')
     end
 

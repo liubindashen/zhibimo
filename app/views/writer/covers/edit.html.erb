@@ -1,0 +1,29 @@
+<% title "封面 - #{@book.title}" %>
+<% set_active_book_menu_item(:cover) %>
+
+<div class='ui container'>
+  <div class='ui edge attached segment'>
+    <div class="ui grid">
+      <div class="sixteen wide column">
+        <%= form_for @book, url: writer_book_covers_path(@book), html: {class: 'ui form'} do |f| %>
+
+          <div class="field">
+            <label>图书封面</label>
+            <img class='ui bordered image' src="<%= @book.cover.explore.url %>">
+          </div>
+
+          <div class="field">
+            <%= f.file_field :cover %>
+            <span class='sub text'>建议上传质量高的封面。</span>
+          </div>
+
+          <div class="ui large buttons">
+            <button class="ui primary button" type='submit'>更新</button>
+            <div class="or"></div>
+            <%= link_to '取消', writer_books_path, class: 'ui button' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

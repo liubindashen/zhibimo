@@ -31,6 +31,7 @@
                       <%= current_user.display_name %>
                     </a>
                   <% end %>
+                  <a class="ui item" href='<%= writer_orders_path %>'>收款记录</a>
                   <a class="item" href='<%= signout_path %>'>退出</a>
                 </div>
               </div>
@@ -66,7 +67,7 @@
           <% end %>
         <% end %>
 
-        <%= yield %>
+        <%= content_for?(:content) ? yield(:content) : yield %>
       </div>
 
       <div id='page_footer' class='ui center aligned black inverted vertical segment'>

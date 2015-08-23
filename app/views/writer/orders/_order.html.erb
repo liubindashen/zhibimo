@@ -1,0 +1,31 @@
+<div class='item'>
+  <div class="right floated content">
+    <%- if order.idle? %>
+      <div class="ui label">
+        <i class="wait icon"></i>
+        <%= order.aasm.human_state %>
+      </div>
+    <% end %>
+
+    <%- if order.waiting? %>
+      <div class="ui red label">
+        <i class="warning sign icon"></i>
+        <%= order.aasm.human_state %>
+      </div>
+    <% end %>
+
+    <%- if order.complete? %>
+      <div class="ui blue label">
+        <i class="settings icon"></i>
+        <%= order.aasm.human_state %>
+      </div>
+    <% end %>
+  </div>
+  <img class="ui avatar image" src="<%= avatar(order.purchaser) %>">
+  <div class="content">
+    <a class="header"><%= order.purchaser.username %></a>
+    <div class="description">
+      订单 <%= order.id %> <%= order.free? ? '打赏' : '支付' %> <code><%= fee(order) %></code>
+    </div>
+  </div>
+</div>

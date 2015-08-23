@@ -1,0 +1,29 @@
+<% title "收款 - #{@book.title}"  %>
+<% set_active_book_menu_item(:order) %>
+
+<div class='ui container'>
+  <div class="ui edge attached center aligned segment">
+    <div class="ui mini primary statistic">
+      <div class="value"><code><%= fee(@orders) %></code></div>
+      <div class="label">本书收入</div>
+    </div>
+  </div>
+  <div class='ui edge attached segment'>
+    <div class="ui horizontal elegant divider">收款记录</div>
+    <%- if @orders.empty? %>
+      <h3 class="ui center aligned header">
+        <i>对不起，还未曾有人给本书付款 ......</i>
+      </h3>
+    <%- else %>
+      <div class="ui very relaxed middle aligned divided list">
+        <%= render @orders %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="ui edge bottom attached warning message">
+    <i class="icon help"></i>
+    有关收款的更多说明，请参考 <a target='_blank' href='/read/hpyhacking/zhibimo-guide/index.html'>知笔墨指南</a>。
+  </div>
+</div>
+

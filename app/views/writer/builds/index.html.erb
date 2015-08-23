@@ -1,28 +1,7 @@
-<% title '构建'  %>
-
-<% content_for :navigation do %>
-  <div class='item'>
-    <div class="ui huge breadcrumb">
-      <%= link_to '我的图书', writer_books_path, class: 'section' %>
-      <i class="right chevron icon divider"></i>
-      <div class="section">构建</div>
-    </div>
-  </div>
-  <div class='right menu'>
-    <div class='item'>
-      <a class="ui basic button" target='_blank' href='<%= html_path(@book) %>'>预览</a>
-    </div>
-  </div>
-<% end %>
+<% title "构建 - #{@book.title}"  %>
+<% set_active_book_menu_item(:build) %>
 
 <div class='ui container'>
-  <div class="ui edge attached message">
-    <div class="header">
-      构建图书 <%= @book.title %>
-    </div>
-    查看远程仓库信息、构建历史记录。
-  </div>
-
   <div class='ui edge attached segment'>
     <div class="ui horizontal elegant divider">仓库信息</div>
 

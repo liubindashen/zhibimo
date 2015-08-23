@@ -29,10 +29,12 @@ Rails.application.routes.draw do
   namespace :writer do
     resource :profile, only: [:new, :create, :edit, :update]
     resources :orders, only: [:index, :show]
+
     resources :books, only: [:index, :edit, :update, :create, :new] do
       resources :orders, only: [:index]
 
       resource :desk, only: [:show]
+      resource :covers, only: [:edit, :update]
       resource :purchase, only: [:edit, :update]
 
       resources :builds, only: [:update, :index] do

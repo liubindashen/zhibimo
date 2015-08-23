@@ -25,6 +25,14 @@ module ApplicationHelper
     content_for :title, "#{page_title} - 知笔墨"
   end
 
+  def check_book_menu_item_active(item)
+    item.to_s == @active_book_menu_item ? 'item active' : 'item'
+  end
+
+  def set_active_book_menu_item(item)
+    @active_book_menu_item = item.to_s
+  end
+
   def markdown_to_html(content, base_url = '')
     r = Redcarpet::Render::HTML.new(base_url: base_url)
     m = Redcarpet::Markdown.new(r)
