@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   match '/404', to: 'errors#file_not_found', via: :all
+  match '/500', to: 'errors#server_error', via: :all
 
   root 'welcome#index'
 end

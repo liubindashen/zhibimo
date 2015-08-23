@@ -1,0 +1,10 @@
+<% content_for :left_page do %>
+  <div id='page_number' class="ui horizontal divider"> 500 </div>
+<% end %>
+<% content_for :right_page do %>
+  <h3 id='error_tip' class='ui header'>
+    「不好意思，一个错误被您发现了。」
+  </h3>
+
+  <a class="ui basic fixed button" href='<%= url_for(:back) %>'>返回</a>
+<% end %>
