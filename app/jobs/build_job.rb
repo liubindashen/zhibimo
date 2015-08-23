@@ -62,9 +62,10 @@ class BuildJob < ActiveJob::Base
           })
         end
 
-        book.update_attributes \
-          readme: File.read('README.md'),
-          summary: File.read('SUMMARY.md')
+        new_readme = File.read('README.md')
+        new_summary = File.read('SUMMARY.md')
+        book.update_attributes readme: new_readme, summary: new_summary
+        Rails.logger.info 'update readme and summary'
       end
 
 
