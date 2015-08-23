@@ -18,7 +18,7 @@ module Writer
 
     private
     def book_params
-      params.require(:book).permit(:cover)
+      params.require(:book).permit!(:cover)
     end
   end
 end

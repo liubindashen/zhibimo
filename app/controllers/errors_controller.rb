@@ -1,9 +1,12 @@
 class ErrorsController < ApplicationController
   layout 'landing'
 
-  def file_not_found
+  def show
+    render status_code.to_s, status: status_code
   end
+  protected
 
-  def server_error
+  def status_code
+    params[:code] || 500
   end
 end

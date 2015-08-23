@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_author, \
     :push_redirect_back_url, :pop_redirect_back_url
 
+  rescue_from(ActionController::ParameterMissing) do
+    redirect_to '/500'
+  end
+
   private
 
   def current_user
