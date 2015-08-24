@@ -10,7 +10,7 @@ set :deploy_to, '/home/deploy/zhibimo'
 
 branch = ENV['branch'] || 'master'
 
-set :domain, "websrv.zhibimo"
+set :domain, "appsrv.zhibimo"
 
 set :branch, branch
 
