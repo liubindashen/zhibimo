@@ -59,5 +59,5 @@ group :development, :test do
 
   gem 'mina'
   gem 'mina-sidekiq'
-  gem 'mina-puma'
+  gem 'mina-puma', :require => false
 end

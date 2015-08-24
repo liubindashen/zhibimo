@@ -59,7 +59,7 @@ end
 desc "Deploys the current version to the server."
 task deploy: :environment do
   deploy do
-    # invoke :'sidekiq:quiet'
+    invoke :'sidekiq:quiet'
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
 
@@ -69,21 +69,9 @@ task deploy: :environment do
     invoke :'rails:assets_precompile'
 
     to :launch do
-      # invoke :'sidekiq:restart'
+      invoke :'sidekiq:restart'
       invoke :'puma:phased_restart'
     end
-  end
-end
-
-namespace :passenger do
-  desc "Restart Passenger"
-  task :restart do
-    queue %{
-      echo "-----> Restarting passenger"
-      cd #{deploy_to}/current
-      #{echo_cmd %[mkdir -p tmp]}
-      #{echo_cmd %[touch tmp/restart.txt]}
-    }
   end
 end
 

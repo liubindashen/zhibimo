@@ -68,6 +68,7 @@ class Book < ActiveRecord::Base
   end
 
   def check_purchaser(user)
+    return false unless user
     purchasers.where(id: user.id).exists?
   end
 

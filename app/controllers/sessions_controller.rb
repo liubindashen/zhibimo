@@ -23,7 +23,18 @@ class SessionsController < ApplicationController
   end
 
   def auth
-    render nothing: true
+    author = Author.find_by_username(request.env['HTTP_X_ORIGINAL_AUTHOR'])
+
+    book = author && author.books
+      .find_by_slug(request.env['HTTP_X_ORIGINAL_BOOK'])
+
+    if book && book.free?
+      render nothing: true, status: 200
+    elsif book && book.purchase? && book.check_purchaser(current_user)
+      render nothing: true, status: 200
+    else
+      render nothing: true, status: 403
+    end
   end
 
   private
