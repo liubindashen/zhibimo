@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/signout' => 'sessions#destroy', as: :signout
   get '/auth/failure' => 'sessions#fail'
   get '/auth/:provider/callback' => 'sessions#create'
+  get '/auth' => 'sessions#auth'
 
   get '/explore/books', to: 'books#index', as: :explore_books
   get '/explore/authors', to: 'authors#index', as: :explore_authors

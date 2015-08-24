@@ -22,6 +22,10 @@ class SessionsController < ApplicationController
     redirect_to root_url, error: t('.error')
   end
 
+  def auth
+    render nothing: true
+  end
+
   private
   def user_from_auth(auth)
     user = User.from_auth(auth)
