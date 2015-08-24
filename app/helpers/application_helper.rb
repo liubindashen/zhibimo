@@ -54,7 +54,7 @@ module ApplicationHelper
             order_or_decimal.to_a.sum(&:fee)
           end
 
-    number_to_currency(fee.to_d / 100.to_d)
+    number_to_currency(fee.to_d)
   end
 
   def avatar(user = current_user)
