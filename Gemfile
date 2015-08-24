@@ -46,6 +46,8 @@ gem 'rqrcode_png'
 gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'pundit'
 
+gem 'puma'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
@@ -57,4 +59,5 @@ group :development, :test do
 
   gem 'mina'
   gem 'mina-sidekiq'
+  gem 'mina-puma'
 end

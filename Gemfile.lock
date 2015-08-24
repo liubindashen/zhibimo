@@ -188,6 +188,8 @@ GEM
     mina (0.3.0)
       open4
       rake
+    mina-puma (0.2.0)
+      mina
     mina-sidekiq (0.3.1)
       mina
     mini_magick (4.1.1)
@@ -227,6 +229,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.3)
       pry (>= 0.9.10)
+    puma (2.13.4)
     pundit (1.0.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
@@ -369,12 +372,14 @@ DEPENDENCIES
   less-rails-semantic_ui
   meta_request
   mina
+  mina-puma
   mina-sidekiq
   mini_magick
   mysql2
   ng-rails-csrf
   omniauth-github
   pry-rails
+  puma
   pundit
   quiet_assets
   rails (= 4.2.1)

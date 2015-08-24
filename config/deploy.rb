@@ -3,6 +3,7 @@ require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'
 require 'mina_sidekiq/tasks'
+require 'mina/puma'
 
 set :repository, 'git@github.com:hpyhacking/zhibimo.git'
 set :user, 'deploy'
@@ -40,6 +41,12 @@ task setup: :environment do
   queue! %[mkdir -p "#{deploy_to}/shared/tmp"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/tmp"]
 
+  queue! %[mkdir -p "#{deploy_to}/shared/tmp/sockets"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/tmp/sockets"]
+
+  queue! %[mkdir -p "#{deploy_to}/shared/tmp/pids"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/tmp/pids"]
+
   queue! %[mkdir -p "#{deploy_to}/shared/public/uploads"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/public/uploads"]
 
@@ -52,7 +59,7 @@ end
 desc "Deploys the current version to the server."
 task deploy: :environment do
   deploy do
-    invoke :'sidekiq:quiet'
+    # invoke :'sidekiq:quiet'
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
 
@@ -62,9 +69,8 @@ task deploy: :environment do
     invoke :'rails:assets_precompile'
 
     to :launch do
-      invoke :'sidekiq:restart'
-      invoke :'passenger:restart'
-      invoke :'bugsnag:deploy'
+      # invoke :'sidekiq:restart'
+      invoke :'puma:phased_restart'
     end
   end
 end
