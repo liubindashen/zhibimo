@@ -1,13 +1,15 @@
 class SessionsController < ApplicationController
+  skip_before_action :register_confirm!, only: [:destroy, :auth]
+
   def create
     if params[:provider] == 'wechat'
       req = WechatAuthentication.create_with_code(params[:code])
       req[:avatar_url] = req[:info][:avatar]
-      user_from_auth(req)
+      user_from_auth!(req)
     elsif params[:provider] == 'github'
       req = request.env['omniauth.auth']
       req[:avatar_url] = request.env['omniauth.auth']['extra']['raw_info']['avatar_url']
-      user_from_auth(req)
+      user_from_auth!(req)
     else
       redirect_to root_path
     end
@@ -15,11 +17,11 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: t('.notice')
+    redirect_to root_url
   end
 
   def fail
-    redirect_to root_url, error: t('.error')
+    redirect_to root_url
   end
 
   def auth
@@ -38,9 +40,14 @@ class SessionsController < ApplicationController
   end
 
   private
-  def user_from_auth(auth)
+  def user_from_auth!(auth)
     user = User.from_auth(auth)
     session[:user_id] = user.id
-    redirect_to pop_redirect_back_url || root_path
+
+    if user.is_confirm?
+      redirect_to pop_redirect_back_url || root_path
+    else
+      redirect_to register_path
+    end
   end
 end

@@ -16,6 +16,12 @@ class User < ActiveRecord::Base
                            :uid => auth[:uid])
   end
 
+  def confirm(params)
+    self.is_confirm = true
+    assign_attributes(params)
+    save
+  end
+
   def display_name
     return author.pen_name if author
     username
@@ -38,8 +44,7 @@ class User < ActiveRecord::Base
     end
 
     def create_auth(auth)
-      username = auth[:info][:name].downcase
-      username = "#{username}-#{SecureRandom.hex(3)}" if User.exists?(username)
+      username = "#{SecureRandom.hex(3)}-#{auth[:info][:name].downcase || 'username'}"
 
       create!(
         :email => "#{username}@zhibimo.com",

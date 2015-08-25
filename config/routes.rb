@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get '/books/:author', to: 'authors#show' # author_path(@book)
   get '/books/:author/:slug', to: 'books#show' # book_path(@book)
 
+  get '/register', to: 'users#edit', as: :register
+  post '/register', to: 'users#update'
+
   namespace :reader do
     resources :books, only: [:index] do
       resources :donates, only: [:new, :show, :create] do

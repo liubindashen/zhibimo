@@ -2,6 +2,7 @@ module Writer
   class BuildsController < BaseController
     protect_from_forgery only: :hook
     skip_before_action :auth_author!, only: :hook
+
     before_action :set_book, only: [:index]
 
     layout 'book'

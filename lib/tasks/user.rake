@@ -22,4 +22,13 @@ namespace :user do
       Gitlab.edit_user a.gitlab_id, username: a.gitlab_username, name: a.pen_name, email: a.user.email
     end
   end
+
+  desc "Set is_confirm for have books author"
+  task :rebuild_confirm_for_author => :environment do
+    Author.all.each do |a|
+      unless a.books.empty?
+        a.user.update_attributes(is_confirm: true)
+      end
+    end
+  end
 end

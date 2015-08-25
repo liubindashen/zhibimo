@@ -1,0 +1,46 @@
+<% title '注册' %>
+
+<% content_for :navigation do %>
+  <div class='item'>
+    <div class="ui huge breadcrumb">
+      <div class="active section">欢迎来到 知笔墨</div>
+    </div>
+  </div>
+<% end %>
+
+<div class="ui container">
+  <div class="ui attached message">
+    <div class="header">
+      您已经成功登陆
+    </div>
+    <p>以便您能更好的使用知笔墨阅读、写作，请先完善您的个人信息。</p>
+  </div>
+
+  <%= form_tag register_path, method: :post, class: 'ui form attached fluid segment' do %>
+    <div class="field">
+      <div class="ui left icon large input">
+        <i class="user icon"></i>
+        <input type='text' placeholder='您的用户名' name='user[username]' autocomplete='off'></input>
+      </div>
+      <div class='sub text'>
+        您在知笔墨中的<b>唯一标识（数字、英文字符、横线与下划线）</b>，设置后不可更改。
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="ui left icon large input">
+        <i class="mail icon"></i>
+        <input type='text' placeholder='您的邮箱地址 [可选]' name='user[email]' autocomplete='off'></input>
+      </div>
+      <div class='sub text'>
+        每周您将收到知笔墨的最新咨询以及重要通知，<b>作者朋友还将会收到每周统计报告</b>。
+      </div>
+    </div>
+
+    <div class="ui large buttons">
+      <button class="ui primary button" type='submit'>注册</button>
+      <div class="or"></div>
+      <%= link_to '取消', signout_path, class: 'ui button' %>
+    </div>
+  <% end %>
+</div>
