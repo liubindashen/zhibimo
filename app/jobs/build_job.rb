@@ -68,21 +68,22 @@ class BuildJob < ActiveJob::Base
         Rails.logger.info 'update readme and summary'
       end
 
-
       # build html to books/author/book/release/commit/
       system("gitbook build #{commit_path} #{release_path}")
 
-      # build pdf to books/author/book/release/commit/book.mobi
-      mobi_output = "#{release_path}/#{build.book.slug}.mobi"
-      system("gitbook mobi #{commit_path} #{mobi_output}")
+      if book.free?
+        # build pdf to books/author/book/release/commit/book.mobi
+        mobi_output = "#{release_path}/#{book.slug}.mobi"
+        system("gitbook mobi #{commit_path} #{mobi_output}")
 
-      # build epub to books/author/book/release/commit/book.epub
-      epub_output = "#{release_path}/#{build.book.slug}.epub"
-      system("gitbook epub #{commit_path} #{epub_output}")
+        # build epub to books/author/book/release/commit/book.epub
+        epub_output = "#{release_path}/#{book.slug}.epub"
+        system("gitbook epub #{commit_path} #{epub_output}")
 
-      # build pdf to books/author/book/release/commit/book.pdf
-      pdf_output = "#{release_path}/#{build.book.slug}.pdf"
-      system("xvfb-run gitbook pdf #{commit_path} #{pdf_output}")
+        # build pdf to books/author/book/release/commit/book.pdf
+        pdf_output = "#{release_path}/#{book.slug}.pdf"
+        system("xvfb-run gitbook pdf #{commit_path} #{pdf_output}")
+      end
 
       system("rm -f #{current_path} && ln -sf #{release_path} #{current_path}")
     end
