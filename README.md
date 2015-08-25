@@ -1,6 +1,5 @@
 # install gitbook and noto-cjk
 
-
 ```
 npm install -g gitbook-cli
 apt-get install xvfb calibre
