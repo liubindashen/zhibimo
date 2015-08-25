@@ -26,12 +26,12 @@
                     <a class="item" href='<%= edit_writer_profile_path %>'>
                       <%= current_author.pen_name %>
                     </a>
+                    <a class="ui item" href='<%= writer_orders_path %>'>收款记录</a>
                   <%- else %>
-                    <a class="item">
+                    <span class="item">
                       <%= current_user.display_name %>
-                    </a>
+                    </span>
                   <% end %>
-                  <a class="ui item" href='<%= writer_orders_path %>'>收款记录</a>
                   <a class="item" href='<%= signout_path %>'>退出</a>
                 </div>
               </div>
