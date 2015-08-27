@@ -13,6 +13,10 @@ class BooksController < ApplicationController
 
   private
   def scope
-    Book.explored
+    if params[:query]
+      Book.explored.where('title LIKE ?', "%#{params[:query]}%")
+    else
+      Book.explored
+    end
   end
 end
