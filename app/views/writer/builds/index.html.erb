@@ -32,15 +32,9 @@
       </div>
     <% end %>
 
-    <div class="ui horizontal elegant divider">迁移说明</div>
+    <div class="ui horizontal elegant divider">Gitbook 迁移说明</div>
 
-    <p>
-      更改远程仓库地址后，会提示要求身份认证。
-    </p>
-    <div class="ui message">
-      <code>cd $BOOKS_DIR/<%= @book.slug %></code><br />
-      <code>git remote set_url origin <%= @book.git_origin %></code><br />
-    </div>
+    <p>请参考 <a href='http://zhibimo.com/read/hpyhacking/zhibimo-guide/build-by-other-git-repo.html' target='_blank'>从其他 Git 仓库进行构建</a> 的说明来将您在 Gitbook 中的图书发布到 知笔墨。</p>
   </div>
 
   <div class="ui edge bottom attached info message">
