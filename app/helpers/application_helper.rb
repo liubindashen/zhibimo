@@ -39,6 +39,12 @@ module ApplicationHelper
     m.render(content || '')
   end
 
+  def readme_to_html(book, base_url = '')
+    r = ReadmeRender.new(base_url: book.read_base_path)
+    m = Redcarpet::Markdown.new(r)
+    m.render(book.readme || '')
+  end
+
   def summary_to_html(book)
     r = SummaryRender.new(base_url: book.read_base_path)
     m = Redcarpet::Markdown.new(r)
