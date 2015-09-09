@@ -2,7 +2,7 @@ module Writer
   class BooksController < BaseController
     layout 'book', only: [:edit, :update]
 
-    before_action :set_book, only: [:edit, :update]
+    before_action :set_book, only: [:edit, :update, :destroy]
 
     def index
       @books = scope.order('updated_at desc')
@@ -25,6 +25,16 @@ module Writer
       else
         flash.now[:alert] = '创建失败'
         render 'new'
+      end
+    end
+
+    def destroy
+      if @book.price
+        flash.now[:alert] = '收费图书不可以删除' 
+        redirect_to edit_writer_book_path(@book)
+      else
+        @book.destroy
+        redirect_to writer_books_path
       end
     end
 

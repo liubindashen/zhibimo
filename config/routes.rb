@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resource :profile, only: [:new, :create, :edit, :update]
     resources :orders, only: [:index, :show]
 
-    resources :books, only: [:index, :edit, :update, :create, :new] do
+    resources :books do
       resources :orders, only: [:index]
 
       resource :desk, only: [:show]

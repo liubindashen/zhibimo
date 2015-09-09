@@ -43,6 +43,10 @@
             <%= link_to '取消', writer_books_path, class: 'ui button' %>
           </div>
         <% end %>
+        <hr>
+        <div class="ui red large buttons">
+          <%= link_to "删除", writer_book_path, class: 'ui  button', method: :delete , data: { confirm: "确认删除?" }%>
+        </div>
       </div>
     </div>
   </div>

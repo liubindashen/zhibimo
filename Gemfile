@@ -42,6 +42,7 @@ gem 'aasm'
 gem 'enumerize'
 gem 'wx_pay', github: 'zhibimo/wx_pay'
 gem 'rqrcode_png'
+gem "paranoia", "~> 2.0"
 
 gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'pundit'
