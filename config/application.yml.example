@@ -1,7 +1,14 @@
 defaults: &defaults
-  GITHUB_KEY: "GITHUB_KEY"
-  GITHUB_SECRET: "GITHUB_SECRET"
-  DISABLE_GITLIB: true
+  GITHUB_KEY: ""
+  GITHUB_SECRET: ""
+  WECHAT_APP_ID: ""
+  WECHAT_APP_SECRET: ""
+  DISABLE_GITLIB: "true"
+  ADMIN_LIST: ""
+
+  WX_PAY_ID: ""
+  WX_PAY_KEY: ""
+  WX_MCH_ID: ""
 
 development:
   <<: *defaults
