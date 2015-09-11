@@ -5,7 +5,7 @@ require 'mina/rbenv'
 require 'mina_sidekiq/tasks'
 require 'mina/puma'
 
-set :repository, 'git@github.com:hpyhacking/zhibimo.git'
+set :repository, 'git@github.com:zhibimo/zhibimo.git'
 set :user, 'deploy'
 set :deploy_to, '/home/deploy/zhibimo'
 

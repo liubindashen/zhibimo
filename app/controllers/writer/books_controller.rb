@@ -14,6 +14,7 @@ module Writer
     end
 
     def edit
+      load_domain
     end
 
     def create
@@ -39,7 +40,7 @@ module Writer
     end
 
     def update
-      if @book.update(book_params_for_update)
+      if @book.update(book_params_for_update) && update_domain
         flash[:notice] = '更新成功'
         redirect_to edit_writer_book_path(@book)
       else
@@ -56,5 +57,15 @@ module Writer
     def book_params
       params.require(:book).permit(:title, :slug, :cover, :intro, :profit, :price, :donate)
     end
+
+    def load_domain
+      @domain = DomainBinding.find_or_create_by(domain_bindingtable: @book)
+    end
+
+    def update_domain
+      load_domain
+      @domain.update(domain: params[:book][:domain_binding_attributes][:domain])
+    end
+
   end
 end

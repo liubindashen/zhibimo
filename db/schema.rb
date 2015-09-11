@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909071020) do
+ActiveRecord::Schema.define(version: 20150911074052) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -84,6 +84,14 @@ ActiveRecord::Schema.define(version: 20150909071020) do
     t.datetime "updated_at", null: false
     t.string   "aasm_state"
     t.boolean  "published"
+  end
+
+  create_table "domain_bindings", force: :cascade do |t|
+    t.string   "domain"
+    t.integer  "domain_bindingtable_id"
+    t.string   "domain_bindingtable_type"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "entries", force: :cascade do |t|

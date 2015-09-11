@@ -63,6 +63,12 @@ Rails.application.routes.draw do
     end
   end
 
+  constraints :subdomain => "book" do
+    scope :module => "book" do
+      resources :subdomains, only:[:show]
+    end
+  end
+
   ActiveAdmin.routes(self)
 
   %w(400 404 422 500).each do |code|

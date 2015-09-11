@@ -15,6 +15,9 @@ class Book < ActiveRecord::Base
   has_many :complete_orders, -> { where aasm_state: :complete}, class_name: Order
   has_many :purchasers, through: :complete_orders, class_name: User, foreign_key: :user_id
 
+  has_one :domain_binding,  :as => :domain_bindingtable, dependent: :destroy
+  accepts_nested_attributes_for :domain_binding, update_only: true
+
   enumerize :profit, in: [:free, :purchase], default: :free, predicates: true
 
   validates_presence_of :profit, :title
