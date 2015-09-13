@@ -1,6 +1,7 @@
 class Book::DomainBindingsController < ApplicationController
-  def show
-    @domain = DomainBinding.find_by(domain: requst.host)
-    # @domain ? "" : redirect_to root_path
+  layout 'domain_buiding'
+  def index
+    @domain = DomainBinding.find_by(domain: request.host)
+    @url = @domain.book.read_base_path  if @domain
   end
 end

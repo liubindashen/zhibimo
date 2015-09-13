@@ -65,7 +65,7 @@ Rails.application.routes.draw do
 
   constraints :subdomain => "book" do
     scope :module => "book" do
-      resources :subdomains, only:[:show]
+      get "/" => 'domain_bindings#index'
     end
   end
 
