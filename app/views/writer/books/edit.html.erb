@@ -17,10 +17,14 @@
             <%= f.text_area :intro, rows: '5', placeholder: '写个简介，让大家都知道为什么要读这本书。' %>
           </div>
           <div class="field">
-            <%= f.fields_for :domain_binding do |field|%>
-              <label>绑定域名</label>
-              <%= field.text_field :domain %>
-            <% end %>
+            <label>绑定域名</label>
+            <div class="ui labeled input">
+              <%= f.fields_for :domain_binding do |field|%>
+                <div class="ui label">http:// </div>
+                <%= field.text_field :domain %>
+              <% end %>
+            </div>
+            <span class='sub text'>请将要绑定的域名 <code>CNAME</code> 到 <code>book.zhibimo.com</code></span>
           </div>
           <%- if @book.free? %>
             <div class='field'>
