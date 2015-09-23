@@ -6,7 +6,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   storage :file
 
   def store_dir
-    "uploads/avatars/#{model.username}"
+    "uploads/avatars/#{model.class.name.underscore}/#{model.id}"
   end
 
   def default_url(*args)

@@ -34,9 +34,14 @@ class User < ActiveRecord::Base
     def from_auth(auth)
       user = locate_auth(auth) || create_auth(auth)
 
-      if user.avatar.blank?
+      if user.avatar.blank? or (user.created_at < Time.at(1443009699))
         user.remote_avatar_url = auth[:avatar_url]
         user.save!
+
+        if user.author
+          user.author.remote_avatar_url = auth[:avatar_url]
+          user.author.save!
+        end
       end
 
       user
