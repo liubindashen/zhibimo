@@ -18,8 +18,9 @@ class User < ActiveRecord::Base
 
   def confirm(params)
     self.is_confirm = true
-    assign_attributes(params)
-    save
+    self.username = params[:username]
+    self.email = params[:email] if params[:email] and !params[:email].blank?
+    self.save
   end
 
   def display_name

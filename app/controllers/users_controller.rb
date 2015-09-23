@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       flash[:notice] = '注册成功，欢迎使用知笔墨。'
       redirect_to explore_books_path
     else
+      current_user.restore_attributes
       flash.now[:alert] = '此用户名已被占用或不符合设定规则（数字、英文字符、横线与下划线），请更换后重试。'
       render 'edit'
     end
