@@ -18,11 +18,8 @@ class User < ActiveRecord::Base
 
   def confirm(params)
     self.is_confirm = true
-    old_avatar = "public/uploads/avatars/#{self.username}"
-    assign_attributes(username: params[:username], email: params[:email])
+    assign_attributes(params)
     save
-    File.rename(old_avatar, "public/uploads/avatars/#{self.username}")
-    true
   end
 
   def display_name
