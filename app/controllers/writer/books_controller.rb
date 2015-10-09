@@ -44,7 +44,8 @@ module Writer
         flash[:notice] = '更新成功'
         redirect_to edit_writer_book_path(@book)
       else
-        flash.now[:alert] = '更新失败'
+        error = @book.errors.full_messages
+        flash.now[:alert] = error
         render 'edit'
       end
     end

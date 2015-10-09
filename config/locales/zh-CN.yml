@@ -14,3 +14,6 @@ zh-CN:
           building: 构建中
           complete: 构建成功
           warning: 构建失败
+      book:
+        price: 价格
+        title: 标题
