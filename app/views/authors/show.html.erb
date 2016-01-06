@@ -39,6 +39,26 @@
     <div class="ui tab segment active" data-tab="about">
     </div>
     <div class="ui tab segment" data-tab="hot">
+    <% unless @books.empty? %>
+      <div id='explore_book_list' class="ui divided fixed image items">
+        <%- @books.each do |book| %>
+          <div class="item">
+            <%= link_to(book_path(book), class: 'ui centered bordered image', target: '_blank') do %>
+              <img src='<%= book.cover.preview.url%>' height='192px;'>
+            <% end %>
+
+            <div class="content">
+              <h1 class="header"><a href='<%= book_path(book) %>' target='_blank'><%= book.title %></a></h1>
+              <div class="description">
+                <%- if book.intro %>
+                  <p><%= book.intro %> — <%= link_to author_name(book), author_path(book) %></p>
+                <%- else %>
+                  <p><%= link_to author_name(book), author_path(book) %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
     </div>
     <div class="ui tab segment"></div>
   </div>

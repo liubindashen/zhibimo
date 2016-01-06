@@ -6,6 +6,6 @@ class AuthorsController < ApplicationController
 
   def show
     @author = Author.find_by_username(params[:author])
-    @hot_books = @author.books.explored.first(3)
+    @books = @author.books.explored
   end
 end
