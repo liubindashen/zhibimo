@@ -1,3 +1,4 @@
+require 'open3'
 class BuildJob < ActiveJob::Base
   queue_as :building
 
@@ -69,8 +70,12 @@ class BuildJob < ActiveJob::Base
       end
 
       # build html to books/author/book/release/commit/
-      system("gitbook build #{commit_path} #{release_path}")
-
+      cmd = system("gitbook build #{commit_path} #{release_path}")
+      Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
+        build.update(build_log: stdout.read)
+        #puts "stdout is:" + stdout.read
+        #puts "stderr is:" + stderr.read
+      end
       if book.free?
         # build pdf to books/author/book/release/commit/book.mobi
         mobi_output = "#{release_path}/#{book.slug}.mobi"
