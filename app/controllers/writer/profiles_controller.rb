@@ -14,8 +14,9 @@ module Writer
         flash[:notice] = '填写作者信息成功'
         redirect_to go_back_url
       else
-        flash.now[:alert] = '填写作者信息失败'
-        render 'new'
+        # flash.now[:alert] = '填写作者信息失败'
+        redirect_to new_writer_profile_path, alert: '填写作者信息失败'
+        # render :new
       end
     end
 
@@ -30,8 +31,9 @@ module Writer
         flash[:notice] = '更新作者信息成功'
         redirect_to edit_writer_profile_path(@author)
       else
-        flash.now[:alert] = '更新作者信息失败'
-        render :edit
+        # flash.now[:alert] = '更新作者信息失败'
+        redirect_to edit_writer_profile_path, alert: '更新作者信息失败'
+        # render :edit
       end
     end
 
