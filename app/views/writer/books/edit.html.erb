@@ -26,6 +26,13 @@
             </div>
             <span class='sub text'>请将要绑定的域名 <code>CNAME</code> 到 <code>book.zhibimo.com</code></span>
           </div>
+
+          <div class="field">
+            <label>图书标签</label>
+              <%= f.text_field :tag_list, placeholder: '标签1 标签2 标签3', autocomplete: :off %>
+            <span class='sub text'>多个标签请使用空格隔开</code></span>
+          </div>
+
           <%- if @book.free? %>
             <div class='field'>
               <div class="ui checkbox">

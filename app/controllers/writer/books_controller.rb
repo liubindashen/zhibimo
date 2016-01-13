@@ -31,7 +31,7 @@ module Writer
 
     def destroy
       if @book.price
-        flash.now[:alert] = '收费图书不可以删除' 
+        flash.now[:alert] = '收费图书不可以删除'
         redirect_to edit_writer_book_path(@book)
       else
         @book.destroy
@@ -52,7 +52,7 @@ module Writer
 
     private
     def book_params_for_update
-      params.require(:book).permit(:title, :intro, :profit, :price, :donate)
+      params.require(:book).permit(:title, :intro, :profit, :price, :donate, :tag_list)
     end
 
     def book_params

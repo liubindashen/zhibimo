@@ -32,6 +32,7 @@ gem 'chinese_pinyin'
 gem 'carrierwave'
 gem 'mini_magick'
 
+gem 'acts-as-taggable-on', '~> 3.4'
 gem 'redcarpet'
 gem 'figaro'
 gem 'sidekiq'

@@ -4,6 +4,9 @@ class Book < ActiveRecord::Base
 
   acts_as_paranoid
 
+  acts_as_taggable
+  acts_as_taggable_on :skills, :interests
+
   before_validation :set_default
   validates :slug, presence: true, uniqueness: {scope: :author_id}, format: {with: /\A[a-z0-9][a-z0-9_\-]{1,512}\Z/i}
   validates :gitlab_id, presence: true, uniqueness: true, on: :update
@@ -23,7 +26,7 @@ class Book < ActiveRecord::Base
   validates_presence_of :profit, :title
   validates :donate, inclusion: {in: [true, false]}, if: 'free?'
   validates :price, numericality: { only_integer: true, greater_than: 0, less_than: 1000}, if: 'purchase?'
-  
+
   delegate :pen_name, :username, :email, :to => :author, :prefix => true
 
   scope :explored, -> { where(explored: true) }
