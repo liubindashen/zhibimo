@@ -29,6 +29,10 @@
     <%- else %>
       <div class="ui very relaxed middle aligned list">
         <%= render @builds %>
+        <p>构建详情</p>
+        <% if @builds.last.build_log != nil %>
+          <%=raw @builds.last.build_log %>
+        <% end %>
       </div>
     <% end %>
 
