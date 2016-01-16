@@ -16,9 +16,9 @@ class BuildJob < ActiveJob::Base
     end
   end
 
-  # repos path example: 
+  # repos path example:
   #   books/author/book/scm
-  # books path example: 
+  # books path example:
   #   books/author/book/repelase/commit/
   #   books/author/book/repelase/commit/book.pdf
   #   books/author/book/repelase/commit/book.epub
@@ -67,6 +67,8 @@ class BuildJob < ActiveJob::Base
         book.update_attributes readme: new_readme, summary: new_summary
         Rails.logger.info 'update readme and summary'
       end
+
+      system("sed -i 's/\\s/ /g' #{commit_path}/*")
 
       # build html to books/author/book/release/commit/
       system("gitbook build #{commit_path} #{release_path}")

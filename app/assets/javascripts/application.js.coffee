@@ -1,12 +1,10 @@
 #= require jquery
 #= require jquery_ujs
-#= require zeroclipboard
 #= require semantic_ui/semantic_ui
 
 jQuery.fn.exists = -> @length > 0
 
 $ ->
-  new ZeroClipboard($(".copy.action"))
 
   if $('#wechat_login_wrapper').exists()
     new WxLogin
