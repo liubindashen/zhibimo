@@ -1,0 +1,37 @@
+<% title '收入管理'  %>
+
+<% content_for :navigation do %>
+  <div class='item'>
+    <div class="ui huge breadcrumb">
+      <div class="active section">收入管理</div>
+    </div>
+  </div>
+<% end %>
+
+<div class='ui container'>
+  <div class="ui edge attached message">
+    <div class="header">
+      提现
+    </div>
+  </div>
+
+  <div class='ui edge attached segment'>
+    <%= form_for @withdraw, html: {class: 'ui form'} do |f| %>
+      <div class="field">
+        <label>可转出余额</label>
+        <span><%= @balance %></span>
+      </div>
+      <div class="field">
+        <label>提现金额</label>
+        <%= f.text_field :amount, placeholder: '0.0' %>
+      </div>
+      <div class="field">
+        <label>支付宝账号</label>
+        <%= f.text_field :account, placeholder: 'xxxx@example.com' %>
+      </div>
+      <div class="ui large buttons">
+        <button class="ui primary button" type='submit'>提交</button>
+      </div>
+    <% end %>
+  </div>
+</div>

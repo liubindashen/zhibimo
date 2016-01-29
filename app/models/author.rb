@@ -10,6 +10,8 @@ class Author < ActiveRecord::Base
   has_many :books, dependent: :destroy
   has_many :orders, dependent: :destroy
 
+  has_many :withdraws, dependent: :destroy
+
   delegate :username, :email, :to => :user
 
   scope :find_by_username, -> (username) {
@@ -20,6 +22,22 @@ class Author < ActiveRecord::Base
 
   def gitlab
     Gitlab.user gitlab_id
+  end
+
+  def balance
+    if self.withdraws != nil
+      total = self.orders.where(aasm_state: "complete").sum(:fee) * 0.9 - self.withdraws.sum(:amount)
+    else
+      total = self.orders.where(aasm_state: "complete").sum(:fee) * 0.9
+    end
+  end
+
+  def fee
+    if self.withdraws != nil
+      total = self.orders.where(aasm_state: "complete").sum(:fee) * 0.1 - self.withdraws.sum(:fee)
+    else
+      total = self.orders.where(aasm_state: "complete").sum(:fee) * 0.1
+    end
   end
 
   after_create do

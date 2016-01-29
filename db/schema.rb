@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111060444) do
+ActiveRecord::Schema.define(version: 20160119072146) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -155,6 +155,18 @@ ActiveRecord::Schema.define(version: 20160111060444) do
     t.string   "unionid"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "withdraws", force: :cascade do |t|
+    t.integer  "author_id"
+    t.float    "amount"
+    t.float    "fee"
+    t.float    "total"
+    t.float    "balance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "state"
+    t.string   "account"
   end
 
 end

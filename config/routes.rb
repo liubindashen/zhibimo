@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get '/register', to: 'users#edit', as: :register
   post '/register', to: 'users#update'
+  
+  resources :withdraws
 
   namespace :reader do
     resources :books, only: [:index] do
