@@ -72,7 +72,7 @@ class BuildJob < ActiveJob::Base
       system("sed -i 's/\\s/ /g' #{commit_path}/*")
 
       # build html to books/author/book/release/commit/
-      cmd = system("gitbook build #{commit_path} #{release_path}")
+      cmd = system("gitbook build #{commit_path} #{release_path}/ --log=debug --debug")
       Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
         build.update(build_log: stdout.read)
         #puts "stdout is:" + stdout.read
