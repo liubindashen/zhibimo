@@ -3,10 +3,14 @@ module Writer
     before_action :set_book
 
     def show
-      @current_user = current_user
-      gon.jbuilder
+      if @book.other_git != ""
+        @current_user = current_user
+        gon.jbuilder
 
-      render layout: 'desk'
+        render layout: 'desk'
+      else
+        redirect_to writer_books_path
+      end
     end
   end
 end

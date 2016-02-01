@@ -25,6 +25,12 @@
       </div>
 
       <div class="field">
+        <label>仓库地址</label>
+        <%= f.text_field :other_git, placeholder: 'git@github.com:xxxx/xxx.git' %>
+        <span class='sub text'><b>外部仓库地址</b>，针对您已有的电子书进行构建，仓库地址必须为 <b>公开</b> 地址。</span>
+      </div>
+
+      <div class="field">
         <label>标识</label>
         <%= f.text_field :slug, placeholder: '可选：英文标识，不能修改，默认使用书名全拼。' %>
         <span class='sub text'><b>唯一性标识</b>，不可与您的其他图书重复，允许的符号为<b>小写字母、数字、横线与下划线</b>。</span>

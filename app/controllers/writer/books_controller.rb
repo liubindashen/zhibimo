@@ -19,7 +19,7 @@ module Writer
 
     def create
       @book = scope.new(book_params)
-
+      @book.other_git = params[:book][:other_git]
       if @book.save
         flash[:notice] = '创建成功'
         redirect_to edit_writer_book_path(@book)
