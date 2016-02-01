@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119072146) do
+ActiveRecord::Schema.define(version: 20160201020314) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20160119072146) do
     t.decimal  "price"
     t.boolean  "donate"
     t.datetime "deleted_at"
+    t.string   "other_git"
   end
 
   add_index "books", ["deleted_at"], name: "index_books_on_deleted_at"

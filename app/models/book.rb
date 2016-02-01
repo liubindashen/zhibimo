@@ -161,7 +161,11 @@ class Book < ActiveRecord::Base
   end
 
   def git_path
-    "#{path}/#{GIT_NAME}"
+    if self.other_git
+      self.other_git
+    else
+      "#{path}/#{GIT_NAME}"
+    end
   end
 
   def commits_path

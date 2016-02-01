@@ -40,7 +40,13 @@ class BuildJob < ActiveJob::Base
 
       current_path = "current"
 
-      book.fetch_remote_repo
+
+      begin
+        book.fetch_remote_repo
+      rescue => err
+        puts err
+      end
+
 
       # prework for book source
       FileUtils.cd commit_path do
