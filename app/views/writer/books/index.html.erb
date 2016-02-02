@@ -33,7 +33,7 @@
               <a target='_blank' href='<%= edit_writer_book_path(book) %>/'>编辑</a>
               <a target='_blank' href='<%= writer_book_builds_path(book) %>'>构建</a>
               <a target='_blank' href='<%= writer_book_orders_path(book) %>'>收款记录</a>
-              <% if book.other_git == nil || book.other_git != "" %>
+              <% if book.other_git == nil %>
                 <a target='_blank' href='<%= writer_book_desk_path(book) %>/'>在线编辑器</a>
               <% end %>
             </div>
