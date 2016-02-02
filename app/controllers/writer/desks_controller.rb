@@ -3,7 +3,7 @@ module Writer
     before_action :set_book
 
     def show
-      if @book.other_git != ""
+      if @book.other_git == nil
         @current_user = current_user
         gon.jbuilder
 
