@@ -1,0 +1,27 @@
+<% content_for :navigation do %>
+  <div class='item'>
+    <div class="ui huge breadcrumb">
+      <%= link_to '团队协作', writer_books_path, class: 'active section' %>
+    </div>
+  </div>
+<% end %>
+
+<div class='ui container'>
+  <div class="ui edge attached message">
+    <div class="header">
+      加入协作者
+    </div>
+
+  </div>
+
+  <div class='ui edge attached segment'>
+
+    <%= form_for @team, url: writer_book_teams_path, html: {class: 'ui form'} do |f| %>
+      <div class="field">
+        <label>笔名</label>
+        <input name="pen_name" type="text" placeholder="协作者的笔名">
+      </div>
+      <button class="ui primary button" type='submit'>保存</button>
+    <% end %>
+  </div>
+</div>

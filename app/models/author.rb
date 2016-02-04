@@ -1,3 +1,4 @@
+require 'rest-client'
 class Author < ActiveRecord::Base
   validates :pen_name, presence: true, uniqueness: true
   validates :intro, presence: true
@@ -12,6 +13,7 @@ class Author < ActiveRecord::Base
 
   has_many :withdraws, dependent: :destroy
 
+  has_many :teams
   delegate :username, :email, :to => :user
 
   scope :find_by_username, -> (username) {
@@ -38,6 +40,12 @@ class Author < ActiveRecord::Base
     else
       total = self.orders.where(aasm_state: "complete").sum(:fee) * 0.1
     end
+  end
+
+
+  def gitlab_private_token
+    response = RestClient.post 'http://git.zhibimo.com/api/v3/session', {:login => "longshao", 'password' => '6d06b1072ac4f4a5d7b666d000c80ae5'}
+    JSON.parse(response)["private_token"]
   end
 
   after_create do

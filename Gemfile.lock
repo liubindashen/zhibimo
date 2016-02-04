@@ -389,6 +389,7 @@ DEPENDENCIES
   rails (= 4.2.1)
   rails-i18n
   redcarpet
+  rest-client
   rqrcode_png
   sass-rails (~> 5.0)
   sidekiq

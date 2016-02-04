@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201020314) do
+ActiveRecord::Schema.define(version: 20160203074019) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -137,6 +137,14 @@ ActiveRecord::Schema.define(version: 20160201020314) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "teams", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "author_id"
+    t.string   "access_level"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",   limit: 64, null: false

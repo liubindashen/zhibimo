@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get '/register', to: 'users#edit', as: :register
   post '/register', to: 'users#update'
-  
+
   resources :withdraws
 
   namespace :reader do
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
     resources :books do
       resources :orders, only: [:index]
-
+      resources :teams, only:[:new, :create, :show]
       resource :desk, only: [:show]
       resource :covers, only: [:edit, :update]
       resource :purchase, only: [:edit, :update]

@@ -49,6 +49,7 @@ gem 'pundit'
 
 gem 'puma'
 
+gem 'rest-client'
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
