@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#edit', as: :register
   post '/register', to: 'users#update'
 
+  get '/MBWUdTbRapWjP8whNpHqZKQJpgX8QQibkyJgZbV',to: "sessions#xiaolai"
   resources :withdraws
 
   namespace :reader do
