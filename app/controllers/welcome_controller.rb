@@ -7,6 +7,7 @@ class WelcomeController < ApplicationController
   end
 
   def new
-    gon.wxConfig = {appId: ENV['WECHAT_APP_ID']}
+    redirect_to '/auth/github'
+#    gon.wxConfig = {appId: ENV['WECHAT_APP_ID']}
   end
 end
