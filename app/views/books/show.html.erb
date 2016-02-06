@@ -1,4 +1,4 @@
-<% title @book.title %>
+<% @book.title %>
 
 <div id='book_info' class="ui primary inverted vertical segment">
   <div class='ui container'>
@@ -24,7 +24,7 @@
               <span class="donate">
                 <%= link_to(new_reader_book_donate_path(@book), class: 'ui inverted basic button') do %>
                   <i class="empty heart icon"></i>
-                  打赏 
+                  打赏
                 <% end %>
               </span>
             <% end %>
