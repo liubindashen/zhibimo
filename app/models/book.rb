@@ -163,10 +163,10 @@ class Book < ActiveRecord::Base
   end
 
   def git_path
-    if self.other_git != nil && self.other_git != ""
-      self.other_git
-    else
+    if self.other_git == nil && self.other_git == ""
       "#{path}/#{GIT_NAME}"
+    else
+      self.other_git
     end
   end
 
