@@ -75,7 +75,7 @@ class BuildJob < ActiveJob::Base
         Rails.logger.info 'update readme and summary'
       end
 
-      system("sed -i 's/\\s/ /g' #{commit_path}/*")
+      system("sed -i 's/\\s/ /g' #{commit_path}/*.md")
 
       # build html to books/author/book/release/commit/
       #cmd =
