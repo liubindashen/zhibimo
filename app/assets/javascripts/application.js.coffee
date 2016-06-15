@@ -4,6 +4,7 @@
 
 jQuery.fn.exists = -> @length > 0
 
+
 $ ->
 
   if $('#wechat_login_wrapper').exists()
@@ -48,3 +49,8 @@ $ ->
     .sidebar('toggle')
 
   $(".ui.secondary.pointing.content.menu .item").tab()
+
+  if document.body.clientWidth < 970
+    $("#a").append($("#wechat_login_wrapper").clone(true))
+  if document.body.clientWidth < 970
+    $("#one").css("visibility","hidden");
