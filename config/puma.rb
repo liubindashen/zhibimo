@@ -1,6 +1,6 @@
 directory "/home/deploy/zhibimo/current"
 
-workers 4
+workers 24
 threads 8,16
 
 bind "unix:///home/deploy/zhibimo/shared/tmp/socks/puma.sock"
